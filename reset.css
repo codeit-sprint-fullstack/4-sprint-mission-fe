@@ -1,0 +1,138 @@
+:root{
+    --WIDTH:99vw;
+    --HEIGHT:100vh;
+    --MARGIN:200px;
+    --HEIGHT-구경하러가기:540px;
+}
+
+*{
+    margin:0px;    
+    box-sizing: border-box;
+}
+
+body{
+    
+
+}
+/*------------------------------------------
+header (판다마켓,로그인)
+------------------------------------------*/
+@media(max-width:1920px)
+{
+    header{    
+        position: sticky;
+        top:0px;
+        margin-left:var(--MARGIN);
+        margin-right:var(--MARGIN);
+        
+        display: flex;
+        flex-flow:row nowrap;
+        justify-content: space-between;
+        z-index:10;
+    }
+}
+@media(min-width:1920px)
+{
+    header{                    
+        position: sticky;
+        top:0px;
+        display: flex;
+        flex-flow:row nowrap;
+        justify-content: space-between;
+        z-index:10;
+    }
+}
+/*------------------------------------------
+section (구경하러가기)
+------------------------------------------*/
+.container-구경하러가기{
+    font-family: Pretendard;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 56px;
+    text-align: left;
+
+    /* 세로크기 지정하지 않으면 child 태그에서 position:absolute 하면 배경화면이 밀린다.  */
+    height: var(--HEIGHT-구경하러가기);
+    border-top: 4px solid rgb(129, 132, 167);
+    
+    background: url('./image/구경하러가기바탕색.png') no-repeat center center/cover;
+    position:relative;
+
+    margin:0;
+}
+.container-구경하러가기-글씨{
+    position: absolute;
+    left:10%;
+    bottom:200px;    
+    z-index:2
+}
+.container-구경하러가기-버튼{
+    position: absolute;
+    left:10%;
+    bottom:100px;    
+    z-index:2
+}
+.container-구경하러가기-배경{
+    position: absolute;
+    left:40%;
+    bottom:-10px;    
+    z-index:1
+}
+/*------------------------------------------
+article
+------------------------------------------*/
+article img{
+    width: var(--WIDTH);
+}
+/*------------------------------------------
+footer
+------------------------------------------*/
+footer{
+    position: relative;
+    height: 160px;
+    background-color: #111827;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.09px;
+    text-align: center;
+    color:white;
+    
+    display: flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;    
+}
+
+footer a{
+    color:white;
+    text-decoration: none;
+}
+.footerbox{    
+    margin-top: 16px;
+}
+.footer-1{
+    flex:1fr 0 auto;
+    margin-left:200px;
+}
+.footer-2{
+    flex:4fr 0 auto;
+}
+.footer-22{        
+    display: flex;
+    flex-flow:row nowrap;
+    justify-content: space-around;
+    width: 200px;
+}
+
+.footer-3{
+    flex:1fr 0 auto;
+    margin-right:200px;    
+}
+.footer-33{
+    flex-flow:row nowrap;
+    justify-content: space-around;
+}
+.footer-33 img{
+    margin-left:16px;
+}
