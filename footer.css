@@ -1,55 +1,71 @@
 footer {
-  width: Fixed (1,920px)px;
-  height : 200px;
-  top: 3448px;
-  padding: 32px 200px 32px 200px;
-  gap: 10px;
-  opacity: 0px;
-  
-
+  width: 100%;
+  height: 200px;
+  padding: 32px 0; /* Remove fixed horizontal padding */
   background: #111827;
 }
 
-footer ul#menubar{
-  background-color: #111827;
-  position:relative;
+footer ul#menubar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0 200px; /* Horizontal padding for the entire list */
+  margin: 0;
 }
 
-footer ul#menubar li{
-  display: inline-block;
-  list-style-type:none;
-  padding : 0px 15px;
-  color : white;
-  font-size : 2.4em;
+footer ul#menubar li {
+  color: white;
+  font-size: 2.4em;
 }
 
-footer ul#menubar li a{
+footer ul#menubar li#left {
+  margin-right: auto; /* Left-aligned */
+}
+
+footer ul#menubar li#center {
+  display: flex;
+  gap: 30px; /* Space between Privacy Policy and FAQ */
+}
+
+footer ul#menubar li#right {
+  display: flex;
+  gap: 10px; /* Space between SNS icons */
+  margin-left: auto; /* Right-aligned */
+}
+
+footer ul#menubar li a {
   text-decoration: none;
-  color : white;
+  color: white;
+  cursor: pointer;
 }
 
-
-footer ul#menubar li#left{
-  float : left;
-}
-footer ul#menubar li#center{
-  position:absolute;
-  top : 3px;
-  left : 45%;
-}
-footer ul#menubar li#right{
-  float : right;
+footer ul#menubar li#right img {
+  width: 40px; /* Icon size */
+  height: 40px; /* Icon size */
+  transition: transform 0.2s; /* Smooth hover effect */
 }
 
-footer ul#menubar li#right img{
-  width :30px;
-  height : 30px;
+footer ul#menubar li#right img:hover {
+  transform: scale(1.1); /* Enlarge icon on hover */
 }
 
-#menubar ul#menubar li a{
-  color : white;
-  text-decoration: none;
+/* Responsive design adjustments */
+@media (max-width: 1920px) {
+  footer {
+    padding: 32px 0; /* Keep top and bottom padding */
+  }
+
+  footer ul#menubar {
+    padding: 0 200px; /* Maintain left and right padding */
+  }
+
+  footer ul#menubar li#center {
+    flex-grow: 1; /* Allow center items to take available space */
+    justify-content: center; /* Center-align the center items */
+  }
+
+  footer ul#menubar li#right {
+    margin-left: 0; /* Adjust right items */
+  }
 }
-
-
-

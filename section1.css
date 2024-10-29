@@ -8,7 +8,6 @@ section#section1 {
   height: 540px;
   gap: 0px;
   opacity: 1; /* 불투명도 조정 */
-  
   background: rgba(207, 229, 255, 1);
 }
 
@@ -16,8 +15,8 @@ section#section1 div#section1_box {
   display: flex;
   justify-content: center; /* 중앙 정렬 */
   align-items: center; 
-  width: Hug (1, 110px)px;
-  height: Hug (397px)px;
+  width: 1110px; /* 고정 너비 설정 */
+  height: 397px;
   opacity: 1; /* 불투명도 조정 */
 }
 
@@ -35,19 +34,17 @@ section#section1 div#section1_box button#cta_button {
   cursor: pointer;
   text-align: center; /* Center text in button */
   line-height: 60px; /* Vertically center text */
-  
 }
 
 section#section1 div#section1_box span {
   display: block;
-  
   font-family: Pretendard;
-  font-size: 40px;
-  font-weight: 700;
+  font-size: 40px; /* 원래 크기로 복원 */
+  font-weight: 700; /* 원래 굵기로 복원 */
   line-height: 56px;
   text-align: left;
   background-color: #CFE5FF;
-  color: #374151;
+  color: #374151; /* 원래 색상으로 복원 */
 }
 
 section#section1 div#section1_box img {

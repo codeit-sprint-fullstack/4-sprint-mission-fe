@@ -4,32 +4,32 @@ section#section3 {
   justify-content: flex-end; /* 아래쪽 정렬 */
   align-items: center; /* 수평 중앙 정렬 */
   position: relative;
-  width: 100%;
+  width: 100%; /* 전체 너비 사용 */
   height: 540px;
-  gap: 0px;
+  gap: 0px; /* 간격 설정 */
   opacity: 1; /* 불투명도 조정 */
-  
-  background: rgba(207, 229, 255, 1);
+  background: rgba(207, 229, 255, 1); /* 배경색 설정 */
 }
 
 section#section3 div#section3_box {
-  display: flex;
+  display: flex; /* Flexbox 사용 */
   justify-content: center; /* 중앙 정렬 */
-  align-items: center; 
-  width: Hug (1, 110px)px;
-  height: Hug (397px)px;
-  gap: 69px;
+  align-items: center; /* 수직 중앙 정렬 */
+  width: 1110px; /* 고정 너비 설정 */
+  height: 397px; /* 고정 높이 설정 */
+  gap: 69px; /* 요소 간격 설정 */
   opacity: 1; /* 불투명도 조정 */
+  margin: 0 auto; /* 중앙 정렬을 위해 자동 마진 설정 */
 }
 
 section#section3 div#section3_box p {
-  font-family: Pretendard;
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 56px;
-  text-align: left;
-  background-color: #CFE5FF;
-  color: #374151;
+  font-family: Pretendard; /* 폰트 설정 */
+  font-size: 40px; /* 원래 크기로 복원 */
+  font-weight: 700; /* 원래 굵기로 복원 */
+  line-height: 56px; /* 줄 높이 설정 */
+  text-align: left; /* 왼쪽 정렬 */
+  background-color: #CFE5FF; /* 배경색 설정 */
+  color: #374151; /* 원래 색상으로 복원 */
 }
 
 section#section3 div#section3_box img {
