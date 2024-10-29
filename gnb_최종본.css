@@ -1,0 +1,40 @@
+header.gnb {
+  position: relative;
+  width: 100%; /* 헤더가 브라우저 창 전체 너비를 차지하도록 설정 */
+  height: auto; /* 필요한 높이에 맞게 자동으로 높이 설정 */
+  padding: 10px 20px; /* 좌우 여백 설정 */
+  box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
+  justify-content: space-between; /* 로고와 버튼 간의 간격 확보 */
+  background: #FFFFFF;
+  display: flex; /* Flexbox로 내부 요소 배치 */
+  align-items: center; /* 내부 요소를 세로 중앙 정렬 */
+  border-bottom: 1px solid #DFDFDF;
+}
+
+header.gnb div#Frame_2609410 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Frame의 너비를 부모 요소에 맞춤 */
+}
+
+header.gnb div#Frame_2609410 img#logo {
+  width: 300px; /* 로고 크기 */
+  height: 100px;
+}
+
+header.gnb div#Frame_2609410 span#btn_small_48 {
+  display: inline-block;
+  width: 100px;
+  height: 48px;
+  padding-top:18px;
+  background: #3692FF;
+  color: #F3F4F6;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+  border-radius: 8px;
+  margin-left: auto; /* 버튼이 로고로부터 최대한 오른쪽에 배치되도록 설정 */
+}

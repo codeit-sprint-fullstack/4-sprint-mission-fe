@@ -1,0 +1,118 @@
+/* CSS for centering the section */
+body {
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  height: 100vh;
+  /* Full viewport height */
+  margin: 0;
+}
+
+section {
+  width: 640px;
+  height: 618px;
+  opacity: 1;
+  gap: 40px;
+}
+
+article.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img#logo {
+  width: 396px;
+  height: 132px;
+}
+
+.logIn_webForm p {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: left;
+}
+
+.logIn_webForm input {
+  width: 640px;
+  height: 56px;
+  border-radius: 5px;
+  background: #F3F4F6;
+  font-size: 20px;
+  border: solid 0px black;
+  text-indent: 1em;
+}
+
+.logIn_webForm input:focus {
+  border: solid 5px skyblue;
+  outline: none;
+}
+
+.logIn_webForm button {
+  margin: 15px 0px;
+  width: 100%;
+  height: 56px;
+  background: #9CA3AF;
+  color: white;
+  border-radius: 40px;
+  font-size : 18px;
+  font-weight: bold;
+}
+
+
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #E6F2FF;
+  padding: 15px 20px;
+}
+
+nav ul li {
+  display: inline-flex;
+  align-items: center;
+}
+
+nav ul li#link {
+  margin-left: 15px;
+  margin-right: auto;
+}
+
+nav ul li#diff_web_logIn {
+  margin-right: 5px;
+}
+
+nav ul li#diff_web_logIn img {
+  border-radius: 40px;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+nav ul li#diff_web_logIn img#Google {
+  background: white; /* Background for Google logo */
+}
+
+nav ul li#diff_web_logIn img#Kakao {
+  background: #F5E14B; /* Background for Kakao logo */
+}
+
+nav ul li#link a {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 26px;
+  text-align: center;
+  text-decoration: none;
+  color: #1F2937;
+}
+
+nav p{
+  text-align:center;
+}

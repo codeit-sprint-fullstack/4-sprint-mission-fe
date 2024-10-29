@@ -1,0 +1,49 @@
+footer {
+  width: Fixed (1,920px)px;
+  height : 200px;
+  top: 3448px;
+  padding: 32px 200px 32px 200px;
+  gap: 10px;
+  opacity: 0px;
+  
+
+  background: #111827;
+}
+
+footer ul#menubar{
+  background-color: #111827;
+  position:relative;
+}
+
+footer ul#menubar li{
+  display: inline-block;
+  list-style-type:none ;
+  padding : 0px 15px;
+  color : white;
+  font-size : 2.4em;
+}
+
+footer ul#menubar li#left{
+  float : left;
+}
+footer ul#menubar li#center{
+  position:absolute;
+  top : 3px;
+  left : 45%;
+}
+footer ul#menubar li#right{
+  float : right;
+}
+
+footer ul#menubar li#right img{
+  width :200px;
+  height : 40px;
+}
+
+#menubar ul#menubar li a{
+  color : white;
+  text-decoration: none;
+}
+
+
+
