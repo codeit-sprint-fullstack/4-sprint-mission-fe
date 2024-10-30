@@ -1,0 +1,11 @@
+#ignore items
+
+#vscode에서의 이 환경값은 필요가 없을듯하다.
+.github
+
+#이 파일은 단지 참고임.
+mission.txt
+
+README1.md
+
+
