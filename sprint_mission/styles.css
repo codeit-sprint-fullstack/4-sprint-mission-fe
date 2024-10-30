@@ -1,0 +1,234 @@
+/* container_01, 02, 03 합칠 수 있는 방법 찾기 */
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+:root {
+    --primary-color-50: #E6F2FF;
+    --primary-color-100: #3692FF;
+    --primary-color-200: #1967D6;
+    --primary-color-300: #1251AA;
+    --error-color: #F74747;
+    --secondary-color-gray900: #111827;
+    --secondary-color-gray800: #1F2937;
+    --secondary-color-gray700: #374151;
+    --secondary-color-gray600: #4B5563;
+    --secondary-color-gray500: #6B7280;
+    --secondary-color-gray400: #9CA3AF;
+    --secondary-color-gray200: #E5E7EB;
+    --secondary-color-gray100: #F3F4F6;
+    --secondary-color-gray50: #F9FAFB;
+}
+
+header {
+    background-color: white;
+    color: black;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    padding-bottom: 7px;
+}
+
+body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+b {
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+button {
+    cursor: pointer;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 500;
+}
+
+.header_logo {
+    height: 40px;
+    width: 120px;
+    margin-left: 200px;
+    margin-top: 10px;
+}
+
+.login_button {
+    margin-top: 5px;
+    margin-right: 200px;
+    width: 88px;
+    height: 42px;
+    background-color: var(--primary-color-100);
+    border-radius: 8px;
+    border: none;
+    color: white;
+}
+
+.main_container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.banner_container {
+    background-color: #CFE5FF;
+    width: 1920px;
+    height: 540px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.banner_image {
+    width: 746px;
+    height: 340px;
+    position: absolute;
+    bottom: 0;
+    right: 300px;
+}
+
+.banner_text {
+    font-size: 40px;
+    color: #374151;
+    font-weight: 600;
+    line-height: 56px;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+}
+
+.banner_info {
+    width: 357px;
+    height: 260px;
+    text-align: left;
+    position: absolute;
+    bottom: 40px;
+    left: 500px;
+}
+
+.look_around_button {
+    background-color: var(--primary-color-100);
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 357px;
+    height: 56px;
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.content_container {
+    background-color: #FCFCFC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 988px;
+    height: 444px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding-left: 30px;
+}
+
+.content_01 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 60px;
+}
+
+.content_02 {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin-left: 60px;
+}
+
+.content_03 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.content_badge {
+    color: var(--primary-color-100);
+    font-size: 18px;
+    width: 72px;
+    height: 26px;
+}
+
+.content_title {
+    font-size: 40px;
+    color: var(--secondary-color-gray700);
+    font-weight: 600;
+    line-height: 56px;
+    letter-spacing: 0.02em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.content_desc {
+    font-size: 24px;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+.images {
+    width: 588px;
+    height: 444px;
+}
+
+.footer_container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 160px;
+    background-color: var(--secondary-color-gray900);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.copyright {
+    color: var(--secondary-color-gray400);
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 200px;
+    margin-top: -40px;
+}
+
+.footer_text_style {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer_text {
+    color: var(--secondary-color-gray200);
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 30px;
+    margin-top: -40px;
+}
+
+.footer_sns_icons {
+    margin-right: 200px;
+    margin-top: -50px;
+}
