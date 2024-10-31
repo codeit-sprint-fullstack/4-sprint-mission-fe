@@ -83,7 +83,7 @@ button {
 
 .banner_container {
     background-color: #CFE5FF;
-    width: 1920px;
+    width: 100%;
     height: 540px;
     position: relative;
     display: flex;
@@ -96,7 +96,7 @@ button {
     height: 340px;
     position: absolute;
     bottom: 0;
-    right: 300px;
+    right: 150px;
 }
 
 .banner_text {
@@ -114,7 +114,7 @@ button {
     text-align: left;
     position: absolute;
     bottom: 40px;
-    left: 500px;
+    left: 200px;
 }
 
 .look_around_button {
