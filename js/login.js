@@ -1,3 +1,5 @@
+/* 패스워드 보이기/숨기기 toggle 기능 */
+
 // 눈동자 아이콘 요소들 선택
 const eyes=document.querySelectorAll('.eyes');
 
@@ -9,10 +11,10 @@ function togglePasswordVisibility(e){
   // 아이콘과 'input type' toggle 하기
   if(imgSrc==="/img/eye_disable.png"){
     e.target.setAttribute("src", "/img/eye.png");
-    e.target.parentElement.firstElementChild.setAttribute('type',"text")
+    e.target.parentElement.firstElementChild.removeAttribute('type');
   }else{
     e.target.setAttribute("src","/img/eye_disable.png");
-    e.target.parentElement.firstElementChild.setAttribute('type',"password")
+    e.target.parentElement.firstElementChild.setAttribute('type',"password");
   }
 }
 
@@ -20,3 +22,4 @@ function togglePasswordVisibility(e){
 for(let eye of eyes){
   eye.addEventListener('click',togglePasswordVisibility);
 }
+
