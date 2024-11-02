@@ -1,0 +1,122 @@
+.aa {
+  position: absolute;
+  left: 200px;
+  top: 15px;
+  position: fixed;
+}
+.bb {
+  position: absolute;
+  right: 200px;
+  top: 20px;
+  position: fixed;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 100px auto;
+}
+p {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+
+  font-weight: 700;
+  line-height: 56px;
+  text-align: left;
+  text-decoration-color: #374151;
+}
+.dd {
+  display: flex;
+  justify-content: center;
+}
+
+.ee {
+  display: flex;
+  justify-content: center;
+  margin: 200px auto;
+}
+.ff {
+  display: flex;
+  justify-content: center;
+  margin: 200px auto;
+}
+.gg {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 10px auto;
+}
+.hh {
+  display: flex;
+  justify-content: center;
+}
+
+.ii {
+  display: flex;
+  position: relative;
+  bottom: -200px;
+  left: 60px;
+}
+
+.tt {
+  position: relative;
+  bottom: -380px;
+  left: 350px;
+}
+.container1 {
+  display: flex;
+  margin: -10px auto;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.aaa {
+  display: flex;
+  position: relative;
+  align-self: center;
+  right: 600px;
+  bottom: 20px;
+}
+.bbb {
+  display: flex;
+  position: relative;
+  align-self: center;
+  right: 20px;
+  bottom: 20px;
+}
+.ccc {
+  display: flex;
+  position: relative;
+  align-self: center;
+  bottom: 20px;
+}
+.ddd {
+  display: flex;
+  position: relative;
+  align-self: center;
+  right: -570px;
+  bottom: 20px;
+}
+.eee {
+  display: flex;
+  position: relative;
+  align-self: center;
+  right: -580px;
+  bottom: 20px;
+}
+.fff {
+  display: flex;
+  position: relative;
+  align-self: center;
+  right: -590px;
+  bottom: 21px;
+}
+.ggg {
+  display: flex;
+  position: relative;
+  align-self: center;
+  right: -600px;
+  bottom: 20px;
+}
