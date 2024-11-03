@@ -139,16 +139,17 @@ function validCheck(e) {
   // 유효성 체크 완료 시 버튼 활성화
   if (button.className === 'login') { // 1. 로그인 버튼
     if (isEmailChecked && isPwChecked) {
+      console.log('dk');
       button.classList.add('active-button');
-      button.addEventListener('click', checkUserData);
-      // button.setAttribute('onClick', "location.href='/items'");
+      // button.addEventListener('click', checkUserData);
+      button.setAttribute('onClick', "location.href='/items'");
     }
   } else { // 2. 회원가입 버튼
     if (isEmailChecked && isPwChecked && isPwConfirmChecked && isNickNameChecked) {
       console.log('dk');
       button.classList.add('active-button');
       button.setAttribute('onClick', "location.href='/login'");
-      button.addEventListener('click', checkUserData);
+      // button.addEventListener('click', checkUserData);
       console.log(button);
     }
   }
@@ -156,24 +157,25 @@ function validCheck(e) {
 }
 
 // 로그인/회원가입 버튼 클릭 시 데이터 체크 핸들러
-function checkUserData(e) {
-  console.log('클릭');
-  const { target } = e;
+function checkUserData() {
+  // console.log('클릭');
+  // const { target } = e;
 
-  console.log(target);
-  console.log(target.classList.contains('login'));
-  if (target.classList.contains('login')) {
-    let userExist = USER_DATA.some((el) => { el.email === inputEmailValue && el.password === inputPwValue }) // 일치하는 user 존재
-    console.log(userExist);
-    if (!userExist) {
-      console.log('비밀번호 불일치');
-      alert('비밀번호가 일치하지 않습니다.');
-      return false;
-    } else {
-      button.setAttribute('onClick', "location.href='/items'");
-      return true;
-    }
-  }
+  // console.log(target);
+  // console.log(target.classList.contains('login'));
+  // if (target.classList.contains('login')) {
+  //   let userExist = USER_DATA.some((el) => { el.email === inputEmailValue && el.password === inputPwValue }) // 일치하는 user 존재
+  //   console.log(userExist);
+  //   if (!userExist) {
+  //     console.log('비밀번호 불일치');
+  //     alert('비밀번호가 일치하지 않습니다.');
+  //     return false;
+  //   } else {
+  //     button.setAttribute('onClick', "location.href='/items'");
+  //     return true;
+  //   }
+  // }
+  return '/items'
 }
 
 form.addEventListener('focusout', validCheck);

@@ -54,6 +54,8 @@ footer {
 #logo {
   width: 15.3rem;
   flex-shrink: 0;
+  vertical-align: bottom;
+  /* 로고 이미지 수직 가운데 정렬 */
 }
 
 .header-content-left {
