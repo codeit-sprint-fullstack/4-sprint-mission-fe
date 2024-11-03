@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="login.css">
-    <title>Panda Market - Login</title>
+    <link rel="stylesheet" href="signup.css">
+    <title>Panda Market - sign up</title>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C252NEYGHB"></script>
@@ -25,16 +25,22 @@
                 <img id="logo" src="./resources/logo_with_text.png" alt="logo with text">
             </a>
             <!-- 로그인 폼 -->
-            <form action="/login" method="post">
+            <form action="/signup" method="post">
                 <label for="user_email">이메일</label>
                 <input type="email" id="user_email" name="user_email" placeholder="이메일을 입력해주세요" required>
-
+                <label for="user_nickname">닉네임</label>
+                <input type="email" id="user_nickname" name="user_nickname" placeholder="닉네임을 입력해주세요" required>
                 <label for="password">비밀번호</label>
                 <div class="input-password-box">
                     <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
                     <img id="toggle-password" onclick="togglePasswordVisibility()" src="./resources/eye_open.png">
                 </div>
-                <button type="submit">로그인</button>
+                <label for="password-c">비밀번호 확인</label>
+                <div class="input-password-box">
+                    <input type="password" id="password-c" name="password-c" placeholder="비밀번호를 다시 한 번입력해주세요" required>
+                    <img id="toggle-password-c" onclick="togglePasswordVisibility_c()" src="./resources/eye_open.png">
+                </div>
+                <button type="submit">회원가입</button>
             </form>
             <div class="easy-login-box">
                 <p>간편 로그인하기</p>
@@ -48,7 +54,7 @@
                 </div>
             </div>
             <p class="sign-up">
-                판다마켓이 처음이신가요? <a href="signup.html">회원가입</a>
+                이미 회원이신가요? <a href="login.html">로그인</a>
             </p>
         </section>
     </main>
@@ -58,14 +64,28 @@
             const passwordInput = document.getElementById("password");
             const toggleIcon = document.getElementById("toggle-password");
 
-            // 현재 input의 type을 확인하고, type을 변경
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
-                toggleIcon.src = "./resources/eye_open.png"; // 비밀번호가 보일 때 아이콘을 변경
+                toggleIcon.src = "./resources/eye_closed.png"; // 비밀번호가 보일 때 아이콘 변경
                 toggleIcon.alt = "Hide Password";
             } else {
                 passwordInput.type = "password";
-                toggleIcon.src = "./resources/eye_closed.png"; // 비밀번호가 숨겨질 때 아이콘을 변경
+                toggleIcon.src = "./resources/eye_open.png"; // 비밀번호가 숨겨질 때 아이콘 변경
+                toggleIcon.alt = "Show Password";
+            }
+        }
+
+        function togglePasswordVisibility_c() {
+            const passwordInput = document.getElementById("password-c");
+            const toggleIcon = document.getElementById("toggle-password-c");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.src = "./resources/eye_closed.png"; // 비밀번호가 보일 때 아이콘 변경
+                toggleIcon.alt = "Hide Password";
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.src = "./resources/eye_open.png"; // 비밀번호가 숨겨질 때 아이콘 변경
                 toggleIcon.alt = "Show Password";
             }
         }

@@ -1,9 +1,31 @@
+:root {
+    /* Primary Colors */
+    --primary-100: #3692FF;
+    --primary-200: #1967D6;
+    --primary-300: #1251AA;
+
+    /* Error Color */
+    --error-red: #F74747;
+
+    /* Secondary Colors */
+    --gray-900: #111827;
+    --gray-800: #1F2937;
+    --gray-700: #374151;
+    --gray-600: #4B5563;
+    --gray-500: #6B7280;
+    --gray-400: #9CA3AF;
+    --gray-200: #E5E7EB;
+    --gray-100: #F3F4F6;
+    --gray-50: #F9FAFB;
+}
+
 * {
     box-sizing: border-box;
 }
 
 html {
     font-family: Pretendard, sans-serif;
+    font-size: 100%; /* 기본 폰트 크기 설정 (1rem = 16px) */
 }
 
 body {
@@ -25,16 +47,16 @@ img {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 75rem; /* 1200px */
     width: 90%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.25rem; /* 20px */
 }
 
 /* navigation - start */
 
 nav {
-    height: 70px;
+    height: 4.375rem; /* 70px */
     display: flex;
     align-items: center;
     background-color: #ffffff;
@@ -50,16 +72,16 @@ nav {
 }
 
 .nav-container img {
-    max-width: 153px;
+    max-width: 9.5625rem; /* 153px */
 }
 
-.button-square{
-    background-color: #3692FF;
-    font-size: 16px;
+.button-square {
+    background-color: var(--primary-100);
+    font-size: 1rem; /* 16px */
     font-weight: 600;
-    width: 128px;
-    height: 48px;
-    border-radius: 8px;
+    width: 8rem; /* 128px */
+    height: 3rem; /* 48px */
+    border-radius: 0.5rem; /* 8px */
     color: #ffffff;
     text-decoration: none;
 
@@ -74,8 +96,8 @@ nav {
 
 .main-top,
 .main-bottom {
-    background-color: #CFE5FF;
-    height: 450px;
+    background-color: #CFE5FF; /* 변수 없음 */
+    height: 28.125rem; /* 450px */
     display: flex;
     align-items: flex-end;
 }
@@ -84,7 +106,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 1.875rem; /* 30px */
 }
 
 .main-container img {
@@ -92,18 +114,18 @@ nav {
 }
 
 .main-container h1 {
-    font-size: 40px;
+    font-size: 2.5rem; /* 40px */
     font-weight: 700;
     margin: 0;
 }
 
-.button-round{
-    background-color: #3692FF;
-    font-size: 20px;
+.button-round {
+    background-color: var(--primary-100);
+    font-size: 1.25rem; /* 20px */
     font-weight: 600;
-    width: 357px;
-    height: 56px;
-    border-radius: 40px;
+    width: 22.3125rem; /* 357px */
+    height: 3.5rem; /* 56px */
+    border-radius: 2.5rem; /* 40px */
     color: #ffffff;
     text-decoration: none;
 
@@ -115,7 +137,7 @@ nav {
 .main-text-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 1.875rem; /* 30px */
 }
 
 /* section main - end */
@@ -137,9 +159,9 @@ section.card {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 1.875rem; /* 30px */
 
-    background-color: #FCFCFC;
+    background-color: #FCFCFC; /* 변수 없음 */
 }
 
 .card-container img {
@@ -149,7 +171,7 @@ section.card {
 .card-text-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.9375rem; /* 15px */
     padding: 3%;
 }
 
@@ -158,45 +180,45 @@ section.card {
 }
 
 .card-container .label {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px */
     font-weight: 700;
-    color: #3692FF;
+    color: var(--primary-100);
 }
 
 .card-container h2 {
-    font-size: 40px;
+    font-size: 2.5rem; /* 40px */
     font-weight: 700;
     margin: 0;
-    line-height: 56px;
+    line-height: 3.5rem; /* 56px */
 }
 
 .card-container p {
     margin: 0;
-    line-height: 32px;
+    line-height: 2rem; /* 32px */
     font-weight: 500;
-    font-size: 24px;
+    font-size: 1.5rem; /* 24px */
 }
 
 /* section card - end */
 
 footer {
-    background-color: #111827;
+    background-color: var(--gray-900);
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
-    height: 160px;
-    padding-top: 30px;
+    height: 10rem; /* 160px */
+    padding-top: 1.875rem; /* 30px */
 }
 
-footer a{
-    color: #E5E7EB;
-    font-size: 16px;
+footer a {
+    color: var(--gray-200);
+    font-size: 1rem; /* 16px */
     font-weight: 400;
 }
 
 footer p {
-    color: #9CA3Af;
-    font-size: 16px;
+    color: var(--gray-400);
+    font-size: 1rem; /* 16px */
     font-weight: 400;
     margin: 0;
 }
@@ -205,11 +227,11 @@ footer p {
 .footer-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
 }
 
 footer img {
-    width: 20px;
+    width: 1.25rem; /* 20px */
 }
 
 /* section card - end */

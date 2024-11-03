@@ -90,7 +90,8 @@ input {
     width: 100%;
 }
 
-#toggle-password {
+#toggle-password,
+#toggle-password-c {
     position: absolute;
     width: 1.5625rem; /* 25px */
     left: 93%;
