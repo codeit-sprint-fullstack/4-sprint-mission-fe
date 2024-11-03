@@ -11,25 +11,53 @@
         <!-- 로그인 섹션 -->
         <section class="login-section">
             <a href="index.html">
-                <img src="./resources/logo_with_text.png" alt="logo with text">
+                <img id="logo" src="./resources/logo_with_text.png" alt="logo with text">
             </a>
             <!-- 로그인 폼 -->
             <form action="/login" method="post">
                 <label for="user_email">이메일</label>
-                <input type="email" id="user_email" name="user_email" required>
+                <input type="email" id="user_email" name="user_email" placeholder="이메일을 입력해주세요" required>
 
                 <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password" required>
-
+                <div class="input-password-box">
+                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+                    <img id="toggle-password" onclick="togglePasswordVisibility()" src="./resources/eye_open.png">
+                </div>
                 <button type="submit">로그인</button>
             </form>
-            <div>
+            <div class="easy-login-box">
                 <p>간편 로그인하기</p>
+                <div class="easy-login-box-right">
+                    <a href="https://www.goole.com/">
+                        <img src="./resources/logo_google.png" alt="google logo">
+                    </a>
+                    <a href="https://www.kakaocorp.com/page/">
+                        <img src="./resources/logo_kakao.png" alt="kakao logo">
+                    </a>
+                </div>
             </div>
-            <p>
-                판다마켓이 처음이신가요?<a href="signup.html">회원가입</a>
+            <p class="sign-up">
+                판다마켓이 처음이신가요? <a href="signup.html">회원가입</a>
             </p>
         </section>
     </main>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            const toggleIcon = document.getElementById("toggle-password");
+
+            // 현재 input의 type을 확인하고, type을 변경
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.src = "./resources/eye_open.png"; // 비밀번호가 보일 때 아이콘을 변경
+                toggleIcon.alt = "Hide Password";
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.src = "./resources/eye-closed.png"; // 비밀번호가 숨겨질 때 아이콘을 변경
+                toggleIcon.alt = "Show Password";
+            }
+        }
+    </script>
 </body>
 </html>
