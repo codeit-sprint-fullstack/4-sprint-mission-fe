@@ -120,7 +120,6 @@ a.button.round {
 }
 
 main {
-  /* background-color: #fcfcfc; */
   margin: 0;
   margin-bottom: 13.8rem;
 }
@@ -260,7 +259,6 @@ input::placeholder {
   right: 0;
   margin: 1.6rem 2.4rem;
   height: 2.4rem;
-  /* font-size: 22px; */
   cursor: pointer;
 }
 
@@ -270,7 +268,6 @@ input::placeholder {
 
 .container-login button {
   background-color: var(--base-grey-color);
-  /* background-color: var(--main-color); */
   border: none;
   border-radius: 3rem;
   width: 100%;
@@ -318,4 +315,52 @@ a:visited {
 .signup-link a {
   text-decoration: underline;
   color: var(--main-color);
+}
+
+.modal {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* overflow: hidden; */
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal.on {
+  display: block;
+}
+
+.modal .modal-pop {
+  position: absolute;
+  width: 54rem;
+  height: 25rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal .modal-pop .close-btn {
+  display: block;
+  width: 12rem;
+  height: 4.8rem;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 0.8rem;
+  color: #fff;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  position: absolute;
+  right: 2.8rem;
+  bottom: 2.8rem;
+  font-size: 1.6rem;
 }

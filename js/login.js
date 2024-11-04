@@ -37,9 +37,7 @@ const USER_DATA = [
 ]
 
 const form = document.querySelector('form');
-// const inputEmail = document.querySelector('#email');
-// const inputPw = document.querySelector('#password');
-const button = document.querySelector('button');
+const button = document.querySelectorAll('button')[1];
 let inputEmailValue = '';
 let inputPwValue = '';
 
@@ -82,6 +80,12 @@ function validCheck(e) {
       target.nextElementSibling.remove();
     }
     target.classList.remove("error-input"); // input 에러 스타일 삭제
+  }
+
+  // 버튼 활성화 및 이벤트 핸들링
+  function activeBtn() {
+    button.classList.add('active-button');
+    button.addEventListener('click', checkUserData);
   }
 
   if (inputValue) { // 1. 값 입력 시
@@ -139,43 +143,42 @@ function validCheck(e) {
   // 유효성 체크 완료 시 버튼 활성화
   if (button.className === 'login') { // 1. 로그인 버튼
     if (isEmailChecked && isPwChecked) {
-      console.log('dk');
-      button.classList.add('active-button');
-      // button.addEventListener('click', checkUserData);
-      button.setAttribute('onClick', "location.href='/items'");
+      activeBtn();
     }
   } else { // 2. 회원가입 버튼
     if (isEmailChecked && isPwChecked && isPwConfirmChecked && isNickNameChecked) {
-      console.log('dk');
-      button.classList.add('active-button');
-      button.setAttribute('onClick', "location.href='/login'");
-      // button.addEventListener('click', checkUserData);
-      console.log(button);
+      activeBtn();
     }
   }
-
 }
 
 // 로그인/회원가입 버튼 클릭 시 데이터 체크 핸들러
-function checkUserData() {
-  // console.log('클릭');
-  // const { target } = e;
+function checkUserData(e) {
+  const { target } = e;
+  const modal = document.querySelector('.modal');
+  const closeBtn = document.querySelector('.close-btn');
 
-  // console.log(target);
-  // console.log(target.classList.contains('login'));
-  // if (target.classList.contains('login')) {
-  //   let userExist = USER_DATA.some((el) => { el.email === inputEmailValue && el.password === inputPwValue }) // 일치하는 user 존재
-  //   console.log(userExist);
-  //   if (!userExist) {
-  //     console.log('비밀번호 불일치');
-  //     alert('비밀번호가 일치하지 않습니다.');
-  //     return false;
-  //   } else {
-  //     button.setAttribute('onClick', "location.href='/items'");
-  //     return true;
-  //   }
-  // }
-  return '/items'
+  // 모달 팝업, 닫기 버튼 이벤트 핸들링
+  function popModal() {
+    modal.classList.add('on');
+    closeBtn.addEventListener('click', () => { modal.classList.remove('on'); });
+  }
+
+  if (target.classList.contains('login')) { // 1. 로그인
+    let userExist = USER_DATA.some((el) => el.email === inputEmailValue && el.password === inputPwValue);
+    if (userExist) {
+      window.location.href = '/items';
+    } else {
+      popModal();
+    }
+  } else { // 2. 회원가입
+    let emailExist = USER_DATA.some((el) => el.email === inputEmailValue);
+    if (emailExist) {
+      popModal();
+    } else {
+      window.location.href = '/login';
+    }
+  }
 }
 
 form.addEventListener('focusout', validCheck);
