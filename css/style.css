@@ -186,7 +186,7 @@ footer {
 
 .container-login {
   width: 64rem;
-  margin: 23rem auto;
+  margin: 6rem auto;
   text-align: center;
 }
 
@@ -351,8 +351,9 @@ a:visited {
 
 .modal .modal-pop .close-btn {
   display: block;
-  width: 12rem;
-  height: 4.8rem;
+  /* width: 12rem;
+  height: 4.8rem; */
+  padding: 1.4rem 4.8rem;
   background-color: var(--main-color);
   border: none;
   border-radius: 0.8rem;
