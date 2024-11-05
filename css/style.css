@@ -325,29 +325,25 @@ a:visited {
   left: 0;
   width: 100%;
   height: 100%;
-  /* overflow: hidden; */
   background: rgba(0, 0, 0, 0.5);
 }
 
 .modal.on {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal .modal-pop {
-  position: absolute;
+  position: relative;
   width: 54rem;
   height: 25rem;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 2rem;
   background: #ffffff;
   border-radius: 0.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 
 .modal .modal-pop .close-btn {
   display: block;
@@ -397,5 +393,24 @@ a:visited {
 
   .error-msg {
     margin: 0.8rem 0 1.6rem 1.6rem;
+  }
+
+  .modal .modal-pop {
+    width: inherit;
+    max-width: 40rem;
+    min-width: 32.7rem;
+    height: 22rem;
+    margin: 0 2.4rem;
+  }
+
+  .modal .modal-pop .close-btn {
+    right: 50%;
+    transform: translate(50%, 0);
+    bottom: 2.3rem;
+  }
+
+  .modal-pop span {
+    display: block;
+    margin-bottom: 4rem;
   }
 }
