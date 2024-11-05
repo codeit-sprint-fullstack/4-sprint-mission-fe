@@ -351,8 +351,6 @@ a:visited {
 
 .modal .modal-pop .close-btn {
   display: block;
-  /* width: 12rem;
-  height: 4.8rem; */
   padding: 1.4rem 4.8rem;
   background-color: var(--main-color);
   border: none;
@@ -364,4 +362,40 @@ a:visited {
   right: 2.8rem;
   bottom: 2.8rem;
   font-size: 1.6rem;
+}
+
+@media (max-width:1199px) {
+  .container-login {
+    margin: 4.8rem auto;
+  }
+}
+
+@media (max-width:743px) {
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .container-login {
+    max-width: 40rem;
+    min-width: 34.3rem;
+    margin: 2.4rem 1.6rem;
+  }
+
+  .logo-login {
+    width: 19.8rem;
+    margin-bottom: 2.4rem;
+  }
+
+  label {
+    margin-bottom: 0.8rem;
+  }
+
+  input {
+    margin-bottom: 1.6rem;
+  }
+
+  .error-msg {
+    margin: 0.8rem 0 1.6rem 1.6rem;
+  }
 }
