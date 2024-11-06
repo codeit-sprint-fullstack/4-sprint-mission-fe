@@ -1,0 +1,53 @@
+/* 페이지 전체를 가운데 정렬하는 컨테이너 */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* 테이블 스타일 */
+table {
+  width: 280px;
+  height: 250px;
+  margin: auto;
+  font-size: 18px;
+}
+
+/* 텍스트 및 비밀번호 입력 스타일 */
+input[type="text"], input[type="password"] {
+  width: 800px;
+  height: 60px;
+  font-size: 18px;
+  border: 0;
+  border-radius: 30px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgba(243, 244, 246, 1);
+}
+
+/* 버튼 스타일 */
+.btn {
+  width: 800px;
+  height: 60px;
+  font-size: 25px;
+  border: 0;
+  border-radius: 30px;
+  outline: none;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  background-color: rgba(156, 163, 175, 1);
+}
+
+/* 버튼 활성화 시 스타일 */
+.btn:active {
+  width: 800px;
+  height: 60px;
+  font-size: 25px;
+  border: 0;
+  border-radius: 30px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgba(54, 146, 255, 1)
+}
