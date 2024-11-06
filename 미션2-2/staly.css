@@ -1,0 +1,85 @@
+section {
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  position: relative;
+  bottom: 30px;
+}
+input {
+  position: relative;
+  background-color: #f3f4f6;
+  width: 620px;
+  height: 50px;
+  border-radius: 15px;
+  border: solid 1px #f3f4f6;
+  padding-left: 20px;
+  margin-top: -20px auto;
+  bottom: 20px;
+}
+input:focus {
+  outline-color: #3692ff;
+}
+.email,
+.nickname {
+  position: relative;
+  right: 290px;
+  bottom: 15px;
+}
+.password {
+  position: relative;
+  right: 280px;
+  bottom: 15px;
+}
+.password3 {
+  position: relative;
+  right: 258px;
+  bottom: 15px;
+}
+.tttt {
+  position: relative;
+  width: 640px;
+  height: 56px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: aliceblue;
+  background-color: #9ca3af;
+}
+.tttt:hover {
+  background: #3692ff;
+  color: #f3f4f6;
+}
+.login2 {
+  display: flex;
+  margin-top: 20px;
+}
+.qq {
+  position: relative;
+  top: 25px;
+  left: 20px;
+}
+.kakao {
+  position: relative;
+  left: 410px;
+  top: 15px;
+}
+.google {
+  position: relative;
+  left: 390px;
+  top: 15px;
+}
+.aa {
+  position: relative;
+  top: 30px;
+}
+button {
+}
+
+/*.ghqj:hover {
+  background: blue;
+  color: #f3f4f6;
+}*/
