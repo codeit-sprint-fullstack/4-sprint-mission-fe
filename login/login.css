@@ -1,0 +1,140 @@
+:root {
+    /*text창 폭*/
+    --세로크기: 40px;
+    /*색상*/
+    --input색상: #f3f4f6;
+    --로그인버튼색상: #9ca3af;
+    --로그인포커스버튼색상: #3692ff;
+    --간편로그인색상: #e6f2ff;
+    --회원가입색상: #3691ff;
+}
+
+* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+/* 폼 */
+form {
+    /*위치*/
+    position: relative;
+    left: 30%;
+    top: 0px;
+    margin-top: 100px;
+    /*크기*/
+    width: 600px;
+    /*메인 flex 배치*/
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    /* gap:세로픽셀(여백) 가로픽셀(여백)*/
+}
+
+body>form>div {
+    width: 100%;
+
+}
+
+/* 로고 */
+.logo {
+    text-align: center;
+}
+
+/* label , input 속성 */
+label {
+    /*폰트*/
+    font-size: 20px;
+    font-weight: 700;
+}
+
+input {
+    width: 100%;
+    line-height: var(--세로크기);
+    background-color: var(--input색상);
+    border-radius: 8px;
+    border: 0px;
+
+}
+
+/* input 포커스 */
+input:focus {
+    border: 2px solid var(--로그인포커스버튼색상);
+    outline: none;
+}
+
+/* input password 눈모양 안나오게 설정 */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+.비밀번호 {
+    position: relative;
+}
+
+/* 수동 비번 눈모양 추가 */
+.비밀번호 img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* 로그인 버튼 */
+.로그인버튼>input {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    background-color: var(--로그인버튼색상);
+    width: 100%;
+    line-height: var(--세로크기);
+    border-radius: 32px;
+    border: 0px;
+}
+
+/* 폼 포커스 */
+form:focus-within {
+    .로그인버튼>input {
+        background-color: var(--로그인포커스버튼색상);
+    }
+}
+
+/* 간편 로그인 */
+.간편로그인 {
+    position: relative;
+    background-color: var(--간편로그인색상);
+    border-radius: 20px;
+    height: 70px;
+}
+
+.간편로그인-1 {
+    position: absolute;
+    top: 35%;
+    left: 32px;
+}
+
+.간편로그인-2 {
+    position: absolute;
+    top: 15%;
+    right: 32px;
+
+
+}
+
+/*아이콘 두개 사이에 "_" 표시 지움*/
+.간편로그인-2 a {
+    text-decoration: none;
+}
+
+/* footer */
+.끝 {
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.끝 a {
+    font-weight: 600;
+    color: var(--회원가입색상);
+}

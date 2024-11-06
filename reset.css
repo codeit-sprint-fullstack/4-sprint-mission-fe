@@ -1,0 +1,226 @@
+:root {
+    --WIDTH: 99vw;
+    --HEIGHT: 100vh;
+    --MARGIN: 200px;
+    --HEIGHT-구경하러가기: 540px;
+    --HEIGHT-꼬리말: 160px;
+
+    --로그인포커스버튼색상: #3692ff;
+    --꼬리말색상: #111827;
+    --배경색상: #cfe5ff;
+}
+
+* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    width: var(--WIDTH);
+}
+
+/*------------------------------------------
+header (판다마켓,로그인)
+------------------------------------------*/
+.로그인타이틀 {
+    height: 70px;
+    position: sticky;
+    top: 0px;
+    padding: 8px;
+    background-color: white;
+    z-index: 2;
+}
+
+/* 1920pixel 보다 적을때 */
+@media(max-width:1920px) {
+    .로그인타이틀>a:first-child {
+        position: absolute;
+        left: var(--MARGIN);
+    }
+
+    .로그인타이틀>a:last-child {
+        position: absolute;
+        right: var(--MARGIN);
+    }
+}
+
+/* 1920pixel보다 클때 */
+@media(min-width:1920px) {
+    .로그인타이틀>a:first-child {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-400px);
+    }
+
+    .로그인타이틀>a:last-child {
+        position: absolute;
+        left: 50%;
+        transform: translateX(300px);
+    }
+}
+
+.로그인타이틀>a:last-child button {
+    background-color: var(--로그인포커스버튼색상);
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    width: 128px;
+    height: 48px;
+    border: 0px;
+    border-radius: 16px;
+}
+
+/*------------------------------------------
+ 구경하러가기
+------------------------------------------*/
+.container-구경하러가기 {
+    border-top: 4px solid rgb(129, 132, 167);
+    height: var(--HEIGHT-구경하러가기);
+
+    background-color: #cfe5ff;
+    position: relative;
+    z-index: 1;
+
+}
+
+.container-구경하러가기-글씨 {
+    font-size: 34px;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    bottom: 200px;
+    transform: translateX(-500px);
+}
+
+.container-구경하러가기-연결 {
+    position: absolute;
+    left: 50%;
+    bottom: 100px;
+    transform: translateX(-500px);
+}
+
+.container-구경하러가기-연결 button {
+    width: 300px;
+    height: 48px;
+    background-color: var(--로그인포커스버튼색상);
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    border: 0px;
+    border-radius: 32px;
+}
+
+.container-구경하러가기-배경 {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-180px);
+}
+
+/*------------------------------------------
+ section
+------------------------------------------*/
+div>img {
+    position: relative;
+    left: 50%;
+    transform: translateX(-400px);
+}
+
+.중고거래 {
+    position: relative;
+    height: var(--HEIGHT-구경하러가기);
+    background-color: var(--배경색상);
+}
+
+.중고거래-1 {
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transform: translateX(-170px);
+
+}
+
+/*------------------------------------------
+footer
+------------------------------------------*/
+.꼬리말 {
+    height: var(--HEIGHT-꼬리말);
+    background-color: var(--꼬리말색상);
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    position: relative;
+    padding-top: 30px;
+}
+
+/* 1920pixel 보다 적을때 */
+@media(max-width:1920px) {
+    .f1 {
+        position: absolute;
+        left: 200px;
+    }
+
+    .f2 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-100px);
+    }
+
+    .f3 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(100px);
+    }
+
+    .f4 {
+        position: absolute;
+        right: 200px;
+        width: 160px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+}
+
+/* 1920pixel보다 클때 */
+@media(min-width:1920px) {
+    .f1 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-500px);
+    }
+
+    .f2 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-100px);
+    }
+
+    .f3 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(100px);
+    }
+
+    .f4 {
+        position: absolute;
+        left: 50%;
+        width: 160px;
+        transform: translateX(500px);
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+}
+
+.f2 a {
+    color: white;
+    text-decoration: none;
+}
+
+.f3 a {
+    color: white;
+    text-decoration: none;
+}
