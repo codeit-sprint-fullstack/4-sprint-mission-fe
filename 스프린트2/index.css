@@ -1,0 +1,128 @@
+input::placeholder {
+  color: #dddddd;
+}
+
+.main{
+  display: flex;
+  justify-content: center;
+}
+
+.login{
+  margin-top: 231px;
+  width: 640px;
+  height: 618px;
+}
+
+.logo{
+  margin-left: 122px;
+  margin-right: 122px;
+}
+
+.email-1{
+  color: #1F2937;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  margin-bottom: 16px;
+}
+
+.email-2-box{
+  background-color: #f3f4f6;
+  width: 640px;
+  height: 56px;
+  border-radius: 12px;
+}
+
+input {
+  outline-color:#3692ff;
+  background-color: #f3f4f6;
+  margin-top: 15px;
+  margin-left: 24px;
+  border: 0 solid #3692ff; 
+  width: 592px;
+  height: 26px;
+}
+
+.email{
+  margin-top: 40px;
+}
+
+/* 비밀번호 */
+
+.pass-1{
+  color: #1F2937;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  margin-bottom: 16px;
+}
+
+.pass-2-box{
+  background-color: #f3f4f6;
+  width: 640px;
+  height: 56px;
+  border-radius: 12px;
+}
+
+.email-2-text{
+  position: relative;
+}
+
+.eye{
+  position: absolute;
+  top:16px;
+  right: 24px;
+}
+.pass{
+  margin-top: 24px;
+}
+
+.login-bt{
+  color: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  width: 640px;
+  height: 56px;
+  background-color: #9CA3AF;
+  border-radius: 40px;
+  margin-bottom: 24px;
+}
+
+.login-bt:hover{
+  background-color: #3692FF;
+}
+.freelogin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e6f2ff;
+  width: 640px;
+  height: 74px;
+  border-radius: 8px;
+}
+
+.freelogin-text{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #E6F2FF;
+  width: 594px;
+  height: 42px;
+}
+
+
+.icon{
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  height: 42px;
+}
+
+.text-bt{
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  height: 24px;
+}

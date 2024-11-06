@@ -1,0 +1,275 @@
+
+
+#header{
+  background-color: #FFFFFF;
+  position: fixed;
+  top :0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.header-in{
+  display: flex;
+  justify-content: space-between;
+  width: 1120px;
+  align-items: center;
+  margin-left: 200px;
+  margin-right: 200px;
+  
+}
+
+.main-1{
+  background-color: #CFE5FF;
+  display: flex;
+  justify-content: center;
+  height: 610px;
+}
+
+.main-1-in{
+  display: flex;
+  margin-top: 270px;
+  width: 1110px;
+  height: 340px;
+}
+.main-1-img{
+  margin-left: 364px;
+}
+.main-1-font{
+  position: absolute;
+}
+
+.main-1-font-in{
+  margin-top: 40px;
+  font-family:'Pretendard';
+  font-size: 40px; 
+  font-weight: 700;
+  line-height: 56px ;
+} 
+
+.bt{
+  position: absolute;
+  margin-top: 184px;
+}
+/* 메인2 시작 */
+.main-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 720px;
+}
+
+.main-2-in{
+  background-color: #fcfcfc;
+  display: flex;
+  width: 988px;
+  height: 444px;
+}
+
+.main-2-img{
+  margin-left: 31px;
+}
+
+.main-2-font{
+  margin-left: 64px;
+  margin-top: 103px;
+  width: 274px;
+  height: 200px;
+}
+
+.main-2-font1{
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #3692ff;
+}
+
+.main-2-font2{
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #374151;
+}
+
+.main-2-font3{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #374151;
+}
+
+/* 메인3 시작 */
+
+.main-3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 720px;
+}
+.main-3-in{
+  background-color: #fcfcfc;
+  display: flex;
+  width: 988px;
+  height: 444px;
+}
+.main-3-font-in{
+  text-align: right;
+  margin-top: 103px;
+  margin-left: 9.5px;
+  width: 317px;
+  height: 238px;
+}
+
+.main-3-img{
+  margin-left: 64px;
+}
+
+.main-3-font1{
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #3692ff;
+}
+
+.main-3-font2{
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #374151;
+}
+
+.main-3-font3{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #374151;
+}
+
+/* 메인4 시작 */
+
+.main-4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 720px;
+}
+
+.main-4-in{
+  background-color: #fcfcfc;
+  display: flex;
+  width: 988px;
+  height: 444px;
+}
+
+.main-4-img{
+  margin-left: 0.5px;
+}
+
+.main-4-font{
+  margin-left: 64px;
+  margin-top: 103px;
+  width: 335px;
+  height: 238px;
+}
+
+.main-4-font1{
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #3692ff;
+}
+
+.main-4-font2{
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #374151;
+}
+
+.main-4-font3{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #374151;
+}
+
+.main-fn{
+  background-color: #fcfcfc;
+  height: 138px;
+}
+.main-5{
+  display: flex;
+  justify-content: center;
+  background-color: #CFE5FF;
+  height: 540px;
+}
+.main-5-in{
+  display: flex;
+  width: 1110px;
+  height: 397px;
+  margin-top: 143px;
+}
+
+.main-5-font{
+  margin-top: 112.5px;
+  width: 295px;
+  height: 172px;
+}
+
+.main-5-font-in{
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 56px;
+}
+.main-5-img{
+  margin-left: 69px;
+}
+
+.footer{
+  display: flex;
+  justify-content: center;
+  height: 160px;
+  background-color: #111827;
+}
+
+.footer-in{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  margin-left: 200px;
+  margin-right: 200px;
+  width: 1520px;
+  height: 20px;
+}
+
+.codeit{
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 400px;
+    text-decoration: none;
+}
+
+.privacyFaq{
+  display: flex;
+  justify-content: space-between;
+  color: #E5E7EB;
+  font-size: 16px;
+  font-weight: 400px;
+  align-items: center;
+  width: 159px;
+  height: 19px;
+}
+.snslist{
+  display: flex;
+  justify-content: space-between;
+  width: 116px;
+  height: 20px;
+
+}
+
+
+

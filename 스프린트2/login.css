@@ -1,0 +1,153 @@
+.main{
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo{
+  margin-left: 122px;
+}
+
+.main-in{
+  
+  width: 640px;
+  height: 842px;
+}
+
+input{ 
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  outline-color:#3692ff;
+  border: 0;
+  width: 592px;
+  height: 56px;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: #f3f4f6;
+}
+
+.list1{
+  width: 640px;
+  height: 93px;
+}
+
+.email {
+  font-size: 18px;
+  font-weight: 700;
+}
+.name {
+  font-size: 18px;
+  font-weight: 700;
+}
+.pass{
+  font-size: 18px;
+  font-weight: 700;
+}
+.passin{
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.email-input{
+  margin-top: 13px;
+}
+
+.name-input{
+  margin-top: 13px; 
+}
+
+.pass-input{
+  position: relative;
+  margin-top: 13px; 
+}
+
+.passin-input{
+  position: relative;
+  margin-top: 13px; 
+}
+
+.list1{
+  margin-bottom: 24px;
+}
+
+.list2{
+  margin-bottom: 24px;
+}
+
+.list3{
+  margin-bottom: 24px;
+}
+
+.eye1{
+  position: absolute;
+  right: 24px;
+  top:15px
+
+}
+
+.eye2{
+  position: absolute;
+  right: 24px;
+  top:15px
+
+}
+
+.list4{
+  margin-bottom: 24px;
+}
+
+.list5:hover{
+   background-color: #3692ff;
+}
+
+.list5{
+  display: flex;
+  justify-content: center;
+  border-radius: 40px;
+  background-color: #9CA3AF;
+  width: 640px;
+  height: 56px;
+}
+
+.list5-in{
+  margin-top:16px ;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.freelogin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e6f2ff;
+  width: 640px;
+  height: 74px;
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+.freelogin-text{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #E6F2FF;
+  width: 594px;
+  height: 42px;
+}
+
+
+.icon{
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  height: 42px;
+}
+
+.text-bt{
+  display: flex;
+  justify-content: center; 
+  margin-top: 24px;
+  height: 24px;
+}
