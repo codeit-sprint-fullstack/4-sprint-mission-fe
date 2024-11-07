@@ -12,7 +12,7 @@ export function getArticleList(params = {}) {
 }
 
 export function getArticle(id) {
-  instance.get(`/articlesㄴ/${id}`)
+  instance.get(`/articles/${id}`)
     .then((res) => console.log(res.data))
     .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
 }
