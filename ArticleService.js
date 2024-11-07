@@ -7,27 +7,32 @@ const instance = axios.create({
 
 export function getArticleList(params = {}) {
   instance.get('/articles', { params })
-    .then((res) => console.log(res.data));
+    .then((res) => console.log(res.data))
+    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
 }
 
 export function getArticle(id) {
-  instance.get(`/articles/${id}`)
-    .then((res) => console.log(res.data));
+  instance.get(`/articlesㄴ/${id}`)
+    .then((res) => console.log(res.data))
+    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
 }
 
 export function createArticle(article) {
   instance.post('/articles', article)
-    .then((res) => console.log(res.data));
+    .then((res) => console.log(res.data))
+    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
 }
 
 export function patchArticle(id, article) {
   instance.patch(`/articles/${id}`, article)
-    .then((res) => console.log(res.data));
+    .then((res) => console.log(res.data))
+    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
 }
 
 export function deleteArticle(id) {
   instance.delete(`/articles/${id}`)
-    .then((res) => console.log(res.data));
+    .then((res) => console.log(res.data))
+    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
 }
 
 
