@@ -2,8 +2,10 @@ import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle 
 
 // const articles = await getArticleList({ page: 1, pageSize: 10, keyword: '안녕' });
 
-const article = await getArticle(1049);
-console.log(article);
+getArticle(1049);
+// fetch(`https://sprint-mission-api.vercel.app/articles/1049`)
+//   .then((response) => response.json())
+//   .then((data) => { console.log(data); });
 
 // const arti = {
 //   title: "조형민 아티클",

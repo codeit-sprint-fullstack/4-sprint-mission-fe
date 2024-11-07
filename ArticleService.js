@@ -5,29 +5,29 @@ const instance = axios.create({
   timeout: 3000,
 });
 
-export async function getArticleList(params = {}) {
-  const res = await instance.get('/articles', { params });
-  return res.data;
+export function getArticleList(params = {}) {
+  instance.get('/articles', { params })
+    .then((res) => console.log(res.data));
 }
 
-export async function getArticle(id) {
-  const res = await instance.get(`/articles/${id}`);
-  return res.data;
+export function getArticle(id) {
+  instance.get(`/articles/${id}`)
+    .then((res) => console.log(res.data));
 }
 
-export async function createArticle(article) {
-  const res = await instance.post('/articles', article);
-  return res.data;
+export function createArticle(article) {
+  instance.post('/articles', article)
+    .then((res) => console.log(res.data));
 }
 
-export async function patchArticle(id, article) {
-  const res = await instance.patch(`/articles/${id}`, article);
-  return res.data;
+export function patchArticle(id, article) {
+  instance.patch(`/articles/${id}`, article)
+    .then((res) => console.log(res.data));
 }
 
-export async function deleteArticle(id) {
-  const res = await instance.delete(`/articles/${id}`);
-  return res.data;
+export function deleteArticle(id) {
+  instance.delete(`/articles/${id}`)
+    .then((res) => console.log(res.data));
 }
 
 
@@ -48,6 +48,12 @@ export async function deleteArticle(id) {
 //   const res = await fetch(`https://sprint-mission-api.vercel.app/articles/${id}`);
 //   const data = await res.json();
 //   return data;
+// }
+
+// export function getArticle(id) {
+//   fetch(`https://sprint-mission-api.vercel.app/articles/${id}`)
+//     .then((response) => response.json())
+//     .then((data) => { console.log(data); });
 // }
 
 // export async function createArticle(article) {
