@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Join</title>
+<link rel="stylesheet" href="signup_styles.css">
+<link rel="reset" href="reset.css">
+<script defer src="signup.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="logo">
+      <a href="/">
+        <img src="Property 1=lg.png" alt="로고">
+      </a>
+    </header>
+    
+    <main>
+      <form id="signupForm">
+        <h3>이메일</h3>
+        <input type="text" id="email" placeholder="이메일을 입력해주세요" class="text" onblur="validateEmail()">
+        <p class="error-message" id="emailError"></p>
+        
+        <h3>닉네임</h3>
+        <input type="text" id="nickname" placeholder="닉네임을 입력해주세요" class="text">
+        
+        <h3>비밀번호</h3>
+        <input type="password" id="password" placeholder="비밀번호를 입력해주세요" class="text" onblur="validatePassword()">
+        <p class="error-message" id="passwordError"></p>
+        
+        <h3>비밀번호 확인</h3>
+        <input type="password" id="passwordConfirm" placeholder="비밀번호를 다시 한 번 입력해주세요" class="text" onblur="validatePasswordConfirm()">
+        <p class="error-message" id="passwordConfirmError"></p>
+        
+        <button type="submit" id="signupButton" class="btn" disabled>회원가입</button>
+        
+        <div class="social-signup-container">
+          <p><b>간편 로그인하기</b></p>
+          <div class="social-buttons">
+            <button class="social-button" onclick="window.open('https://www.google.com/','_blank')">
+              <img src="google-logo.png" alt="google 로그인">
+            </button>
+            <button class="social-button" onclick="window.open('https://www.kakaocorp.com/page/','_blank')">
+              <img src="kakao-logo.png" alt="kakao 로그인">
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <footer>
+      <div class="join">
+        <p>이미 회원이신가요? <a href="login.html">로그인</a></p>
+      </div>
+    </footer>
+  </div>
+  </body>
+</html>

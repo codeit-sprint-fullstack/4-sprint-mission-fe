@@ -1,0 +1,118 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+.logo img {
+  width: 450px;
+  margin-bottom: 20px;
+}
+
+form {
+  width: 750px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.text, .btn {
+  width: 100%;
+  height: 70px;
+  font-size: 18px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.text:focus {
+  border-color: #3692FF;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.text {
+  background-color: rgba(243, 244, 246, 1);
+}
+
+/* 버튼 스타일 */
+.btn {
+  color:white;
+  font-size: 25px;
+  border: 0;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top:10px;
+  background-color: rgba(54, 146, 255, 1)
+}
+
+ /* 비활성화 상태의 버튼 스타일 */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: rgba(156, 163, 175, 1);
+}
+
+/* 버튼 활성화 시 스타일 */
+.btn:active {
+  font-size: 25px;
+  border: 0;
+  border-radius: 30px;
+  cursor: pointer;
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+
+.btn:enabled {
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.social-signup-container {
+  display:flex;
+  align-items: center;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.social-signup-container p {
+  margin: 0;
+  flex-grow: 1;
+  font-size: 18px;
+  color: #333;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-button {
+  background-color: transparent;
+  border: none;
+  padding:0;
+  cursor: pointer;
+  outline: none;
+}
+
+.social-button img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
