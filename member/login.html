@@ -8,26 +8,14 @@
       crossorigin="anonymous"
     ></script>
     <script src="../js/common.js" ></script>
-    <link rel="stylesheet" href="../css/style.css" />
-    <style>
-      html,
-      body {
-        display: grid;
-        height: 100%;
-        width: 100%;
-        place-items: center;
-        background: #ffffff;
-      }
-    </style>
+    <link rel="stylesheet" href="../css/member.css" />
   </head>
   <body>
     <div class="non_gnb_body">
     <div class="wrapper">
       <div class="title">
-        <a href="../index.html"><img src="../img/logo.png"
-          /></a>
+        <a href="../index.html"><img src="../img/logo.png"/></a>
         </div>
-      
       <form action="#">
         <div class="field">
           <label>이메일</label>
@@ -41,7 +29,7 @@
             placeholder="비밀번호를 입력해주세요"
             required
           />
-          <button class="pw_block" onclick="change()">
+          <button class="pw_block" onclick="pwShow()">
             <i id="eyeChange" class="fa-regular fa-eye" aria-hidden="true"></i>
           </button>
         </div>
@@ -53,14 +41,14 @@
         <div class="social_login field">
           <p>간편 로그인하기</p>
           <div class="social_cont">
-            <a href="https://google.com"><img src="../img/google_login_icon.png"
-              lat="google login"/></a>
-            
-            <a href="https://www.kakaocorp.com/"><img src="../img/kakao_login_icon.png"/></a>
+            <a href="https://google.com">
+              <img src="../img/google_login_icon.png" /></a>
+            <a href="https://www.kakaocorp.com/">
+              <img src="../img/kakao_login_icon.png"/></a>
           </div>
         </div>
         <div class="signup-link">
-          판다마켓이 처음이신가요?<a href="sigin_up.html"> 회원가입</a>
+          <p>판다마켓이 처음이신가요? <a href="sigin_up.html"> 회원가입</a></p>
         </div>
       </div>
     </div>

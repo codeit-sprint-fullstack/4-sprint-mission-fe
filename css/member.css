@@ -1,3 +1,32 @@
+@import url("./reset.css");
+@import url("./color_set.css");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+p,
+h4,
+button {
+  font-family: pretendard, sans-serif;
+  font-style: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+html,
+body {
+  height:100%;
+}
+.non_gnb_body{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .wrapper {
   width: 640px;
 }

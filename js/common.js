@@ -29,7 +29,7 @@
 })(document);
 
 // login page eye Icon control
-function change() {
+function pwShow() {
   var elem = document.getElementById("eyeChange");
   var passwordInput = document.getElementById("userPassword");
 
@@ -41,7 +41,7 @@ function change() {
     elem.classList = "fa-regular fa-eye";
   }
 }
-function change2() {
+function pwCheckShow() {
   var elem = document.getElementById("eyeChangeCheck");
   var passwordInput = document.getElementById("pwCheck");
 
