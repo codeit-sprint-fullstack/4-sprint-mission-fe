@@ -10,30 +10,33 @@
 </head>
 
 <body>
-    <form>
+    <div class="폼">
         <!-- 로고 -->
         <div class="logo">
             <a href="/">
                 <img src="/image/image-login/로그인-logo.png" width="60%">
             </a>
         </div>
-        <!-- 이메일 ID -->
+        <!-- 이메일 -->
         <div>
-            <label for="이메일">이메일</label>
+            <label for="email">이메일</label>
         </div>
         <div>
-            <input id="이메일" type="email" placeholder="이메일을 입력해주세요">
+            <input id="email" type="email" placeholder="이메일을 입력해주세요">
+            <label id="이메일상태"></label>
         </div>
-        <!-- 이메일 비번 -->
-        <label for="pwd">비밀번호</label>
-        <div class="비밀번호">
-            <input id="pwd" type="password" placeholder="비밀번호를 입력해주세요">
 
+        <!-- 패스워드 -->
+        <label for="password">비밀번호</label>
+        <div class="패스워드">
+            <input id="password" type="password" autocomplete="off" placeholder="비밀번호를 입력해주세요">
             <a href="#"><img src="/image/image-login/눈깔.png"></a>
+            <label id="패스워드상태"></label>
+
         </div>
         <!-- 로그인버튼 -->
         <div class="로그인버튼">
-            <input type="submit" value="로그인" style="cursor:pointer">
+            <input class="로그인버튼-비활성" type="submit" value="로그인" style="cursor:pointer">
         </div>
         <!-- 간편로그인 -->
         <div>
@@ -53,7 +56,8 @@
         <div class="끝">
             판다마켓이 처음이신가요?<span><a href="/signup/signup.html">회원가입</a></span>
         </div>
-    </form>
+    </div>
+    <script src="/login/login.js"></script>
 </body>
 
 </html>
