@@ -42,7 +42,9 @@
             <div class="email">
                 <label for="signup-email">이메일</label>
                 <input id="signup-email" name="email" type="email" placeholder="  이메일을 입력해주세요" >
-            </div>
+            <div class="none-email hide">이메일을 입력해 주세요</div>
+            <div class="fail-email hide">잘못된 이메일 형식입니다</div>
+              </div>
 
             <div class="nickname">
               <label for="signup-nickname">닉네임</label>
@@ -58,6 +60,8 @@
                   <i class="fa-regular fa-eye-slash"></i>
                   </div>
                 </div>
+              <div class="none-password hide">비밀번호를 입력해주세요</div>
+              <div class="fail-password hide">비밀번호를 8자 이상 입력해주세요</div>
             </div>
 
             <div class="password-repeat">
@@ -68,6 +72,7 @@
                   <i class="fa-regular fa-eye-slash"></i>
                   </div>
                 </div>
+                <div class="mismatch-password hide">비밀번호가 일치하지 않습니다</div>
             </div>
 
             <div class="loginbutton">
@@ -94,7 +99,7 @@
 
 
 
-
+  <script src="index.js"></script>
 
   </body>
 
