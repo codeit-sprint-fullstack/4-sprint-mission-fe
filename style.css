@@ -287,7 +287,6 @@ body {
   position: relative;
   top: 60px;
   width: 640px;
-  height: 618px;
   margin: 0 auto;
   display: flex;
   justify-content:space-between;
@@ -329,7 +328,6 @@ body {
 
 .loginform{
   width: 640px;
-  height: 300px;
   gap: 24px;
   display: flex;
   flex-direction: column;
@@ -346,9 +344,9 @@ body {
 }
 
 .email {
-height: 93px;
+
 width: 640px;
-gap: 10;
+gap: 10px;
 color: #1F2937;
 font-size: 18px;
 font-weight: 500;
@@ -358,9 +356,9 @@ justify-content: space-between;
 }
 
 .nickname {
-  height: 93px;
+  
   width: 640px;
-  gap: 10;
+  gap: 10px;
   color: #1F2937;
   font-size: 18px;
   font-weight: 500;
@@ -372,6 +370,7 @@ justify-content: space-between;
   input:focus {
     outline-color: #3692ff;
 	}
+
 
 #signup-email{
   width: 640px;
@@ -400,7 +399,7 @@ justify-content: space-between;
 }
 
 .password {
-  height: 93px;
+  
   width: 640px; 
   gap: 16px;
   color: #1F2937;
@@ -511,3 +510,8 @@ justify-content: space-between;
   align-items: center;
   justify-content:space-between;
 }
+
+.hide {
+  display: none;
+  }
+

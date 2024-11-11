@@ -62,7 +62,8 @@ function validateForm() {
       }
   }
 
-  // 모든 input이 유효한 경우 로그인 버튼 활성화
+  
+  // 모든 입력 필드가 유효한 경우 로그인 버튼 활성화
   loginButton.disabled = !(
       emailInput.value.trim() !== '' &&
       validateEmail(emailInput.value) &&
