@@ -1,7 +1,7 @@
 let emailInput = document.querySelector('#signup-email');
 let passwordInput = document.querySelector('#signup-password');
 let nicknameInput = document.querySelector('#signup-nickname')
-
+let passwordRepeat = document.querySelector('#signup-password-repeat')
 
 let loginButton = document.querySelector('.loginbutton'); //로그인버튼
 
@@ -9,7 +9,7 @@ let emailErrorMessage = document.querySelector('.none-email'); //이메일 입�
 let emailFormatErrorMessage = document.querySelector('.fail-email'); //이메일 형식이 아닐때 에러메세지
 let passwordErrorMessage = document.querySelector('.none-password'); //비밀번호 입력 안했을때 에러메세지
 let passwordLengthErrorMessage = document.querySelector('.fail-password'); //비밀번호 8글자이하일때 에러메세지
-
+let PasswordRepeatErrorMessage = document.querySelector('.mismatch-password hidden') //비밀번호 불일치 에러메세지
 
 let loginButtonValid = document.getElementById('loginbutton'); //로그인 조건을 충족했을때 버튼 활성화
 
@@ -53,13 +53,23 @@ function validateForm() {
       passwordLengthErrorMessage.classList.add('hide');
   }
 
-    
+  // 비밀번호 일치 여부 검사
+  if (passwordRepeat.value.trim() !== '') {
+      if (!ispasswordMatch(passwordInput.value, passwordRepeat.value)) {
+        PasswordRepeatErrorMessage.classList.remove('hide');
+      } else {
+        PasswordRepeatErrorMessage.classList.add('hide');
+      }
+  }
+
+  
   // 모든 입력 필드가 유효한 경우 로그인 버튼 활성화
   loginButton.disabled = !(
       emailInput.value.trim() !== '' &&
       validateEmail(emailInput.value) &&
       passwordInput.value.trim() !== '' &&
       validatePassword(passwordInput.value) &&
+      ispasswordMatch(passwordInput.value, passwordRepeat.value)
   );
 }
 
@@ -78,6 +88,8 @@ const USER_DATA = [
 // 이벤트 리스너 설정
 emailInput.addEventListener('blur', validateForm);
 passwordInput.addEventListener('blur', validateForm);
+passwordRepeat.addEventListener('blur', validateForm);
+
 
 
 loginButton.addEventListener('click', () => {
@@ -98,4 +110,3 @@ loginButton.addEventListener('click', () => {
       window.location.href = "items.html";
   }
 });
-

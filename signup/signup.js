@@ -45,12 +45,15 @@ function validateForm() {
   if (passwordInput.value.trim() === '') {
       passwordErrorMessage.classList.remove('hide');
       passwordLengthErrorMessage.classList.add('hide');
+      emailErrorMessage.classList.add('hide');
   } else if (!validatePassword(passwordInput.value)) {
       passwordErrorMessage.classList.add('hide');
       passwordLengthErrorMessage.classList.remove('hide');
+      emailErrorMessage.classList.add('hide');
   } else {
       passwordErrorMessage.classList.add('hide');
       passwordLengthErrorMessage.classList.add('hide');
+      emailErrorMessage.classList.add('hide');
   }
 
   // 비밀번호 일치 여부 검사

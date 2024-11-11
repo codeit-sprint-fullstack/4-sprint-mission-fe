@@ -367,11 +367,6 @@ justify-content: space-between;
   justify-content: space-between;
   }
 
-  input:focus {
-    outline-color: #3692ff;
-	}
-
-
 #signup-email{
   width: 640px;
   height: 56px;
@@ -511,7 +506,15 @@ justify-content: space-between;
   justify-content:space-between;
 }
 
+
+input:focus {
+  outline-color: #3692ff;
+}
+
 .hide {
   display: none;
   }
 
+.none-password, .none-email, .fail-password, .fail-email, .mismatch-password {
+  color:red;
+} 
