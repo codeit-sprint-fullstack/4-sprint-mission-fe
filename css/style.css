@@ -1,10 +1,10 @@
 @import "/reset.css";
 
 :root {
-  --main-color: #3692FF;
+  --main-color: #3692ff;
   --input-bg-color: #f3f4f5;
-  --base-grey-color: #9CA3AF;
-  --error-color: #F74747;
+  --base-grey-color: #9ca3af;
+  --error-color: #f74747;
 }
 
 * {
@@ -109,7 +109,7 @@ a.button {
 
 .image {
   height: 54rem;
-  background-color: #CFE5FF;
+  background-color: #cfe5ff;
   position: relative;
   display: flex;
   justify-content: center;
@@ -117,7 +117,6 @@ a.button {
 
 .image-content {
   display: flex;
-  ;
   position: absolute;
   bottom: 0;
 }
@@ -214,7 +213,7 @@ footer {
 
 .header-content-center a,
 .footer-content-center a {
-  color: #E5E7EB;
+  color: #e5e7eb;
 }
 
 /* login css */
@@ -286,7 +285,6 @@ input::placeholder {
   position: relative;
 }
 
-
 .eyes {
   position: absolute;
   top: 0;
@@ -317,9 +315,8 @@ input::placeholder {
   cursor: pointer;
 }
 
-
 .social-login {
-  background-color: #E6F2FF;
+  background-color: #e6f2ff;
   border-radius: 0.8rem;
   margin: 2.4rem 0;
   padding: 1.6rem 2.3rem;
@@ -327,7 +324,7 @@ input::placeholder {
   justify-content: space-between;
   align-items: center;
   font-size: 1.4rem;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .social-login img {
@@ -395,8 +392,7 @@ a:visited {
   font-size: 1.6rem;
 }
 
-@media (max-width:1199px) {
-
+@media (max-width: 1199px) {
   .header-content,
   .footer-content {
     margin: 0 2.4rem;
@@ -477,7 +473,7 @@ a:visited {
   }
 }
 
-@media (max-width:743px) {
+@media (max-width: 743px) {
   body.login {
     display: flex;
     justify-content: center;
