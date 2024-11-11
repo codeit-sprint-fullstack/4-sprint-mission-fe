@@ -1,0 +1,85 @@
+.background{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.pandalogo{
+  position: relative;
+  top: -250px;
+}
+.password_text,.email_text{
+  position: relative;
+  top: -180px;
+}
+
+
+input{
+  position: relative;
+  top:-200px;
+  width: 620px;
+  height: 56px;
+  border-radius: 20px;
+  border-color: #F3F4F6;
+  background-color: #F3F4F6;
+  border: solid 1px #F3F4F6;
+  padding-left: 20px;
+  margin-top: 30px;
+  }
+  input:focus{
+  outline-color: #3692ff;
+  }
+  input:hover{
+    border: solid 1px #3692ff;
+  }
+
+  .login_button{
+    position: relative;
+    top: -180px;
+    width: 640px;
+    height: 56px;
+    border-radius: 30px;
+    background: #9CA3AF;
+    border-color: #9CA3AF;
+    border: solid 1px #9CA3AF;
+    font-size: 17px;
+    font-weight: 900;
+    color: aliceblue;
+  }
+  .login_button:hover{
+    background: #3692ff;
+  }
+  .Easy_login{
+    position: relative;
+    margin-top: -150px;
+    background-color:#E6F2FF;
+    width: 640px;
+    height: 74px;
+    border-radius: 10px;
+  }
+  .member{
+    position: relative;
+    margin-top: 20px;
+  }
+  .member a{
+    color: blue;
+  }
+  .kakao_button{
+    position: relative;
+    left: 530px;
+    top: -37px
+  }
+  .google_button{
+    position: relative;
+    left: 520px; 
+    top: -35px
+  }
+  .Easy_login p{
+    position: relative;
+    left: 20px;
+    top: 12px
+  }
+  
+  
