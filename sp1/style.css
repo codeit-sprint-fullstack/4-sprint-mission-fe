@@ -54,7 +54,21 @@
 .bt{
   position: absolute;
   margin-top: 184px;
+  
 }
+
+.btin{
+  width: 357px;
+  height: 56px;
+  background-color: #3692ff;
+  font-size: 20px;
+  font-weight: 600;
+  color: #f9fafb;
+  border-radius :40px;
+  border: none;
+  cursor: pointer;
+}
+
 /* 메인2 시작 */
 .main-2{
   display: flex;
