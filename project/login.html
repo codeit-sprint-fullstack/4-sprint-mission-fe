@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>판다마켓</title>
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="style_login.css">
+        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    </head>
+    <body>
+        <div id="box">
+            <a id="section0" href="index.html"></a>
+
+            <form id="section1">
+                <label class="section1_box">이메일
+                    <input name="email" placeholder="이메일을 입력해주세요" id="section1_emailbox" required>
+                </label>
+                <label class="section1_box">비밀번호
+                    <div class="password-container">
+                        <input type="password" name="password" placeholder="비밀번호를 입력해주세요" id="section1_pwbox" required>
+                        <img src="img/btn_visibility_off.png" class="icon_eyes">
+                    </div>
+                </label>
+                <button id="section1_button">로그인</button>
+                
+                <div id="section1_social">
+                    <div id="section1_socialinner">
+                        간편 로그인하기
+                        <span id="section1_socialbox">
+                            <a href="https://www.google.com/">
+                                <img src="img/ic_google.png">
+                            </a>
+                            <a href="https://www.kakaocorp.com/page/">
+                                <img src="img/ic_kakao.png">
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div id="section1_signup">판다마켓이 처음이신가요? <a class="login_text" href="signup.html">회원가입</a>
+                </div>
+            </form>
+        </div>
+        <script src="login.js"></script>
+    </body>
+</html>
