@@ -1,6 +1,17 @@
-import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle } from "./ArticleService.js";
-import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from "./ProductService.js";
-
+import {
+  getArticleList,
+  getArticle,
+  createArticle,
+  patchArticle,
+  deleteArticle,
+} from "./ArticleService.js";
+import {
+  getProductList,
+  getProduct,
+  createProduct,
+  patchProduct,
+  deleteProduct,
+} from "./ProductService.js";
 
 /* --- ArticleService.js 작동 테스트 --- */
 
@@ -23,8 +34,6 @@ import { getProductList, getProduct, createProduct, patchProduct, deleteProduct 
 // patchArticle(1051, arti);
 
 // deleteArticle(1051);
-
-
 
 /* --- ProductService.js 작동 테스트 --- */
 

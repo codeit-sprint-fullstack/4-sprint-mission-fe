@@ -1,40 +1,64 @@
-import axios from 'axios';
+import axios from "axios";
 
 const instance = axios.create({
-  baseURL: 'https://sprint-mission-api.vercel.app/',
+  baseURL: "https://sprint-mission-api.vercel.app/",
   timeout: 3000,
 });
 
 export function getArticleList(params = {}) {
-  instance.get('/articles', { params })
+  instance
+    .get("/articles", { params })
     .then((res) => console.log(res.data))
-    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
+    .catch((e) =>
+      console.log(
+        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
+      )
+    );
 }
 
 export function getArticle(id) {
-  instance.get(`/articles/${id}`)
+  instance
+    .get(`/articles/${id}`)
     .then((res) => console.log(res.data))
-    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
+    .catch((e) =>
+      console.log(
+        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
+      )
+    );
 }
 
 export function createArticle(article) {
-  instance.post('/articles', article)
+  instance
+    .post("/articles", article)
     .then((res) => console.log(res.data))
-    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
+    .catch((e) =>
+      console.log(
+        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
+      )
+    );
 }
 
 export function patchArticle(id, article) {
-  instance.patch(`/articles/${id}`, article)
+  instance
+    .patch(`/articles/${id}`, article)
     .then((res) => console.log(res.data))
-    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
+    .catch((e) =>
+      console.log(
+        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
+      )
+    );
 }
 
 export function deleteArticle(id) {
-  instance.delete(`/articles/${id}`)
+  instance
+    .delete(`/articles/${id}`)
     .then((res) => console.log(res.data))
-    .catch((e) => console.log(`status: ${e.response.status}\nmessage: ${e.response.data.message}`));
+    .catch((e) =>
+      console.log(
+        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
+      )
+    );
 }
-
 
 /* fetch로 구현 연습 */
 // export async function getArticleList(params = {}) {
