@@ -1,130 +1,173 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
     <title>판다마켓</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/favicon.ico" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- meta -->
+    <meta property="og:url" content="https://neovision77.netlify.app" />
+    <meta property="og:title" content="판다마켓" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/img/img-home-top.png" />
+    <meta
+      property="og:description"
+      content="일상에서 모든 물건을 거래해보세요"
+    />
+    <!-- pretendard font -->
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <!-- Google font -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet"> -->
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JLM5B89HM"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-1JLM5B89HM"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'G-1JLM5B89HM');
+      gtag("config", "G-1JLM5B89HM");
     </script>
   </head>
+
   <body>
     <!-- 헤더 영역 -->
     <header>
       <div class="header-content">
         <div class="header-content-left">
-          <a href="/"><img src="/img/logo.png" id="logo" alt="판다마켓 로고"></a>
+          <a href="/">
+            <img src="/img/logo-m.png" id="logoM" alt="판다마켓 로고" />
+            <img src="/img/logo.png" id="logo" alt="판다마켓 로고" />
+          </a>
         </div>
-        <div class="header-content-center">
-          
-        </div>
+        <div class="header-content-center"></div>
         <div class="header-content-right">
           <a class="button" href="/login">로그인</a>
         </div>
       </div>
     </header>
-
     <!-- 상단 이미지 영역 -->
     <div class="image">
       <div class="image-content">
         <div class="image-content-left">
-          <span>
-            일상의 모든 물건을<br>거래해 보세요
-          </span>
-          <a class="button round" href="/items">구경하러 가기</a>
+          <span> 일상의 모든 물건을 <br class="break-t1" />거래해 보세요 </span>
+          <button
+            type="button"
+            class="button round"
+            onclick="location.href='/items'"
+          >
+            구경하러 가기
+          </button>
         </div>
-        <img src="/img/img_home_top.png">
+        <img src="/img/img-home-top.png" width="745px" height="340px" />
       </div>
     </div>
-
     <!-- 메인 영역 -->
     <main>
       <section>
         <div class="section-box">
-          <img src="/img/img_home_01.png">
+          <img src="/img/img-home-01.png" width="50%" />
           <div class="section-content">
-            <div class="badge">
-              Hot item
-            </div>
+            <div class="badge">Hot item</div>
             <div class="title">
-              인기 상품을<br> 확인해 보세요
+              인기 상품을<br class="break-t" />
+              확인해 보세요
             </div>
             <div class="desc">
-              가장 HOT한 중고거래 물품을 판다 마켓에서 확인해 보세요
+              가장 HOT한 중고거래 물품을<br />
+              판다 마켓에서 확인해 보세요
             </div>
           </div>
         </div>
       </section>
       <section>
-        <div class="section-box">
+        <div class="section-box even">
           <div class="section-content even">
-            <div class="badge">
-              Search
-            </div>
+            <div class="badge">Search</div>
             <div class="title">
-              구매를 원하는 <br>상품을 검색하세요
+              구매를 원하는 <br class="break-t" />상품을 검색하세요
             </div>
             <div class="desc">
-              구매하고 싶은 물품은 검색해서 쉽게 찾아보세요
+              구매하고 싶은 물품은 검색해서<br />
+              쉽게 찾아보세요
             </div>
           </div>
-          <img src="/img/img_home_02.png">
+          <img src="/img/img-home-02.png" width="50%" />
         </div>
       </section>
       <section>
         <div class="section-box">
-          <img src="/img/img_home_03.png">
+          <img src="/img/img-home-03.png" width="50%" />
           <div class="section-content">
-            <div class="badge">
-              Register
-            </div>
+            <div class="badge">Register</div>
             <div class="title">
-              판매를 원하는 <br>상품을 등록하세요
+              판매를 원하는 <br class="break-t" />상품을 등록하세요
             </div>
             <div class="desc">
-              어떤 물건이든 판매하고 싶은 상품을 쉽게 등록하세요
+              어떤 물건이든 판매하고 싶은 상품을<br />
+              쉽게 등록하세요
             </div>
           </div>
         </div>
       </section>
     </main>
-
     <!-- 하단 이미지 영역 -->
     <div class="image">
       <div class="image-content">
         <div class="image-content-left">
           <span>
-            믿을 수 있는<br>판다마켓 중고 거래
+            믿을 수 있는<br class="break-t1" />
+            판다마켓 중고 거래
           </span>
         </div>
-        <img src="/img/img_home_bottom.png">
+        <img src="/img/img-home-bottom.png" width="746px" height="397px" />
       </div>
     </div>
-
     <!-- 푸터 영역 -->
     <footer>
-      <div class="header-content">
-        <div class="header-content-left">
-          ©codeit - 2024
+      <div class="footer-content">
+        <div class="footer-content-left">©codeit - 2024</div>
+        <div class="footer-content-center">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/faq">FAQ</a>
         </div>
-        <div class="header-content-center">
-          <a href="/privacy">Privacy Policy</a> 
-          <a href="/faq">FAQ</a> 
-        </div>
-        <div class="header-content-right">
-          <a href="https://facebook.com" target="_blank"><img src="/img/ic_facebook.png" alt="facebook" title="facebook"></a>
-          <a href="https://twitter.com" target="_blank"><img src="/img/ic_twitter.png" alt="twitter" title="twitter"></a>
-          <a href="https://youtube.com" target="_blank"><img src="/img/ic_youtube.png" alt="youtube" title="youtube"></a>
-          <a href="https://instagram.com" target="_blank"><img src="/img/ic_instagram.png" alt="instagram" title="instagram"></a>
+        <div class="footer-content-right">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img src="/img/ic-facebook.png" alt="facebook" title="facebook"
+          /></a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img src="/img/ic-twitter.png" alt="twitter" title="twitter"
+          /></a>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img src="/img/ic-youtube.png" alt="youtube" title="youtube"
+          /></a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img src="/img/ic-instagram.png" alt="instagram" title="instagram"
+          /></a>
         </div>
       </div>
     </footer>

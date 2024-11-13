@@ -1,10 +1,10 @@
 @import "/reset.css";
 
 :root {
-  --main-color: #3692FF;
+  --main-color: #3692ff;
   --input-bg-color: #f3f4f5;
-  --base-grey-color: #9CA3AF;
-  --error-color: #F74747;
+  --base-grey-color: #9ca3af;
+  --error-color: #f74747;
 }
 
 * {
@@ -46,14 +46,38 @@ footer {
   width: 100%;
   max-width: 152rem;
   margin: 0 20rem;
-  height: 7rem;
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 7rem;
   align-items: center;
+}
+
+footer {
+  height: 16rem;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 152rem;
+  margin: 0 20rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 3.2rem;
 }
 
 #logo {
   width: 15.3rem;
   flex-shrink: 0;
+  vertical-align: bottom;
+  /* 로고 이미지 수직 가운데 정렬 */
+}
+
+#logoM {
+  display: none;
+  width: 10.3rem;
+  flex-shrink: 0;
+  vertical-align: bottom;
 }
 
 .header-content-left {
@@ -61,21 +85,23 @@ footer {
   align-items: center;
 }
 
-.header-content-center {
+.footer-content-center {
   display: flex;
   justify-content: center;
+  height: inherit;
   gap: 3rem;
-  flex-grow: 1;
+  /* flex-grow: 1; */
 }
 
-.header-content-right {
+.footer-content-right {
   flex-shrink: 0;
   display: flex;
+  justify-content: flex-end;
   gap: 1.2rem;
 }
 
 a.button {
-  padding: 1.1rem 4.3rem;
+  padding: 1.4rem 4.3rem;
   background-color: var(--main-color);
   border-radius: 0.8rem;
   color: #ffffff;
@@ -83,7 +109,7 @@ a.button {
 
 .image {
   height: 54rem;
-  background-color: #CFE5FF;
+  background-color: #cfe5ff;
   position: relative;
   display: flex;
   justify-content: center;
@@ -91,7 +117,6 @@ a.button {
 
 .image-content {
   display: flex;
-  ;
   position: absolute;
   bottom: 0;
 }
@@ -109,16 +134,20 @@ a.button {
   line-height: 1.3;
 }
 
-a.button.round {
+.image button {
+  background-color: var(--main-color);
+  border: none;
+  width: 35.7rem;
+  height: 5.6rem;
   font-weight: 500;
   font-size: 2rem;
-  padding: 1.6rem 12.4rem;
+  color: #ffffff;
+  cursor: pointer;
   border-radius: 999rem;
   margin: 0 0 6rem;
 }
 
 main {
-  /* background-color: #fcfcfc; */
   margin: 0;
   margin-bottom: 13.8rem;
 }
@@ -141,14 +170,19 @@ section {
   align-items: center;
 }
 
+.section-box img {
+  width: 58.8rem;
+  height: 44.4rem;
+}
+
 .section-content {
-  padding: 0 2.5rem 0 6.4rem;
-  width: 40rem;
+  padding: 0 0 0 5rem;
+  width: 42rem;
 }
 
 .section-content.even {
   text-align: right;
-  padding: 0 6.4rem 0 2.5rem;
+  padding: 0 5rem 0 0;
 }
 
 .badge {
@@ -177,15 +211,16 @@ footer {
   color: var(--base-grey-color);
 }
 
-.header-content-center a {
-  color: #E5E7EB;
+.header-content-center a,
+.footer-content-center a {
+  color: #e5e7eb;
 }
 
 /* login css */
 
 .container-login {
   width: 64rem;
-  margin: 23rem auto;
+  margin: 6rem auto;
   text-align: center;
 }
 
@@ -250,7 +285,6 @@ input::placeholder {
   position: relative;
 }
 
-
 .eyes {
   position: absolute;
   top: 0;
@@ -258,7 +292,6 @@ input::placeholder {
   right: 0;
   margin: 1.6rem 2.4rem;
   height: 2.4rem;
-  /* font-size: 22px; */
   cursor: pointer;
 }
 
@@ -268,7 +301,6 @@ input::placeholder {
 
 .container-login button {
   background-color: var(--base-grey-color);
-  /* background-color: var(--main-color); */
   border: none;
   border-radius: 3rem;
   width: 100%;
@@ -283,9 +315,8 @@ input::placeholder {
   cursor: pointer;
 }
 
-
 .social-login {
-  background-color: #E6F2FF;
+  background-color: #e6f2ff;
   border-radius: 0.8rem;
   margin: 2.4rem 0;
   padding: 1.6rem 2.3rem;
@@ -293,7 +324,7 @@ input::placeholder {
   justify-content: space-between;
   align-items: center;
   font-size: 1.4rem;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .social-login img {
@@ -316,4 +347,270 @@ a:visited {
 .signup-link a {
   text-decoration: underline;
   color: var(--main-color);
+}
+
+.modal {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal.on {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .modal-pop {
+  position: relative;
+  width: 54rem;
+  height: 25rem;
+  background: #ffffff;
+  border-radius: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .modal-pop .close-btn {
+  display: block;
+  padding: 1.4rem 4.8rem;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 0.8rem;
+  color: #fff;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  position: absolute;
+  right: 2.8rem;
+  bottom: 2.8rem;
+  font-size: 1.6rem;
+}
+
+@media (max-width: 1199px) {
+  .header-content,
+  .footer-content {
+    margin: 0 2.4rem;
+  }
+
+  #logoM {
+    display: none;
+  }
+
+  .image {
+    height: 100%;
+  }
+
+  .image-content {
+    position: inherit;
+    bottom: inherit;
+    flex-direction: column;
+  }
+
+  .image-content-left {
+    margin: 8.4rem 0 15.1rem 0;
+    text-align: center;
+    align-items: center;
+  }
+
+  br.break-t1 {
+    display: none;
+  }
+
+  br.break-t {
+    display: none;
+  }
+
+  section {
+    padding: 2.4rem 2.4rem;
+  }
+
+  .section-box {
+    flex-direction: column;
+    width: 69.6rem;
+    height: inherit;
+    background-color: inherit;
+  }
+
+  .section-box img {
+    width: 69.6rem;
+    height: inherit;
+  }
+
+  .section-content {
+    width: inherit;
+    padding: 2.4rem 0 0 0;
+  }
+
+  .section-box.even {
+    flex-direction: column-reverse;
+  }
+
+  .section-content.even {
+    width: inherit;
+    padding: 2.4rem 0 0 0;
+  }
+
+  .badge {
+    margin-bottom: 1.6rem;
+  }
+
+  .title {
+    font-size: 3.2rem;
+  }
+
+  .desc {
+    font-size: 1.8rem;
+  }
+
+  .container-login {
+    margin: 4.8rem auto;
+  }
+}
+
+@media (max-width: 743px) {
+  body.login {
+    display: flex;
+    justify-content: center;
+  }
+
+  .header-content,
+  .footer-content {
+    margin: 0 1.6rem;
+  }
+
+  #logo {
+    display: none;
+  }
+
+  #logoM {
+    display: block;
+  }
+
+  .image-content {
+    position: inherit;
+    bottom: inherit;
+    flex-direction: column;
+  }
+
+  .image-content img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-content-left {
+    margin: 8.4rem 0 15.1rem 0;
+    text-align: center;
+    align-items: center;
+    font-size: 3.2rem;
+  }
+
+  .image button {
+    width: 24rem;
+    height: 4.8rem;
+    font-size: 1.8rem;
+  }
+
+  br.break-t1 {
+    display: inline;
+  }
+
+  main {
+    margin-top: 3rem;
+  }
+
+  section {
+    padding: 2rem 1.6rem;
+  }
+
+  .section-box {
+    width: 100%;
+  }
+
+  .section-box img {
+    width: 100%;
+  }
+
+  .badge,
+  .desc {
+    font-size: 1.6rem;
+  }
+
+  .badge {
+    margin-bottom: 0.8rem;
+  }
+
+  .desc {
+    margin-top: 1.6rem;
+  }
+
+  .title {
+    font-size: 2.4rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 44px 1fr;
+  }
+
+  .footer-content-left {
+    height: 2rem;
+    grid-row: 2/3;
+  }
+
+  .footer-content-center {
+    height: 2rem;
+    justify-content: flex-start;
+  }
+
+  .footer-content-right {
+    height: 2rem;
+  }
+
+  .container-login {
+    max-width: 40rem;
+    min-width: 34.3rem;
+    margin: 2.4rem 1.6rem;
+  }
+
+  .logo-login {
+    width: 19.8rem;
+    margin-bottom: 2.4rem;
+  }
+
+  label {
+    margin-bottom: 0.8rem;
+  }
+
+  input {
+    margin-bottom: 1.6rem;
+  }
+
+  .error-msg {
+    margin: 0.8rem 0 1.6rem 1.6rem;
+  }
+
+  .modal .modal-pop {
+    width: inherit;
+    max-width: 40rem;
+    min-width: 32.7rem;
+    height: 22rem;
+    margin: 0 2.4rem;
+  }
+
+  .modal .modal-pop .close-btn {
+    right: 50%;
+    transform: translate(50%, 0);
+    bottom: 2.3rem;
+  }
+
+  .modal-pop span {
+    display: block;
+    margin-bottom: 4rem;
+  }
 }
