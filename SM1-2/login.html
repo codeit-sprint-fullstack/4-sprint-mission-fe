@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 - 판다마켓</title>
+    <link rel="stylesheet" href="login_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="reset" href="reset.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="logo">
+              <img src="Property 1=lg.png" style="width: 500px;" alt="로고">
+            </a>
+        </header>
+
+        <main>
+            <form id="login-form">
+                <div>
+                    <h3>이메일</h3>
+                    <input type="text" id="email" placeholder="이메일을 입력해주세요">
+                    <div class="error-message" id="email-error"></div>
+                </div>
+                <div>
+                    <h3>비밀번호</h3>
+                    <div class="password-wrapper">
+                        <input id="password" type="password" placeholder="비밀번호를 입력해주세요">
+                        <span class="toggle-password" onclick="togglePasswordVisibility()"></span>
+                    </div>
+                    <div class="error-message" id="password-error"></div>
+                </div>
+                <!-- loginButton id 추가 -->
+                <input style="color:rgba(255, 255, 255, 1)" type="submit" value="로그인" class="btn" id="login-button" disabled>
+              <div class="social-login-container">
+                <p><b>간편 로그인하기</b></p>
+                <div class="social-buttons">
+                  <button class="social-button" onclick="window.open('https://www.google.com/','_blank')">
+                    <img src="google-logo.png" alt="google 로그인">
+                  </button>
+                  <button class="social-button" onclick="window.open('https://wwww.kakaocorp.com/page/','_blank')">
+                    <img src="kakao-logo.png" alt="kakao 로그인">
+                  </button>
+                </div>
+              </div>
+            </form>
+        </main>
+
+        <footer>
+            <p>판다마켓이 처음이신가요? <a href="signup.html">회원가입</a></p>
+        </footer>
+    </div>
+
+    <script>
+        const USER_DATA = [
+            { email: 'codeit1@codeit.com', password: "codeit101!" },
+            { email: 'codeit2@codeit.com', password: "codeit202!" },
+            { email: 'codeit3@codeit.com', password: "codeit303!" },
+            { email: 'lhs103725@gmail.com', password: "alsgus4321@"},
+            { email: 'applepie421@naver.com', password: "dnflwlq951@"},
+        ];
+
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginButton = document.getElementById('login-button');
+        const emailError = document.getElementById('email-error');
+        const passwordError = document.getElementById('password-error');
+
+        emailInput.addEventListener('focusout', validateEmail);
+        passwordInput.addEventListener('focusout', validatePassword);
+        emailInput.addEventListener('input', validateForm);
+        passwordInput.addEventListener('input', validateForm);
+
+        function validateEmail() {
+            const email = emailInput.value;
+            if (!email) {
+                emailError.innerText = '이메일을 입력해주세요.';
+                emailInput.classList.add('error');
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                emailError.innerText = '잘못된 이메일 형식입니다.';
+                emailInput.classList.add('error');
+            } else {
+                emailError.innerText = '';
+                emailInput.classList.remove('error');
+            }
+        }
+
+        function validatePassword() {
+            const password = passwordInput.value;
+            if (!password) {
+                passwordError.innerText = '비밀번호를 입력해주세요.';
+                passwordInput.classList.add('error');
+            } else if (password.length < 8) {
+                passwordError.innerText = '비밀번호를 8자 이상 입력해주세요.';
+                passwordInput.classList.add('error');
+            } else {
+                passwordError.innerText = '';
+                passwordInput.classList.remove('error');
+            }
+        }
+
+        function validateForm() {
+            validateEmail();
+            validatePassword();
+            checkFormValidity();
+        }
+
+        function checkFormValidity() {
+            if (emailInput.value && passwordInput.value &&
+                !emailInput.classList.contains('error') && 
+                !passwordInput.classList.contains('error')) {
+                loginButton.disabled = false;
+            } else {
+                loginButton.disabled = true;
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+            passwordInput.setAttribute("type", type);
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            if (!email) {
+                emailError.innerText = '이메일을 입력해주세요.';
+                emailInput.classList.add('error');
+            }
+            if (!password) {
+                passwordError.innerText = '비밀번호를 입력해주세요.';
+                passwordInput.classList.add('error');
+            }
+
+            loginButton.addEventListener('click', () => {
+              loginButton.classList.add('clicked');
+              setTimeout(() => {
+                loginButton.classList.remove('clicked');
+              }, 100);
+            });
+
+            document.getElementById('login-form').addEventListener('submit', function(event) {
+              event.preventDefault();
+              const email = emailInput.value;
+              const password = passwordInput.value;
+
+            if (!email || !password) {
+                return;
+            }
+
+            const user = USER_DATA.find(user => user.email === email);
+
+            if (!user) {
+              emailError.innerText = '이메일이 일치하지 않습니다.';
+              emailInput.classList.add('error');
+            } else if (user.password !== password) {
+              passwordError.innerText = '비밀번호가 일치하지 않습니다.';
+              passwordInput.classList.add('error');
+            } else {
+                window.location.href = "/items";
+            }
+        })});
+    </script>
+</body>
+</html>

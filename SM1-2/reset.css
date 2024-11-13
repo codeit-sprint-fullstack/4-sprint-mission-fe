@@ -1,0 +1,10 @@
+/* reset.css */
+
+/* 브라우저 기본 스타일 초기화 */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
