@@ -15,7 +15,7 @@
     <title>LOG IN</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/ungveloper/web-fonts/Pretendard/font-face.css" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/ungveloper/web-fonts/Pretendard/font-family.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 
     <link
     rel="stylesheet"
@@ -31,7 +31,7 @@
     <div class="logincontainer">
 
       <div class="loginlogo">
-        <a href="/" ><img src="img/Property 1=lg@3x.png" width="396" height="132px"></a>
+        <a href="../index.html" ><img src="../img/Property 1=lg@3x.png" width="396" height="132px"></a>
       </div>
 
       <div class="inputcontainer">
@@ -40,6 +40,9 @@
             <div class="email">
                 <label for="signup-email">이메일</label>
                 <input id="signup-email" name="email" type="email" placeholder="  이메일을 입력해주세요">
+                <div class="none-email hide">이메일을 입력해 주세요</div>
+                <div class="fail-email hide">잘못된 이메일 형식입니다</div>
+
             </div>
             
             <div class="password">
@@ -50,7 +53,9 @@
                 <i class="fa-regular fa-eye-slash"></i>
                 </div>
               </div>
-          </div>
+              <div class="none-password hide">비밀번호를 입력해주세요</div>
+              <div class="fail-password hide">비밀번호를 8자 이상 입력해주세요</div>
+            </div>
 
 
             <div class="loginbutton">
@@ -64,20 +69,20 @@
           <div class="snsloginbox">
               간편 로그인하기
               <div class="googleandkakao">
-                <a href="https://www.google.com/"><img src="img/Component 2@3x.png" width="42px"></a>
-                <a href="http://www.kakaocorp.com/page/"><img src="img/Component 3@3x.png" width="42px" height="42px"></a>
+                <a href="https://www.google.com/"><img src="../img/Component 2@3x.png" width="42px"></a>
+                <a href="http://www.kakaocorp.com/page/"><img src="../img/Component 3@3x.png" width="42px" height="42px"></a>
               </div>
           </div>
         </div>
         <div class="firstlogin">
-          판다 마켓이 처음이신가요? <a href="signup.html" style="color: #3692ff">회원가입</a>
+          판다 마켓이 처음이신가요? <a href="../signup/signup.html" style="color: #3692ff">회원가입</a>
         </div>
         </div>
     </div>
 
 
 
-
+    <script src="login.js"></script>
 
   </body>
 
