@@ -2,12 +2,18 @@
     --WIDTH: 99vw;
     --HEIGHT: 100vh;
     --MARGIN: 200px;
+
+    --WIDTH-구경하러가기: 746px;
     --HEIGHT-구경하러가기: 540px;
+    --HEIGHT-상품: 720px;
+    --WIDTH-중고거래: 746px;
+
     --HEIGHT-꼬리말: 160px;
 
     --로그인포커스버튼색상: #3692ff;
     --꼬리말색상: #111827;
     --배경색상: #cfe5ff;
+    --상품글씨배경색상: #fcfcfc;
 }
 
 * {
@@ -15,51 +21,35 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
     width: var(--WIDTH);
-}
+} */
 
 /*------------------------------------------
 header (판다마켓,로그인)
 ------------------------------------------*/
-.로그인타이틀 {
+.로그인방 {
+    width: 100%;
     height: 70px;
+    background-color: white;
     position: sticky;
     top: 0px;
     padding: 8px;
-    background-color: white;
-    z-index: 2;
+    z-index: 10;
 }
 
-/* 1920pixel 보다 적을때 */
-@media(max-width:1920px) {
-    .로그인타이틀>a:first-child {
-        position: absolute;
-        left: var(--MARGIN);
-    }
-
-    .로그인타이틀>a:last-child {
-        position: absolute;
-        right: var(--MARGIN);
-    }
+.로그인타이틀 {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
-/* 1920pixel보다 클때 */
-@media(min-width:1920px) {
-    .로그인타이틀>a:first-child {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-400px);
-    }
+.로그인위치 {
+    position: absolute;
 
-    .로그인타이틀>a:last-child {
-        position: absolute;
-        left: 50%;
-        transform: translateX(300px);
-    }
 }
 
-.로그인타이틀>a:last-child button {
+.로그인타이틀 button {
     background-color: var(--로그인포커스버튼색상);
     color: white;
     font-size: 20px;
@@ -70,37 +60,86 @@ header (판다마켓,로그인)
     border-radius: 16px;
 }
 
+/* 모바일 */
+@media (min-width:375px) {
+
+    .로그인타이틀>a:first-child {
+        padding-left: 16px;
+        left: 0px;
+    }
+
+    .로그인타이틀>a:last-child {
+        padding-right: 16px;
+        right: 0px;
+    }
+}
+
+/* 테블릿 */
+@media (min-width:744px) {
+    .로그인타이틀>a:first-child {
+        padding-left: 24px;
+        left: 0px;
+    }
+
+    .로그인타이틀>a:last-child {
+        padding-right: 24px;
+        right: 0px;
+    }
+}
+
+/* PC */
+@media (min-width:1200px) {
+    .로그인타이틀>a:first-child {
+        padding-left: 200px;
+        left: 0px;
+    }
+
+    .로그인타이틀>a:last-child {
+        padding-right: 200px;
+        right: 0px;
+    }
+}
+
+/* 1920 pixel넘을때 */
+@media (min-width:1920px) {
+    .로그인타이틀>a:first-child {
+        padding-left: 0px;
+        left: 50%;
+        transform: translateX(-300%);
+    }
+
+    .로그인타이틀>a:last-child {
+        padding-right: 0px;
+        right: 50%;
+        transform: translateX(600%);
+    }
+}
+
 /*------------------------------------------
  구경하러가기
 ------------------------------------------*/
-.container-구경하러가기 {
+.구경하러가기방 {
     border-top: 4px solid rgb(129, 132, 167);
     height: var(--HEIGHT-구경하러가기);
-
     background-color: #cfe5ff;
     position: relative;
     z-index: 1;
-
 }
 
-.container-구경하러가기-글씨 {
-    font-size: 34px;
+.구경하러가기-글씨 {
+    position: absolute;
     font-weight: 700;
-    position: absolute;
-    left: 50%;
-    bottom: 200px;
-    transform: translateX(-500px);
+    top: 100px;
+    left: 100px;
+    z-index: 2;
 }
 
-.container-구경하러가기-연결 {
+.구경하러가기-연결 {
     position: absolute;
-    left: 50%;
-    bottom: 100px;
-    transform: translateX(-500px);
+    z-index: 2;
 }
 
-.container-구경하러가기-연결 button {
-    width: 300px;
+.구경하러가기-연결 button {
     height: 48px;
     background-color: var(--로그인포커스버튼색상);
     color: white;
@@ -111,34 +150,650 @@ header (판다마켓,로그인)
     border-radius: 32px;
 }
 
-.container-구경하러가기-배경 {
+.구경하러가기-배경 {
     position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-180px);
+    bottom: -3px;
+}
+
+/* 모바일 */
+@media (min-width:375px) {
+    .구경하러가기-연결 button {
+        width: 200px;
+    }
+
+    .구경하러가기-글씨 {
+        font-size: 20px;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .구경하러가기-배경 {
+        padding-left: 32px;
+        padding-right: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .구경하러가기-그림 {
+        width: var(--WIDTH);
+    }
+}
+
+/* 테블릿 */
+@media (min-width:744px) {
+    .구경하러가기-연결 button {
+        width: 320px;
+    }
+
+    .구경하러가기-글씨 {
+        font-size: 35px;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .구경하러가기-연결 {
+        top: 160px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .구경하러가기-배경 {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .구경하러가기-그림 {
+        width: var(--WIDTH-구경하러가기);
+    }
+}
+
+/* PC */
+@media (min-width:1200px) {
+    .구경하러가기-연결 button {
+        width: 340px;
+    }
+
+    .구경하러가기-글씨 {
+        font-size: 38px;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-130%);
+    }
+
+    .구경하러가기-연결 {
+        top: 200px;
+        left: 50%;
+        transform: translateX(-130%);
+    }
+
+    .구경하러가기-배경 {
+        left: 50%;
+        transform: translateX(-20%);
+    }
+
+    .구경하러가기-그림 {
+        width: var(--WIDTH-구경하러가기);
+    }
 }
 
 /*------------------------------------------
- section
+ 상품확인
 ------------------------------------------*/
-div>img {
+.상품확인방 {
     position: relative;
-    left: 50%;
-    transform: translateX(-400px);
+    height: var(--HEIGHT-상품);
+    background-color: white;
+    font-weight: 700;
 }
 
-.중고거래 {
+.상품확인-all {
+    position: absolute;
+}
+
+.상품확인-1 {
+    z-index: 2;
+    padding: 32px;
+    /* background-color: var(--상품글씨배경색상); */
+}
+
+.상품확인-2 {
+    z-index: 1
+}
+
+/* 모바일 */
+@media (min-width:375px) {
+    .상품확인-폰트1 {
+        font-size: 12px;
+    }
+
+    .상품확인-폰트2 {
+        display: inline;
+        font-size: 24px;
+    }
+
+    .상품확인-폰트22 {
+        display: none;
+    }
+
+    .상품확인-폰트3 {
+        font-size: 16px;
+    }
+
+    .상품확인-1 {
+        left: 0%;
+        top: 50%;
+        transform: translate(0%, 60%);
+    }
+
+    .상품확인-2 {
+        left: 50%;
+        top: 0%;
+        transform: translate(-50%, 0%);
+    }
+
+    .상품확인-그림 {
+        width: var(--WIDTH);
+    }
+}
+
+/* 테블릿 */
+@media (min-width:744px) {
+    .상품확인-폰트1 {
+        font-size: 12px;
+    }
+
+    .상품확인-폰트2 {
+        display: inline;
+        font-size: 35px;
+    }
+
+    .상품확인-폰트22 {
+        display: none;
+    }
+
+    .상품확인-폰트3 {
+        font-size: 16px;
+    }
+
+    .상품확인-1 {
+        left: 0%;
+        top: 50%;
+        transform: translate(0%, 50%);
+    }
+
+    .상품확인-2 {
+        left: 50%;
+        top: 0%;
+        transform: translate(-50%, 0%);
+    }
+
+    .상품확인-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/* PC */
+@media (min-width:1200px) {
+    .상품확인-폰트2 {
+        display: none;
+    }
+
+    .상품확인-폰트22 {
+        display: inline;
+        font-size: 35px;
+    }
+
+    .상품확인-1 {
+        left: 50%;
+        top: 50%;
+        transform: translate(30%, -50%);
+    }
+
+    .상품확인-2 {
+        left: 0%;
+        transform: translateX(0%);
+    }
+
+    .상품확인-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/* 1920 pixel넘을때 */
+@media (min-width:1920px) {
+    .상품확인-폰트2 {
+        display: none;
+    }
+
+    .상품확인-폰트22 {
+        display: inline;
+        font-size: 35px;
+    }
+
+    .상품확인-1 {
+        left: 50%;
+        top: 50%;
+        transform: translate(100%, -30%);
+    }
+
+    .상품확인-2 {
+        left: 50%;
+        transform: translateX(-70%);
+    }
+
+    .상품확인-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/*------------------------------------------
+ 구매검색
+------------------------------------------*/
+.구매검색방 {
+    position: relative;
+    height: var(--HEIGHT-상품);
+    background-color: white;
+    font-weight: 700;
+}
+
+.구매검색-all {
+    position: absolute;
+}
+
+.구매검색-1 {
+    z-index: 2;
+    padding: 32px;
+    /* background-color: var(--상품글씨배경색상); */
+
+}
+
+.구매검색-2 {
+    z-index: 1;
+}
+
+/* 모바일 */
+@media (min-width:375px) {
+    .구매검색-폰트1 {
+        font-size: 12px;
+    }
+
+    .구매검색-폰트2 {
+        display: inline;
+        font-size: 18px;
+    }
+
+    .구매검색-폰트22 {
+        display: none;
+    }
+
+    .구매검색-폰트3 {
+        font-size: 14px;
+    }
+
+    .구매검색-1 {
+        width: 100%;
+        text-align: right;
+        left: 50%;
+        top: 50%;
+        transform: translate(-60%, 50%);
+    }
+
+    .구매검색-2 {
+        left: 50%;
+        top: 0%;
+        transform: translate(-50%, 0%);
+    }
+
+    .구매검색-그림 {
+        width: var(--WIDTH);
+    }
+}
+
+/* 테블릿 */
+@media (min-width:744px) {
+    .구매검색-폰트1 {
+        font-size: 12px;
+    }
+
+    .구매검색-폰트2 {
+        display: inline;
+        font-size: 28px;
+    }
+
+    .구매검색-폰트22 {
+        display: none;
+    }
+
+    .구매검색-폰트3 {
+        font-size: 16px;
+    }
+
+    .구매검색-1 {
+        width: 100%;
+        text-align: right;
+        left: 50%;
+        top: 50%;
+        transform: translate(-60%, 65%);
+    }
+
+    .구매검색-2 {
+        left: 50%;
+        top: 0%;
+        transform: translate(-50%, 0%);
+    }
+
+    .구매검색-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/* PC */
+@media (min-width:1200px) {
+    .구매검색-폰트2 {
+        display: none;
+    }
+
+    .구매검색-폰트22 {
+        display: inline;
+        font-size: 35px;
+    }
+
+    .구매검색-1 {
+        text-align: right;
+        left: 50%;
+        top: 50%;
+        transform: translate(-120%, -50%);
+    }
+
+    .구매검색-2 {
+        left: 50%;
+        transform: translateX(0%);
+    }
+
+    .구매검색-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/* 1920 pixel넘을때 */
+@media (min-width:1920px) {
+    .구매검색-폰트2 {
+        display: none;
+    }
+
+    .구매검색-폰트22 {
+        display: inline;
+        font-size: 35px;
+    }
+
+    .구매검색-1 {
+        text-align: right;
+        left: 50%;
+        top: 50%;
+        transform: translate(-100%, -50%);
+    }
+
+    .구매검색-2 {
+        left: 50%;
+        transform: translateX(0%);
+    }
+
+    .구매검색-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/*------------------------------------------
+ 상품등록
+------------------------------------------*/
+.상품등록방 {
+    position: relative;
+    height: var(--HEIGHT-상품);
+    background-color: white;
+    font-weight: 700;
+}
+
+.상품등록-all {
+    position: absolute;
+}
+
+.상품등록-1 {
+    z-index: 2;
+    padding: 32px;
+    /* background-color: var(--상품글씨배경색상); */
+}
+
+.상품등록-2 {
+    z-index: 1;
+}
+
+/* 모바일 */
+@media (min-width:375px) {
+    .상품등록-폰트1 {
+        font-size: 12px;
+    }
+
+    .상품등록-폰트2 {
+        display: inline;
+        font-size: 24px;
+    }
+
+    .상품등록-폰트22 {
+        display: none;
+    }
+
+    .상품등록-폰트3 {
+        font-size: 16px;
+    }
+
+    .상품등록-1 {
+        left: 0%;
+        top: 50%;
+        transform: translate(0%, 60%);
+    }
+
+    .상품등록-2 {
+        left: 50%;
+        top: 0%;
+        transform: translate(-50%, 0%);
+    }
+
+    .상품등록-그림 {
+        width: var(--WIDTH);
+    }
+}
+
+/* 테블릿 */
+@media (min-width:744px) {
+    .상품등록-폰트1 {
+        font-size: 12px;
+    }
+
+    .상품등록-폰트2 {
+        display: inline;
+        font-size: 35px;
+    }
+
+    .상품등록-폰트22 {
+        display: none;
+    }
+
+    .상품등록-폰트3 {
+        font-size: 16px;
+    }
+
+    .상품등록-1 {
+        left: 0%;
+        top: 50%;
+        transform: translate(0%, 50%);
+    }
+
+    .상품등록-2 {
+        left: 50%;
+        top: 0%;
+        transform: translate(-50%, 0%);
+    }
+
+    .상품등록-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/* PC */
+@media (min-width:1200px) {
+    .상품등록-폰트2 {
+        display: none;
+    }
+
+    .상품등록-폰트22 {
+        display: inline;
+        font-size: 35px;
+    }
+
+    .상품등록-1 {
+        left: 50%;
+        top: 50%;
+        transform: translate(30%, -50%);
+    }
+
+    .상품등록-2 {
+        left: 0%;
+        transform: translateX(0%);
+    }
+
+    .상품등록-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/* 1920 pixel넘을때 */
+@media (min-width:1920px) {
+    .상품등록-폰트2 {
+        display: none;
+    }
+
+    .상품등록-폰트22 {
+        display: inline;
+        font-size: 35px;
+    }
+
+    .상품등록-1 {
+        left: 50%;
+        top: 50%;
+        transform: translate(100%, -30%);
+    }
+
+    .상품등록-2 {
+        left: 50%;
+        transform: translateX(-70%);
+    }
+
+    .상품등록-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/*------------------------------------------
+ 중고거래
+------------------------------------------*/
+.중고거래방 {
     position: relative;
     height: var(--HEIGHT-구경하러가기);
     background-color: var(--배경색상);
+    font-weight: 700;
+}
+
+.중고거래-all {
+    position: absolute;
 }
 
 .중고거래-1 {
-    position: absolute;
-    left: 50%;
-    bottom: 0px;
-    transform: translateX(-170px);
+    z-index: 2;
+}
 
+.중고거래-2 {
+    z-index: 1;
+    bottom: 0px;
+}
+
+/* 모바일 */
+@media (min-width:375px) {
+    .중고거래-1 {
+        font-size: 20px;
+        left: 50%;
+        top: 110px;
+        transform: translateX(-50%);
+    }
+
+    .중고거래-2 {
+        padding-left: 32px;
+        padding-right: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .중고거래-그림 {
+        width: var(--WIDTH);
+    }
+}
+
+/* 테블릿 */
+@media (min-width:744px) {
+    .중고거래-1 {
+        font-size: 35px;
+        left: 50%;
+        top: 20px;
+        transform: translateX(-50%);
+    }
+
+    .중고거래-2 {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .중고거래-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/* PC */
+@media (min-width:1200px) {
+    .중고거래-1 {
+        font-size: 38px;
+        left: 35%;
+        top: 250px;
+        transform: translateX(-50%);
+    }
+
+    .중고거래-2 {
+        left: 50%;
+        transform: translateX(-15%);
+    }
+
+    .중고거래-그림 {
+        width: var(--WIDTH-중고거래);
+    }
+}
+
+/* 1920 pixel넘을때 */
+@media (min-width:1920px) {
+    .중고거래-1 {
+        font-size: 38px;
+        left: 42%;
+        top: 250px;
+        transform: translateX(-50%);
+    }
+
+    .중고거래-2 {
+        left: 50%;
+        transform: translateX(-15%);
+    }
+
+    .중고거래-그림 {
+        width: var(--WIDTH-중고거래);
+    }
 }
 
 /*------------------------------------------
@@ -151,68 +806,6 @@ footer
     font-size: 20px;
     text-decoration: none;
     position: relative;
-    padding-top: 30px;
-}
-
-/* 1920pixel 보다 적을때 */
-@media(max-width:1920px) {
-    .f1 {
-        position: absolute;
-        left: 200px;
-    }
-
-    .f2 {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-100px);
-    }
-
-    .f3 {
-        position: absolute;
-        left: 50%;
-        transform: translateX(100px);
-    }
-
-    .f4 {
-        position: absolute;
-        right: 200px;
-        width: 160px;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-    }
-}
-
-/* 1920pixel보다 클때 */
-@media(min-width:1920px) {
-    .f1 {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-500px);
-    }
-
-    .f2 {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-100px);
-    }
-
-    .f3 {
-        position: absolute;
-        left: 50%;
-        transform: translateX(100px);
-    }
-
-    .f4 {
-        position: absolute;
-        left: 50%;
-        width: 160px;
-        transform: translateX(500px);
-
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-    }
 }
 
 .f2 a {
@@ -224,3 +817,132 @@ footer
     color: white;
     text-decoration: none;
 }
+
+.fall {
+    position: absolute;
+    top: 30px;
+}
+
+/* 모바일 */
+@media (min-width:375px) {
+    .f1 {
+        top: 80px;
+        left: 18%;
+        transform: translateX(-50%);
+    }
+
+    .f2 {
+        left: 18%;
+        transform: translateX(-50%);
+    }
+
+    .f3 {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .f4 {
+        right: -60px;
+        transform: translateX(-50%);
+
+        width: 140px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+}
+
+/* 테블릿 */
+@media (min-width:744px) {
+    .f1 {
+        top: 30px;
+        left: 10%;
+        transform: translateX(-50%);
+    }
+
+    .f2 {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .f3 {
+        left: 65%;
+        transform: translateX(-50%);
+    }
+
+    .f4 {
+        right: -5%;
+        transform: translateX(-50%);
+
+        width: 160px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+}
+
+/* PC */
+@media (min-width:1200px) {
+    .f1 {
+        top: 30px;
+        left: 200px;
+    }
+
+    .f2 {
+        left: 50%;
+        transform: translateX(-100px);
+    }
+
+    .f3 {
+        left: 50%;
+        transform: translateX(100px);
+    }
+
+    .f4 {
+        right: 200px;
+        width: 160px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+}
+
+/* 1920 pixel넘을때 */
+@media (min-width:1920px) {
+    .f1 {
+        top: 30px;
+        left: 40%;
+        transform: translateX(-50%);
+    }
+
+    .f2 {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .f3 {
+        left: 55%;
+        transform: translateX(-50%);
+    }
+
+    .f4 {
+        right: 30%;
+        transform: translateX(-50%);
+        width: 160px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+}
+
+/* 모바일 */
+/* @media (min-width:375px) {} */
+
+/* 테블릿 */
+/* @media (min-width:744px) {} */
+
+/* PC */
+/* @media (min-width:1200px) {} */
+
+/* 1920 pixel넘을때 */
+/* @media (min-width:1920px) {} */

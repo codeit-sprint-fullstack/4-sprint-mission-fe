@@ -1,4 +1,6 @@
 :root {
+    --WIDTH: 99vw;
+    --HEIGHT: 100vh;
     /*text창 폭*/
     --세로크기: 40px;
     /*색상*/
@@ -14,14 +16,15 @@
     box-sizing: border-box;
 }
 
-body {}
-
-/* 폼 */
-form {
+/*-------------------------------------
+ 폼
+--------------------------------------*/
+.폼 {
     /*위치*/
     position: relative;
-    left: 30%;
-    top: 0px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%);
     margin-top: 100px;
     /*크기*/
     width: 600px;
@@ -34,7 +37,7 @@ form {
     /* gap:세로픽셀(여백) 가로픽셀(여백)*/
 }
 
-body>form>div {
+.폼>div {
     width: 100%;
 
 }
@@ -60,24 +63,92 @@ input {
 
 }
 
-/* input 포커스 */
-input:focus {
-    border: 2px solid var(--로그인포커스버튼색상);
-    outline: none;
-}
-
 /* input password 눈모양 안나오게 설정 */
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
     display: none;
 }
 
-.비밀번호 {
+/*-------------------------------------
+ 반응웹
+--------------------------------------*/
+/* 모바일 */
+@media (min-width:375px) {
+    .폼 {
+        width: var(--WIDTH);
+        padding: 32px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0%);
+    }
+}
+
+/* 테블릿 */
+@media (min-width:744px) {
+    .폼 {
+        width: 600px;
+    }
+}
+
+/* PC */
+@media (min-width:1200px) {
+    .폼 {
+        width: 600px;
+    }
+}
+
+/* 1920 pixel넘을때 */
+@media (min-width:1920px) {
+    .폼 {
+        width: 600px;
+    }
+}
+
+/*-------------------------------------
+ 이메일
+--------------------------------------*/
+#이메일상태 {
+    padding: 0px;
+    font-size: 12px;
+    color: red;
+}
+
+.이메일-오류 {
+    border: 2px solid red;
+    outline: none;
+}
+
+.이메일-정상 {
+    border: 2px solid var(--로그인포커스버튼색상);
+    outline: none;
+}
+
+/*-------------------------------------
+ 패스워드
+--------------------------------------*/
+#패스워드상태 {
+    padding: 0px;
+    font-size: 12px;
+    color: red;
+}
+
+.패스워드-오류 {
+    border: 2px solid red;
+    outline: none;
+}
+
+.패스워드-정상 {
+    border: 2px solid var(--로그인포커스버튼색상);
+    outline: none;
+}
+
+
+.패스워드, .패스워드확인 {
     position: relative;
 }
 
 /* 수동 비번 눈모양 추가 */
-.비밀번호 img {
+.패스워드 img, .패스워드확인 img {
     position: absolute;
     top: 10px;
     right: 10px;
