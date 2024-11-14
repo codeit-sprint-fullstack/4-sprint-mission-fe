@@ -13,41 +13,31 @@
     <div class="wrapper">
       <div class="title">
         <a href="../index.html"><img src="../img/logo.png"/></a></div>
-      <form action="#">
+      <form id="form" action="#">
         <div class="field">
           <label>이메일</label>
           <input type="text" id="userEmail" placeholder="이메일을 입력해주세요" required />
         </div>
         <div class="field">
           <label>닉네임</label>
-          <input type="text" id="userNickname" placeholder="이메일을 입력해주세요" required />
+          <input type="text" id="userNickname" placeholder="닉네임을 입력해주세요" required />
         </div>
         <div class="field">
           <label>비밀번호</label>
-          <input
-            type="password"
-            id="userPassword"
-            placeholder="비밀번호를 입력해주세요"
-            required
-          />
+          <input type="password" id="userPassword" placeholder="비밀번호를 입력해주세요" required />
           <button class="pw_block" onclick="pwShow()">
             <i id="eyeChange" class="fa-regular fa-eye" aria-hidden="true"></i>
           </button>
         </div>
         <div class="field">
           <label>비밀번호 확인</label>
-          <input
-            type="password"
-            id="pwCheck"
-            placeholder="비밀번호를 입력해주세요"
-            required
-          />
+          <input type="password" id="userPasswordConfirm" placeholder="비밀번호를 입력해주세요" equired/>
           <button class="pw_block" onclick="pwCheckShow()">
             <i id="eyeChangeCheck" class="fa-regular fa-eye" aria-hidden="true"></i>
           </button>
         </div>
         <div class="field">
-          <input type="submit" id="submitButton" value="로그인" />
+          <input type="button" id="submitButton" value="회원가입" />
         </div>
       </form>
       <div class="out_login">
