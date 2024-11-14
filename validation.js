@@ -3,6 +3,17 @@ const email = document.getElementById("user_email");
 const emailError = document.getElementById("user_email_error");
 const password = document.getElementById("password");
 const passwordError = document.getElementById("password_error");
+const loginButton = document.querySelector("form button");
+
+function validateLogin() {
+    if(!email.validity.valid || !password.validity.valid) {
+        loginButton.disabled = true;
+    } else {
+        loginButton.disabled = false;
+    }
+}
+
+window.addEventListener("DOMContentLoaded", validateLogin);
 
 function showEmailError() {
     if (email.validity.valueMissing) {
@@ -18,10 +29,13 @@ email.addEventListener("blur", (event) => {
     if (email.validity.valid) {
         emailError.textContent = "";
         email.classList.remove("error");
+        validateLogin();
     } else {
         showEmailError();
     }
 });
+
+email.addEventListener("input", validateLogin);
 
 function showPasswordError() {
     if (password.validity.valueMissing) {
@@ -37,7 +51,11 @@ password.addEventListener("blur", (event) => {
     if (password.validity.valid) {
         passwordError.textContent = "";
         password.classList.remove("error");
+        validateLogin();
     } else {
         showPasswordError();
     }
 });
+
+password.addEventListener("input", validateLogin);
+
