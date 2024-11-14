@@ -1,4 +1,3 @@
-const form = document.querySelector("form");
 const email = document.getElementById("user_email");
 const emailError = document.getElementById("user_email_error");
 const password = document.getElementById("password");
@@ -16,10 +15,11 @@ function validateLogin() {
 window.addEventListener("DOMContentLoaded", validateLogin);
 
 function showEmailError() {
+    emailError.classList.add("error-message");
+    email.classList.add("error");
+
     if (email.validity.valueMissing) {
         emailError.textContent = "이메일을 입력해주세요.";
-        emailError.classList.add("error-message");
-        email.classList.add("error");
     } else if (email.validity.typeMismatch) {
         emailError.textContent = "잘못된 이메일 형식입니다.";
     }
@@ -38,10 +38,11 @@ email.addEventListener("blur", (event) => {
 email.addEventListener("input", validateLogin);
 
 function showPasswordError() {
+    passwordError.classList.add("error-message");
+    password.classList.add("error");
+
     if (password.validity.valueMissing) {
         passwordError.textContent = "비밀번호를 입력해주세요.";
-        passwordError.classList.add("error-message");
-        password.classList.add("error");
     } else if (password.validity.tooShort) {
         passwordError.textContent = "비밀번호를 8자 이상 입력해주세요.";
     }
