@@ -1,4 +1,5 @@
 const USER_DATA = [
+    { email: 'test@test.com', password: "testtest123"},
     { email: 'codeit1@codeit.com', password: "codeit101!" },
     { email: 'codeit2@codeit.com', password: "codeit202!" },
     { email: 'codeit3@codeit.com', password: "codeit303!" },

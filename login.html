@@ -54,24 +54,6 @@
         </section>
     </main>
     <script src="default_data.js"></script>
-    <script src="validation.js"></script>
     <script src="login.js"></script>
-    <script>
-        function togglePasswordVisibility() {
-            const passwordInput = document.getElementById("password");
-            const toggleIcon = document.getElementById("toggle-password");
-
-            // 현재 input의 type을 확인하고, type을 변경
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                toggleIcon.src = "./resources/eye_open.png"; // 비밀번호가 보일 때 아이콘을 변경
-                toggleIcon.alt = "Hide Password";
-            } else {
-                passwordInput.type = "password";
-                toggleIcon.src = "./resources/eye_closed.png"; // 비밀번호가 숨겨질 때 아이콘을 변경
-                toggleIcon.alt = "Show Password";
-            }
-        }
-    </script>
 </body>
 </html>

@@ -113,6 +113,16 @@ button {
     border: none;
 }
 
+button:invalid {
+    background-color: var(--gray-400); /* #9CA3AF */
+    color: var(--gray-100); /* #F3F4F6 */
+}
+
+button:valid {
+    background-color: var(--primary-100); /* #9CA3AF */
+    color: #FFFFFF;
+}
+
 .easy-login-box {
     background-color: #e6f2ff; /* 변수와 일치하지 않음 */
     padding: 1rem 1.4375rem; /* 16px 23px */
@@ -146,4 +156,16 @@ button {
 
 .sign-up a {
     color: var(--primary-100); /* #3692FF */
+}
+
+.error {
+    border: 1.5px solid red; 
+    background-color: #ffe6e6;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: -1.25rem;
+    padding-left: 1rem;  
 }

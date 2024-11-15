@@ -1,29 +1,47 @@
+const form = document.querySelector("form");
 const email = document.getElementById("user_email");
 const emailError = document.getElementById("user_email_error");
+const nickname = document.getElementById("user_nickname");
 const password = document.getElementById("password");
 const passwordError = document.getElementById("password_error");
+const passwordConfirm = document.getElementById("password-c");
+const passwordConfirmError = document.getElementById("password_confirm_error");
 const loginButton = document.querySelector("form button");
-const form = document.querySelector("form");
 
 
 function togglePasswordVisibility() {
     const passwordInput = document.getElementById("password");
     const toggleIcon = document.getElementById("toggle-password");
 
-    // 현재 input의 type을 확인하고, type을 변경
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        toggleIcon.src = "./resources/eye_open.png"; // 비밀번호가 보일 때 아이콘을 변경
+        toggleIcon.src = "./resources/eye_closed.png"; // 비밀번호가 보일 때 아이콘 변경
         toggleIcon.alt = "Hide Password";
     } else {
         passwordInput.type = "password";
-        toggleIcon.src = "./resources/eye_closed.png"; // 비밀번호가 숨겨질 때 아이콘을 변경
+        toggleIcon.src = "./resources/eye_open.png"; // 비밀번호가 숨겨질 때 아이콘 변경
         toggleIcon.alt = "Show Password";
     }
 }
 
+function togglePasswordVisibility_c() {
+    const passwordInput = document.getElementById("password-c");
+    const toggleIcon = document.getElementById("toggle-password-c");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.src = "./resources/eye_closed.png"; // 비밀번호가 보일 때 아이콘 변경
+        toggleIcon.alt = "Hide Password";
+    } else {
+        passwordInput.type = "password";
+        toggleIcon.src = "./resources/eye_open.png"; // 비밀번호가 숨겨질 때 아이콘 변경
+        toggleIcon.alt = "Show Password";
+    }
+}
+
+
 function validateLogin() {
-    if(!email.validity.valid || !password.validity.valid) {
+    if(!email.validity.valid || !nickname.validity.valid || !password.validity.valid || !passwordConfirm.validity.valid) {
         loginButton.disabled = true;
     } else {
         loginButton.disabled = false;
@@ -40,7 +58,7 @@ function showEmailError() {
         emailError.textContent = "이메일을 입력해주세요.";
     } else if (email.validity.typeMismatch) {
         emailError.textContent = "잘못된 이메일 형식입니다.";
-    }
+    } 
 }
 
 email.addEventListener("blur", (event) => {
@@ -74,25 +92,43 @@ password.addEventListener("blur", (event) => {
     } else {
         showPasswordError();
     }
+
+    if (!passwordConfirm.validity.valueMissing) {
+        showPasswordConfirmError();
+    }
 });
 
 password.addEventListener("input", validateLogin);
 
+function showPasswordConfirmError() {
+    if (password.value !== passwordConfirm.value) {
+        passwordConfirmError.classList.add("error-message");
+        passwordConfirm.classList.add("error");
+        passwordConfirm.setCustomValidity("비밀번호가 일치하지 않습니다.");
+        passwordConfirmError.textContent = passwordConfirm.validationMessage;
+    } else {
+        passwordConfirmError.textContent = "";
+        passwordConfirm.classList.remove("error");
+        passwordConfirm.setCustomValidity("");
+        validateLogin();
+    }
+}
+
+passwordConfirm.addEventListener("blur",showPasswordConfirmError);
+
+passwordConfirm.addEventListener("input", validateLogin);
 
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const inputEmail = email.value;
-    const inputPassword = password.value;
+    const user = USER_DATA.find((user) => user.email == email.value);
 
-    //USER_DATA에 없거나, 이메일은 일치하지만 비밀번호가 틀린경우 -> '비밀번호가 일치하지 않습니다.'
-    const user = USER_DATA.find((user) => user.email==inputEmail );
-
-    if(user === undefined || user.password !== inputPassword) {
-        alert("비밀번호가 일치하지 않습니다.");
+    if(user === undefined) {
+        alert("가입 성공!");
+        window.location.href = "/login.html";
     } else {
-        alert("로그인 성공!");
-        window.location.href = "/item";
+        // 같은 아이디가 있음
+        alert("사용 중인 이메일입니다.");
     }
 });
