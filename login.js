@@ -4,6 +4,9 @@ const password = document.getElementById("password");
 const passwordError = document.getElementById("password_error");
 const loginButton = document.querySelector("form button");
 const form = document.querySelector("form");
+const closeButton = document.getElementById("dialog-close");
+const loginErrorDialog = document.getElementById("login-error-dialog");
+
 
 
 function togglePasswordVisibility() {
@@ -90,9 +93,13 @@ form.addEventListener('submit', (event) => {
     const user = USER_DATA.find((user) => user.email==inputEmail );
 
     if(user === undefined || user.password !== inputPassword) {
-        alert("비밀번호가 일치하지 않습니다.");
+        loginErrorDialog.showModal();
     } else {
-        alert("로그인 성공!");
         window.location.href = "/item";
     }
+});
+
+
+closeButton.addEventListener("click", () => {
+    loginErrorDialog.close();
 });

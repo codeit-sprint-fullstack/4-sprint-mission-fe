@@ -7,6 +7,8 @@ const passwordError = document.getElementById("password_error");
 const passwordConfirm = document.getElementById("password-c");
 const passwordConfirmError = document.getElementById("password_confirm_error");
 const loginButton = document.querySelector("form button");
+const closeButton = document.getElementById("dialog-close");
+const signupErrorDialog = document.getElementById("signup-error-dialog");
 
 
 function togglePasswordVisibility() {
@@ -125,10 +127,13 @@ form.addEventListener('submit', (event) => {
     const user = USER_DATA.find((user) => user.email == email.value);
 
     if(user === undefined) {
-        alert("가입 성공!");
         window.location.href = "/login.html";
     } else {
-        // 같은 아이디가 있음
-        alert("사용 중인 이메일입니다.");
+        signupErrorDialog.showModal();
     }
+});
+
+
+closeButton.addEventListener("click", () => {
+    signupErrorDialog.close();
 });
