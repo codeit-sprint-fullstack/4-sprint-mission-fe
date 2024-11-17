@@ -8,20 +8,28 @@
         <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     </head>
     <body>
+        <div class="modal hidden">
+            <div class="error_msg">
+                <p>비밀번호가 일치하지 않습니다.</p>
+                <button type="button" id="error_msg_button">확인</button>
+            </div> 
+        </div>
+
+
         <div id="box">
             <a id="section0" href="index.html"></a>
 
             <form id="section1">
-                <label class="section1_box">이메일
+                <label class="section1_box"><span class="box_name">이메일</span>
                     <input name="email" placeholder="이메일을 입력해주세요" id="section1_emailbox" required>
                 </label>
-                <label class="section1_box">비밀번호
+                <label class="section1_box"><span class="box_name">비밀번호</span>
                     <div class="password-container">
                         <input type="password" name="password" placeholder="비밀번호를 입력해주세요" id="section1_pwbox" required>
                         <img src="img/btn_visibility_off.png" class="icon_eyes">
                     </div>
                 </label>
-                <button id="section1_button">로그인</button>
+                <button type="button" id="section1_button" disabled>로그인</button>
                 
                 <div id="section1_social">
                     <div id="section1_socialinner">

@@ -10,6 +10,55 @@ body {
     align-items: center;
     font-family: 'Pretendard Variable', sans-serif;
 }
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error_msg{
+    position: relative;
+    width: 33.75rem;
+    height: 15.625rem;
+    background-color: white;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.error_msg p{
+    margin: 0;
+    padding-bottom: 40px;
+
+}
+#error_msg_button{
+    position:absolute;
+    width: 7.5rem;
+    height: 3rem;
+    background-color: var(--button-active-color);
+    color: var(--button-text-color);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-width: 0;
+    right: 20px;
+    bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
 
 #box {
     display: flex;
@@ -19,6 +68,7 @@ body {
     gap: 2.5rem; /* 40px */
     justify-content: space-between;
     align-items: center;
+    
 }
 
 #section0 {
@@ -42,14 +92,14 @@ body {
     font-size: 1.125rem; /* 18px */
     font-weight: 700;
     width: 100%;
-    height: 6.125rem; /* 98px */
+    /* height: 6.125rem; 98px */
     color: var(--text-color-dark);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-#section1_emailbox {
+#section1_emailbox , #section1_nicknamebox {
     background-color: var(--box-background-color);
     width: 40rem; /* 640px */
     height: 3.5rem; /* 56px */
@@ -62,6 +112,7 @@ body {
     padding-left: 1.5rem; /* 24px */
     box-sizing: border-box;
 }
+
 
 .password-container {
     position: relative;
@@ -79,12 +130,8 @@ input[type="password"]::-ms-clear {
   display: none;
 }
 
-#section1_emailbox:focus {
-    border: 0.125rem solid var(--input-focus-color); /* 2px */
-    outline: none; 
-}
 
-#section1_pwbox {
+#section1_pwbox , #section1_pwcheckbox  {
     background-color: var(--box-background-color);
     width: 40rem; /* 640px */
     height: 3.5rem; /* 56px */
@@ -96,11 +143,6 @@ input[type="password"]::-ms-clear {
     outline: none;
     padding-left: 1.5rem; /* 24px */
     box-sizing: border-box;
-}
-
-#section1_pwbox:focus {
-    border: 0.125rem solid var(--input-focus-color); /* 2px */
-    outline: none; 
 }
 
 #section1_button {
@@ -156,4 +198,18 @@ input[type="password"]::-ms-clear {
 }
 .login_text{
     color: var(--button-active-color);
+}
+
+
+.box_name{
+    margin-bottom: 1rem;
+}
+
+.alert{
+    color: #F74747;
+    font-size: 0.9375rem;
+    line-height: 1.11875rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
 }
