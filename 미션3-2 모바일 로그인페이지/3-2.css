@@ -8,19 +8,34 @@
 
 .pandalogo{
   position: relative;
-  top: -200px;
   left: 60px;
+  bottom: 160px;
   
 }
-.password_text,.email_text{
+.email_text{
   position: relative;
-  top: -180px
+  bottom: 165px;
+  left: 10px;
+}
+.password_text{
+  position: relative;
+  bottom: 150px;
+  left: 10px;
+}
+#password{
+  position: relative;
+  top: -18px;
+  right: 11px;
+  
+}
+#email1{
+  position: relative;
+  bottom: 180px;
 }
 
 
 input{
   position: relative;
-  top:-200px;
   width: 323px;
   height: 56px;
   border-radius: 20px;
@@ -28,7 +43,7 @@ input{
   background-color: #F3F4F6;
   border: solid 1px #F3F4F6;
   padding-left: 20px;
-  margin-top: 30px;
+ 
   }
   input:focus{
   outline-style: solid;
@@ -40,7 +55,6 @@ input{
 
   .login_button{
     position: relative;
-    top: -180px;
     width: 343px;
     height: 56px;
     border-radius: 30px;
@@ -50,22 +64,25 @@ input{
     font-size: 17px;
     font-weight: 900;
     color: aliceblue;
+    top: 20px;
+    right: 10px;
   }
   .login_button:hover{
     background: #3692ff;
   }
   .Easy_login{
     position: relative;
-    margin-top: -175px;
     background-color:#E6F2FF;
     width: 343px;
     height: 75px;
     border-radius: 10px;
+    top: 35px;
+    right: 10px;
   }
   .member{
     position: relative;
-    margin-top: 30px;
-    left: 40px;
+    left: 26px;
+    top: 70px;
    
   }
   .member a{
@@ -87,5 +104,6 @@ input{
     left: 25px;
     top: 25px
   }
+
   
   
