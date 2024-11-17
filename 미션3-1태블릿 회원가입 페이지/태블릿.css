@@ -1,0 +1,87 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+
+.login2{
+  position: relative;
+  width: 640px;
+  height: 74px;
+  background-color: #E6F2FF;
+  border-radius: 8px;
+  
+}
+
+
+input{
+  width: 620px;
+  height: 56px;
+  border-radius: 20px;
+  background-color: #F3F4F6;
+  border-color: #F3F4F6;
+  border: solid 1px #F3F4F6;
+  padding-left: 20px;
+}
+input:focus {
+  outline-color: #3692ff;
+}
+input:hover{
+  border-color: #3692ff;
+}
+
+
+.new_member{
+  position: relative;
+  width: 640px;
+  height: 56px;
+  border-radius: 30px;
+  background-color: #9CA3AF;
+  font-size: 17px;
+  font-weight: 900;
+  color: #F3F4F6;
+  border: solid 1px #F3F4F6;
+  margin: 30px auto;
+}
+.new_member:hover{
+  background-color: #3692ff;
+}
+
+.aa a {
+  color: blue;
+}
+
+H4{
+position: relative;
+right: 140px;
+top: 10px;
+}
+
+.kakao{
+  position: relative;
+  left: 400px;
+  top: 15px
+}
+.google{
+  position: relative;
+  left: 390px;
+  top: 16px
+}
+.qq{
+  position: relative;
+ 
+  left: 20px;
+}
+
+.aa{
+  position: relative;
+  top: 30px;
+}
+h4{
+  position: relative;
+  left: -280px;
+}
