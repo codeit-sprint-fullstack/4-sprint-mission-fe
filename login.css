@@ -112,6 +112,16 @@ button {
     border: none;
 }
 
+button:invalid {
+    background-color: var(--gray-400); /* #9CA3AF */
+    color: var(--gray-100); /* #F3F4F6 */
+}
+
+button:valid {
+    background-color: var(--primary-100); /* #9CA3AF */
+    color: #FFFFFF;
+}
+
 .easy-login-box {
     background-color: #e6f2ff; /* 변수와 일치하지 않음 */
     padding: 1rem 1.4375rem; /* 16px 23px */
@@ -145,4 +155,57 @@ button {
 
 .sign-up a {
     color: var(--primary-100); /* #3692FF */
+}
+
+.error {
+    border: 1.5px solid red; 
+    background-color: #ffe6e6;
+}
+  
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: -1.25rem;
+    padding-left: 1rem;  
+}
+
+dialog {
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    width: 540px;
+    height: 240px;
+    max-width: 90%;
+    text-align: center;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5); /* 배경 어둡게 */
+}
+
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+dialog button {
+    background-color: var(--gray-400); /* #9CA3AF */
+    border-radius: 0.5rem; /* 40px */
+    padding: 1rem 0; /* 16px 0 */
+    font-size: 1.25rem; /* 20px */
+    font-weight: 600;
+    color: var(--gray-100); /* #F3F4F6 */
+    border: none;
 }
