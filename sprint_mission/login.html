@@ -33,12 +33,14 @@
                 <!-- email part -->
                 <div class="login_section">
                     <b class="login_text">이메일</b>
-                    <input type="text" name="email" class="login_input" placeholder="이메일을 입력해주세요">
+                    <input id="email" type="text" name="email" class="login_input" placeholder="이메일을 입력해주세요">
+                    <h6 id="email_error" class="error_message" style="display: none;">이메일을 입력해주세요</h6>
                 </div>
                 <!-- password part -->
                 <div class="login_section">
                     <b class="login_text">비밀번호</b>
-                    <input type="password" name="password" class="login_input" placeholder="비밀번호를 입력해주세요">
+                    <input id="password" type="password" name="password" class="login_input" placeholder="비밀번호를 입력해주세요">
+                    <h6 id="pw_error" class="error_message" style="display: none;">비밀번호를 입력해주세요</h6>
                     <span class="eye_icon">
                         <i id="eye_open_password" class="fa-regular fa-eye" style="display: none;"></i>
                         <i id="eye_close_password" class="fa-regular fa-eye-slash"></i>
@@ -69,7 +71,7 @@
     </div>
 </body>
 
-<script src="index.js"></script>
+<script src="login.js"></script>
 
 
 </html>
