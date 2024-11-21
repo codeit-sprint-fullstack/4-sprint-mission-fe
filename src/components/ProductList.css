@@ -10,6 +10,10 @@
   height: 4.2rem;
   font-size: 2rem;
   font-weight: 600;
+  margin-bottom: 2.4rem;
+}
+
+.label-box.best {
   margin-bottom: 1.6rem;
 }
 
@@ -35,6 +39,11 @@ input::placeholder {
   background-color: var(--input-bg-color);
   border-radius: 1.2rem;
   border: none;
+  background-image: url(../assets/ic-search.png);
+  background-repeat: no-repeat;
+  background-size: 2.4rem 2.4rem;
+  background-position: 1.6rem center;
+  padding-left: 4.4rem;
 }
 
 .label-box .button {
