@@ -21,16 +21,22 @@ function ProductItem({ item }) {
   );
 }
 
-function ProductList({ isBest = false, items }) {
+function ProductList({ isBest = false, items, value, onClick, onSubmit }) {
   const listLabel = isBest ? "베스트 상품" : "판매 중인 상품";
   const itemClassName = `items-list ${isBest ? "best" : ""}`;
   const labelClassName = `label-box ${isBest ? "best" : ""}`;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target.search.value);
+    onSubmit(e.target.search.value);
+  };
 
   return (
     <div className="items-container">
       <div className={labelClassName}>
         <div className="label-title">{listLabel}</div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             name="search"
             className="label-input"
@@ -40,7 +46,7 @@ function ProductList({ isBest = false, items }) {
         <a className="button" href="#">
           상품 등록하기
         </a>
-        <DropDown />
+        <DropDown value={value} onClick={onClick} />
       </div>
 
       <div className={itemClassName}>

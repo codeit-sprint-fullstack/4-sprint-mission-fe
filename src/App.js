@@ -8,6 +8,8 @@ import { getProducts } from "./api";
 function App() {
   const [items, setItems] = useState([]);
   const [bestItems, setBestItems] = useState([]);
+  const [orderBy, setOrderBy] = useState("recent");
+  const [keyword, setKeyword] = useState("");
 
   const handleLoad = async (options) => {
     const result = await getProducts(options);
@@ -23,7 +25,9 @@ function App() {
   };
 
   useEffect(() => {
-    handleLoad({ page: 1, pageSize: 10, orderBy: "recent" });
+    handleLoad({ page: 1, pageSize: 10, orderBy: orderBy, keyword: keyword });
+  }, [orderBy, keyword]);
+  useEffect(() => {
     handleLoadBest({ page: 1, pageSize: 4, orderBy: "favorite" });
   }, []);
 
@@ -32,7 +36,12 @@ function App() {
       <Header />
       <main>
         <ProductList isBest={true} items={bestItems} />
-        <ProductList items={items} />
+        <ProductList
+          items={items}
+          value={orderBy}
+          onClick={setOrderBy}
+          onSubmit={setKeyword}
+        />
       </main>
       <Footer />
     </div>

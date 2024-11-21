@@ -22,11 +22,8 @@
   text-align: center;
   border: 1px solid #dddddd;
   border-radius: 0.8rem;
+  background-color: #ffffff;
 }
-
-/* .label-box.best .dropdown-menu {
-  display: none;
-} */
 
 .dropdown-item:first-child {
   border-bottom: 1px solid #dddddd;

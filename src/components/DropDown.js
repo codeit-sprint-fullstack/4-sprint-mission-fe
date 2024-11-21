@@ -4,22 +4,16 @@ import "./DropDown.css";
 export const DropDownMenu = ({ onSelect }) => {
   const MENU_TEXT = ["최신순", "좋아요순"];
   const handleClick = (e) => {
-    const value = e.target.getAttribute("value");
-    if (value === "최신순") {
+    if (e.target.textContent === "최신순") {
       onSelect("recent");
     } else {
-      onSelect("favoriet");
+      onSelect("favorite");
     }
   };
   return (
     <div className="dropdown-menu">
       {MENU_TEXT.map((item, i) => (
-        <div
-          className="dropdown-item"
-          value={item}
-          key={i}
-          onClick={handleClick}
-        >
+        <div className="dropdown-item" key={i} onClick={handleClick}>
           {item}
         </div>
       ))}
@@ -27,30 +21,35 @@ export const DropDownMenu = ({ onSelect }) => {
   );
 };
 
-const DropDown = ({ order = "recent" }) => {
-  const [label, setLabel] = useState(order);
+const DropDown = ({ onClick, value }) => {
+  const [label, setLabel] = useState(value);
   const [isDropdownView, setDropdownView] = useState(false);
   const labelText =
     label === "recent"
       ? `최신순   ${isDropdownView ? "▲" : "▼"}`
       : `좋아요순  ${isDropdownView ? "▲" : "▼"}`;
 
-  const handleClickContainer = () => {
+  const handleButtonClick = () => {
     setDropdownView(!isDropdownView);
   };
 
-  const handleBlurContainer = () => {
+  const handleBlur = () => {
     setTimeout(() => {
       setDropdownView(false);
     }, 100);
   };
 
+  const handleMenuSelect = (order) => {
+    onClick(order);
+    setLabel(order);
+  };
+
   return (
-    <div className="dropdown" onBlur={handleBlurContainer}>
-      <label onClick={handleClickContainer}>
+    <div className="dropdown" onBlur={handleBlur}>
+      <label onClick={handleButtonClick}>
         <button>{labelText}</button>
       </label>
-      {isDropdownView && <DropDownMenu onSelect={setLabel} />}
+      {isDropdownView && <DropDownMenu onSelect={handleMenuSelect} />}
     </div>
   );
 };
