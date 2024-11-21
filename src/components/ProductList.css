@@ -4,10 +4,55 @@
   margin: 2.6rem 0 4rem;
 }
 
-.label {
+.label-box {
+  display: flex;
+  align-items: center;
+  height: 4.2rem;
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1.6rem;
+}
+
+.label-box.best .label-input {
+  display: none;
+}
+
+.label-title {
+  flex-grow: 1;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  color: var(--base-grey-color);
+}
+.label-input {
+  padding: 0.9rem 1.6rem;
+  width: 32.5rem;
+  height: 4.2rem;
+  background-color: var(--input-bg-color);
+  border-radius: 1.2rem;
+  border: none;
+}
+
+.label-box .button {
+  display: flex;
+  align-items: center;
+  height: 4.2rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  padding: 0.8rem 2.3rem;
+  margin-left: 1.2rem;
+}
+
+.label-box.best .button {
+  display: none;
+}
+
+.label-box.best .dropdown {
+  display: none;
 }
 
 .items-list {

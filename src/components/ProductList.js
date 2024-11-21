@@ -1,5 +1,6 @@
 import "./ProductList.css";
 import icHeart from "../assets/ic-heart.png";
+import DropDown from "./DropDown";
 
 function ProductItem({ item }) {
   const { images, name, price, favoriteCount } = item;
@@ -22,11 +23,27 @@ function ProductItem({ item }) {
 
 function ProductList({ isBest = false, items }) {
   const listLabel = isBest ? "베스트 상품" : "판매 중인 상품";
-  const className = `items-list ${isBest ? "best" : ""}`;
+  const itemClassName = `items-list ${isBest ? "best" : ""}`;
+  const labelClassName = `label-box ${isBest ? "best" : ""}`;
+
   return (
     <div className="items-container">
-      <div className="label">{listLabel}</div>
-      <div className={className}>
+      <div className={labelClassName}>
+        <div className="label-title">{listLabel}</div>
+        <form>
+          <input
+            name="search"
+            className="label-input"
+            placeholder="검색할 상품을 입력해주세요"
+          />
+        </form>
+        <a className="button" href="#">
+          상품 등록하기
+        </a>
+        <DropDown />
+      </div>
+
+      <div className={itemClassName}>
         {items.map((item) => {
           return <ProductItem key={item.id} item={item} />;
         })}

@@ -7,7 +7,7 @@ span.menu a {
 }
 
 span.menu a:hover {
-  color: #3692ff;
+  color: var(--main-color);
 }
 
 .nav-container > span:first-child {
