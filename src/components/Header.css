@@ -1,5 +1,4 @@
-header,
-footer {
+header {
   background-color: #ffffff;
   position: sticky;
   z-index: 1;
@@ -38,15 +37,18 @@ footer {
   align-items: center;
 }
 
+.header-content-center {
+  flex-grow: 1;
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
 a.button {
   padding: 1.4rem 4.3rem;
   background-color: var(--main-color);
   border-radius: 0.8rem;
   color: #ffffff;
-}
-
-.header-content-center a {
-  color: #e5e7eb;
 }
 
 @media (max-width: 1199px) {

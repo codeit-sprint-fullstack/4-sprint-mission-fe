@@ -1,6 +1,7 @@
 import logoM from "../assets/logo-m.png";
 import logo from "../assets/logo.png";
 import "./Header.css";
+import HeaderNav from "./HeaderNav";
 
 function Header() {
   return (
@@ -12,7 +13,9 @@ function Header() {
             <img src={logo} id="logo" alt="판다마켓 로고" />
           </a>
         </div>
-        <div className="header-content-center"></div>
+        <div className="header-content-center">
+          <HeaderNav />
+        </div>
         <div className="header-content-right">
           <a className="button" href="/login">
             로그인
