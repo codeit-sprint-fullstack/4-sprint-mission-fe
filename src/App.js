@@ -1,5 +1,14 @@
+import Header from "./components/Header";
+import "./App.css";
+import Footer from "./components/Footer";
+
 function App() {
-  return <h1>스트린트 미션5</h1>;
+  return (
+    <div>
+      <Header />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
