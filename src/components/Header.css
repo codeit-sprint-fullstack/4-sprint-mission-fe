@@ -5,6 +5,7 @@ header {
   top: 0;
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .header-content {
