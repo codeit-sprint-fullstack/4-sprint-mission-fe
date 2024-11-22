@@ -23,5 +23,6 @@ span.menu a:hover {
   span.menu a {
     padding: 0;
     margin-left: 0.8rem;
+    font-size: 1.6rem;
   }
 }

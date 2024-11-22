@@ -1,6 +1,6 @@
 .items-container {
-  /* width: 100%; */
-  width: 120rem;
+  width: 100%;
+  max-width: 120rem;
   margin: 2.6rem 0 4rem;
 }
 
@@ -49,6 +49,7 @@ input::placeholder {
 .label-box .button {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 4.2rem;
   font-size: 1.6rem;
   font-weight: 400;
@@ -106,4 +107,66 @@ input::placeholder {
 .item-favorite img {
   width: 1.6rem;
   margin-right: 0.6rem;
+}
+
+@media (max-width: 1199px) {
+  .items-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+  }
+
+  .items-list.best {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .label-input {
+    width: 26rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .label-box {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: inherit;
+    row-gap: 0.8rem;
+  }
+
+  .label-title {
+    flex-grow: inherit;
+  }
+
+  .label-box .button {
+    width: 14rem;
+    /* grid-column: 2/3; */
+    grid-row: 1/2;
+  }
+  .label-form {
+    width: 30rem;
+    /* grid-column: 1/2; */
+    grid-row: 2/3;
+  }
+
+  .dropdown {
+    width: 4.2rem;
+    /* grid-column: 2/3; */
+    grid-row: 2/3;
+  }
+
+  .label-title {
+    /* grid-column: 1/2; */
+    grid-row: 1/2;
+  }
+
+  .items-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .items-list.best {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

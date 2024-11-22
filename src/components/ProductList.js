@@ -1,12 +1,12 @@
 import "./ProductList.css";
 import icHeart from "../assets/ic-heart.png";
 import DropDown from "./DropDown";
+import useDeviceSize from "../hooks/useDeviceSize";
 
 function ProductItem({ item }) {
   const { images, name, price, favoriteCount } = item;
   return (
     <div className="item">
-      {/* <img src={images[0]} alt={name} /> */}
       <div
         className="item-image"
         style={{ backgroundImage: `url(${images[0]})` }}
@@ -25,6 +25,7 @@ function ProductList({ isBest = false, items, value, onClick, onSubmit }) {
   const listLabel = isBest ? "베스트 상품" : "판매 중인 상품";
   const itemClassName = `items-list ${isBest ? "best" : ""}`;
   const labelClassName = `label-box ${isBest ? "best" : ""}`;
+  useDeviceSize();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,14 +36,14 @@ function ProductList({ isBest = false, items, value, onClick, onSubmit }) {
     <div className="items-container">
       <div className={labelClassName}>
         <div className="label-title">{listLabel}</div>
-        <form onSubmit={handleSubmit}>
+        <form className="label-form" onSubmit={handleSubmit}>
           <input
             name="search"
             className="label-input"
             placeholder="검색할 상품을 입력해주세요"
           />
         </form>
-        <a className="button" href="#">
+        <a className="button" href="/login">
           상품 등록하기
         </a>
         <DropDown value={value} onClick={onClick} />

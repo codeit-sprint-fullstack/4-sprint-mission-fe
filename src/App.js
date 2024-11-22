@@ -5,6 +5,7 @@ import ProductList from "./components/ProductList";
 import { useEffect, useState } from "react";
 import { getProducts } from "./api";
 import Pagination from "./components/Pagination";
+import useDeviceSize from "./hooks/useDeviceSize";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -13,9 +14,18 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [page, setPage] = useState(1);
   const [maxPage, setMaxPage] = useState(0);
-
+  const [loadingError, setloadingError] = useState(null);
+  const { isTablet, isMobile } = useDeviceSize();
   const handleLoad = async (options) => {
-    const result = await getProducts(options);
+    let result;
+    try {
+      setloadingError(null);
+      result = await getProducts(options);
+    } catch (error) {
+      setloadingError(error);
+    } finally {
+    }
+
     const { list, totalCount } = result;
     setItems(list);
     setMaxPage(Math.ceil(totalCount / options.pageSize));
@@ -30,20 +40,25 @@ function App() {
   useEffect(() => {
     handleLoad({
       page: page,
-      pageSize: 10,
+      pageSize: isTablet ? 6 : isMobile ? 4 : 10,
       orderBy: orderBy,
       keyword: keyword,
     });
-  }, [orderBy, keyword, page]);
+  }, [orderBy, keyword, page, isTablet, isMobile]);
 
   // 베스트 상품 목록 불러오기
   useEffect(() => {
-    handleLoadBest({ page: 1, pageSize: 4, orderBy: "favorite" });
-  }, []);
+    handleLoadBest({
+      page: 1,
+      pageSize: isTablet ? 2 : isMobile ? 1 : 4,
+      orderBy: "favorite",
+    });
+  }, [isTablet, isMobile]);
 
   return (
     <div>
       <Header />
+      {loadingError?.message && <span>{loadingError.message}</span>}
       <main>
         <ProductList isBest={true} items={bestItems} />
         <ProductList

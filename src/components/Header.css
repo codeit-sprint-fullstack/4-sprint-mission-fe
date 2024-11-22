@@ -78,4 +78,8 @@ a.button:hover {
   #logoM {
     display: block;
   }
+
+  a.button {
+    padding: 1rem 1.8rem;
+  }
 }
