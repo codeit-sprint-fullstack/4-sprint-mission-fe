@@ -16,6 +16,11 @@
   font-size: 1.6rem;
   font-weight: 600;
   margin-right: 0.4rem;
+  cursor: pointer;
+}
+
+.pagination-button-circle:hover {
+  background-color: #f1f6fd;
 }
 
 .pagination-button-circle.selected {

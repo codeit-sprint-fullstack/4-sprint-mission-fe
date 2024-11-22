@@ -11,6 +11,7 @@ function App() {
   const [bestItems, setBestItems] = useState([]);
   const [orderBy, setOrderBy] = useState("recent");
   const [keyword, setKeyword] = useState("");
+  const [page, setPage] = useState(1);
 
   const handleLoad = async (options) => {
     const result = await getProducts(options);
@@ -26,8 +27,13 @@ function App() {
   };
 
   useEffect(() => {
-    handleLoad({ page: 1, pageSize: 10, orderBy: orderBy, keyword: keyword });
-  }, [orderBy, keyword]);
+    handleLoad({
+      page: page,
+      pageSize: 10,
+      orderBy: orderBy,
+      keyword: keyword,
+    });
+  }, [orderBy, keyword, page]);
   useEffect(() => {
     handleLoadBest({ page: 1, pageSize: 4, orderBy: "favorite" });
   }, []);
@@ -43,7 +49,7 @@ function App() {
           onClick={setOrderBy}
           onSubmit={setKeyword}
         />
-        <Pagination />
+        <Pagination currentPage={page} onClick={setPage} />
       </main>
       <Footer />
     </div>
