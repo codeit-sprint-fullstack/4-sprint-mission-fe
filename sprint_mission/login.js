@@ -1,78 +1,221 @@
-//PW 패스워드 가리기/가리지 않기
 document.addEventListener('DOMContentLoaded', function () {
+
+    // eye open and close in signup/login pages
     const passwordInput = document.querySelector('.login_section input[name="password"]');
     const eyeOpenPassword = document.getElementById('eye_open_password');
     const eyeClosePassword = document.getElementById('eye_close_password');
 
-    eyeClosePassword.addEventListener('click', function () {
-        passwordInput.type = 'text';
-        eyeClosePassword.style.display = 'none';
-        eyeOpenPassword.style.display = 'block';
-    });
+    if (eyeClosePassword && eyeOpenPassword) { // Check if these elements exist
+        eyeClosePassword.addEventListener('click', function () {
+            passwordInput.type = 'text';
+            eyeClosePassword.style.display = 'none';
+            eyeOpenPassword.style.display = 'block';
+        });
 
-    eyeOpenPassword.addEventListener('click', function () {
-        passwordInput.type = 'password';
-        eyeOpenPassword.style.display = 'none';
-        eyeClosePassword.style.display = 'block';
-    });
+        eyeOpenPassword.addEventListener('click', function () {
+            passwordInput.type = 'password';
+            eyeOpenPassword.style.display = 'none';
+            eyeClosePassword.style.display = 'block';
+        });
+    }
 
     const passwordCheckInput = document.querySelector('.login_section input[name="password_check"]');
     const eyeOpenConfirm = document.getElementById('eye_open_confirm');
     const eyeCloseConfirm = document.getElementById('eye_close_confirm');
 
-    eyeCloseConfirm.addEventListener('click', function () {
-        passwordCheckInput.type = 'text';
-        eyeCloseConfirm.style.display = 'none';
-        eyeOpenConfirm.style.display = 'block';
+    if (eyeCloseConfirm && eyeOpenConfirm) { // Check if these elements exist
+        eyeCloseConfirm.addEventListener('click', function () {
+            passwordCheckInput.type = 'text';
+            eyeCloseConfirm.style.display = 'none';
+            eyeOpenConfirm.style.display = 'block';
+        });
+
+        eyeOpenConfirm.addEventListener('click', function () {
+            passwordCheckInput.type = 'password';
+            eyeOpenConfirm.style.display = 'none';
+            eyeCloseConfirm.style.display = 'block';
+        });
+    }
+
+    // validation part in signup/login pages
+
+    const currentPath = window.location.pathname;
+    const currentFileName = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+    const fileNameWithoutExtension = currentFileName.replace('.html', '');
+
+    const emailInput = document.getElementById("email");
+    const emailEmptyError = document.getElementById("email_empty_error");
+    const emailFormError = document.getElementById("email_form_error");
+
+    const nameInput = document.getElementById("nickname");
+    const nameEmptyError = document.getElementById("name_empty_error");
+    const nameFormError = document.getElementById("name_form_error");
+
+    const pwInput = document.getElementById('password');
+    const pwEmptyError = document.getElementById('pw_empty_error');
+    const pwFormError = document.getElementById('pw_form_error');
+
+    const pwCheckInput = document.getElementById('password_check');
+    const pwCheckEmptyError = document.getElementById('pw_check_empty_error');
+
+    const loginBtn = document.getElementById('login_page_button');
+    const signBtn = document.getElementById('signup_page_button');
+
+    function validateEmail(e) {
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return regex.test(e);
+    }
+
+    function validatePW(password) {
+        const minLength = 8;
+        return password.length >= minLength;
+    }
+
+    function emailCheck(e) {
+        const inputElement = e.target;
+
+        if (inputElement.value === "") {
+            inputElement.style.border = '2px solid red';
+            emailEmptyError.style.display = 'block';
+            return false;
+        } else if (!validateEmail(inputElement.value)) {
+            inputElement.style.border = '2px solid red';
+            emailFormError.style.display = 'block';
+            return false;
+        } else {
+            inputElement.style.border = 'none';
+            emailFormError.style.display = 'none';
+            emailEmptyError.style.display = 'none';
+            return true;
+        }
+    }
+
+    function nameCheck(e) {
+        const inputElement = e.target;
+
+        if (inputElement.value === "") {
+            inputElement.style.border = '2px solid red';
+            nameEmptyError.style.display = 'block';
+            return false;
+        } else if (inputElement.value.length < 2) {
+            inputElement.style.border = '2px solid red';
+            nameFormError.style.display = 'block';
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function pwCheck(e) {
+        const inputElement = e.target;
+
+        const isPasswordField = inputElement.id === 'password';
+        const isPasswordCheckField = inputElement.id === 'password_check';
+
+        if (inputElement.value === "") {
+            inputElement.style.border = '2px solid red';
+
+            if (isPasswordField) {
+                pwEmptyError.style.display = 'block';
+            } else if (isPasswordCheckField) {
+                pwCheckEmptyError.style.display = 'block';
+            }
+            return false;
+        } else if (!validatePW(inputElement.value)) {
+            inputElement.style.border = '2px solid red';
+            pwFormError.style.display = 'block';
+            return false;
+        } else {
+            inputElement.style.border = 'none';
+            pwFormError.style.display = 'none';
+            pwEmptyError.style.display = 'none';
+
+            if (fileNameWithoutExtension === "signup") {
+                if (pwInput.value.length !== pwCheckInput.value.length) {
+                    inputElement.style.border = '2px solid red';
+                    pwFormError.style.display = 'block';
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    function buttonEnable() {
+        if (fileNameWithoutExtension === "login") {
+            if (emailCheck({ target: emailInput }) && pwCheck({ target: pwInput })) {
+                loginBtn.disabled = false;
+            } else {
+                loginBtn.disabled = true;
+            }
+        } else if (fileNameWithoutExtension === "signup") {
+            if (emailCheck({ target: emailInput }) && pwCheck({ target: pwInput }) && nameCheck({ target: nameInput })) {
+                signBtn.disabled = false;
+            } else {
+                signBtn.disabled = true;
+            }
+        } else {
+            console.log("Unknown page type:", fileNameWithoutExtension);
+        }
+    }
+
+    emailInput.addEventListener('focusin', function () {
+        emailInput.style.border = '';
+        emailEmptyError.style.display = 'none';
+        emailFormError.style.display = 'none';
     });
 
-    eyeOpenConfirm.addEventListener('click', function () {
-        passwordCheckInput.type = 'password';
-        eyeOpenConfirm.style.display = 'none';
-        eyeCloseConfirm.style.display = 'block';
+    emailInput.addEventListener('focusout', emailCheck);
+    emailInput.addEventListener('input', buttonEnable);
+
+    pwInput.addEventListener('focusin', function () {
+        pwInput.style.border = '';
+        pwEmptyError.style.display = 'none';
+        pwFormError.style.display = 'none';
     });
-});
 
-function EmailCheck(e) {
-    const inputElement = e.target;
+    pwInput.addEventListener('focusout', pwCheck);
+    pwInput.addEventListener('input', buttonEnable);
 
-    if (inputElement.value === "") {
-        inputElement.style.border = '2px solid red';
-        emailError.style.display = 'block';
+    if (pwCheckInput && pwCheckEmptyError) {
+        pwCheckInput.addEventListener('focusin', function () {
+            pwCheckInput.style.border = '';
+            pwCheckEmptyError.style.display = 'none';
+        });
 
-    } else {
-        inputElement.style.border = 'none';
+        pwCheckInput.addEventListener('focusout', pwCheck);
+        pwCheckInput.addEventListener('input', buttonEnable);
     }
-}
 
-function PwCheck(e) {
-    const inputElement = e.target;
+    if (nameInput && nameEmptyError) {
+        nameInput.addEventListener('focusin', function () {
+            nameInput.style.border = '';
+            nameEmptyError.style.display = 'none';
+        });
 
-    if (inputElement.value === "") {
-        inputElement.style.border = '2px solid red';
-        pwError.style.display = 'block';
-
-    } else {
-        inputElement.style.border = 'none';
+        nameInput.addEventListener('focusout', nameCheck);
+        nameInput.addEventListener('input', buttonEnable);
     }
-}
 
-const emailInput = document.getElementById("email");
-const emailError = document.getElementById("email_error");
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function () {
+            console.log("login button clicked");
+            if (!loginBtn.disabled) {
+                window.location.href = 'items.html';
+            } else {
+                console.log("Login button is disabled, cannot redirect.");
+            }
+        });
+    }
 
-const pwInput = document.getElementById('password');
-const pwError = document.getElementById('pw_error')
-
-emailInput.addEventListener('focusin', function () {
-    emailInput.style.border = '';
-    emailError.style.display = 'none';
+    if (signBtn) {
+        signBtn.addEventListener('click', function () {
+            console.log("signup button clicked");
+            if (!signBtn.disabled) {
+                window.location.href = 'login.html';
+            } else {
+                console.log("Signup button is disabled, cannot redirect.");
+            }
+        });
+    }
 });
-
-emailInput.addEventListener('focusout', EmailCheck);
-
-pwInput.addEventListener('focusin', function () {
-    pwInput.style.border = '';
-    pwError.style.display = 'none';
-});
-
-pwInput.addEventListener('focusout', PwCheck);

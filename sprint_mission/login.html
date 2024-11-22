@@ -34,20 +34,22 @@
                 <div class="login_section">
                     <b class="login_text">이메일</b>
                     <input id="email" type="text" name="email" class="login_input" placeholder="이메일을 입력해주세요">
-                    <h6 id="email_error" class="error_message" style="display: none;">이메일을 입력해주세요</h6>
+                    <h6 id="email_empty_error" class="error_message" style="display: none;">이메일을 입력해주세요.</h6>
+                    <h6 id="email_form_error" class="error_message" style="display: none;">이메일 형식이 올바르지 않습니다.</h6>
                 </div>
                 <!-- password part -->
                 <div class="login_section">
                     <b class="login_text">비밀번호</b>
                     <input id="password" type="password" name="password" class="login_input" placeholder="비밀번호를 입력해주세요">
-                    <h6 id="pw_error" class="error_message" style="display: none;">비밀번호를 입력해주세요</h6>
+                    <h6 id="pw_empty_error" class="error_message" style="display: none;">비밀번호를 다시 입력해주세요.</h6>
+                    <h6 id="pw_form_error" class="error_message" style="display: none;">비밀번호를 8자 이상 입력해주세요.</h6>
                     <span class="eye_icon">
                         <i id="eye_open_password" class="fa-regular fa-eye" style="display: none;"></i>
                         <i id="eye_close_password" class="fa-regular fa-eye-slash"></i>
                     </span>
                 </div>
                 <div>
-                    <button id="login_button">로그인</button>
+                    <button disabled="disabled" id="login_page_button">로그인</button>
                 </div>
                 <!-- simple login part -->
                 <div id="simple_logins">
@@ -69,9 +71,9 @@
             </div>
         </div>
     </div>
+    <script src="login.js"></script>
 </body>
 
-<script src="login.js"></script>
 
 
 </html>

@@ -101,8 +101,13 @@ i {
     cursor: pointer;
 }
 
-#email_error,
-#pw_error {
+#email_empty_error,
+#pw_empty_error,
+#email_form_error,
+#pw_form_error,
+#pw_check_empty_error,
+#name_empty_error,
+#name_form_error {
     font-size: 13px;
     font-weight: 500;
     color: var(--error-color);
@@ -110,7 +115,8 @@ i {
     text-align: end;
 }
 
-#login_button {
+#login_page_button,
+#signup_page_button {
     background-color: var(--secondary-color-gray400);
     width: 100%;
     height: 56px;
@@ -124,7 +130,11 @@ i {
     transition: background-color 0.3s ease;
 }
 
-#login_button:hover {
+#login_page_button:hover {
+    background-color: var(--primary-color-100);
+}
+
+#signup_page_button:hover {
     background-color: var(--primary-color-100);
 }
 
