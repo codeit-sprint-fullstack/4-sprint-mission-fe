@@ -12,20 +12,21 @@ function App() {
   const [orderBy, setOrderBy] = useState("recent");
   const [keyword, setKeyword] = useState("");
   const [page, setPage] = useState(1);
+  const [maxPage, setMaxPage] = useState(0);
 
   const handleLoad = async (options) => {
     const result = await getProducts(options);
-    const { list } = result;
+    const { list, totalCount } = result;
     setItems(list);
-    // setItems((prevItems) => [list, ...prevItems]);
+    setMaxPage(Math.ceil(totalCount / options.pageSize));
   };
   const handleLoadBest = async (options) => {
     const result = await getProducts(options);
     const { list } = result;
     setBestItems(list);
-    // setItems((prevItems) => [list, ...prevItems]);
   };
 
+  // 판매 중인 상품 목록 불러오기
   useEffect(() => {
     handleLoad({
       page: page,
@@ -34,6 +35,8 @@ function App() {
       keyword: keyword,
     });
   }, [orderBy, keyword, page]);
+
+  // 베스트 상품 목록 불러오기
   useEffect(() => {
     handleLoadBest({ page: 1, pageSize: 4, orderBy: "favorite" });
   }, []);
@@ -49,7 +52,7 @@ function App() {
           onClick={setOrderBy}
           onSubmit={setKeyword}
         />
-        <Pagination currentPage={page} onClick={setPage} />
+        <Pagination currentPage={page} maxPage={maxPage} onClick={setPage} />
       </main>
       <Footer />
     </div>

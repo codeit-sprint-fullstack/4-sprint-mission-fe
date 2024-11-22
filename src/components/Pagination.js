@@ -1,79 +1,44 @@
-// import { useState } from "react";
-import arrowLeft from "../assets/arrow-left.png";
+import { Fragment } from "react";
 import "./Pagination.css";
+import PaginationButton from "./PaginationButton";
 
-const PAGE_NUM = 5;
+const PAGE_LENGTH = 5; // 페이지 표시 개수
 
-export function PaginationButton({
-  isArrow = false,
-  index,
-  currentPage,
-  onClick,
-}) {
-  const handleClick = () => {
-    if (isArrow) {
-      // 1. 화살표인 경우
-      // if (index === 0) {
-      //   // 1-1. 왼쪽 화살표
-      // } else {
-      //   // 1-2. 오른쪽 화살표
-      //   onClick();
-      // }
-      onClick(index);
-    } else {
-      // 2. 화살표가 아닌 경우(숫자인 경우)
-      console.log(`index:${index}`);
-      onClick(index);
-    }
-  };
+function Pagination({ currentPage, onClick, maxPage }) {
+  console.log(`currentPage:${currentPage}`, maxPage); // 왜 여기가 두 번 실행이 될까??
 
-  if (isArrow) {
-    const altText = index === 0 ? "previous" : "next"; // 이미지 alt값 구분해주기
+  // 현재 페이지와 페이지 표시 개수를 바탕으로 기준 숫자 설정
+  const referenceNum = Math.ceil(currentPage / PAGE_LENGTH) - 1;
 
-    return (
-      <div className="pagination-button-circle" onClick={handleClick}>
-        <img src={arrowLeft} alt={altText} />
-      </div>
-    );
-  } else {
-    const className = `pagination-button-circle ${
-      index === currentPage ? "selected" : ""
-    }`;
-    return (
-      <div className={className} onClick={handleClick}>
-        {index}
-      </div>
-    );
-  }
-}
-
-function Pagination({ currentPage, onClick }) {
-  console.log(`currentPage:${currentPage}`); // 왜 여기가 두 번 실행이 될까??
-
-  // 여기의 함수를 바꿔보자. currentPage에 따라서 숫자를 바꿔주는 거지!
-  //  i값을 사용하지 말고 currentPage에 따라서 만들어 보자.
-  // isSelected 여부도 여기서 결정해서 내려보내는 것으로.
-  // button의 역할은 setPage에 번호만 전달
-
-  // handleClick은 여기서 정의해서 내려보내야 할듯.
-  const currentStep = Math.ceil(currentPage / PAGE_NUM) - 1;
+  // 숫자 버튼 클릭 실행 함수
   const handleNumberClick = (page) => {
     onClick(page);
   };
+
+  // 화살표 버튼 클릭 실행 함수
   const handleArrowClick = (index) => {
     if (index === 0) {
-      onClick(PAGE_NUM * (currentStep - 1) + 1);
+      // 1. 좌측 화살표 클릭
+      // 첫 페이지에서는 작동 금지
+      if (referenceNum >= 1) {
+        onClick(PAGE_LENGTH * (referenceNum - 1) + 1);
+      }
     } else {
-      onClick(PAGE_NUM * (currentStep + 1) + 1);
+      // 2. 우측 화살표 클릭
+      // 최대 페이지 이내에서만 작동
+      if (referenceNum < Math.floor(maxPage / PAGE_LENGTH)) {
+        onClick(PAGE_LENGTH * (referenceNum + 1) + 1);
+      }
     }
   };
-  console.log(`currentStep: ${currentStep}`);
+
   return (
     <div className="pagination">
-      {Array(PAGE_NUM + 2)
+      {Array(PAGE_LENGTH + 2)
         .fill()
         .map((item, i) => {
-          if (i === 0 || i === PAGE_NUM + 1) {
+          // 화살표 버튼 생성
+          if (i === 0 || i === PAGE_LENGTH + 1) {
             return (
               <PaginationButton
                 key={i}
@@ -82,15 +47,21 @@ function Pagination({ currentPage, onClick }) {
                 onClick={handleArrowClick}
               />
             );
+            // 숫자 버튼 생성
           } else {
-            return (
-              <PaginationButton
-                key={i}
-                index={PAGE_NUM * currentStep + i}
-                currentPage={currentPage}
-                onClick={handleNumberClick}
-              />
-            );
+            if (PAGE_LENGTH * referenceNum + i > maxPage) {
+              return <Fragment key={i}></Fragment>;
+              // 최대 페이지 개수만큼만 버튼 생성
+            } else {
+              return (
+                <PaginationButton
+                  key={i}
+                  index={PAGE_LENGTH * referenceNum + i}
+                  currentPage={currentPage}
+                  onClick={handleNumberClick}
+                />
+              );
+            }
           }
         })}
     </div>
