@@ -61,6 +61,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const loginBtn = document.getElementById('login_page_button');
     const signBtn = document.getElementById('signup_page_button');
 
+    let emailInputValue = "";
+    let pwInputValue = "";
+
+    const USER_DATA = [
+        { email: 'codeit1@codeit.com', password: "codeit101!" },
+        { email: 'codeit2@codeit.com', password: "codeit202!" },
+        { email: 'codeit3@codeit.com', password: "codeit303!" },
+        { email: 'codeit4@codeit.com', password: "codeit404!" },
+        { email: 'codeit5@codeit.com', password: "codeit505!" },
+        { email: 'codeit6@codeit.com', password: "codeit606!" },
+    ]
+
+
+
     function validateEmail(e) {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return regex.test(e);
@@ -86,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
             inputElement.style.border = 'none';
             emailFormError.style.display = 'none';
             emailEmptyError.style.display = 'none';
+
+            emailInputValue = inputElement.value;
             return true;
         }
     }
@@ -137,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     return false;
                 }
             }
+            pwInputValue = inputElement.value;
             return true;
         }
     }
@@ -158,6 +175,32 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Unknown page type:", fileNameWithoutExtension);
         }
     }
+
+    function validateLoginData() {
+        for (const data of USER_DATA) {
+            if (data.email === emailInputValue) {
+                if (data.password === pwInputValue) {
+                    return true;
+                }
+                alert("비밀번호가 일치하지 않습니다.")
+                return false;
+            }
+        }
+        alert("일치하는 이메일이 없습니다.")
+        return false;
+    }
+
+    function checkExistEmail() {
+        for (const data of USER_DATA) {
+            if (data.email === emailInputValue) {
+                alert("이미 사용중인 이메일입니다.");
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 
     emailInput.addEventListener('focusin', function () {
         emailInput.style.border = '';
@@ -199,20 +242,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (loginBtn) {
         loginBtn.addEventListener('click', function () {
-            console.log("login button clicked");
             if (!loginBtn.disabled) {
-                window.location.href = 'items.html';
+                if (validateLoginData()) {
+                    window.location.href = 'items.html';
+                }
             } else {
                 console.log("Login button is disabled, cannot redirect.");
             }
         });
     }
 
+
     if (signBtn) {
         signBtn.addEventListener('click', function () {
-            console.log("signup button clicked");
+            console.log(emailInputValue);
             if (!signBtn.disabled) {
-                window.location.href = 'login.html';
+                if (checkExistEmail()) {
+                    window.location.href = 'login.html';
+                }
             } else {
                 console.log("Signup button is disabled, cannot redirect.");
             }
