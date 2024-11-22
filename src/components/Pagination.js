@@ -26,7 +26,7 @@ function Pagination({ currentPage, onClick, maxPage }) {
     } else {
       // 2. 우측 화살표 클릭
       // 최대 페이지 이내에서만 작동
-      if (referenceNum < Math.floor(maxPage / PAGE_LENGTH)) {
+      if (referenceNum < Math.ceil(maxPage / PAGE_LENGTH) - 1) {
         onClick(PAGE_LENGTH * (referenceNum + 1) + 1);
       }
     }
