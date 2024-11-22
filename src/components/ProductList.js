@@ -12,7 +12,7 @@ function ProductItem({ item }) {
         style={{ backgroundImage: `url(${images[0]})` }}
       ></div>
       <p className="item-name">{name}</p>
-      <p className="item-price">{`${price}원`}</p>
+      <p className="item-price">{`${price.toLocaleString()}원`}</p>
       <div className="item-favorite">
         <img src={icHeart} alt="heart" />
         {favoriteCount}
@@ -28,7 +28,6 @@ function ProductList({ isBest = false, items, value, onClick, onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.search.value);
     onSubmit(e.target.search.value);
   };
 

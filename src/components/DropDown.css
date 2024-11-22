@@ -7,7 +7,7 @@
   height: 4.2rem;
   margin-left: 1.2rem;
   background-color: #ffffff;
-  border: 1px solid #dddddd;
+  border: 1px solid var(--grey-200);
   border-radius: 0.8rem;
   font-size: 1.6rem;
 }
@@ -20,7 +20,7 @@
   font-size: 1.6rem;
   font-weight: 400;
   text-align: center;
-  border: 1px solid #dddddd;
+  border: 1px solid var(--grey-200);
   border-radius: 0.8rem;
   background-color: #ffffff;
 }

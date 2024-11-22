@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import ProductList from "./components/ProductList";
 import { useEffect, useState } from "react";
 import { getProducts } from "./api";
+import Pagination from "./components/Pagination";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -42,6 +43,7 @@ function App() {
           onClick={setOrderBy}
           onSubmit={setKeyword}
         />
+        <Pagination />
       </main>
       <Footer />
     </div>

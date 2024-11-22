@@ -1,8 +1,12 @@
 :root {
   --main-color: #3692ff;
+  --main-dark-color: #115dba;
   --input-bg-color: #f3f4f5;
   --base-grey-color: #9ca3af;
   --error-color: #f74747;
+  --btn-border-grey: #dddddd;
+  --grey-500: #6d727f;
+  --grey-200: #e6e7eb;
 }
 
 * {

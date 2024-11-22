@@ -52,6 +52,10 @@ a.button {
   color: #ffffff;
 }
 
+a.button:hover {
+  background-color: var(--main-dark-color);
+}
+
 @media (max-width: 1199px) {
   .header-content {
     margin: 0 2.4rem;
