@@ -5,8 +5,6 @@ import PaginationButton from "./PaginationButton";
 const PAGE_LENGTH = 5; // 페이지 표시 개수
 
 function Pagination({ currentPage, onClick, maxPage }) {
-  console.log(`currentPage:${currentPage}`, maxPage); // 왜 여기가 두 번 실행이 될까??
-
   // 현재 페이지와 페이지 표시 개수를 바탕으로 기준 숫자 설정
   const referenceNum = Math.ceil(currentPage / PAGE_LENGTH) - 1;
 

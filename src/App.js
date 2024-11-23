@@ -16,6 +16,7 @@ function App() {
   const [maxPage, setMaxPage] = useState(0);
   const [loadingError, setloadingError] = useState(null);
   const { isTablet, isMobile } = useDeviceSize();
+
   const handleLoad = async (options) => {
     let result;
     try {
@@ -30,6 +31,7 @@ function App() {
     setItems(list);
     setMaxPage(Math.ceil(totalCount / options.pageSize));
   };
+
   const handleLoadBest = async (options) => {
     const result = await getProducts(options);
     const { list } = result;

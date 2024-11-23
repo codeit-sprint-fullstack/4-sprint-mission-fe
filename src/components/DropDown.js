@@ -3,6 +3,7 @@ import "./DropDown.css";
 
 export const DropDownMenu = ({ onSelect }) => {
   const MENU_TEXT = ["최신순", "좋아요순"];
+
   const handleClick = (e) => {
     if (e.target.textContent === "최신순") {
       onSelect("recent");
@@ -10,6 +11,7 @@ export const DropDownMenu = ({ onSelect }) => {
       onSelect("favorite");
     }
   };
+
   return (
     <div className="dropdown-menu">
       {MENU_TEXT.map((item, i) => (

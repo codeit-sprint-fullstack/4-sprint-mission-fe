@@ -7,6 +7,5 @@ export default function useDeviceSize() {
   });
   const isMobile = useMediaQuery({ query: "(max-width: 743px)" });
 
-  console.log(isDeskTop, isTablet, isMobile);
   return { isDeskTop, isTablet, isMobile };
 }
