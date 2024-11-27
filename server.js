@@ -21,56 +21,89 @@ mongoose
   .connect(process.env.DATABASE_URL)
   .then(() => console.log("Connected to DB"));
 
+// 비동기 오류 처리를 위한 함수(하지 않으면 오류 시 서버 자체가 죽어버림)
+function asyncHandler(handler) {
+  return async function (req, res) {
+    try {
+      await handler(req, res);
+    } catch (e) {
+      if (e.name === "ValidationError") {
+        res.status(400).send({ message: e.message });
+      } else if (e.name === "CastError") {
+        res.status(404).send({ message: "해당 id의 상품을 찾을 수 없습니다." });
+      } else {
+        res.status(500).send({ message: e.message });
+      }
+    }
+  };
+}
+
 // 상품 등록 API
-app.post("/products", async (req, res) => {
-  const product = await Product.create(req.body);
-  res.status(201).send(product);
-});
+app.post(
+  "/products",
+  asyncHandler(async (req, res) => {
+    const product = await Product.create(req.body);
+    res.status(201).send(product);
+  })
+);
 
 // 상품 상세 조회 API
-app.get("/products/:id", async (req, res) => {
-  const id = req.params.id;
-  const product = await Product.findById(id);
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: "해당 id의 상품을 찾을 수 없습니다." });
-  }
-});
+app.get(
+  "/products/:id",
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const product = await Product.findById(id);
+
+    if (product) {
+      res.send(product);
+    } else {
+      res.status(404).send({ message: "해당 id의 상품을 찾을 수 없습니다." });
+    }
+  })
+);
 
 // 상품 목록 조회 API
-app.get("/products", async (req, res) => {
-  const products = await Product.find();
-  res.send(products);
-});
+app.get(
+  "/products",
+  asyncHandler(async (req, res) => {
+    const products = await Product.find();
+    res.send(products);
+  })
+);
 
 // 상품 수정 API
-app.patch("/products/:id", async (req, res) => {
-  const id = req.params.id;
-  const product = await Product.findById(id);
+app.patch(
+  "/products/:id",
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const product = await Product.findById(id);
 
-  if (product) {
-    Object.keys(req.body).forEach((key) => {
-      product[key] = req.body[key];
-    });
-    await product.save();
-    res.status(201).send(product);
-  } else {
-    res.status(404).send({ message: "해당 id의 상품을 찾을 수 없습니다." });
-  }
-});
+    if (product) {
+      Object.keys(req.body).forEach((key) => {
+        product[key] = req.body[key];
+      });
+      await product.save();
+      res.status(201).send(product);
+    } else {
+      res.status(404).send({ message: "해당 id의 상품을 찾을 수 없습니다." });
+    }
+  })
+);
 
 // 상품 삭제 API
-app.delete("/products/:id", async (req, res) => {
-  const id = req.params.id;
-  const product = await Product.findByIdAndDelete(id);
+app.delete(
+  "/products/:id",
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const product = await Product.findByIdAndDelete(id);
 
-  // 삭제에 성공하면 product, 실패하면 null을 리턴
-  if (product) {
-    res.sendStatus(204);
-  } else {
-    res.status(404).send({ message: "해당 id의 상품을 찾을 수 없습니다." });
-  }
-});
+    // 삭제에 성공하면 product, 실패하면 null을 리턴
+    if (product) {
+      res.sendStatus(204);
+    } else {
+      res.status(404).send({ message: "해당 id의 상품을 찾을 수 없습니다." });
+    }
+  })
+);
 
 app.listen(process.env.PORT || 3000, () => console.log("Server Started"));

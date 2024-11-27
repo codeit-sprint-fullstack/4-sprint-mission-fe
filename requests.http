@@ -19,5 +19,5 @@ PATCH  http://localhost:3000/products/67471f9a567ff59e02673443
 Content-Type: application/json
 
 {
-  "price":880000
+  "price":99000
 }
