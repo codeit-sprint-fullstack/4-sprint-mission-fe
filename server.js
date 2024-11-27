@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 import express from "express";
 import * as dotenv from "dotenv";
-import Product from "./src/models/Product.js";
 import cors from "cors";
+import Product from "./src/models/Product.js";
 
 dotenv.config();
 
-const app = express();
+export const app = express();
 app.use(cors());
 // const corsOptions = {
 //   origin: ["http://127.0.0.1:5500", "https://my-todo.com"],
@@ -77,13 +77,14 @@ app.get(
     const search = req.query.search;
     const sortOption = { createdAt: sort === "recent" ? "desc" : "asc" };
     const products = await Product.find(
-      {
-        $or: [
-          { name: { $regex: `${search}`, $options: "i" } },
-          { description: { $regex: `${search}`, $options: "i" } },
-        ],
-      },
-      // {},
+      search
+        ? {
+            $or: [
+              { name: { $regex: `${search}`, $options: "i" } },
+              { description: { $regex: `${search}`, $options: "i" } },
+            ],
+          }
+        : {},
       { name: 1, price: 1, createdAt: 1 }
     )
       .sort(sortOption)
