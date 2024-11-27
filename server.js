@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import express from "express";
 import * as dotenv from "dotenv";
+import Product from "./src/models/Product.js";
 import cors from "cors";
-import Product from "./src/models/Product";
 
 dotenv.config();
 
@@ -21,6 +21,7 @@ mongoose
   .connect(process.env.DATABASE_URL)
   .then(() => console.log("Connected to DB"));
 
+// 상품 등록
 app.post("/products", async (req, res) => {
   const product = await Product.create(req.body);
   res.status(201).send(product);
