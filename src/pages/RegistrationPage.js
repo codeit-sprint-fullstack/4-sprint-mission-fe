@@ -1,6 +1,6 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import RegistrationForm from "../components/RegistrationForm";
+import Footer from "../components/Footer.js";
+import Header from "../components/Header.js";
+import RegistrationForm from "../components/RegistrationForm.js";
 import "./RegistrationPage.css";
 
 function RegistrationPage() {

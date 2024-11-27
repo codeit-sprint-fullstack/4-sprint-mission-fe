@@ -38,7 +38,7 @@ textarea.product-input {
 .product-tag {
   display: inline-flex;
   align-items: center;
-  padding: 1.1rem 1.4rem;
+  padding: 1rem 1.4rem;
   background-color: var(--input-bg-color);
   border-radius: 2.6rem;
   cursor: pointer;

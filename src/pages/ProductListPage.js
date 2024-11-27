@@ -1,11 +1,11 @@
-import Header from "../components/Header";
+import Header from "../components/Header.js";
 import "./ProductListPage.css";
-import Footer from "../components/Footer";
-import ProductList from "../components/ProductList";
+import Footer from "../components/Footer.js";
+import ProductList from "../components/ProductList.js";
 import { useEffect, useState } from "react";
-import { getProducts } from "../api";
-import Pagination from "../components/Pagination";
-import useDeviceSize from "../hooks/useDeviceSize";
+import { getProducts } from "../api/ProductService.js";
+import Pagination from "../components/Pagination.js";
+import useDeviceSize from "../hooks/useDeviceSize.js";
 
 function ProductPage() {
   const [items, setItems] = useState([]);

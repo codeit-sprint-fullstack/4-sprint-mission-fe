@@ -1,0 +1,9 @@
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name":"아이폰 13",
+  "description":"4년 써도 멀쩡한 명기",
+  "price":990000,
+  "tags":["휴대폰","애플"],
+}

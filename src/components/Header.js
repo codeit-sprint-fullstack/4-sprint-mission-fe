@@ -1,7 +1,7 @@
 import logoM from "../assets/logo-m.png";
 import logo from "../assets/logo.png";
 import "./Header.css";
-import HeaderNav from "./HeaderNav";
+import HeaderNav from "./HeaderNav.js";
 
 function Header({ isLandingPage }) {
   return (

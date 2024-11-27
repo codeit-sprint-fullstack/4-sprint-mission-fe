@@ -1,10 +1,10 @@
 import "./App.css";
-import FreePostListPage from "./pages/FreePostListPage";
-import LandingPage from "./pages/LandingPage";
-import ProductListPage from "./pages/ProductListPage";
+import FreePostListPage from "./pages/FreePostListPage.js";
+import LandingPage from "./pages/LandingPage.js";
+import ProductListPage from "./pages/ProductListPage.js";
 import { Routes, Route } from "react-router-dom";
-import RegistrationPage from "./pages/RegistrationPage";
-import PostPage from "./pages/PostPage";
+import RegistrationPage from "./pages/RegistrationPage.js";
+import PostPage from "./pages/PostPage.js";
 
 const App = () => {
   return (

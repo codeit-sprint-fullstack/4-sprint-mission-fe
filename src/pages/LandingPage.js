@@ -1,7 +1,7 @@
-import BannerImage from "../components/BannerImage";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import LandingMain from "../components/LandingMain";
+import BannerImage from "../components/BannerImage.js";
+import Footer from "../components/Footer.js";
+import Header from "../components/Header.js";
+import LandingMain from "../components/LandingMain.js";
 
 function LandingPage() {
   return (

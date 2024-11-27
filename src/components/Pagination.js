@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import "./Pagination.css";
-import PaginationButton from "./PaginationButton";
+import PaginationButton from "./PaginationButton.js";
 
 const PAGE_LENGTH = 5; // 페이지 표시 개수
 

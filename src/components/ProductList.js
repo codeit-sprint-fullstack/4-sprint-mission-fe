@@ -1,6 +1,6 @@
 import "./ProductList.css";
 import icHeart from "../assets/ic-heart.png";
-import DropDown from "./DropDown";
+import DropDown from "./DropDown.js";
 import { Link } from "react-router-dom";
 
 function ProductItem({ item }) {
