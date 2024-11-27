@@ -1,6 +1,7 @@
 import "./ProductList.css";
 import icHeart from "../assets/ic-heart.png";
 import DropDown from "./DropDown";
+import { Link } from "react-router-dom";
 
 function ProductItem({ item }) {
   const { images, name, price, favoriteCount } = item;
@@ -42,9 +43,9 @@ function ProductList({ isBest = false, items, value, onClick, onSubmit }) {
             placeholder="검색할 상품을 입력해주세요"
           />
         </form>
-        <a className="button" href="/login">
+        <Link to="/registration" className="button">
           상품 등록하기
-        </a>
+        </Link>
         <DropDown value={value} onClick={onClick} />
       </div>
 
