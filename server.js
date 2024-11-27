@@ -52,7 +52,13 @@ app.get(
   "/products/:id",
   asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const product = await Product.findById(id);
+    const product = await Product.findById(id, {
+      name: 1,
+      price: 1,
+      createdAt: 1,
+      tags: 1,
+      description: 1,
+    });
 
     if (product) {
       res.send(product);
@@ -66,7 +72,10 @@ app.get(
 app.get(
   "/products",
   asyncHandler(async (req, res) => {
-    const products = await Product.find();
+    const products = await Product.find(
+      {},
+      { name: 1, price: 1, createdAt: 1 }
+    );
     res.send(products);
   })
 );
