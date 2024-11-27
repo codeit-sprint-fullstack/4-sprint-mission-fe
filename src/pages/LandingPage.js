@@ -6,7 +6,7 @@ import LandingMain from "../components/LandingMain";
 function LandingPage() {
   return (
     <div>
-      <Header />
+      <Header isLandingPage={true} />
       <BannerImage isTop={true} />
       <LandingMain />
       <BannerImage />
