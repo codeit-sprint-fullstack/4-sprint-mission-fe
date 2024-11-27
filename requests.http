@@ -1,4 +1,7 @@
-GET http://localhost:3000/hello
+GET http://localhost:3000/products
+
+###
+GET http://localhost:3000/products/67471f9a567ff59e02673443
 
 ###
 POST http://localhost:3000/products
@@ -9,4 +12,12 @@ Content-Type: application/json
   "description":"4년 써도 멀쩡한 명기",
   "price":990000,
   "tags":["휴대폰","애플"]
+}
+
+###
+PATCH  http://localhost:3000/products/67471f9a567ff59e02673443
+Content-Type: application/json
+
+{
+  "price":880000
 }
