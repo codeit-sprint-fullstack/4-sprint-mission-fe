@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 import "./Header.css";
 import HeaderNav from "./HeaderNav";
 
-function Header() {
+function Header({ isProductPage }) {
   return (
     <header>
       <div className="header-content">
@@ -14,7 +14,7 @@ function Header() {
           </a>
         </div>
         <div className="header-content-center">
-          <HeaderNav />
+          {isProductPage && <HeaderNav />}
         </div>
         <div className="header-content-right">
           <a className="button" href="/login">

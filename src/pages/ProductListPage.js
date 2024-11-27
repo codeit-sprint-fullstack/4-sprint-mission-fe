@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import "./ProductPage.css";
+import "./ProductListPage.css";
 import Footer from "../components/Footer";
 import ProductList from "../components/ProductList";
 import { useEffect, useState } from "react";
@@ -59,7 +59,7 @@ function ProductPage() {
 
   return (
     <div>
-      <Header />
+      <Header isProductPage={true} />
       {loadingError?.message && <span>{loadingError.message}</span>}
       <main>
         <ProductList isBest={true} items={bestItems} />
