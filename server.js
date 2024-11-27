@@ -72,10 +72,22 @@ app.get(
 app.get(
   "/products",
   asyncHandler(async (req, res) => {
+    const sort = req.query.sort;
+    const offset = req.query.offset;
+    const search = req.query.search;
+    const sortOption = { createdAt: sort === "recent" ? "desc" : "asc" };
     const products = await Product.find(
-      {},
+      {
+        $or: [
+          { name: { $regex: `${search}`, $options: "i" } },
+          { description: { $regex: `${search}`, $options: "i" } },
+        ],
+      },
+      // {},
       { name: 1, price: 1, createdAt: 1 }
-    );
+    )
+      .sort(sortOption)
+      .skip(offset);
     res.send(products);
   })
 );

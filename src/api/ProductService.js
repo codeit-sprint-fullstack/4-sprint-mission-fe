@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://panda-market-api.vercel.app",
+  baseURL: "http://localhost:3000",
   timeout: 3000,
 });
 
@@ -13,5 +13,10 @@ export const getProducts = async ({
 }) => {
   const query = `page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&keyword=${keyword}`;
   const res = await instance.get(`/products?${query}`);
+  return res.data;
+};
+
+export const createProduct = async (productData) => {
+  const res = await instance.post("/products", productData);
   return res.data;
 };

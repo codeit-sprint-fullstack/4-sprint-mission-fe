@@ -1,6 +1,9 @@
 GET http://localhost:3000/products
 
 ###
+GET http://localhost:3000/products?sort=recent&search=아이폰
+
+###
 GET http://localhost:3000/products/67471f9a567ff59e02673443
 
 ###
@@ -8,16 +11,16 @@ POST http://localhost:3000/products
 Content-Type: application/json
 
 {
-  "name":"갤럭시 S40",
-  "description":"완전 최신",
-  "price":2000000,
-  "tags":["휴대폰","삼성"]
+  "name":"어른폰",
+  "description":"아이폰이 너무 아이스럽다",
+  "price":1200000,
+  "tags":["스키","아토믹","대회전"]
 }
 
 ###
-PATCH  http://localhost:3000/products/67471f9a567ff59e02673443
+PATCH  http://localhost:3000/products/67474309e4344435752bcb1d
 Content-Type: application/json
 
 {
-  "price":99000
+  "name":"atomic red"
 }
