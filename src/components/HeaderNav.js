@@ -8,7 +8,7 @@ function getLinkStyle({ isActive }) {
 
 const NAVS = [
   { title: "중고마켓", link: "/items" },
-  { title: "자유게시판", link: "/freeboard" },
+  { title: "자유게시판", link: "/freepost" },
 ];
 
 function HeaderNav() {

@@ -2,6 +2,7 @@
   width: 100%;
   max-width: 120rem;
   margin: 2.6rem 0 4rem;
+  padding: 0 1rem;
 }
 
 .label-box {
@@ -110,6 +111,11 @@ input::placeholder {
 }
 
 @media (max-width: 1199px) {
+  .items-container {
+    margin-top: 2.4rem;
+    padding: 0 2.4rem;
+  }
+
   .items-list {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
@@ -126,6 +132,11 @@ input::placeholder {
 }
 
 @media (max-width: 743px) {
+  .items-container {
+    margin-top: 1.6rem;
+    padding: 0 1.6rem;
+  }
+
   .label-box {
     width: 100%;
     display: grid;

@@ -45,15 +45,24 @@ header {
   justify-content: flex-start;
 }
 
-a.button {
+a.button,
+.link-button {
   padding: 1.4rem 4.3rem;
   background-color: var(--main-color);
   border-radius: 0.8rem;
   color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 500;
 }
 
-a.button:hover {
+a.button:hover,
+.link-button:hover {
   background-color: var(--main-dark-color);
+}
+
+a.button.disable,
+.link-button.disable {
+  background-color: var(--btn-disable-grey);
 }
 
 @media (max-width: 1199px) {
@@ -79,7 +88,8 @@ a.button:hover {
     display: block;
   }
 
-  a.button {
+  a.button,
+  .link-button {
     padding: 1rem 1.8rem;
   }
 }

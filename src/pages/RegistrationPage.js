@@ -1,11 +1,16 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import RegistrationForm from "../components/RegistrationForm";
+import "./RegistrationPage.css";
 
 function RegistrationPage() {
   return (
     <div>
       <Header />
-      <RegistrationForm />
+      <main>
+        <RegistrationForm />
+      </main>
+      <Footer />
     </div>
   );
 }
