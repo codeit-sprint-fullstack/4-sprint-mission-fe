@@ -10,9 +10,7 @@ export async function getProductList(params = {}) {
     const res = await instance.get("/products", { params });
     return res.data;
   } catch (e) {
-    console.log(
-      `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-    );
+    PrintError(e);
   }
 }
 
@@ -21,9 +19,7 @@ export async function getProduct(id) {
     const res = await instance.get(`/products/${id}`);
     return res.data;
   } catch (e) {
-    console.log(
-      `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-    );
+    PrintError(e);
   }
 }
 
@@ -32,9 +28,7 @@ export async function createProduct(product) {
     const res = await instance.post("/products", product);
     return res.data;
   } catch (e) {
-    console.log(
-      `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-    );
+    PrintError(e);
   }
 }
 
@@ -43,9 +37,7 @@ export async function patchProduct(id, product) {
     const res = await instance.patch(`/products/${id}`, product);
     return res.data;
   } catch (e) {
-    console.log(
-      `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-    );
+    PrintError(e);
   }
 }
 
@@ -54,8 +46,6 @@ export async function deleteProduct(id) {
     const res = await instance.delete(`/products/${id}`);
     return res.data;
   } catch (e) {
-    console.log(
-      `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-    );
+    PrintError(e);
   }
 }

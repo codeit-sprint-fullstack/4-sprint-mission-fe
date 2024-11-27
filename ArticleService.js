@@ -1,4 +1,5 @@
 import axios from "axios";
+import { PrintError } from "./PrintError";
 
 const instance = axios.create({
   baseURL: "https://sprint-mission-api.vercel.app/",
@@ -9,55 +10,35 @@ export function getArticleList(params = {}) {
   instance
     .get("/articles", { params })
     .then((res) => console.log(res.data))
-    .catch((e) =>
-      console.log(
-        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-      )
-    );
+    .catch((e) => PrintError(e));
 }
 
 export function getArticle(id) {
   instance
     .get(`/articles/${id}`)
     .then((res) => console.log(res.data))
-    .catch((e) =>
-      console.log(
-        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-      )
-    );
+    .catch((e) => PrintError(e));
 }
 
 export function createArticle(article) {
   instance
     .post("/articles", article)
     .then((res) => console.log(res.data))
-    .catch((e) =>
-      console.log(
-        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-      )
-    );
+    .catch((e) => PrintError(e));
 }
 
 export function patchArticle(id, article) {
   instance
     .patch(`/articles/${id}`, article)
     .then((res) => console.log(res.data))
-    .catch((e) =>
-      console.log(
-        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-      )
-    );
+    .catch((e) => PrintError(e));
 }
 
 export function deleteArticle(id) {
   instance
     .delete(`/articles/${id}`)
     .then((res) => console.log(res.data))
-    .catch((e) =>
-      console.log(
-        `status: ${e.response.status}\nmessage: ${e.response.data.message}`
-      )
-    );
+    .catch((e) => PrintError(e));
 }
 
 /* fetch로 구현 연습 */
