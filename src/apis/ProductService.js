@@ -1,18 +1,20 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:5500",
   timeout: 3000,
 });
 
 export const getProducts = async ({
-  page = 1,
-  pageSize = 4,
-  orderBy = "",
+  sort = "recent",
+  offset = 0,
   keyword = "",
 }) => {
-  const query = `page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&keyword=${keyword}`;
+  console.log("start getProducts");
+  const query = `sort=${sort}&offset=${offset}&keyword=${keyword}`;
   const res = await instance.get(`/products?${query}`);
+  console.log(`res.data:${res.data}`);
+  console.log("end getProducts");
   return res.data;
 };
 

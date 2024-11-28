@@ -23,6 +23,7 @@ function ProductItem({ item }) {
 }
 
 function ProductList({ isBest = false, items, value, onClick, onSubmit }) {
+  console.log(`items:${items}`);
   const listLabel = isBest ? "베스트 상품" : "판매 중인 상품";
   const itemClassName = `items-list ${isBest ? "best" : ""}`;
   const labelClassName = `label-box ${isBest ? "best" : ""}`;

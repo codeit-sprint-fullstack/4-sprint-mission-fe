@@ -74,7 +74,7 @@ app.get(
   asyncHandler(async (req, res) => {
     const sort = req.query.sort;
     const offset = req.query.offset;
-    const search = req.query.search;
+    const search = req.query.keyword;
     const sortOption = { createdAt: sort === "recent" ? "desc" : "asc" };
     const products = await Product.find(
       search
@@ -128,4 +128,4 @@ app.delete(
   })
 );
 
-app.listen(process.env.PORT || 3000, () => console.log("Server Started"));
+app.listen(process.env.PORT || 5500, () => console.log("Server Started"));

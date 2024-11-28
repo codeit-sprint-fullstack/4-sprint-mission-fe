@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import "./HeaderNav.css";
 
 function getLinkStyle({ isActive }) {
-  console.log(isActive);
   return { color: isActive ? "#3692FF" : undefined };
 }
 
@@ -14,9 +13,9 @@ const NAVS = [
 function HeaderNav() {
   return (
     <div className="nav-container">
-      {NAVS.map((nav) => {
+      {NAVS.map((nav, i) => {
         return (
-          <span className="menu">
+          <span className="menu" key={i}>
             <NavLink to={nav.link} style={getLinkStyle}>
               {nav.title}
             </NavLink>

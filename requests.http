@@ -1,13 +1,13 @@
-GET http://localhost:3000/products
+GET http://localhost:5500/products
 
 ###
-GET http://localhost:3000/products?sort=recent&search=아이폰
+GET http://localhost:5500/products?sort=recent&keyword=갤럭시
 
 ###
-GET http://localhost:3000/products/67471f9a567ff59e02673443
+GET http://localhost:5500/products/67471f9a567ff59e02673443
 
 ###
-POST http://localhost:3000/products
+POST http://localhost:5500/products
 Content-Type: application/json
 
 {
@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH  http://localhost:3000/products/67474309e4344435752bcb1d
+PATCH  http://localhost:5500/products/67474309e4344435752bcb1d
 Content-Type: application/json
 
 {
