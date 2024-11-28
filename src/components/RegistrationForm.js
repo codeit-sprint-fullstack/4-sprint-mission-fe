@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./RegistrationForm.css";
 import icX from "../assets/ic-x.png";
 import { useState } from "react";
+import { createProduct } from "../apis/ProductService.js";
 
 function TagChip({ value, onClick, chipIdx }) {
   const handleClick = () => {
@@ -19,12 +20,14 @@ function TagChip({ value, onClick, chipIdx }) {
 
 function RegistrationForm() {
   const [values, setValues] = useState({
-    productName: "",
-    productDesc: "",
-    productPrice: 0,
-    productTag: "",
+    name: "",
+    descripition: "",
+    price: 0,
+    tags: "",
   });
   const [tags, setTags] = useState([]);
+  const [loadingError, setloadingError] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target; // form의 각 input 요소에서 name/value를 가져옴
@@ -32,10 +35,11 @@ function RegistrationForm() {
   };
   const handleTagEnter = (e) => {
     if (
-      values.productTag &&
+      values.productTag && // 입력값이 있을 때만
       e.key === "Enter" &&
       e.nativeEvent.isComposing === false // 한글 입력 시의 문제를 해결하기 위해 추가
     ) {
+      e.preventDefault();
       setTags((prevTags) => [...prevTags, values.productTag]); // 태그에 추가
       setValues((prevValues) => ({ ...prevValues, productTag: "" })); // input 초기화
     }
@@ -44,16 +48,42 @@ function RegistrationForm() {
     setTags((prevTags) => [...tags.slice(0, index), ...tags.slice(index + 1)]);
   };
 
+  const handleCreateClick = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", values.productName);
+    formData.append("description", values.productDesc);
+    formData.append("price", values.productPrice);
+    formData.append("tags", tags);
+
+    let result;
+    try {
+      setloadingError(null);
+      result = await createProduct(formData);
+      navigate("/items/item");
+    } catch (e) {
+      setloadingError(e);
+    }
+  };
+
   return (
     <div className="items-container">
       <div className="label-box regist">
         <span>상품 등록하기</span>
-        <Link className="link-button disable">등록</Link>
+        <button className="link-button disable" onClick={handleCreateClick}>
+          등록
+        </button>
       </div>
-      <form className="product-form">
+      {loadingError?.message && <span>{loadingError.message}</span>}
+      <form
+        className="product-form"
+        action="http://localhost:5500/products"
+        method="POST"
+        onSubmit={handleCreateClick}
+      >
         <div className="form-label">상품명</div>
         <input
-          name="productName"
+          name="name"
           className="product-input"
           value={values.productName}
           onChange={handleChange}
@@ -61,7 +91,7 @@ function RegistrationForm() {
         />
         <div className="form-label">상품 소개</div>
         <textarea
-          name="productDesc"
+          name="description"
           className="product-input"
           value={values.productDesc}
           onChange={handleChange}
@@ -69,7 +99,7 @@ function RegistrationForm() {
         />
         <div className="form-label">판매 가격</div>
         <input
-          name="productPrice"
+          name="price"
           className="product-input"
           value={values.productPrice !== 0 ? values.productPrice : ""}
           onChange={handleChange}
@@ -77,7 +107,7 @@ function RegistrationForm() {
         />
         <div className="form-label">태그</div>
         <input
-          name="productTag"
+          name="tags"
           className="product-input"
           value={values.productTag}
           onChange={handleChange}
@@ -94,6 +124,9 @@ function RegistrationForm() {
             />
           );
         })}
+        <button type="button" onSubmit={handleCreateClick}>
+          전송
+        </button>
       </form>
     </div>
   );

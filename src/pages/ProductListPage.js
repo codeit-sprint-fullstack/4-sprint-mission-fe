@@ -7,7 +7,7 @@ import { getProducts } from "../apis/ProductService.js";
 import Pagination from "../components/Pagination.js";
 import useDeviceSize from "../hooks/useDeviceSize.js";
 
-function ProductPage() {
+function ProductListPage() {
   const [items, setItems] = useState([]);
   // const [bestItems, setBestItems] = useState([]);
   const [sort, setSort] = useState("recent"); // 정렬 옵션
@@ -18,12 +18,10 @@ function ProductPage() {
   const { isTablet, isMobile } = useDeviceSize(); // 미디어 쿼리
 
   const handleLoad = async (options) => {
-    console.log(`options:${options.offset}`);
     let result;
     try {
       setloadingError(null);
       result = await getProducts(options);
-      console.log(result);
     } catch (error) {
       setloadingError(error);
     } finally {
@@ -31,7 +29,6 @@ function ProductPage() {
 
     const { products, searchCount } = result;
     setItems(products);
-    console.log(`searchCount:${searchCount}`);
     setMaxPage(Math.ceil(searchCount / options.limit));
   };
 
@@ -83,4 +80,4 @@ function ProductPage() {
   );
 }
 
-export default ProductPage;
+export default ProductListPage;
