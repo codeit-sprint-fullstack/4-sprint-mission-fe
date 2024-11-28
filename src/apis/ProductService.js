@@ -9,9 +9,10 @@ export const getProducts = async ({
   sort = "recent",
   offset = 0,
   keyword = "",
+  limit = 0,
 }) => {
   console.log("start getProducts");
-  const query = `sort=${sort}&offset=${offset}&keyword=${keyword}`;
+  const query = `sort=${sort}&offset=${offset}&keyword=${keyword}&limit=${limit}`;
   const res = await instance.get(`/products?${query}`);
   console.log(`res.data:${res.data}`);
   console.log("end getProducts");

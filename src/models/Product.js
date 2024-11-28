@@ -5,7 +5,7 @@ const ProductSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      maxLength: 10,
+      maxLength: 20,
       minLength: 2,
     },
     description: {
@@ -15,6 +15,11 @@ const ProductSchema = new mongoose.Schema(
     },
     price: { type: Number, required: true },
     tags: { type: [{ type: String, maxLength: 5 }] },
+    favoriteCount: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

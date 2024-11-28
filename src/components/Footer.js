@@ -3,6 +3,7 @@ import twitter from "../assets/ic-twitter.png";
 import instagram from "../assets/ic-instagram.png";
 import youtube from "../assets/ic-youtube.png";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -10,8 +11,8 @@ function Footer() {
       <div className="footer-content">
         <div className="footer-content-left"> ©codeit - 2024 </div>
         <div className="footer-content-center">
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/faq">FAQ</a>
+          <Link to="/privacy">Privacy Policy</Link>
+          <Link to="/faq">FAQ</Link>
         </div>
         <div className="footer-content-right">
           <a

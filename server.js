@@ -75,7 +75,10 @@ app.get(
     const sort = req.query.sort;
     const offset = req.query.offset;
     const search = req.query.keyword;
-    const sortOption = { createdAt: sort === "recent" ? "desc" : "asc" };
+    const limit = req.query.limit;
+    const count = limit || 0;
+    const sortOption =
+      sort === "recent" ? { createdAt: "desc" } : { favoriteCount: "desc" };
     const products = await Product.find(
       search
         ? {
@@ -85,11 +88,14 @@ app.get(
             ],
           }
         : {},
-      { name: 1, price: 1, createdAt: 1 }
+      { name: 1, price: 1, createdAt: 1, favoriteCount: 1 }
     )
       .sort(sortOption)
-      .skip(offset);
-    res.send(products);
+      .skip(offset)
+      .limit(count);
+    const totalCount = await Product.find().count();
+    const finalData = { totalCount: totalCount, products: products };
+    res.send(finalData);
   })
 );
 

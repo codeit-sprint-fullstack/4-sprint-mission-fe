@@ -18,6 +18,7 @@ function ProductPage() {
   const { isTablet, isMobile } = useDeviceSize();
 
   const handleLoad = async (options) => {
+    console.log(`options:${options.offset}`);
     let result;
     try {
       setloadingError(null);
@@ -28,10 +29,10 @@ function ProductPage() {
     } finally {
     }
 
-    // const { list, totalCount } = result;
-    setItems(result);
-    // setMaxPage(Math.ceil(result.length / options.pageSize));
-    setMaxPage(20);
+    const { products, totalCount } = result;
+    setItems(products);
+    console.log(`result.length:${result.length}`);
+    setMaxPage(Math.ceil(totalCount / options.limit));
   };
 
   // const handleLoadBest = async (options) => {
@@ -43,13 +44,14 @@ function ProductPage() {
   // 판매 중인 상품 목록 불러오기
   useEffect(() => {
     handleLoad({
-      // page: page,
-      // pageSize: isTablet ? 6 : isMobile ? 4 : 10,
-      // orderBy: orderBy,
-      // keyword: keyword,
-      sort: "recent",
-      offset: 0,
+      sort: sort,
+      offset: isTablet
+        ? (page - 1) * 6
+        : isMobile
+        ? (page - 1) * 4
+        : (page - 1) * 10,
       keyword: keyword,
+      limit: isTablet ? 6 : isMobile ? 4 : 10,
     });
   }, [sort, keyword, page, isTablet, isMobile]);
 

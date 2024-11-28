@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logoM from "../assets/logo-m.png";
 import logo from "../assets/logo.png";
 import "./Header.css";
@@ -8,18 +9,18 @@ function Header({ isLandingPage }) {
     <header>
       <div className="header-content">
         <div className="header-content-left">
-          <a href="/">
+          <Link to="/">
             <img src={logoM} id="logoM" alt="판다마켓 로고" />
             <img src={logo} id="logo" alt="판다마켓 로고" />
-          </a>
+          </Link>
         </div>
         <div className="header-content-center">
           {isLandingPage || <HeaderNav />}
         </div>
         <div className="header-content-right">
-          <a className="button" href="/login">
+          <Link className="button" to="/login">
             로그인
-          </a>
+          </Link>
         </div>
       </div>
     </header>
