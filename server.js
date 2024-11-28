@@ -72,13 +72,23 @@ app.get(
 app.get(
   "/products",
   asyncHandler(async (req, res) => {
+    /**
+     * 쿼리 파라미터
+     * - sort: 최신(recent), 좋아요(favorite)
+     * - offset: 건너뛸 개수
+     * - keyword: 검색어
+     * - limit: 갖고 올 데이터 개수
+     */
     const sort = req.query.sort;
     const offset = req.query.offset;
     const search = req.query.keyword;
     const limit = req.query.limit;
     const count = limit || 0;
+
+    // sort에 따라 최신순, 좋아요순 결정
     const sortOption =
       sort === "recent" ? { createdAt: "desc" } : { favoriteCount: "desc" };
+
     const products = await Product.find(
       search
         ? {
@@ -93,8 +103,27 @@ app.get(
       .sort(sortOption)
       .skip(offset)
       .limit(count);
+    /**
+     * collection의 전체 document 개수 받아오기
+     * - pagination 구현에 필요
+     * - searchCount가 있어 현 상황에서 toatalCount는 없어도 될 것으로 보이나 일단 살려둠(2024.11.28)
+     */
     const totalCount = await Product.find().count();
-    const finalData = { totalCount: totalCount, products: products };
+    const searchCount = await Product.find().count(
+      search
+        ? {
+            $or: [
+              { name: { $regex: `${search}`, $options: "i" } },
+              { description: { $regex: `${search}`, $options: "i" } },
+            ],
+          }
+        : {}
+    );
+    const finalData = {
+      totalCount: totalCount,
+      searchCount: searchCount,
+      products: products,
+    };
     res.send(finalData);
   })
 );

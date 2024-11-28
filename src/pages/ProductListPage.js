@@ -10,12 +10,12 @@ import useDeviceSize from "../hooks/useDeviceSize.js";
 function ProductPage() {
   const [items, setItems] = useState([]);
   // const [bestItems, setBestItems] = useState([]);
-  const [sort, setSort] = useState("recent");
-  const [keyword, setKeyword] = useState("");
-  const [page, setPage] = useState(1);
-  const [maxPage, setMaxPage] = useState(0);
+  const [sort, setSort] = useState("recent"); // 정렬 옵션
+  const [keyword, setKeyword] = useState(""); // 검색
+  const [page, setPage] = useState(1); // pagination에 필요
+  const [maxPage, setMaxPage] = useState(0); // pagination에 필요
   const [loadingError, setloadingError] = useState(null);
-  const { isTablet, isMobile } = useDeviceSize();
+  const { isTablet, isMobile } = useDeviceSize(); // 미디어 쿼리
 
   const handleLoad = async (options) => {
     console.log(`options:${options.offset}`);
@@ -29,10 +29,10 @@ function ProductPage() {
     } finally {
     }
 
-    const { products, totalCount } = result;
+    const { products, searchCount } = result;
     setItems(products);
-    console.log(`result.length:${result.length}`);
-    setMaxPage(Math.ceil(totalCount / options.limit));
+    console.log(`searchCount:${searchCount}`);
+    setMaxPage(Math.ceil(searchCount / options.limit));
   };
 
   // const handleLoadBest = async (options) => {

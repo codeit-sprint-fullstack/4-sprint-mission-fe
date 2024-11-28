@@ -44,6 +44,7 @@ const DropDown = ({ onClick, value }) => {
   const handleMenuSelect = (order) => {
     onClick(order);
     setLabel(order);
+    setDropdownView(!isDropdownView);
   };
 
   return (

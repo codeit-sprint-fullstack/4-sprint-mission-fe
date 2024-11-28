@@ -11,7 +11,7 @@ POST http://localhost:5500/products
 Content-Type: application/json
 
 {
-  "name":"DELL 27인치 UHD 모니터",
+  "name":"아이폰 27인치 UHD 모니터",
   "description":"맥북에 최적화, 가성비보단 품격",
   "price":580000,
   "tags":["모니터", "델"]
