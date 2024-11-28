@@ -1,0 +1,85 @@
+header {
+  background-color: #ffffff;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.header-content {
+  width: 100%;
+  max-width: 152rem;
+  margin: 0 20rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 7rem;
+  align-items: center;
+}
+
+#logo {
+  width: 15.3rem;
+  flex-shrink: 0;
+  vertical-align: bottom;
+  /* 로고 이미지 수직 가운데 정렬 */
+}
+
+#logoM {
+  display: none;
+  width: 10.3rem;
+  flex-shrink: 0;
+  vertical-align: bottom;
+}
+
+.header-content-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-content-center {
+  flex-grow: 1;
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+a.button {
+  padding: 1.4rem 4.3rem;
+  background-color: var(--main-color);
+  border-radius: 0.8rem;
+  color: #ffffff;
+}
+
+a.button:hover {
+  background-color: var(--main-dark-color);
+}
+
+@media (max-width: 1199px) {
+  .header-content {
+    margin: 0 2.4rem;
+  }
+
+  #logoM {
+    display: none;
+  }
+}
+
+@media (max-width: 743px) {
+  .header-content {
+    margin: 0 1.6rem;
+  }
+
+  #logo {
+    display: none;
+  }
+
+  #logoM {
+    display: block;
+  }
+
+  a.button {
+    padding: 1rem 1.8rem;
+  }
+}
