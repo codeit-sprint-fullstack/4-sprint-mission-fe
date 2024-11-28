@@ -2,15 +2,16 @@ import "./ProductList.css";
 import icHeart from "../assets/ic-heart.png";
 import DropDown from "./DropDown.js";
 import { Link } from "react-router-dom";
+import defaultImg from "../assets/img-default.svg";
 
 function ProductItem({ item }) {
-  const { images, name, price, favoriteCount } = item;
+  const { name, price, favoriteCount = 0 } = item;
 
   return (
     <div className="item">
       <div
         className="item-image"
-        style={{ backgroundImage: `url(${images[0]})` }}
+        style={{ backgroundImage: `url(${defaultImg})` }}
       ></div>
       <p className="item-name">{name}</p>
       <p className="item-price">{`${price.toLocaleString()}원`}</p>
@@ -52,7 +53,7 @@ function ProductList({ isBest = false, items, value, onClick, onSubmit }) {
 
       <div className={itemClassName}>
         {items.map((item) => {
-          return <ProductItem key={item.id} item={item} />;
+          return <ProductItem key={item._id} item={item} />;
         })}
       </div>
     </div>
