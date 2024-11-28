@@ -35,13 +35,14 @@ textarea.product-input {
   height: 28.2rem;
 }
 
-.product-tag {
+.product-tag-chip {
   display: inline-flex;
   align-items: center;
   padding: 1rem 1.4rem;
   background-color: var(--input-bg-color);
   border-radius: 2.6rem;
   cursor: pointer;
+  margin-right: 1.2rem;
 }
 
 .icon-circle {

@@ -3,6 +3,8 @@
 // import styles from "./page.module.css";
 // import { MouseEvent, useEffect, useRef, useState } from "react";
 
+import { useState } from "react";
+
 // export default function Home()
 // {
 //   const btn = useRef<HTMLButtonElement>(null);
@@ -31,3 +33,9 @@
 //     </>
 //   );
 // }
+// const [cnt, setCnt] = useState(0);
+//   useEffect(() =>
+//   {
+//     setCnt(e => e + 1);
+//     console.log(cnt);
+//   }, [cnt]) ;
