@@ -10,6 +10,7 @@
   border: 1px solid var(--grey-200);
   border-radius: 0.8rem;
   font-size: 1.6rem;
+  cursor: pointer;
 }
 
 .dropdown-menu {
@@ -23,6 +24,7 @@
   border: 1px solid var(--grey-200);
   border-radius: 0.8rem;
   background-color: #ffffff;
+  cursor: pointer;
 }
 
 .dropdown-item:first-child {
