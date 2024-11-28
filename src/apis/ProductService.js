@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5500",
+  // baseURL: "http://localhost:5500",
+  baseURL: "https://four-sprint-mission-fe-1.onrender.com",
   timeout: 3000,
 });
 

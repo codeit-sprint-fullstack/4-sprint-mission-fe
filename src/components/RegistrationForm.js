@@ -66,8 +66,12 @@ function RegistrationForm() {
     }
   };
 
+  const formTag = document.getElementById("product-form");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    formTag.action = "http://localhost:5500/products";
+    formTag.method = "POST";
   };
 
   return (
@@ -80,8 +84,8 @@ function RegistrationForm() {
       </div>
       {loadingError?.message && <span>{loadingError.message}</span>}
       <form
-        className="product-form"
-        action="http://localhost:5500/products"
+        id="product-form"
+        action="https://four-sprint-mission-fe-1.onrender.com/products"
         method="POST"
         // onSubmit={handleSubmit}
       >

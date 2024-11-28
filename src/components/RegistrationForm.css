@@ -27,7 +27,7 @@ textarea::placeholder {
   margin-bottom: 3.2rem;
 }
 
-.product-form :nth-child(8) {
+#product-form :nth-child(8) {
   margin-bottom: 1.4rem;
 }
 
