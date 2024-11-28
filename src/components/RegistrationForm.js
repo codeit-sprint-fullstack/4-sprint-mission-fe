@@ -66,6 +66,10 @@ function RegistrationForm() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="items-container">
       <div className="label-box regist">
@@ -79,7 +83,7 @@ function RegistrationForm() {
         className="product-form"
         action="http://localhost:5500/products"
         method="POST"
-        onSubmit={handleCreateClick}
+        // onSubmit={handleSubmit}
       >
         <div className="form-label">상품명</div>
         <input
@@ -124,9 +128,7 @@ function RegistrationForm() {
             />
           );
         })}
-        <button type="button" onSubmit={handleCreateClick}>
-          전송
-        </button>
+        <button type="submit">전송</button>
       </form>
     </div>
   );
