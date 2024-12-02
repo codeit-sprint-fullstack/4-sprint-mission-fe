@@ -45,8 +45,10 @@ function asyncHandler(handler) {
 app.post(
   "/products",
   asyncHandler(async (req, res) => {
-    const product = await Product.create(req.body);
-    res.status(201).send(product);
+    const newProduct = await Product.create(req.body);
+    res.status(201).send(newProduct);
+    // eslint-disable-next-line no-restricted-globals
+    // location.replace("/");
   })
 );
 

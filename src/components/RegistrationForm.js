@@ -28,6 +28,16 @@ function RegistrationForm() {
   const [tags, setTags] = useState([]);
   const [loadingError, setloadingError] = useState(null);
   const navigate = useNavigate();
+  const btnClassName = `link-button ${allValuesIsNotEmpty() ? "" : "disable"}`;
+
+  function allValuesIsNotEmpty() {
+    Object.values(values).forEach((value, i) => {
+      if (i !== 3 && !value) {
+        return false;
+      }
+      return true;
+    });
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target; // form의 각 input 요소에서 name/value를 가져옴
@@ -35,25 +45,29 @@ function RegistrationForm() {
   };
   const handleTagEnter = (e) => {
     if (
-      values.productTag && // 입력값이 있을 때만
+      values.tags && // 입력값이 있을 때만
       e.key === "Enter" &&
       e.nativeEvent.isComposing === false // 한글 입력 시의 문제를 해결하기 위해 추가
     ) {
       e.preventDefault();
-      setTags((prevTags) => [...prevTags, values.productTag]); // 태그에 추가
-      setValues((prevValues) => ({ ...prevValues, productTag: "" })); // input 초기화
+      setTags((prevTags) => [...prevTags, values.tags]); // 태그에 추가
+      // setValues((prevValues) => ({ ...prevValues, tags: "" })); // input 초기화
+      e.target.value = "";
     }
   };
   const handleChipClick = (index) => {
-    setTags((prevTags) => [...tags.slice(0, index), ...tags.slice(index + 1)]);
+    setTags((prevTags) => [
+      ...prevTags.slice(0, index),
+      ...prevTags.slice(index + 1),
+    ]);
   };
 
   const handleCreateClick = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("name", values.productName);
-    formData.append("description", values.productDesc);
-    formData.append("price", values.productPrice);
+    formData.append("name", values.name);
+    formData.append("description", values.descripition);
+    formData.append("price", values.price);
     formData.append("tags", tags);
 
     let result;
@@ -69,17 +83,19 @@ function RegistrationForm() {
   const formTag = document.getElementById("product-form");
 
   const handleSubmit = (e) => {
-    console.log("click submit!");
-    e.preventDefault();
-    // formTag.action = "https://four-sprint-mission-fe-1.onrender.com/products";
-    formTag.method = "POST";
+    if (allValuesIsNotEmpty) {
+      console.log("click submit!");
+      e.preventDefault();
+      // formTag.action = "https://four-sprint-mission-fe-1.onrender.com/products";
+      formTag.method = "POST";
+    }
   };
 
   return (
     <div className="items-container">
       <div className="label-box regist">
         <span>상품 등록하기</span>
-        <button className="link-button disable" onClick={handleSubmit}>
+        <button className={btnClassName} onClick={handleSubmit}>
           등록
         </button>
       </div>
@@ -87,10 +103,10 @@ function RegistrationForm() {
       <form
         id="product-form"
         // action="https://four-sprint-mission-fe-1.onrender.com/products"
-        action="http://localhost:5500/products"
-        method="POST"
+        // action="http://localhost:5500/products"
+        // method="POST"
         // onSubmit={handleSubmit}
-        target="/items"
+        // target="/items"
       >
         <div className="form-label">상품명</div>
         <input
@@ -135,7 +151,7 @@ function RegistrationForm() {
             />
           );
         })}
-        <button type="submit">전송</button>
+        {/* <button type="submit">전송</button> */}
       </form>
       <iframe name="blankIfr" style={{ display: "none" }} title="dk"></iframe>
     </div>

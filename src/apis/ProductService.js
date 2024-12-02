@@ -19,5 +19,7 @@ export const getProducts = async ({
 
 export const createProduct = async (productData) => {
   const res = await instance.post("/products", productData);
+  // eslint-disable-next-line no-restricted-globals
+  location.href("/");
   return res.data;
 };
