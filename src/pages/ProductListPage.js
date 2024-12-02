@@ -25,7 +25,6 @@ function ProductListPage() {
         result = await getProducts(options);
       } catch (error) {
         setloadingError(error);
-      } finally {
       }
 
       const { products, searchCount } = result;

@@ -7,6 +7,7 @@
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1.6rem;
+  margin-top: 3.2rem;
 }
 
 textarea:focus {
@@ -24,12 +25,23 @@ textarea::placeholder {
   border: none;
   border-radius: 1.6rem;
   padding: 1.6rem 2.4rem 1.4rem;
-  margin-bottom: 3.2rem;
+  /* margin-bottom: 3.2rem; */
 }
 
-#product-form :nth-child(8) {
-  margin-bottom: 1.4rem;
+.product-input.inValid {
+  outline: 1px solid #f74747;
 }
+
+.error-message {
+  margin: 0.8rem 0 0 1.6rem;
+  color: #f74747;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* #product-form :nth-child(8) {
+  margin-bottom: 1.4rem;
+} */
 
 textarea.product-input {
   height: 28.2rem;
@@ -43,6 +55,7 @@ textarea.product-input {
   border-radius: 2.6rem;
   cursor: pointer;
   margin-right: 1.2rem;
+  margin-top: 1.4rem;
 }
 
 .icon-circle {
@@ -70,7 +83,11 @@ textarea.product-input {
     margin-bottom: 2.4rem;
   }
 
+  .form-label {
+    margin-top: 2.4rem;
+  }
+
   .product-input {
-    margin-bottom: 2.4rem;
+    /* margin-bottom: 2.4rem; */
   }
 }

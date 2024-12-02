@@ -9,14 +9,16 @@
     "axios": "^1.7.8",
     "concurrently": "^9.1.0",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mongoose": "^7.8.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-error-overlay": "6.0.9",
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.28.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "4.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -47,6 +49,8 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.37.2",
     "nodemon": "^3.1.7"
   },
   "type": "module"

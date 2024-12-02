@@ -3,6 +3,7 @@ import "./RegistrationForm.css";
 import icX from "../assets/ic-x.png";
 import { useEffect, useState } from "react";
 import { createProduct } from "../apis/ProductService.js";
+import useCheckInputValid from "../hooks/useCheckInputValid.js";
 
 function TagChip({ value, onClick, chipIdx }) {
   const handleClick = () => {
@@ -19,121 +20,127 @@ function TagChip({ value, onClick, chipIdx }) {
 }
 
 function RegistrationForm() {
-  const [values, setValues] = useState({
-    name: "",
-    descripition: "",
-    price: 0,
-    tags: "",
-  });
   const [tags, setTags] = useState([]);
   const [loadingError, setloadingError] = useState(null);
   const navigate = useNavigate();
-  const [checkActiveValues, setCheckActiveValues] = useState({
-    name: false,
-    description: false,
-    price: false,
-    tags: false,
-  });
   const [isBtnActive, setIsBtnActive] = useState(false);
   const btnClassName = `link-button ${isBtnActive ? "" : "disable"}`;
-
-  // form값이 입력되면 checkActiveValues의 해당 key 값을 true로, 빈 값일 경우 fasle로
-  function checkFormIsEmpty(inputName, inputValue) {
-    if (inputName !== "tags") {
-      if (inputValue !== "") {
-        setCheckActiveValues((prevValues) => ({
-          ...prevValues,
-          [inputName]: true,
-        }));
-      } else {
-        setCheckActiveValues((prevValues) => ({
-          ...prevValues,
-          [inputName]: false,
-        }));
-      }
-    }
-  }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target; // form의 각 input 요소에서 name/value를 가져옴
-    setValues((prevValues) => ({ ...prevValues, [name]: value })); // 해당 name의 속성의 값을 대체
-    checkFormIsEmpty(name, value); // 입력값이 변경될 때마다 check
-  };
+  const {
+    inputValue: inputName,
+    isValid: isValidName,
+    isBeforeTouch: isBeforeTouchName,
+    inputClassName: nameClassName,
+    handleBlur: handleNameBlur,
+    handleChange: handleNameChange,
+  } = useCheckInputValid((value) => value.trim() !== "" && value.length <= 10);
+  const {
+    inputValue: inputDesc,
+    isValid: isValidDesc,
+    isBeforeTouch: isBeforeTouchDesc,
+    inputClassName: descClassName,
+    handleBlur: handleDescBlur,
+    handleChange: handleDescChange,
+  } = useCheckInputValid((value) => value.length >= 10 && value.length <= 100);
+  const {
+    inputValue: inputPrice,
+    isValid: isValidPrice,
+    isBeforeTouch: isBeforeTouchPrice,
+    inputClassName: priceClassName,
+    handleBlur: handlePriceBlur,
+    handleChange: handlePriceChange,
+  } = useCheckInputValid(
+    (value) => value.trim() !== "" && Number.isInteger(Number(value))
+  );
+  const {
+    inputValue: inputTag,
+    isValid: isValidTag,
+    isBeforeTouch: isBeforeTouchTag,
+    inputClassName: tagClassName,
+    handleBlur: handleTagBlur,
+    handleChange: handleTagChange,
+    handleReset: handleTagReset,
+  } = useCheckInputValid((value) => value.length <= 5);
 
   const handleTagEnter = (e) => {
     if (
-      values.tags && // 입력값이 있을 때만
+      inputTag && // 빈값이 아니고
+      isValidTag && // 유효성 검증이 되고(5글자 이내)
       e.key === "Enter" &&
       e.nativeEvent.isComposing === false // 한글 입력 시의 문제를 해결하기 위해 추가
     ) {
-      // tag가 추가되면 checkActiveValues의 tags 값을 true로
-      setCheckActiveValues((prevValues) => ({
-        ...prevValues,
-        tags: true,
-      }));
       e.preventDefault();
-      setTags((prevTags) => [...prevTags, values.tags]); // 태그에 추가
-      // setValues((prevValues) => ({ ...prevValues, tags: "" })); // input 초기화
-      e.target.value = "";
-      checkFormIsEmpty();
+      setTags((prevTags) => [...prevTags, inputTag]); // 태그에 추가
+      handleTagReset(); // 태그 input값 초기화
     }
   };
 
+  // 태그 삭제
   const handleChipClick = (index) => {
     setTags((prevTags) => [
       ...prevTags.slice(0, index),
       ...prevTags.slice(index + 1),
     ]);
-    // 마지막 태그가 삭제되면 checkActiveValues의 값을 false로
-    if (index === 0) {
-      setCheckActiveValues((prevValues) => ({
-        ...prevValues,
-        tags: false,
-      }));
-    }
   };
 
   const handleCreateClick = async (e) => {
     if (isBtnActive) {
-      e.preventDefault();
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("description", values.descripition);
-      formData.append("price", values.price);
-      formData.append("tags", tags);
+      // e.preventDefault();
+      // const formData = new FormData();
+      // formData.append("name", inputName);
+      // formData.append("description", inputDesc);
+      // formData.append("price", inputPrice);
+      // formData.append("tags", tags);
 
-      let result;
-      try {
-        setloadingError(null);
-        result = await createProduct(formData);
-        navigate("/items/item");
-      } catch (e) {
-        setloadingError(e);
-      }
-      // navigate("/items/item");
+      // // let result;
+      // try {
+      //   setloadingError(null);
+      //   await createProduct(formData);
+      //   navigate("/items/item");
+      // } catch (e) {
+      //   setloadingError(e);
+      // }
+      navigate("/items/item");
     }
   };
 
-  const formTag = document.getElementById("product-form");
+  // const formTag = document.getElementById("product-form");
 
-  const handleSubmit = (e) => {
-    if (isBtnActive) {
-      console.log("click submit!");
-      e.preventDefault();
-      // formTag.action = "https://four-sprint-mission-fe-1.onrender.com/products";
-      formTag.method = "POST";
-    }
-  };
+  // const handleSubmit = (e) => {
+  //   if (isBtnActive) {
+  //     console.log("click submit!");
+  //     e.preventDefault();
+  //     // formTag.action = "https://four-sprint-mission-fe-1.onrender.com/products";
+  //     formTag.method = "POST";
+  //   }
+  // };
 
   useEffect(() => {
-    if (!Object.values(checkActiveValues).some((value) => value === false)) {
-      console.log(`do setIsBtnActive true`);
+    /**
+     * '등록' 버튼 활성화 조건 체크
+     * - 입력폼 최초 클릭 전인 경우 valid값과 상관없이 무조건 false(최초 페이지 로딩 시를 위한 처리)
+     */
+    if (
+      !isBeforeTouchName &&
+      isValidName &&
+      !isBeforeTouchDesc &&
+      isValidDesc &&
+      !isBeforeTouchPrice &&
+      isValidPrice &&
+      tags.length > 0
+    ) {
       setIsBtnActive(true);
     } else {
-      console.log(`do setIsBtnActive false`);
       setIsBtnActive(false);
     }
-  }, [checkActiveValues]);
+  }, [
+    isBeforeTouchName,
+    isBeforeTouchDesc,
+    isBeforeTouchPrice,
+    isValidName,
+    isValidDesc,
+    isValidPrice,
+    tags,
+  ]);
 
   return (
     <div className="items-container">
@@ -155,36 +162,56 @@ function RegistrationForm() {
         <div className="form-label">상품명</div>
         <input
           name="name"
-          className="product-input"
-          value={values.productName}
-          onChange={handleChange}
+          className={nameClassName}
+          value={inputName}
+          onChange={handleNameChange}
+          onBlur={handleNameBlur}
           placeholder="상품명을 입력해주세요"
         />
+        {!isValidName && (
+          <div className="error-message">
+            1자 이상 10자 이내로 입력해 주세요.
+          </div>
+        )}
         <div className="form-label">상품 소개</div>
         <textarea
           name="description"
-          className="product-input"
-          value={values.productDesc}
-          onChange={handleChange}
+          className={descClassName}
+          value={inputDesc}
+          onChange={handleDescChange}
+          onBlur={handleDescBlur}
           placeholder="상품 소개를 입력해주세요"
         />
+        {!isValidDesc && (
+          <div className="error-message">
+            10자 이상 100자 이내로 입력해 주세요.
+          </div>
+        )}
         <div className="form-label">판매 가격</div>
         <input
           name="price"
-          className="product-input"
-          value={values.productPrice !== 0 ? values.productPrice : ""}
-          onChange={handleChange}
+          className={priceClassName}
+          value={inputPrice !== 0 ? inputPrice : ""}
+          onChange={handlePriceChange}
+          onBlur={handlePriceBlur}
           placeholder="판매 가격을 입력해주세요"
         />
+        {!isValidPrice && (
+          <div className="error-message">1자 이상 숫자로 입력해 주세요.</div>
+        )}
         <div className="form-label">태그</div>
         <input
           name="tags"
-          className="product-input"
-          value={values.productTag}
-          onChange={handleChange}
+          className={tagClassName}
+          value={inputTag}
+          onChange={handleTagChange}
+          onBlur={handleTagBlur}
           onKeyDown={handleTagEnter}
           placeholder="태그를 입력해주세요"
         />
+        {!isValidTag && (
+          <div className="error-message">5글자 이내로 입력해 주세요.</div>
+        )}
         {tags.map((tag, i) => {
           return (
             <TagChip
