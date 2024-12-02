@@ -31,7 +31,6 @@ function ProductListPage() {
       const { products, searchCount } = result;
       setItems(products);
       setMaxPage(Math.ceil(searchCount / options.limit));
-
       console.log(page, sort, keyword);
     },
     [keyword, page, sort]
@@ -42,6 +41,17 @@ function ProductListPage() {
   //   const { list } = result;
   //   setBestItems(list);
   // };
+
+  const handleSubmit = (keyword) => {
+    setKeyword(keyword);
+    /**
+     * 키워드 검색을 했을 때 페이지를 1로 변경하기
+     * - (문제 케이스) 4페이지에서 검색을 했는데 검색 결과의 페이지 수가 이보다 적을 경우 보이지 않음
+     */
+    if (keyword) {
+      setPage(1);
+    }
+  };
 
   // 판매 중인 상품 목록 불러오기
   useEffect(() => {
@@ -76,7 +86,7 @@ function ProductListPage() {
           items={items}
           value={sort}
           onClick={setSort}
-          onSubmit={setKeyword}
+          onSubmit={handleSubmit}
         />
         <Pagination currentPage={page} maxPage={maxPage} onClick={setPage} />
       </main>
