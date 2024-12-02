@@ -2,7 +2,7 @@ import Header from "../components/Header.js";
 import "./ProductListPage.css";
 import Footer from "../components/Footer.js";
 import ProductList from "../components/ProductList.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getProducts } from "../apis/ProductService.js";
 import Pagination from "../components/Pagination.js";
 import useDeviceSize from "../hooks/useDeviceSize.js";
@@ -17,20 +17,25 @@ function ProductListPage() {
   const [loadingError, setloadingError] = useState(null);
   const { isTablet, isMobile } = useDeviceSize(); // 미디어 쿼리
 
-  const handleLoad = async (options) => {
-    let result;
-    try {
-      setloadingError(null);
-      result = await getProducts(options);
-    } catch (error) {
-      setloadingError(error);
-    } finally {
-    }
+  const handleLoad = useCallback(
+    async (options) => {
+      let result;
+      try {
+        setloadingError(null);
+        result = await getProducts(options);
+      } catch (error) {
+        setloadingError(error);
+      } finally {
+      }
 
-    const { products, searchCount } = result;
-    setItems(products);
-    setMaxPage(Math.ceil(searchCount / options.limit));
-  };
+      const { products, searchCount } = result;
+      setItems(products);
+      setMaxPage(Math.ceil(searchCount / options.limit));
+
+      console.log(page, sort, keyword);
+    },
+    [keyword, page, sort]
+  );
 
   // const handleLoadBest = async (options) => {
   //   const result = await getProducts(options);
@@ -50,7 +55,7 @@ function ProductListPage() {
       keyword: keyword,
       limit: isTablet ? 6 : isMobile ? 4 : 10,
     });
-  }, [sort, keyword, page, isTablet, isMobile]);
+  }, [sort, keyword, page, isTablet, isMobile, handleLoad]);
 
   // 베스트 상품 목록 불러오기
   // useEffect(() => {
