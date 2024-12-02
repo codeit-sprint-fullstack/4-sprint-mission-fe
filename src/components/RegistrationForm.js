@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./RegistrationForm.css";
 import icX from "../assets/ic-x.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createProduct } from "../apis/ProductService.js";
 
 function TagChip({ value, onClick, chipIdx }) {
@@ -28,62 +28,96 @@ function RegistrationForm() {
   const [tags, setTags] = useState([]);
   const [loadingError, setloadingError] = useState(null);
   const navigate = useNavigate();
-  const btnClassName = `link-button ${allValuesIsNotEmpty() ? "" : "disable"}`;
+  const [checkActiveValues, setCheckActiveValues] = useState({
+    name: false,
+    description: false,
+    price: false,
+    tags: false,
+  });
+  const [isBtnActive, setIsBtnActive] = useState(false);
+  const btnClassName = `link-button ${isBtnActive ? "" : "disable"}`;
 
-  function allValuesIsNotEmpty() {
-    Object.values(values).forEach((value, i) => {
-      if (i !== 3 && !value) {
-        return false;
+  // form값이 입력되면 checkActiveValues의 해당 key 값을 true로, 빈 값일 경우 fasle로
+  function checkFormIsEmpty(inputName, inputValue) {
+    if (inputName !== "tags") {
+      if (inputValue !== "") {
+        setCheckActiveValues((prevValues) => ({
+          ...prevValues,
+          [inputName]: true,
+        }));
+      } else {
+        setCheckActiveValues((prevValues) => ({
+          ...prevValues,
+          [inputName]: false,
+        }));
       }
-      return true;
-    });
+    }
   }
 
   const handleChange = (e) => {
     const { name, value } = e.target; // form의 각 input 요소에서 name/value를 가져옴
     setValues((prevValues) => ({ ...prevValues, [name]: value })); // 해당 name의 속성의 값을 대체
+    checkFormIsEmpty(name, value); // 입력값이 변경될 때마다 check
   };
+
   const handleTagEnter = (e) => {
     if (
       values.tags && // 입력값이 있을 때만
       e.key === "Enter" &&
       e.nativeEvent.isComposing === false // 한글 입력 시의 문제를 해결하기 위해 추가
     ) {
+      // tag가 추가되면 checkActiveValues의 tags 값을 true로
+      setCheckActiveValues((prevValues) => ({
+        ...prevValues,
+        tags: true,
+      }));
       e.preventDefault();
       setTags((prevTags) => [...prevTags, values.tags]); // 태그에 추가
       // setValues((prevValues) => ({ ...prevValues, tags: "" })); // input 초기화
       e.target.value = "";
+      checkFormIsEmpty();
     }
   };
+
   const handleChipClick = (index) => {
     setTags((prevTags) => [
       ...prevTags.slice(0, index),
       ...prevTags.slice(index + 1),
     ]);
+    // 마지막 태그가 삭제되면 checkActiveValues의 값을 false로
+    if (index === 0) {
+      setCheckActiveValues((prevValues) => ({
+        ...prevValues,
+        tags: false,
+      }));
+    }
   };
 
   const handleCreateClick = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", values.name);
-    formData.append("description", values.descripition);
-    formData.append("price", values.price);
-    formData.append("tags", tags);
+    if (isBtnActive) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("description", values.descripition);
+      formData.append("price", values.price);
+      formData.append("tags", tags);
 
-    let result;
-    try {
-      setloadingError(null);
-      result = await createProduct(formData);
-      navigate("/items/item");
-    } catch (e) {
-      setloadingError(e);
+      let result;
+      try {
+        setloadingError(null);
+        result = await createProduct(formData);
+        navigate("/items/item");
+      } catch (e) {
+        setloadingError(e);
+      }
+      // navigate("/items/item");
     }
   };
 
   const formTag = document.getElementById("product-form");
 
   const handleSubmit = (e) => {
-    if (allValuesIsNotEmpty) {
+    if (isBtnActive) {
       console.log("click submit!");
       e.preventDefault();
       // formTag.action = "https://four-sprint-mission-fe-1.onrender.com/products";
@@ -91,11 +125,21 @@ function RegistrationForm() {
     }
   };
 
+  useEffect(() => {
+    if (!Object.values(checkActiveValues).some((value) => value === false)) {
+      console.log(`do setIsBtnActive true`);
+      setIsBtnActive(true);
+    } else {
+      console.log(`do setIsBtnActive false`);
+      setIsBtnActive(false);
+    }
+  }, [checkActiveValues]);
+
   return (
     <div className="items-container">
       <div className="label-box regist">
         <span>상품 등록하기</span>
-        <button className={btnClassName} onClick={handleSubmit}>
+        <button className={btnClassName} onClick={handleCreateClick}>
           등록
         </button>
       </div>
