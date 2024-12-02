@@ -69,8 +69,9 @@ function RegistrationForm() {
   const formTag = document.getElementById("product-form");
 
   const handleSubmit = (e) => {
+    console.log("click submit!");
     e.preventDefault();
-    formTag.action = "http://localhost:5500/products";
+    // formTag.action = "https://four-sprint-mission-fe-1.onrender.com/products";
     formTag.method = "POST";
   };
 
@@ -78,16 +79,18 @@ function RegistrationForm() {
     <div className="items-container">
       <div className="label-box regist">
         <span>상품 등록하기</span>
-        <button className="link-button disable" onClick={handleCreateClick}>
+        <button className="link-button disable" onClick={handleSubmit}>
           등록
         </button>
       </div>
       {loadingError?.message && <span>{loadingError.message}</span>}
       <form
         id="product-form"
-        action="https://four-sprint-mission-fe-1.onrender.com/products"
+        // action="https://four-sprint-mission-fe-1.onrender.com/products"
+        action="https://localhost:5500/products"
         method="POST"
         // onSubmit={handleSubmit}
+        target="/items"
       >
         <div className="form-label">상품명</div>
         <input
@@ -134,6 +137,7 @@ function RegistrationForm() {
         })}
         <button type="submit">전송</button>
       </form>
+      <iframe name="blankIfr" style={{ display: "none" }} title="dk"></iframe>
     </div>
   );
 }
