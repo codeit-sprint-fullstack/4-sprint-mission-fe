@@ -87,7 +87,7 @@ function RegistrationForm() {
       <form
         id="product-form"
         // action="https://four-sprint-mission-fe-1.onrender.com/products"
-        action="https://localhost:5500/products"
+        action="http://localhost:5500/products"
         method="POST"
         // onSubmit={handleSubmit}
         target="/items"
