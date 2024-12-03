@@ -10,22 +10,16 @@ import IsImage from "./IsImage";
 const no_image_available = require("../images/no-image-available.png");
 const empty_heart = require("../images/empty_heart.png");
 
-// TO-DO
-// 만약 src에 이미지 파일이 아닌 다른 파일이 들어오면 default 이미지로 대체
-// 이미지 파일인지 확인하는 함수
-// function checkImage(src) {
-//   return image_check.includes(src.split('.').pop()); }
-//  reset.css 적용 이후 디자인 전반적인 수정 필요
-
-export function OnSaleProducts({ keyword }) {
+export function OnSaleProducts({ sort, page, keyword }) {
 
   const [onSaleProducts, setOnSaleProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [input, setInput] = useState(keyword || "");
+  const [sortingType, setSortingType] = useState(sort || "recent");
 
   useEffect(() => {
     const pageSize = input ? 10000 : 10;
-    getProducts({ pageSize, sort: "recent", keyword: input }) 
+    getProducts({ page, pageSize, sort: sortingType, keyword: input }) 
       .then((data) => {
         setOnSaleProducts(data.list);
         data.list.forEach(product => {
@@ -35,11 +29,15 @@ export function OnSaleProducts({ keyword }) {
         });
       })
       .catch((error) => console.error("Error fetching on-sale products:", error));
-  }, [input]);
+  }, [input, page, sortingType]);
 
   useEffect(() => {
     setInput(keyword);
   }, [keyword]);
+
+  useEffect(() => {
+    setSortingType(sort);
+  }, [sort]);
 
   useEffect(() => {
     const filteredData = onSaleProducts.filter((product) =>
