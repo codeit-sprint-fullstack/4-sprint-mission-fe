@@ -36,6 +36,7 @@ function App() {
         <BestProducts />
         <div className="on-sale-top-bar">
           <h2 className="on-sale-product-title">판매중인 상품</h2>
+          <div className="tool-bar">
           <div className="search-container">
             <img className="search-icon" src={search} alt="search"></img>
             <input
@@ -49,6 +50,7 @@ function App() {
             <li>최신순</li>
             <li>좋아요순</li>
           </ul>
+          </div>
         </div>
         <OnSaleProducts />
       </div>

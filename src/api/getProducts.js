@@ -13,6 +13,8 @@ export async function getProducts(
   const query = `offset=${offset}&limit=${limit}&page=${page}&pageSize=${pageSize}&orderBy=${sort}`;
   const response = await fetch(`${BASE_URL}?${query}`);
   const data = await response.json();
+
+  console.log("Fetched products:", data);
   
   return data;
 }

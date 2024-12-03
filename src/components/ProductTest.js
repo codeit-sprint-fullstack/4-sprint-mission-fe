@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import getProducts from "../api/getProducts"; // getProducts 파일 경로를 맞게 설정하세요.
+import getProducts from "../api/getProducts"; 
 
 function ProductTest() {
   useEffect(() => {
@@ -14,7 +14,7 @@ function ProductTest() {
         });
         console.log("Fetched products:", products); 
       } catch (error) {
-        console.error("Error fetching products:", error); // 에러 발생 시 출력
+        console.error("Error fetching products:", error);
       }
     }
     fetchProducts();
