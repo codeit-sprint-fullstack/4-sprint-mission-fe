@@ -1,0 +1,233 @@
+/* [심화 요구사항]
+  < 반응형 웹 디자인 (Responsive Web Design) >
+
+  - 현대 사회에는 너무 다양한 크기의 디바이스들이 있기 때문에 사용자가 어떤 디바이스를 사용하든 최적의 사용자 경험을 할 수 있는 반응형 웹을 구현하는 것이 프론트엔드 개발자의 필수 덕목이에요.
+  - media query를 이용해 디바이스 화면(viewport) 크기에 따라 스타일을 다르게 적용할 수 있어요.
+  - 적용되는 스타일링이 바뀌는 화면 크기 기준점을 "media query breakpoint"라고 불러요. 
+  - 서비스의 특성 및 디자인에 따라 5개 이상의 breakpoint로 세밀한 조정을 하는 경우도 있지만, 현실적으로는 mobile, tablet, desktop 이렇게 세 가지 구간(2 breakpoints)으로 나누거나 하나의 breakpoint로 작은 화면/큰 화면 정도로만 고려해 구현하는 경우도 많아요.
+  - 디폴트 스타일을 작성한 뒤 각 breakpoint의 media query 내에 해당 구간에서 이전 구간의 스타일링과 비교했을 때 바뀌는 부분만 넣으면 돼요.
+  - 이때, 큰 화면의 스타일을 디폴트로 작성한 뒤에 점점 작은 화면 구간에서의 스타일을 media query를 이용해 추가하는 방식(desktop-first design)과, 반대로 작은 화면 기준의 스타일을 먼저 작성하는 방식(mobile-first design)이 있어요.
+  - 요즘은 모바일 환경에서 웹사이트를 사용하는 경우가 훨씬 많기 때문에 mobile-first approach를 택하는 것이 개발 트렌드예요. mobile-first로 개발된 웹사이트는 모바일 환경에서 페이지 로딩이 비교적 빠르고 SEO에도 이점이 있어요.
+  - 참고로 mobile-first 접근 방식에서는 `min-width`, desktop-first 접근 방식에서는 `max-width`로 breakpoint를 설정해요.
+*/
+
+/* Mobile styles */
+
+:root {
+  /* Gray scale */
+  --gray-900: #1b1d1f;
+  --gray-800: #26282b;
+  --gray-600: #454c53;
+  --gray-500: #72787f;
+  --gray-400: #9ea4a8;
+  --gray-200: #e5e7eb;
+  --gray-100: #e8ebed;
+  --gray-50: #f7f7f8;
+
+  /* Primary color */
+  --blue: #3692ff;
+
+  /* Layout dimensions */
+  --header-height: 70px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+body {
+  color: #374151;
+  word-break: keep-all;
+  font-family: "Pretendard", sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.with-header {
+  margin-top: var(--header-height);
+}
+
+footer {
+  background-color: #111827;
+  color: #9ca3af;
+  font-size: 16px;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* 
+    - 기본적으로 flexbox 컨테이너는 모든 항목을 한 줄에 배치하려고 시도합니다. 'flex-wrap' 속성을 이용하면 모든 항목을 한 줄에 배치할지, 여러 줄로 나누어져도 되는지의 여부를 제어할 수 있어요.
+    - flex 요소에서 flex-wrap을 별도로 설정하지 않는다면 기본값인 `nowrap`이 적용됩니다. 컨테이너의 너비가 모든 항목을 한 줄에 포함시키기에 충분하지 않을 경우, 요소의 크기가 컨테이너 너비에 맞게 자동으로 축소되는 특징이 있어요.
+    - flex-wrap: wrap을 적용하면 공간이 모자랄 경우 항목을 다음 줄로 이동시켜 각 요소의 크기와 스타일이 유지될 수 있도록 합니다. gap을 함께 설정해 주면 줄바꿈이 일어났을 때 원하는 행간을 적용할 수 있어요.
+  */
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+/* 
+  큰 화면에서 footer 내에 있는 모든 요소를 한 줄에 표시할 때는 `©codeit`이 가장 왼쪽에 첫 번째로 표시되지만, 모바일에서는 맨 아랫줄에 표시되도록 디자인되어 있습니다. 
+  flex-wrap을 통해 마지막 요소를 다음 줄에 표시하는 방식으로 레이아웃을 구현하기로 했기 때문에 모바일 환경에서는 `©codeit`을 가장 마지막 요소로 만들어줘야 해요.
+  order 속성을 사용하면 HTML 구조상의 순서와 무관하게 flex 요소의 시각적 순서를 변경할 수 있어요.
+  여기에 flex 항목의 너비를 설정하는 flex-basis를 100%로 놓는다면 `©codeit` 요소가 줄 전체 너비를 차지하게 되어 항상 새로운 줄에 단독으로 배치되겠죠.
+*/
+#copyright {
+  order: 3;
+  flex-basis: 100%;
+}
+
+#footerMenu {
+  display: flex;
+  gap: 30px;
+  color: var(--gray-200);
+}
+
+#socialMedia {
+  display: flex;
+  gap: 12px;
+}
+
+.wrapper {
+  /* horizontal padding을 부여하고, width: 100%를 사용해 콘텐츠가 부모 요소의 남은 공간을 꽉 채우도록 합니다 */
+  width: 100%;
+  padding: 0 16px;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  letter-spacing: 0.02em;
+}
+
+.button {
+  background-color: var(--blue);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover {
+  background-color: #1967d6;
+}
+
+.button:focus {
+  background-color: #1251aa;
+}
+
+.button:disabled {
+  background-color: #9ca3af;
+  cursor: default;
+  pointer-events: none;
+}
+
+.pill-button {
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 14.5px 33.5px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* 줄바꿈을 없애는 효과 */
+.break-on-desktop {
+  display: none;
+}
+
+/* Tablet styles (너비 768px 이상의 화면) */
+
+@media (min-width: 768px) {
+  header {
+    padding: 0 24px;
+  }
+
+  .wrapper {
+    padding: 0 24px;
+  }
+
+  .pill-button {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 16px 126px;
+  }
+
+  footer {
+    padding: 32px 104px 108px 104px;
+  }
+
+  /* 모바일 스타일에서 바꿨던 order와 flex-basis를 다시 기본값으로 되돌려 놓습니다 */
+  #copyright {
+    flex-basis: auto;
+    order: 0;
+  }
+}
+
+/* Desktop styles (너비 1280px 이상의 화면) */
+
+@media (min-width: 1280px) {
+  header {
+    padding: 0 200px;
+  }
+
+  /* 넓은 화면에서는 콘텐츠가 과도하게 확장되지 않도록 max-width를 설정하고, 컨테이너를 화면 중앙에 배치하는 것이 좋아요 */
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* 다시 줄바꿈을 활성화하는 효과 */
+  .break-on-desktop {
+    display: inline;
+  }
+
+  footer {
+    padding: 32px 200px 108px 200px;
+  }
+}

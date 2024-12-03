@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://panda-market-sample.netlify.app/login"
+    />
+    <meta property="og:title" content="판다마켓 - 로그인" />
+    <meta property="og:image" content="images/logo/og-image.png" />
+    <meta
+      property="og:description"
+      content="일상의 모든 물건을 거래해 보세요"
+    />
+    <title>판다마켓 - 로그인</title>
+    <link rel="icon" href="images/logo/favicon.ico" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/auth.css" />
+    <link rel="stylesheet" href="styles/modal.css" />
+  </head>
+
+  <!-- 미션3 로그인/회원가입 페이지 관련 코멘트는 signup.html을 참조해 주세요! -->
+
+  <body>
+    <main class="auth-container">
+      <!-- 참고: 의미적 정확성을 위해 anchor 태그의 식별자 이름에는 모양새를 반영한 'button'이라는 표현보다 기능을 나타내는 'link'라는 표현을 우선적으로 사용하기로 했어요 -->
+      <!-- 참고: 단순화된 구조를 위해 wrapper를 없애고 anchor 태그에 바로 클래스를 적용했어요 -->
+      <a href="index.html" class="logo-home-link" aria-label="홈으로 이동"
+        ><img src="images/logo/logo.svg" alt="판다마켓 로고"
+      /></a>
+
+      <form id="loginForm" method="post">
+        <div class="input-item">
+          <label for="email">이메일</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="이메일을 입력해 주세요"
+            required
+          />
+          <span id="emailEmptyError" class="error-message"
+            >이메일을 입력해 주세요</span
+          >
+          <span id="emailInvalidError" class="error-message"
+            >잘못된 이메일 형식입니다</span
+          >
+        </div>
+
+        <div class="input-item">
+          <label for="password">비밀번호</label>
+          <div class="input-wrapper">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="비밀번호를 입력해 주세요"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle-button"
+              aria-label="비밀번호 보기"
+            >
+              <img
+                class="password-toggle-icon"
+                src="images/icons/eye-invisible.svg"
+                alt="비밀번호 숨김 상태 아이콘"
+              />
+            </button>
+          </div>
+          <span id="passwordEmptyError" class="error-message"
+            >비밀번호를 입력해 주세요</span
+          >
+          <span id="passwordInvalidError" class="error-message"
+            >비밀번호를 8자 이상 입력해 주세요</span
+          >
+        </div>
+
+        <button type="submit" class="button pill-button full-width">
+          로그인
+        </button>
+      </form>
+
+      <div class="social-login-container">
+        <h3>간편 로그인하기</h3>
+        <div class="social-login-links-container">
+          <a
+            href="https://www.google.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="구글 로그인"
+            ><img
+              src="images/social/google-logo.png"
+              alt="구글 로그인"
+              width="42"
+          /></a>
+          <a
+            href="https://www.kakaocorp.com/page/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="카카오톡 로그인"
+            ><img
+              src="images/social/kakao-logo.png"
+              alt="카카오톡 로그인"
+              width="42"
+          /></a>
+        </div>
+      </div>
+
+      <div class="auth-switch">
+        판다마켓이 처음이신가요? <a href="signup.html">회원가입</a>
+      </div>
+    </main>
+    <!-- 모달 HTML 포함 -->
+    <div id="error-modal" class="modal">
+      <div class="modal-content">
+        <p id="modal-message"></p>
+        <button id="confirm-button" class="confirm-button">확인</button>
+      </div>
+    </div>
+    <script src="scripts/constants.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/errors.js"></script>
+    <script src="scripts/modal.js"></script>
+  </body>
+</html>
