@@ -7,10 +7,11 @@ export async function getProducts(
     limit = 10, 
     page = 1, 
     pageSize = 10, 
-    sort = 'recent' 
+    sort = 'recent',
+    keyword = "",
 }
 ) {
-  const query = `offset=${offset}&limit=${limit}&page=${page}&pageSize=${pageSize}&orderBy=${sort}`;
+  const query = `offset=${offset}&limit=${limit}&page=${page}&pageSize=${pageSize}&orderBy=${sort}&keyword=${keyword}`;
   const response = await fetch(`${BASE_URL}?${query}`);
   const data = await response.json();
 
