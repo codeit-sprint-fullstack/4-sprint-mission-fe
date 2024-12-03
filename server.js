@@ -113,8 +113,9 @@ app.get(
      * - pagination 구현에 필요
      * - searchCount가 있어 현 상황에서 toatalCount는 없어도 될 것으로 보이나 일단 살려둠(2024.11.28)
      */
-    const totalCount = await Product.find().count();
-    const searchCount = await Product.find().count(
+    // const totalCount = await Product.count();
+    // offset, limit이 반영되지 않은 전체 검색 결과 개수
+    const searchCount = await Product.count(
       search
         ? {
             $or: [
@@ -125,7 +126,7 @@ app.get(
         : {}
     );
     const finalData = {
-      totalCount: totalCount,
+      // totalCount: totalCount,
       searchCount: searchCount,
       products: products,
     };

@@ -1,17 +1,17 @@
-import Header from "../components/Header.js";
-import "./ProductListPage.css";
-import Footer from "../components/Footer.js";
-import ProductList from "../components/ProductList.js";
-import { useCallback, useEffect, useState } from "react";
-import { getProducts } from "../apis/ProductService.js";
-import Pagination from "../components/Pagination.js";
-import useDeviceSize from "../hooks/useDeviceSize.js";
+import Header from '../components/Header.js';
+import './ProductListPage.css';
+import Footer from '../components/Footer.js';
+import ProductList from '../components/ProductList.js';
+import { useCallback, useEffect, useState } from 'react';
+import { getProducts } from '../apis/ProductService.js';
+import Pagination from '../components/Pagination.js';
+import useDeviceSize from '../hooks/useDeviceSize.js';
 
 function ProductListPage() {
   const [items, setItems] = useState([]);
   // const [bestItems, setBestItems] = useState([]);
-  const [sort, setSort] = useState("recent"); // 정렬 옵션
-  const [keyword, setKeyword] = useState(""); // 검색
+  const [sort, setSort] = useState('recent'); // 정렬 옵션
+  const [keyword, setKeyword] = useState(''); // 검색
   const [page, setPage] = useState(1); // pagination에 필요
   const [maxPage, setMaxPage] = useState(0); // pagination에 필요
   const [loadingError, setloadingError] = useState(null);
@@ -23,6 +23,7 @@ function ProductListPage() {
       try {
         setloadingError(null);
         result = await getProducts(options);
+        if (!result) return;
       } catch (error) {
         setloadingError(error);
       }
@@ -56,11 +57,7 @@ function ProductListPage() {
   useEffect(() => {
     handleLoad({
       sort: sort,
-      offset: isTablet
-        ? (page - 1) * 6
-        : isMobile
-        ? (page - 1) * 4
-        : (page - 1) * 10,
+      offset: isTablet ? (page - 1) * 6 : isMobile ? (page - 1) * 4 : (page - 1) * 10,
       keyword: keyword,
       limit: isTablet ? 6 : isMobile ? 4 : 10,
     });
@@ -81,12 +78,7 @@ function ProductListPage() {
       {loadingError?.message && <span>{loadingError.message}</span>}
       <main>
         {/* <ProductList isBest={true} items={bestItems} /> */}
-        <ProductList
-          items={items}
-          value={sort}
-          onClick={setSort}
-          onSubmit={handleSubmit}
-        />
+        <ProductList items={items} value={sort} onClick={setSort} onSubmit={handleSubmit} />
         <Pagination currentPage={page} maxPage={maxPage} onClick={setPage} />
       </main>
       <Footer />
