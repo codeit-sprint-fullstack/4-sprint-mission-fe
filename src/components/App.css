@@ -1,0 +1,58 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed blue; 
+  border-radius: 10px;
+  margin-left: 15%;
+  margin-right: 15%;
+  overflow: hidden;
+}
+
+.best-product-title, .on-sale-product-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.best-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.best-product-title, .on-sale-product-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--secondary-color-gray900);
+}
+
+.on-sale-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+
+
+:root {
+  --primary-color-50: #E6F2FF;
+  --primary-color-100: #3692FF;
+  --primary-color-200: #1967D6;
+  --primary-color-300: #1251AA;
+  --error-color: #F74747;
+  --secondary-color-gray900: #111827;
+  --secondary-color-gray800: #1F2937;
+  --secondary-color-gray700: #374151;
+  --secondary-color-gray600: #4B5563;
+  --secondary-color-gray500: #6B7280;
+  --secondary-color-gray400: #9CA3AF;
+  --secondary-color-gray200: #E5E7EB;
+  --secondary-color-gray100: #F3F4F6;
+  --secondary-color-gray50: #F9FAFB;
+}

@@ -1,0 +1,66 @@
+:root {
+    --primary-color-50: #E6F2FF;
+    --primary-color-100: #3692FF;
+    --primary-color-200: #1967D6;
+    --primary-color-300: #1251AA;
+    --error-color: #F74747;
+    --secondary-color-gray900: #111827;
+    --secondary-color-gray800: #1F2937;
+    --secondary-color-gray700: #374151;
+    --secondary-color-gray600: #4B5563;
+    --secondary-color-gray500: #6B7280;
+    --secondary-color-gray400: #9CA3AF;
+    --secondary-color-gray200: #E5E7EB;
+    --secondary-color-gray100: #F3F4F6;
+    --secondary-color-gray50: #F9FAFB;
+}
+
+
+nav {
+    background-color: white;
+    color: black;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    padding-bottom: 7px;
+    border-bottom:#111827 2px solid;
+}
+
+.navbar-tap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+.navbar-board {
+    font-family: 'Roboto', sans-serif;
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    margin-top: 10px;
+    text-decoration-line: none;
+}
+
+.navbar-logo {
+    height: 40px;
+    width: 120px;
+    margin-left: 200px;
+    margin-top: 10px;
+}
+
+.login-button {
+    margin-top: 5px;
+    margin-right: 200px;
+    width: 88px;
+    height: 42px;
+    background-color: var(--primary-color-100);
+    border-radius: 8px;
+    border: none;
+    color: white;
+}
