@@ -6,10 +6,11 @@
 .dropdown-button {
     padding: 10px 15px;
     font-size: 16px;
-    background-color: #f0f0f0;
     border: 1px solid #ccc;
+    background-color: white;
     border-radius: 4px;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .dropdown-button:hover {

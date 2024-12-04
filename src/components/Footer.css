@@ -54,6 +54,8 @@
 }
 
 .footer_sns_icons {
+    display: flex;
     margin-right: 200px;
     margin-top: -50px;
+    gap: 5px;
 }

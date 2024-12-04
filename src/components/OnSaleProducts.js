@@ -57,7 +57,7 @@ export function OnSaleProducts({ sort, page, keyword }) {
               <img className="on-sale-product-image" src={product.images || no_image_available} alt={product.name} />
               <div className="on-sale-product-info">
                 <h3>{product.name}</h3>
-                <p>{product.price}원</p>
+                <p>{product.price.toLocaleString()}원</p>
                 <div className="on-sale-product-favorite">
                   <button className="on-sale-favorite-button">
                     <img src={empty_heart} alt="favorite"></img>

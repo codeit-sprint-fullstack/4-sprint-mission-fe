@@ -37,7 +37,7 @@ export function BestProducts() {
             <img className="best-product-image"src={product.images} alt={product.name} />
             <div className="best-product-info">
               <h3>{product.name}</h3>
-              <p>{product.price}원</p>
+              <p>{product.price.toLocaleString()}원</p>
               <div className="best-product-favorite">
                 <button className="best-favorite-button">
                   <img src={empty_heart} alt="favorite"></img>

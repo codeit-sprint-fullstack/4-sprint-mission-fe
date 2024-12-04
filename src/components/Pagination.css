@@ -5,4 +5,23 @@
   padding: 0;
   margin-bottom: 100px;
   margin-top: 100px;
+  gap: 10px;
 }
+
+.pagination button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50px;
+  border-width: 0px;
+  background-color: white;
+  color: var(--secondary-color-gray600);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: var(--primary-color-100);
+  color: white;
+}
+

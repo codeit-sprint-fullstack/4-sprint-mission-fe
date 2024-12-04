@@ -39,7 +39,7 @@
 .on-sale-product-info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   margin-top: 10px;
 }
 
@@ -59,8 +59,20 @@
   color: var(--secondary-color-gray500);
 }
 
-@media (max-width: 768px) {
-  .best-products-container {
-      grid-template-columns: repeat(2, 1fr);
-  } 
+@media only screen and (max-width: 768px) {
+    .on-sale-products-container {
+        grid-template-columns: repeat(2, 1fr);
+    } 
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .on-sale-products-container {
+        grid-template-columns: repeat(3, 1fr);
+    } 
+}
+
+@media only screen and (min-width: 1025px) {
+    .on-sale-products-container {
+        grid-template-columns: repeat(5, 1fr);
+    } 
 }
