@@ -1,0 +1,77 @@
+.NavigationBar {
+  display: flex;
+  width: 100%;
+  height: 7rem;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 0 20rem;
+  border-bottom: 0.1rem solid var(--Navigation-bottom-border);
+  position: sticky;
+  box-sizing: border-box;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+}
+.NavigationMenu {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  color: #4b5563;
+}
+
+.button {
+  background-color: var(--blue);
+  color: var(--button-text-color);
+  border-radius: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border: none;
+  padding: 1.2rem 2.3rem;
+  text-decoration: none;
+  box-sizing: border-box;
+  visibility: visible;
+}
+.login {
+  height: 4.2rem;
+}
+
+@media screen and (min-width: 1200px) {
+}
+
+@media screen and (min-width: 744px) and (max-width: 1199px) {
+  .NavigationBar {
+    padding: 4rem;
+  }
+
+  .user {
+    background-color: unset;
+    background-image: url(../img/ic_user.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 4rem;
+    height: 4rem;
+    visibility: visible;
+    color: transparent;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 743px) {
+  .NavigationBar {
+    padding: 0;
+  }
+  .user {
+    background-color: unset;
+    background-image: url(../img/ic_user.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 4rem;
+    height: 4rem;
+    visibility: visible;
+    color: transparent;
+  }
+}

@@ -1,0 +1,61 @@
+.BestProduct-img {
+  width: 28.2rem;
+  height: 28.2rem;
+  object-fit: cover;
+  border-radius: 2.4rem;
+}
+.BestProductList {
+  display: flex;
+  justify-content: space-around;
+  gap: 1.6rem;
+}
+.BestProductContainer {
+  display: flex;
+  flex-direction: column;
+}
+.BestProductSection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 3.2rem;
+}
+.itemName {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+}
+.itemPrice {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+}
+.itemFavorite {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  color: var(--favorite-text-color);
+}
+.favorite {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+@media screen and (min-width: 744px) and (max-width: 1199px) {
+  .BestProduct-img {
+    width: 34.3rem;
+    height: 34.3rem;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 743px) {
+  .BestProduct-img {
+    width: 28.2rem;
+    height: 28.2rem;
+  }
+}

@@ -1,0 +1,88 @@
+.menuSection {
+  display: flex;
+  justify-content: center;
+}
+.menuContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 120rem;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 3.2rem;
+}
+.menuInput {
+  width: 32.5rem;
+  height: 4.2rem;
+  background-color: var(--Menu-input-color);
+  border: none;
+  border-radius: 1.2rem;
+  padding-left: 3.3rem;
+}
+.register {
+  height: 4.2rem;
+}
+.orderSelect {
+  border: 0.1rem solid var(--Menu-border-color);
+  padding: 1.2rem 2rem;
+  width: 13rem;
+  height: 4.2rem;
+  border-radius: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-align: center;
+}
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.menuButton {
+  background-image: url(../img/ic_search.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: 1.6rem;
+  border: none;
+}
+
+@media screen and (min-width: 744px) and (max-width: 1199px) {
+  .menuContainer {
+    width: 69.5rem;
+  }
+  .menuInput {
+    width: 24.2rem;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 743px) {
+  .menu {
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+  .menuContainer {
+    width: 34.4rem;
+    flex-direction: column;
+  }
+  .menuInput {
+    width: 100%;
+  }
+  .register,
+  .orderSelect {
+    width: 100%;
+  }
+
+  .inputWrapper {
+    width: 100%;
+  }
+}
