@@ -14,7 +14,5 @@ export const getProducts = async ({ sort = 'recent', offset = 0, keyword = '', l
 
 export const createProduct = async (productData) => {
   const res = await instance.post('/products', productData);
-  // eslint-disable-next-line no-restricted-globals
-  location.href('/');
   return res.data;
 };
