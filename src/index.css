@@ -1,0 +1,34 @@
+:root {
+  --main-color: #3692ff;
+  --main-dark-color: #115dba;
+  --input-bg-color: #f3f4f5;
+  --base-grey-color: #9ca3af;
+  --error-color: #f74747;
+  --btn-border-grey: #dddddd;
+  --btn-disable-grey: #9da3ae;
+  --grey-500: #6d727f;
+  --grey-200: #e6e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  /* 16px * 62.5% = 10px = 1rem */
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+  /* 브라우저에서 설정한 폰트 크기가 기본값이 되도록 설정 */
+  background-color: #fcfcfc;
+  margin: 0;
+  color: #374151;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
