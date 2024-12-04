@@ -1,0 +1,26 @@
+GET http://localhost:5500/products?limit=0
+
+###
+GET http://localhost:5500/products?sort=recent&keyword=갤럭시
+
+###
+GET http://localhost:5500/products/67471f9a567ff59e02673443
+
+###
+POST http://localhost:5500/products
+Content-Type: application/json
+
+{
+  "name":"LG 그램",
+  "description":"저렴한 가격, 높은 성능",
+  "price":130,0000,
+  "tags":["LG", "노트북"]
+}
+
+###
+PATCH  http://localhost:5500/products/67473d83cbe51c41f5f3e271
+Content-Type: application/json
+
+{
+  "favoriteCount":"13"
+}

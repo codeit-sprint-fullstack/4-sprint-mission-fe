@@ -1,0 +1,28 @@
+span.menu a {
+  color: #4b5563;
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 0 1.5rem;
+  vertical-align: bottom;
+}
+
+span.menu a:hover {
+  color: var(--main-color);
+}
+
+.nav-container > span:first-child {
+  margin-left: 2.4rem;
+}
+
+@media (max-width: 1199px) {
+  .nav-container > span:first-child {
+    margin-left: inherit;
+  }
+}
+@media (max-width: 743px) {
+  span.menu a {
+    padding: 0;
+    margin-left: 0.8rem;
+    font-size: 1.6rem;
+  }
+}

@@ -1,0 +1,34 @@
+.pagination-button-circle {
+  width: 4rem;
+  height: 4rem;
+  background-color: #ffffff;
+  border: 1px solid var(--grey-200);
+  border-radius: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--grey-500);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-right: 0.4rem;
+  cursor: pointer;
+}
+
+.pagination-button-circle:hover {
+  background-color: #f1f6fd;
+}
+
+.pagination-button-circle.selected {
+  background-color: var(--main-color);
+  color: #ffffff;
+  border: none;
+}
+
+.pagination-button-circle:last-child {
+  transform: rotate(180deg);
+  margin-right: 0;
+}
+
+.pagination-button-circle img {
+  width: 1.6rem;
+}
