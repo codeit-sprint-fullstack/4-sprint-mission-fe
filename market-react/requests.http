@@ -1,7 +1,7 @@
 GET http://localhost:5500/products?limit=0
 
 ###
-GET http://localhost:5500/products?sort=recent&keyword=갤럭시
+GET http://localhost:5500/products?sort=recent&keyword=노트북
 
 ###
 GET http://localhost:5500/products
