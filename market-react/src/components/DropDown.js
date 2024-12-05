@@ -20,6 +20,25 @@ export const DropDownMenu = ({ onSelect }) => {
       ))}
     </div>
   );
+  // const MENU_TEXT = ['최신순', '좋아요순'];
+
+  // const handleClick = (e) => {
+  //   if (e.target.textContent === '최신순') {
+  //     onSelect('recent');
+  //   } else {
+  //     onSelect('favorite');
+  //   }
+  // };
+
+  // return (
+  //   <div className="dropdown-menu">
+  //     {MENU_TEXT.map((item, i) => (
+  //       <div className="dropdown-item" key={i} onClick={handleClick}>
+  //         {item}
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
 };
 
 const DropDown = ({ onClick, value }) => {
@@ -34,7 +53,10 @@ const DropDown = ({ onClick, value }) => {
     setDropdownView(!isDropdownView);
   };
 
-
+  /**
+   * 포커스 아웃시 onBlur가 호출되었을 때 blur이벤트로 드롭다운 메뉴가 클릭되지 않는 문제 발생
+   * - setTimeout으로 메뉴가 닫히는 것을 딜레이함으로써 해결
+   */
   const handleBlur = () => {
     setTimeout(() => {
       setDropdownView(false);

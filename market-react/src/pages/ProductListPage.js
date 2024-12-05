@@ -13,33 +13,35 @@ function ProductListPage() {
   const [keyword, setKeyword] = useState(''); // 검색
   const [page, setPage] = useState(1); // pagination에 필요
   const [maxPage, setMaxPage] = useState(0); // pagination에 필요
-  const [loadingError, setloadingError] = useState(null);
+  const [loadingError, setLoadingError] = useState(null);
   const { isTablet, isMobile } = useDeviceSize(); // 미디어 쿼리
 
   const handleLoad = useCallback(
     async (options) => {
       let result;
       try {
-        setloadingError(null);
+        setLoadingError(null);
         result = await getProducts(options);
-        if (!result) return;
-      } catch (error) {
-        setloadingError(error);
-      }
+        if (!result || !result.products) {
+          throw new Error("Products not found");
+        }
 
-      const { products, searchCount } = result;
-      setItems(products);
-      setMaxPage(Math.ceil(searchCount / options.limit));
-      console.log(page, sort, keyword);
+        const { products, searchCount } = result;
+        setItems(products);
+        setMaxPage(Math.ceil(searchCount / options.limit));
+      } catch (error) {
+        setLoadingError(error.message || "An error occurred while loading the products.");
+      }
     },
     [keyword, page, sort]
   );
 
-  
-
   const handleSubmit = (keyword) => {
     setKeyword(keyword);
-    
+    /**
+     * 키워드 검색을 했을 때 페이지를 1로 변경하기
+     * - (문제 케이스) 4페이지에서 검색을 했는데 검색 결과의 페이지 수가 이보다 적을 경우 보이지 않음
+     */
     if (keyword) {
       setPage(1);
     }
@@ -55,13 +57,11 @@ function ProductListPage() {
     });
   }, [sort, keyword, page, isTablet, isMobile, handleLoad]);
 
-  
   return (
     <div>
       <Header isProductPage={true} />
-      {loadingError?.message && <span>{loadingError.message}</span>}
+      {loadingError && <span>{loadingError}</span>} {/* 오류 메시지 출력 */}
       <main>
-        {/* <ProductList isBest={true} items={bestItems} /> */}
         <ProductList items={items} value={sort} onClick={setSort} onSubmit={handleSubmit} />
         <Pagination currentPage={page} maxPage={maxPage} onClick={setPage} />
       </main>

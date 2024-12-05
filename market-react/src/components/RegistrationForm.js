@@ -84,12 +84,41 @@ function RegistrationForm() {
 
   const handleCreateClick = async (e) => {
     if (isBtnActive) {
+      // e.preventDefault();
+      // const formData = new FormData();
+      // formData.append("name", inputName);
+      // formData.append("description", inputDesc);
+      // formData.append("price", inputPrice);
+      // formData.append("tags", tags);
+
+      // // let result;
+      // try {
+      //   setloadingError(null);
+      //   await createProduct(formData);
+      //   navigate("/items/item");
+      // } catch (e) {
+      //   setloadingError(e);
+      // }
       navigate("/items/item");
     }
   };
 
+  // const formTag = document.getElementById("product-form");
+
+  // const handleSubmit = (e) => {
+  //   if (isBtnActive) {
+  //     console.log("click submit!");
+  //     e.preventDefault();
+  //     // formTag.action = "https://four-sprint-mission-fe-1.onrender.com/products";
+  //     formTag.method = "POST";
+  //   }
+  // };
+
   useEffect(() => {
-  
+    /**
+     * '등록' 버튼 활성화 조건 체크
+     * - 입력폼 최초 클릭 전인 경우 valid값과 상관없이 무조건 false(최초 페이지 로딩 시를 위한 처리)
+     */
     if (
       !isBeforeTouchName &&
       isValidName &&
@@ -124,7 +153,11 @@ function RegistrationForm() {
       {loadingError?.message && <span>{loadingError.message}</span>}
       <form
         id="product-form"
-        
+        // action="https://four-sprint-mission-fe-1.onrender.com/products"
+        // action="http://localhost:5500/products"
+        // method="POST"
+        // onSubmit={handleSubmit}
+        // target="/items"
       >
         <div className="form-label">상품명</div>
         <input
