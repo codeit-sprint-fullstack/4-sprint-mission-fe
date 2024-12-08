@@ -1,6 +1,6 @@
-import logo from '../images/logo.png';
-import '../styles/NavBar.css';
-import { NavLink } from 'react-router-dom';
+import logo from "../images/logo.png";
+import "../styles/NavBar.css";
+import { NavLink } from "react-router-dom";
 
 export function NavBar() {
   return (

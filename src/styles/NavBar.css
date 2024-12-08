@@ -21,7 +21,6 @@ nav {
 
 .navbar-board, 
 .navbar-market {
-    font-family: 'Roboto', sans-serif;
     margin-left: 30px;
     font-size: 18px;
     font-weight: 700;
@@ -31,7 +30,6 @@ nav {
 }
 
 .navbar-market-active {
-    font-family: 'Roboto', sans-serif;
     margin-left: 30px;
     font-size: 18px;
     font-weight: 700;
