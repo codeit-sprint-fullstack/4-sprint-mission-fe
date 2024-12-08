@@ -1,0 +1,47 @@
+.banner_container {
+    background-color: #CFE5FF;
+    width: 100%;
+    height: 540px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.banner_image {
+    width: 746px;
+    height: 340px;
+    position: absolute;
+    bottom: 0;
+    right: 150px;
+}
+
+.banner_text {
+    font-size: 40px;
+    color: #374151;
+    font-weight: 600;
+    line-height: 56px;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+}
+
+.banner_info {
+    width: 357px;
+    height: 260px;
+    text-align: left;
+    position: absolute;
+    bottom: 40px;
+    left: 200px;
+}
+
+.look_around_button {
+    background-color: var(--primary-color-100);
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 357px;
+    height: 56px;
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: 500;
+}

@@ -71,7 +71,7 @@ export function OnSaleProducts({ sort, page, keyword }) {
             </div>
           ))
         ) : (
-          <p>검색 결과가 없습니다.</p>  // 필터링된 결과가 없으면 표시
+          <p>검색 결과가 없습니다.</p> 
         )
       }
     </div>

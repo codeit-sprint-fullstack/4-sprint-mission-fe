@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./BestProducts.css";
+import "../styles/BestProducts.css";
 import { getProducts } from "../api/getProducts";
 import "../images/emptyHeart.png";
 import IsImage from "../utils/image.helper";

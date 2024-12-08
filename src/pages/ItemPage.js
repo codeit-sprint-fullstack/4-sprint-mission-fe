@@ -7,9 +7,8 @@ import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import DropDown from "../components/DropDown";
-import { NavLink } from "react-router-dom";
 
-function App() {
+function ItemPage() {
 
   const [searchKeyword, setSearchKeyword] = useState("");
   const [page, setPage] = useState(1);
@@ -25,6 +24,7 @@ function App() {
       newOption = "favorite";
       setSelectedOption(newOption);
     }
+    console.log(newOption);
   }
 
   const handlePageChange = (newPage) => {
@@ -66,4 +66,4 @@ function App() {
 }
 
 
-export default App;
+export default ItemPage;

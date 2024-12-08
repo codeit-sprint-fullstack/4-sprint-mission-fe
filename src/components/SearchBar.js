@@ -1,4 +1,4 @@
-import "./SearchBar.css";
+import "../styles/SearchBar.css";
 import {useState, useEffect} from "react";
 
 const search = require("../images/search.png");
