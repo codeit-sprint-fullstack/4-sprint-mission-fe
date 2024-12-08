@@ -18,8 +18,8 @@ export function BestProducts() {
     
     getProducts({ pageSize: 4, sort: "favorite" }) 
       .then((data) => {
-        setBestProducts(data.list);
-        data.list.forEach(product => {
+        setBestProducts(data);
+        data.forEach(product => {
           if (!IsImage(String(product.images))) {
             product.images = noImageAvailable;
           }

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import getProducts from "../api/getProducts"; 
 
+
 function ProductTest() {
   useEffect(() => {
     async function fetchProducts() {

@@ -19,7 +19,8 @@ nav {
     align-items: center;    
 }
 
-.navbar-board {
+.navbar-board, 
+.navbar-market {
     font-family: 'Roboto', sans-serif;
     margin-left: 30px;
     font-size: 18px;
@@ -27,6 +28,17 @@ nav {
     line-height: 26px;
     margin-top: 10px;
     text-decoration-line: none;
+}
+
+.navbar-market-active {
+    font-family: 'Roboto', sans-serif;
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    margin-top: 10px;
+    text-decoration-line: none;
+    color: var(--primary-color-100);
 }
 
 .navbar-logo {
