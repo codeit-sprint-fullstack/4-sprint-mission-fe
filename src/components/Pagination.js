@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import './Pagination.css';
+=======
+import { useState, useEffect } from "react";
+import "../styles/Pagination.css";
+>>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
 
 
 export function Pagination({ onPageChange }) {
@@ -13,11 +18,9 @@ export function Pagination({ onPageChange }) {
 
     return (
         <div className="pagination">
-            <button onClick={handlePageChange}>1</button>
-            <button onClick={handlePageChange}>2</button>
-            <button onClick={handlePageChange}>3</button>
-            <button onClick={handlePageChange}>4</button>
-            <button onClick={handlePageChange}>5</button>
+            {[1,2,3,4,5].map((i) => (
+                <button key={i} onClick={handlePageChange}>{i}</button>
+            ))}
         </div>
     );
 }

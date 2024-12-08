@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import './DropDown.css';
+=======
+import React, { useState } from "react";
+import "../styles/DropDown.css";
+import DropdownToggle from "./DropdownToggle"; 
+import DropdownContent from "./DropdownContent";
+>>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
 
-function DropDown({ options = [], onSelect }) { 
+function DropDown({ options = [], onSelect }) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
 
     const toggleDropdown = () => {
-        setIsOpen((prev) => !prev);
+        setIsOpen(!isOpen);
     };
 
     const handleOptionClick = (option) => {
@@ -17,24 +24,15 @@ function DropDown({ options = [], onSelect }) {
 
     return (
         <div className="dropdown">
-            <button className="dropdown-button" onClick={toggleDropdown}>
-                {selectedOption || "최신순"} ▼
-            </button>
-            {isOpen && options.length > 0 ? (
-                <ul className="dropdown-menu">
-                    {options.map((option, index) => (
-                        <li
-                            key={index}
-                            className="dropdown-item"
-                            onClick={() => handleOptionClick(option)}
-                        >
-                            {option}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                isOpen && <p className="dropdown-no-options">옵션이 없습니다.</p>
-            )}
+            <DropdownToggle 
+                onToggle={toggleDropdown}
+                selectedOption={selectedOption}
+            />
+            <DropdownContent 
+                isOpen={isOpen}
+                options={options}
+                handleOptionClick={handleOptionClick}
+            />
         </div>
     );
 }

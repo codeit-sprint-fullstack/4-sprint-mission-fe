@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/components/App.js
 import './App.css';
 import NavBar from './NavBar';
 import Footer from './Footer';
@@ -7,6 +8,18 @@ import { useState } from 'react';
 import SearchBar from './SearchBar';
 import Pagination from './Pagination';
 import DropDown from './DropDown';
+=======
+import "../styles/ItemPage.css";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import BestProducts from "../components/BestProducts";
+import { OnSaleProducts } from "../components/OnSaleProducts";
+import { useState } from "react";
+import SearchBar from "../components/SearchBar";
+import Pagination from "../components/Pagination";
+import DropDown from "../components/DropDown";
+import { NavLink } from "react-router-dom";
+>>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영):src/pages/ItemPage.js
 
 function App() {
 
@@ -24,7 +37,6 @@ function App() {
       newOption = "favorite";
       setSelectedOption(newOption);
     }
-    console.log(newOption);
   }
 
   const handlePageChange = (newPage) => {

@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import "./BestProducts.css";
 import { getProducts } from "../api/getProducts";
+<<<<<<< HEAD
 import "./BestProducts.css";
 import "../images/empty_heart.png";
 import IsImage from "./IsImage";
 import "../images/no-image-available.png";
+=======
+import "../images/emptyHeart.png";
+import IsImage from "../utils/image.helper";
+import "../images/noImageAvailable.png";
+>>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
 
 export function BestProducts() {
 
-  const empty_heart = require("../images/empty_heart.png");
-  const no_image_available = require("../images/no-image-available.png");
+  const emptyHeart = require("../images/emptyHeart.png");
+  const noImageAvailable = require("../images/noImageAvailable.png");
 
 
   const [bestProducts, setBestProducts] = useState([]);
@@ -22,7 +28,7 @@ export function BestProducts() {
         setBestProducts(data.list);
         data.list.forEach(product => {
           if (!IsImage(String(product.images))) {
-            product.images = no_image_available;
+            product.images = noImageAvailable;
           }
         });
       })
@@ -40,7 +46,7 @@ export function BestProducts() {
               <p>{product.price.toLocaleString()}원</p>
               <div className="best-product-favorite">
                 <button className="best-favorite-button">
-                  <img src={empty_heart} alt="favorite"></img>
+                  <img src={emptyHeart} alt="favorite"></img>
                 </button>
                 <h5>{product.favoriteCount}</h5>
               </div>

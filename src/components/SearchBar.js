@@ -13,7 +13,6 @@ export function SearchBar({ onSearch }) {
     }
 
     useEffect(() => {
-      console.log(keyword);
     }, [keyword]);
 
   return (
