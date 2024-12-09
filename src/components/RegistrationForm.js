@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "../styles/RegistrationForm.css";
 import { useNavigate } from "react-router-dom";
 

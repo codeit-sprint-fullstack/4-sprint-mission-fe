@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-import instagram from '../images/ic_instagram.png';
-import facebook from '../images/ic_facebook.png';
-import twitter from '../images/ic_twitter.png';
-import youtube from '../images/ic_youtube.png';
-import './Footer.css';
-=======
 import instagram from "../images/ic_instagram.png";
 import facebook from "../images/ic_facebook.png";
 import twitter from "../images/ic_twitter.png";
 import youtube from "../images/ic_youtube.png";
 import "../styles/Footer.css";
->>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
 
 export function Footer() {
   return (

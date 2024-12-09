@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react";
 import "./BestProducts.css";
 import { getProducts } from "../api/getProducts";
-<<<<<<< HEAD
-import "./BestProducts.css";
-import "../images/empty_heart.png";
-import IsImage from "./IsImage";
-import "../images/no-image-available.png";
-=======
 import "../images/emptyHeart.png";
 import IsImage from "../utils/image.helper";
 import "../images/noImageAvailable.png";
->>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
 
 export function BestProducts() {
 

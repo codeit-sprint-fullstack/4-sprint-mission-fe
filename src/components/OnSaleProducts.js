@@ -1,12 +1,7 @@
 // import Product from "./ProductList";
 import "../images/search.png";
-<<<<<<< HEAD
-import "./OnSaleProducts.css";
-import "../images/empty_heart.png";
-=======
 import "../styles/OnSaleProducts.css";
 import "../images/emptyHeart.png";
->>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
 import { useState, useEffect } from "react";
 import getProducts from "../api/getProducts";
 import IsImage from "../utils/image.helper";
@@ -25,12 +20,6 @@ export function OnSaleProducts({ sort, page, keyword }) {
     const pageSize = input ? 10000 : 10;
     getProducts({ page, pageSize, sort: sortingType, keyword: input }) 
       .then((data) => {
-<<<<<<< HEAD
-        setOnSaleProducts(data.list);
-        data.list.forEach(product => {
-          if (!IsImage(String(product.images))) {
-            product.images = no_image_available;
-=======
         if (!data.products || !Array.isArray(data.products)) {
           throw new Error("Invalid products data");
         }
@@ -39,7 +28,6 @@ export function OnSaleProducts({ sort, page, keyword }) {
         data.products.forEach(product => {
           if (!product.images || !IsImage(product.images)) {
             product.images = noImageAvailable;
->>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
           }
         });
       })
@@ -68,13 +56,8 @@ export function OnSaleProducts({ sort, page, keyword }) {
       {
         filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
-<<<<<<< HEAD
-            <div className="on-sale-product-card" key={product.id}>
-              <img className="on-sale-product-image" src={product.images || no_image_available} alt={product.name} />
-=======
             <div className="on-sale-product-card" key={product._id}>
               <img className="on-sale-product-image" src={product.images || noImageAvailable} alt={product.name} />
->>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
               <div className="on-sale-product-info">
                 <h3>{product.name}</h3>
                 <p>{product.price.toLocaleString()}원</p>

@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import './DropDown.css';
-=======
 import React, { useState } from "react";
 import "../styles/DropDown.css";
 import DropdownToggle from "./DropdownToggle"; 
 import DropdownContent from "./DropdownContent";
->>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
 
 function DropDown({ options = [], onSelect }) {
     const [isOpen, setIsOpen] = useState(false);

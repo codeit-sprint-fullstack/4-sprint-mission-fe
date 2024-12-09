@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { useState, useEffect } from 'react';
-import './Pagination.css';
-=======
 import { useState, useEffect } from "react";
 import "../styles/Pagination.css";
->>>>>>> 0f1a9c4 (refactor: sprint5 코멘트 반영)
 
 
 export function Pagination({ onPageChange }) {
