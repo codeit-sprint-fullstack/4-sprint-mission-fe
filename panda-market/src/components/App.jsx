@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../api";
 import "./App.css";
+import { useSearchParams } from "react-router-dom";
 
 const MAX_VISIBLE_PAGE = 5;
 
@@ -10,6 +11,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [orderBy, setOrderBy] = useState("recent");
   const [pagination, setPagination] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleLoad = async (options) => {
     console.log(options);
@@ -65,6 +67,20 @@ function App() {
     }
   };
 
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLoad({
+      page: 1,
+      pageSize: 10,
+      orderBy: orderBy,
+      keyword: searchTerm,
+    });
+  };
+
   useEffect(() => {
     handleLoad({ page: currentPage, pageSize: 10, orderBy: orderBy });
   }, [orderBy, currentPage]);
@@ -80,6 +96,16 @@ function App() {
       <div>
         <button onClick={handleClickOrder("recent")}>최신순</button>
         <button onClick={handleClickOrder("favorite")}>좋아요순</button>
+      </div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleInputChange}
+            placeholder="검색할 상품을 입력해주세요."
+          />
+        </form>
       </div>
       <div>
         {products.map((product) => (
