@@ -23,7 +23,6 @@ function ItemPage() {
       newOption = "favorite";
       setSelectedOption(newOption);
     }
-    console.log(newOption);
   }
 
   const handlePageChange = (newPage) => {
