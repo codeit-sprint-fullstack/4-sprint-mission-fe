@@ -10,8 +10,8 @@ export async function getProducts(
     keyword = "",
 }
 ) {
-  const query = `offset=${offset}&limit=${limit}&page=${page}&pageSize=${pageSize}&orderBy=${sort}&keyword=${keyword}`;
-  const response = await fetch(`${BASE_URL}?${query}`);
+  const query = `offset=${offset}&limit=${limit}&page=${page}&sort=${sort}&search=${keyword}`;
+  const response = await fetch(`${BASE_URL}/products?${query}`);
   const data = await response.json();
   
   return data;

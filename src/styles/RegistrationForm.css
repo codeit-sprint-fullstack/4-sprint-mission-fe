@@ -1,0 +1,83 @@
+form {
+    width: 100%;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--secondary-color-gray900);
+}
+
+label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--secondary-color-gray900);
+}
+
+.registration_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding-left: 15%;
+    padding-right: 15%;
+    overflow: hidden;
+  }
+
+.product_registration {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+.product_name,
+.product_desc,
+.product_price,
+.product_tags
+ {
+    display: flex;
+    justify-content: flex-start;
+    align-items: normal;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+
+.product_name_input,
+.product_desc_input,
+.product_price_input,
+.product_tags_input {
+    height: 42px;
+    font-size: 16px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background: var(--secondary-color-gray100);
+    border: 1px solid #ccc;
+    border: none;
+  }
+
+.product_desc_input {
+    height: 20rem;
+  }
+
+input::placeholder {
+    color: var(--secondary-color-gray400);
+    font-size: 15px;
+    padding-left: 10px;
+  }
+
+.registration_button {
+    width: 74px;
+    height: 42px;
+    border-radius: 8px;
+    border-width: 0px;
+    background-color: var(--secondary-color-gray400);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }

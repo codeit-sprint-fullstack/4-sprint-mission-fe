@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./BestProducts.css";
+import "../styles/BestProducts.css";
 import { getProducts } from "../api/getProducts";
 import "../images/emptyHeart.png";
 import IsImage from "../utils/image.helper";
@@ -18,8 +18,8 @@ export function BestProducts() {
     
     getProducts({ pageSize: 4, sort: "favorite" }) 
       .then((data) => {
-        setBestProducts(data.list);
-        data.list.forEach(product => {
+        setBestProducts(data);
+        data.forEach(product => {
           if (!IsImage(String(product.images))) {
             product.images = noImageAvailable;
           }

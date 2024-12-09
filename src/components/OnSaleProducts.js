@@ -18,7 +18,9 @@ export function OnSaleProducts({ sort, page, keyword }) {
 
   useEffect(() => {
     const pageSize = input ? 10000 : 10;
-    getProducts({ page, pageSize, sort: sortingType, keyword: input }) 
+    const limit = 10;
+    const total = 0;
+    getProducts({ total, page, pageSize, limit, sort: sortingType, keyword: input }) 
       .then((data) => {
         if (!data.products || !Array.isArray(data.products)) {
           throw new Error("Invalid products data");
@@ -44,7 +46,7 @@ export function OnSaleProducts({ sort, page, keyword }) {
 
   useEffect(() => {
     const filteredData = onSaleProducts.filter((product) =>
-      product.name.toLowerCase().includes(input.trim().toLowerCase())
+      product?.name?.toLowerCase().includes(input.trim().toLowerCase())
     );
     setFilteredProducts(filteredData);
   }, [input, onSaleProducts]);
@@ -71,7 +73,7 @@ export function OnSaleProducts({ sort, page, keyword }) {
             </div>
           ))
         ) : (
-          <p>검색 결과가 없습니다.</p>  // 필터링된 결과가 없으면 표시
+          <p>검색 결과가 없습니다.</p> 
         )
       }
     </div>
