@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--maincolor);
+  width: 100%;
+  height: 360.8rem;
+  color: var(--text-color-black);
+}
+@media screen and (min-width: 744px) and (max-width: 1200px) {
+  .container {
+    height: 423.6rem;
+  }
+}

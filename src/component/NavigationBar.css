@@ -1,3 +1,11 @@
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+.NavigationMenu > a {
+  color: var(--favorite-text-color);
+}
+
 .NavigationBar {
   display: flex;
   width: 100%;
@@ -14,11 +22,11 @@
   background-color: white;
   z-index: 10;
 }
+
 .NavigationMenu {
   display: flex;
   align-items: center;
   gap: 3rem;
-  color: #4b5563;
 }
 
 .button {

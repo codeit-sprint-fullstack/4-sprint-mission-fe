@@ -1,0 +1,111 @@
+.registrationSection {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 13rem;
+}
+.registrationContainer {
+  width: 120rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+.buttonSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+}
+.buttonSection button:disabled {
+  background-color: var(--button-background-color);
+}
+.registrationContainer input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 5.6rem;
+}
+
+.registrationContainer textarea {
+  width: 100%;
+  box-sizing: border-box;
+  height: 28.2rem;
+  resize: none;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.inputContainer .menuInput {
+  font-family: "Pretendard Variable", sans-serif;
+  background-color: var(--Menu-input-color);
+  border: none;
+  border-radius: 1.2rem;
+  padding-left: 2.3rem;
+  box-sizing: border-box;
+}
+.inputContainer .menuInput.textarea {
+  padding-top: 2rem;
+  font-family: "Pretendard Variable", sans-serif;
+}
+
+.inputwraper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.errorMessage {
+  color: var(--invalid-message-color);
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-left: 1rem;
+}
+.menuInput.red {
+  border: 0.1rem solid var(--invalid-message-color);
+}
+
+.menuInput:focus {
+  outline: none;
+  border: 0.1rem solid var(--button-active-color);
+}
+
+.tagBox {
+  display: flex;
+  gap: 1rem;
+}
+.tag {
+  border-radius: 2.6rem;
+  height: 3.6rem;
+  background-color: var(--Menu-input-color);
+  padding: 0.6rem 1.2rem 0.6rem 1.6rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.delteButton {
+  padding-left: 0.4rem;
+}
+
+@media screen and (min-width: 744px) and (max-width: 1199px) {
+  .registrationContainer {
+    width: 69.6rem;
+  }
+  .inputContainer {
+    gap: 2.4rem;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 743px) {
+  .registrationContainer {
+    width: 34.4rem;
+  }
+  .inputContainer {
+    gap: 2.4rem;
+  }
+}

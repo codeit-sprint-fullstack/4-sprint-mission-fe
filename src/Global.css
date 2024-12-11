@@ -12,4 +12,19 @@
   --text-color-light: #e5e7eb;
   --button-active-color: #2f80ed;
   --page-active-text: #f9fafb;
+  --header-background: #cfe5ff;
+  --maincolor: #f9fafc;
+  --white: #ffffff;
+  --text-color-basic: #374151;
+  --nav-background: #ffffff;
+  --section-background: #fcfcfc;
+  --section2-background: #cfe5ff;
+  --bottom-background: #111827;
+  --box-background-color: #f3f4f6;
+  --box-text-color: #9ca3af;
+  --input-focus-color: #3692ff;
+  --button-background-color: #9ca3af;
+  --social-background-color: #e6f2ff;
+  --invalid-message-color: #f74747;
+  --text-color-black: #374151;
 }

@@ -3,7 +3,6 @@ import "./PageButton.css";
 const PAGENUMBER = 5;
 
 export const PageButton = ({ currentPage, handleSellingPage, maxPage }) => {
-  console.log(currentPage);
   const startPage = Math.floor((currentPage - 1) / PAGENUMBER) * PAGENUMBER + 1; // 처음에 보일 숫자중 첫번째
   const endPage = Math.min(maxPage, startPage + PAGENUMBER - 1); // 마지막에 보일 숫자
 
@@ -26,7 +25,8 @@ export const PageButton = ({ currentPage, handleSellingPage, maxPage }) => {
         const page = startPage + index;
         return (
           <button
-            className={`PageButton ${page === currentPage ? "active" : ""}`}
+            key={page}
+            className={`PageButton ${page === currentPage ? "isactive" : ""}`}
             onClick={() => handlePageChange(page)}
           >
             {page}
