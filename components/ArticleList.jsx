@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import DropDown from './Dropdown';
+import Dropdown from './Dropdown';
 import api from '@/api';
 import ArticleCard from './ArticleCard';
+import Button from './Button';
 
 function ArticleList() {
   const [articles, setArticles] = useState([]);
@@ -37,14 +38,14 @@ function ArticleList() {
     <section>
       <div className="flex justify-between items-center h-[42px] mb-6">
         <p className="text-xl font-semibold ">게시글</p>
-        {/* <Button sizeW={'88'} sizeH={'42'}>
-            글쓰기
-          </Button> */}
-        <button
+        <Button sizeW={'88'} sizeH={'42'}>
+          글쓰기
+        </Button>
+        {/* <button
           className={`shrink-0 w-[88px] h-[42px] bg-[#3692FF] text-white rounded-lg`}
         >
           글쓰기
-        </button>
+        </button> */}
       </div>
       <div className="flex justify-between mb-6">
         <form className="w-full" onSubmit={handleSubmit}>
@@ -60,7 +61,7 @@ function ArticleList() {
             />
           </p>
         </form>
-        <DropDown value={'latest'} onSelect={setSortOption} />
+        <Dropdown value={'latest'} onSelect={setSortOption} />
       </div>
       {articles.map((article) => (
         <ArticleCard key={article.id} article={article} />

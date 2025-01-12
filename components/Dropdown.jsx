@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export const DropDownMenu = ({ onSelect }) => {
+export const DropdownMenu = ({ onSelect }) => {
   const MENU_ITEMS = [
     { text: '최신순', value: 'latest' },
     { text: '좋아요순', value: 'favorite' },
@@ -27,7 +27,7 @@ export const DropDownMenu = ({ onSelect }) => {
   );
 };
 
-const DropDown = ({ onSelect, value }) => {
+const Dropdown = ({ onSelect, value }) => {
   const [label, setLabel] = useState(value);
   const [isDropdownView, setDropdownView] = useState(false);
   const labelText =
@@ -62,9 +62,9 @@ const DropDown = ({ onSelect, value }) => {
           {labelText}
         </button>
       </label>
-      {isDropdownView && <DropDownMenu onSelect={handleMenuSelect} />}
+      {isDropdownView && <DropdownMenu onSelect={handleMenuSelect} />}
     </div>
   );
 };
 
-export default DropDown;
+export default Dropdown;

@@ -2,7 +2,7 @@ import api from '@/api';
 import ArticleCard from '@/components/ArticleCard';
 import BestArticleCard from '@/components/BestArticleCard';
 import Button from '@/components/Button';
-import DropDown from '@/components/Dropdown';
+import Dropdown from '@/components/Dropdown';
 import icSearch from '@/assets/images/ic_search.png';
 import ArticleList from '@/components/ArticleList';
 
