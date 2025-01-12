@@ -1,8 +1,10 @@
+'use client';
+
 import { useState } from 'react';
 
 export const DropDownMenu = ({ onSelect }) => {
   const MENU_ITEMS = [
-    { text: '최신순', value: 'recent' },
+    { text: '최신순', value: 'latest' },
     { text: '좋아요순', value: 'favorite' },
   ];
 
@@ -11,9 +13,13 @@ export const DropDownMenu = ({ onSelect }) => {
   };
 
   return (
-    <div className="dropdown-menu">
+    <div className="absolute mt-2 w-[130px] font-normal text-center bg-white rounded-lg border">
       {MENU_ITEMS.map(({ text, value }) => (
-        <div className="dropdown-item" key={value} onClick={handleClick(value)}>
+        <div
+          className="first:border-b h-10 flex justify-center items-center cursor-pointer hover:bg-slate-100 transition"
+          key={value}
+          onClick={handleClick(value)}
+        >
           {text}
         </div>
       ))}
@@ -21,11 +27,11 @@ export const DropDownMenu = ({ onSelect }) => {
   );
 };
 
-const DropDown = ({ onClick, value }) => {
+const DropDown = ({ onSelect, value }) => {
   const [label, setLabel] = useState(value);
   const [isDropdownView, setDropdownView] = useState(false);
   const labelText =
-    label === 'recent'
+    label === 'latest'
       ? `최신순   ${isDropdownView ? '▲' : '▼'}`
       : `좋아요순  ${isDropdownView ? '▲' : '▼'}`;
 
@@ -43,14 +49,14 @@ const DropDown = ({ onClick, value }) => {
     }, 100);
   };
 
-  const handleMenuSelect = (order) => {
-    onClick(order);
-    setLabel(order);
+  const handleMenuSelect = (sortOption) => {
+    onSelect(sortOption);
+    setLabel(sortOption);
     setDropdownView(!isDropdownView);
   };
 
   return (
-    <div className="relative" onBlur={handleBlur}>
+    <div className="relative ml-2" onBlur={handleBlur}>
       <label onClick={handleButtonClick}>
         <button className="w-[130px] h-[42px] bg-white border rounded-lg">
           {labelText}

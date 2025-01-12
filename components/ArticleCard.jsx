@@ -2,7 +2,6 @@ import Image from 'next/image';
 import defaultProduct from '@/assets/images/default_product.png';
 import icProfile from '@/assets/images/ic_profile.png';
 import icHeart from '@/assets/images/ic_heart.png';
-import color from '@/styles';
 
 function ArticleCard({ article }) {
   return (
@@ -19,7 +18,7 @@ function ArticleCard({ article }) {
         />
       </div>
       <div
-        className={`flex items-center justify-between text-[${color.navTxtColor}] text-sm`}
+        className={`flex items-center justify-between text-[#4B5563] text-sm`}
       >
         <div className="flex items-center">
           <Image className="shrink-0 w-6 h-6" src={icProfile} alt="profile" />

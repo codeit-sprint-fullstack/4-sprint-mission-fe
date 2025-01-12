@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import color from '@/styles/index';
 
 // 메뉴 확장성 고려
 const navMenus = [
@@ -12,19 +11,18 @@ const navMenus = [
 
 function HeaderNav() {
   const path = usePathname();
+  console.log(path);
 
   return (
     <div>
       {navMenus.map((navMenu, i) => {
         return (
           <span
-            className={`first:ml-6 px-4 text-lg font-semibold hover:text-[${
-              color.mainColor
-            }] ${
+            className={`first:ml-6 px-4 text-lg font-semibold hover:text-[#3692FF] ${
               // 활성화된 메뉴에 컬러 적용
               path.startsWith(navMenu.link)
-                ? `text-[${color.mainColor}]`
-                : `text-[${color.navTxtColor}]`
+                ? `text-[#3692FF]`
+                : `text-[#4B5563]`
             } `}
             key={i}
           >

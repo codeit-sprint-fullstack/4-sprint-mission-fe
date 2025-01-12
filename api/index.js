@@ -6,8 +6,13 @@ const client = axios.create({
   baseURL,
 });
 
-const getArticles = async ({ limit = 10, sort = 'recent', skip = 0 }) => {
-  const query = `limit=${limit}&sort=${sort}&skip=${skip}`;
+const getArticles = async ({
+  limit = 10,
+  sort = 'latest',
+  skip = 0,
+  keyword = '',
+}) => {
+  const query = `limit=${limit}&sort=${sort}&skip=${skip}&keyword=${keyword}`;
   const url = `/articles?${query}`;
   // const url = `/articles?limit=3`;
   const res = await client.get(url);

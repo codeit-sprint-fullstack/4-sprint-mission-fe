@@ -1,4 +1,3 @@
-import color from '@/styles';
 import medal from '@/assets/images/ic_medal.png';
 import defaultProduct from '@/assets/images/default_product.png';
 import icHeart from '@/assets/images/ic_heart.png';
@@ -8,7 +7,7 @@ function BestArticleCard({ article }) {
   return (
     <div className="px-6 pb-[9px] bg-[#f9fafb] rounded-lg">
       <div
-        className={`flex justify-center items-center w-[102px] h-[30px] bg-[${color.mainColor}] text-white font-semibold rounded-b-2xl`}
+        className={`flex justify-center items-center w-[102px] h-[30px] bg-[#3692FF] text-white font-semibold rounded-b-2xl`}
       >
         <Image src={medal} alt="medal" width={16} />
         <p className="pl-1 ">Best</p>
@@ -25,7 +24,7 @@ function BestArticleCard({ article }) {
         />
       </div>
       <div
-        className={`flex items-center justify-between text-[${color.navTxtColor}] text-sm`}
+        className={`flex items-center justify-between text-[#4B5563] text-sm`}
       >
         <div className="flex items-center">
           <p>총명한판다</p>
