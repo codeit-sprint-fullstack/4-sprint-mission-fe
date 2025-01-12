@@ -5,6 +5,7 @@ import Dropdown from './Dropdown';
 import api from '@/api';
 import ArticleCard from './ArticleCard';
 import Button from './Button';
+import Link from 'next/link';
 
 function ArticleList() {
   const [articles, setArticles] = useState([]);
@@ -64,7 +65,9 @@ function ArticleList() {
         <Dropdown value={'latest'} onSelect={setSortOption} />
       </div>
       {articles.map((article) => (
-        <ArticleCard key={article.id} article={article} />
+        <Link key={article.id} href={`/articles/${article.id}`}>
+          <ArticleCard article={article} />
+        </Link>
       ))}
     </section>
   );

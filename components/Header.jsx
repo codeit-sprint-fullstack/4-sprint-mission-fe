@@ -18,6 +18,7 @@ function Header({ isLandingPage = false }) {
               alt="판다마켓 로고"
               width={153}
               className="shrink-0 align-bottom"
+              priority
             />
           </Link>
         </div>
