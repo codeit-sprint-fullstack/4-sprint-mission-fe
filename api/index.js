@@ -27,9 +27,17 @@ const getArticle = async (articleId) => {
   return res.data;
 };
 
+const getCommentsOfArticle = async (articleId, { limit = 3, cursor = '' }) => {
+  const query = `limit=${limit}&cursor=${cursor}`;
+  const url = `/articles/${articleId}/comments?${query}`;
+  const res = await client.get(url);
+  return res.data;
+};
+
 const api = {
   getArticles,
   getArticle,
+  getCommentsOfArticle,
 };
 
 export default api;

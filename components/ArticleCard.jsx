@@ -14,7 +14,6 @@ function ArticleCard({ article }) {
           className="shrink-0 w-[72px] h-[72px]"
           src={defaultProduct}
           alt="product"
-          objectFit="cover"
         />
       </div>
       <div

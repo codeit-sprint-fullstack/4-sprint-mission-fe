@@ -34,6 +34,7 @@ function PopMenuButton({ isCommentBtn = false }) {
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const buttonRef = useRef();
 
+  // 게시글에 있는 메뉴 버튼과 댓글에 있는 메뉴 버튼의 스타일 구분
   const defaultClassName = clsx('w-6 h-6 cursor-pointer');
   const commentClassName = clsx({ 'absolute top-0 right-0': isCommentBtn });
 

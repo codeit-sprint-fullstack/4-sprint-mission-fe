@@ -13,6 +13,7 @@ function ArticleList() {
   const [keyword, setKeyword] = useState('');
 
   const handleArticlesLoad = async (options) => {
+    console.log('게시글 불러오기');
     const result = await api.getArticles(options);
     setArticles(result);
   };
@@ -62,7 +63,7 @@ function ArticleList() {
             />
           </p>
         </form>
-        <Dropdown value={'latest'} onSelect={setSortOption} />
+        <Dropdown value={sortOption} onSelect={setSortOption} />
       </div>
       {articles.map((article) => (
         <Link key={article.id} href={`/articles/${article.id}`}>

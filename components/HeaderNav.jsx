@@ -11,7 +11,6 @@ const navMenus = [
 
 function HeaderNav() {
   const path = usePathname();
-  console.log(path);
 
   return (
     <div>
