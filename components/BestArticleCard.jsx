@@ -3,6 +3,8 @@ import defaultProduct from '@/assets/images/default_product.png';
 import icHeart from '@/assets/images/ic_heart.png';
 import Image from 'next/image';
 
+import { formattedDate } from '@/utils/formattedDate';
+
 function BestArticleCard({ article }) {
   return (
     <div className="px-6 pb-[9px] bg-[#f9fafb] rounded-lg">
@@ -30,7 +32,7 @@ function BestArticleCard({ article }) {
           <Image className="w-4 h-4 ml-2 mr-1" src={icHeart} alt="heart" />
           <p>9999+</p>
         </div>
-        <p className="text-[#9CA3AF]">2024.04.16</p>
+        <p className="text-[#9CA3AF]">{formattedDate(article.createdAt)}</p>
       </div>
     </div>
   );

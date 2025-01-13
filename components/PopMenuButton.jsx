@@ -20,7 +20,7 @@ export const DropdownMenu = ({
   const router = useRouter();
 
   const editArticle = () => {
-    router.push('/articles/post', {
+    router.push(`/articles/post/${article.id}`, {
       query: { article: 'aksdfl' },
     });
   };

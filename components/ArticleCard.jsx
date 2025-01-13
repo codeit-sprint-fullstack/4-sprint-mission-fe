@@ -2,6 +2,7 @@ import Image from 'next/image';
 import defaultProduct from '@/assets/images/default_product.png';
 import icProfile from '@/assets/images/ic_profile.png';
 import icHeart from '@/assets/images/ic_heart.png';
+import { formattedDate } from '@/utils/formattedDate';
 
 function ArticleCard({ article }) {
   return (
@@ -22,7 +23,7 @@ function ArticleCard({ article }) {
         <div className="flex items-center">
           <Image className="shrink-0 w-6 h-6" src={icProfile} alt="profile" />
           <p className="mx-2">총명한 판다</p>
-          <p className="text-[#9CA3AF]">2024.04.16</p>
+          <p className="text-[#9CA3AF]">{formattedDate(article.createdAt)}</p>
         </div>
         <div className="flex items-center">
           <Image className="w-6 h-6 mr-2" src={icHeart} alt="heart" />
