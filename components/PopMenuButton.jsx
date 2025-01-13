@@ -5,32 +5,39 @@ import icKebab from '@/assets/images/ic_kebab.png';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
-export const DropdownMenu = ({ onSelect, isCommentBtn }) => {
-  const MENU_ITEMS = [
-    { text: '수정하기', value: 'latest' },
-    { text: '삭제하기', value: 'favorite' },
-  ];
-
-  const handleClick = (value) => () => {
-    onSelect(false);
+export const DropdownMenu = ({ isCommentBtn, onDelete, commentId }) => {
+  const editArticle = () => {};
+  const deleteArticle = () => {
+    console.log('delet article');
   };
+  const editComment = () => {};
+  const deleteComment = () => {
+    onDelete(commentId);
+  };
+  const MENU_ITEMS = [
+    { text: '수정하기', clickMethod: isCommentBtn ? editComment : editArticle },
+    {
+      text: '삭제하기',
+      clickMethod: isCommentBtn ? deleteComment : deleteArticle,
+    },
+  ];
 
   return (
     <div className="absolute top-5 right-0 mt-2 w-[130px] font-normal text-[#6B7280] text-center bg-white rounded-lg border">
-      {MENU_ITEMS.map(({ text, value }) => (
+      {MENU_ITEMS.map((menuItem, i) => (
         <div
           className="h-10 flex justify-center items-center cursor-pointer hover:bg-slate-100 transition"
-          key={value}
-          onClick={handleClick(value)}
+          key={i}
+          onClick={menuItem.clickMethod}
         >
-          {text}
+          {menuItem.text}
         </div>
       ))}
     </div>
   );
 };
 
-function PopMenuButton({ isCommentBtn = false }) {
+function PopMenuButton({ isCommentBtn = false, onDelete, commentId }) {
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const buttonRef = useRef();
 
@@ -39,7 +46,7 @@ function PopMenuButton({ isCommentBtn = false }) {
   const commentClassName = clsx({ 'absolute top-0 right-0': isCommentBtn });
 
   const handleMenuClick = () => {
-    setIsShowDropdown(!isShowDropdown);
+    setTimeout(() => setIsShowDropdown(!isShowDropdown), 100);
   };
 
   useEffect(() => {
@@ -49,7 +56,7 @@ function PopMenuButton({ isCommentBtn = false }) {
      */
     const handleClick = (e) => {
       if (buttonRef.current && !buttonRef.current.contains(e.target)) {
-        setIsShowDropdown(false);
+        setTimeout(() => setIsShowDropdown(false), 100);
       }
     };
     window.addEventListener('mousedown', handleClick);
@@ -67,8 +74,10 @@ function PopMenuButton({ isCommentBtn = false }) {
       />
       {isShowDropdown && (
         <DropdownMenu
-          onSelect={setIsShowDropdown}
+          // onSelect={setIsShowDropdown}
           isCommentBtn={isCommentBtn}
+          onDelete={onDelete}
+          commentId={commentId}
         />
       )}
     </div>

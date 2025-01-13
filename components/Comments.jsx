@@ -8,22 +8,29 @@ import Button from './Button';
 function Comments({ articleId }) {
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');
+  const [refreshValue, setRefreshValue] = useState(0);
 
   const handleCommentsLoad = async (options) => {
     const result = await api.getCommentsOfArticle(articleId, options);
     setComments(result.comments);
   };
 
-  const handleRegistClick = async (e) => {
+  const handleRegistClick = async () => {
     if (content === '') return;
-    console.log(content);
-    e.preventDefault();
     await api.postArticleComment(articleId, { content });
+    // 댓글 목록 자동 갱신을 위한 코드
+    setRefreshValue((prevValue) => prevValue + 1);
+    setContent('');
+  };
+
+  const handleDeleteClick = async (commentId) => {
+    await api.deleteComment(commentId);
+    setRefreshValue((prevValue) => prevValue + 1);
   };
 
   useEffect(() => {
     handleCommentsLoad({ limit: 10 });
-  }, []);
+  }, [refreshValue]);
 
   return (
     <div>
@@ -35,6 +42,7 @@ function Comments({ articleId }) {
               name="comment"
               className="bg-[#f3f4f6] placeholder-gray-400 w-full h-[104px] rounded-lg px-6 py-4"
               placeholder="댓글을 입력해주세요"
+              value={content}
               onChange={(e) => setContent(e.target.value)}
             />
           </form>
@@ -47,7 +55,11 @@ function Comments({ articleId }) {
       </div>
 
       {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
+        <Comment
+          key={comment.id}
+          comment={comment}
+          onDelete={handleDeleteClick}
+        />
       ))}
     </div>
   );

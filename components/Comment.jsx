@@ -1,14 +1,20 @@
 import Image from 'next/image';
-import icKebab from '@/assets/images/ic_kebab.png';
 import icProfile from '@/assets/images/ic_profile.png';
 import PopMenuButton from './PopMenuButton';
+import lineBreakText from '@/utils/lineBreakText';
 
-function Comment({ comment }) {
+function Comment({ comment, onDelete }) {
   return (
     <div className="border-b bg-[#f8f8f8] px-1 py-1 mb-6 relative">
-      <PopMenuButton isCommentBtn={true} />
+      <PopMenuButton
+        isCommentBtn={true}
+        onDelete={onDelete}
+        commentId={comment.id}
+      />
       <div>
-        <p className="text-[#1F2937] text-sm">{comment.content}</p>
+        <p className="text-[#1F2937] text-sm">
+          {lineBreakText(comment.content)}
+        </p>
       </div>
       <div className="flex mt-6 mb-3">
         <Image
