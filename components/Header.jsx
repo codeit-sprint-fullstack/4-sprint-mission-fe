@@ -26,9 +26,7 @@ function Header({ isLandingPage = false }) {
           {/* 랜딩 페이지인 경우에만 nav메뉴 렌더링 */}
           {isLandingPage || <HeaderNav />}
         </div>
-        <Button sizeW={'128'} sizeH={'48'}>
-          로그인
-        </Button>
+        <Button>로그인</Button>
         {/* 버튼을 컴포넌트로 분리했을 때 tailwind css가 적용되었다 안 되었다 하는 문제 발생 */}
         {/* <button
           className={`shrink-0 w-[128px] h-[48px] bg-[#3692FF] text-white rounded-lg`}

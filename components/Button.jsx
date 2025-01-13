@@ -1,8 +1,18 @@
-function Button({ children, sizeW, sizeH }) {
+import clsx from 'clsx';
+
+function Button({ children, isDisabled = false, onClick }) {
+  const defaultClassNames = clsx(
+    'shrink-0 px-6 py-2 bg-[#3692FF] text-white rounded-lg'
+  );
+
+  const disableClassNames = clsx({
+    'bg-[#9da3ae] cursor-default': isDisabled,
+  });
+
   return (
     <button
-      className={`shrink-0 w-[${sizeW}px] h-[${sizeH}px] bg-[#3692FF] text-white rounded-lg`}
-      // className={`shrink-0 w-[${sizeW}px] h-[${sizeH}px] bg-[#3692FF] text-white rounded-lg hover:bg-[${color.mainColorDark}]`}
+      className={clsx(defaultClassNames, disableClassNames)}
+      onClick={onClick}
     >
       {children}
     </button>

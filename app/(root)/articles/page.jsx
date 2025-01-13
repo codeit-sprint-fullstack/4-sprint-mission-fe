@@ -13,8 +13,8 @@ async function ArticleListPage() {
         <p className="text-xl font-semibold mb-6">베스트 게시글</p>
         <div className="grid grid-cols-3 gap-x-6">
           {bestArticles.map((article) => (
-            <Link href={`/articles/${article.id}`}>
-              <BestArticleCard key={article.id} article={article} />
+            <Link key={article.id} href={`/articles/${article.id}`}>
+              <BestArticleCard article={article} />
             </Link>
           ))}
         </div>

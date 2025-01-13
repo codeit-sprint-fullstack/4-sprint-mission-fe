@@ -1,10 +1,15 @@
 import axios from 'axios';
+import { comment } from 'postcss';
 
 const baseURL = 'http://localhost:5200';
 
 const client = axios.create({
   baseURL,
 });
+
+/**********************************************************************************
+ * 게시글(article) 관련 API
+ */
 
 // 게시글 목록 조회
 const getArticles = async ({
@@ -34,10 +39,30 @@ const getCommentsOfArticle = async (articleId, { limit = 3, cursor = '' }) => {
   return res.data;
 };
 
+/**********************************************************************************
+ * 댓글(comments) 관련 API
+ */
+
+// 댓글 등록 - 게시글
+const postArticleComment = async (articleId, comment) => {
+  const url = `/articles/${articleId}/comments`;
+  const res = await client.post(url, comment);
+  return res.data;
+};
+
+// 댓글 삭제
+const deleteComment = async (commentId) => {
+  const url = `/comments/${commentId}`;
+  const res = await client.delete(url);
+  return res.data;
+};
+
 const api = {
   getArticles,
   getArticle,
   getCommentsOfArticle,
+  postArticleComment,
+  deleteComment,
 };
 
 export default api;
