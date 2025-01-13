@@ -4,13 +4,29 @@ import Image from 'next/image';
 import icKebab from '@/assets/images/ic_kebab.png';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+// import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
-export const DropdownMenu = ({ isCommentBtn, onDelete, commentId, onEdit }) => {
+import { useRouter } from 'next/navigation';
+import api from '@/api';
+
+export const DropdownMenu = ({
+  isCommentBtn,
+  onDelete,
+  onEdit,
+  commentId,
+  article,
+}) => {
+  const router = useRouter();
+
   const editArticle = () => {
-    console.log('edit article');
+    router.push('/articles/post', {
+      query: { article: 'aksdfl' },
+    });
   };
-  const deleteArticle = () => {
-    console.log('delete article');
+  const deleteArticle = async () => {
+    await api.deleteArticle(article.id);
+    router.push('/articles');
   };
   const editComment = () => {
     onEdit(true);
@@ -41,7 +57,13 @@ export const DropdownMenu = ({ isCommentBtn, onDelete, commentId, onEdit }) => {
   );
 };
 
-function PopMenuButton({ isCommentBtn = false, onDelete, commentId, onEdit }) {
+function PopMenuButton({
+  isCommentBtn = false,
+  onDelete,
+  onEdit,
+  commentId,
+  article,
+}) {
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const buttonRef = useRef();
 
@@ -83,6 +105,7 @@ function PopMenuButton({ isCommentBtn = false, onDelete, commentId, onEdit }) {
           onDelete={onDelete}
           onEdit={onEdit}
           commentId={commentId}
+          article={article}
         />
       )}
     </div>

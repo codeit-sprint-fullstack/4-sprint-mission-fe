@@ -40,7 +40,9 @@ function ArticleList() {
     <section>
       <div className="flex justify-between items-center h-[42px] mb-6">
         <p className="text-xl font-semibold ">게시글</p>
-        <Button>글쓰기</Button>
+        <Link href="/articles/post">
+          <Button>글쓰기</Button>
+        </Link>
         {/* <button
           className={`shrink-0 w-[88px] h-[42px] bg-[#3692FF] text-white rounded-lg`}
         >
@@ -64,7 +66,13 @@ function ArticleList() {
         <Dropdown value={sortOption} onSelect={setSortOption} />
       </div>
       {articles.map((article) => (
-        <Link key={article.id} href={`/articles/${article.id}`}>
+        <Link
+          key={article.id}
+          href={{
+            pathname: `/articles/${article.id}`,
+            query: { name: '조형민' },
+          }}
+        >
           <ArticleCard article={article} />
         </Link>
       ))}

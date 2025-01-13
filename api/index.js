@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { comment } from 'postcss';
 
 const baseURL = 'http://localhost:5200';
 
@@ -10,6 +9,24 @@ const client = axios.create({
 /**********************************************************************************
  * 게시글(article) 관련 API
  */
+
+// 게시글 등록
+const postArticle = async (articleData) => {
+  const url = '/articles';
+  const res = await client.post(url, {
+    title: 'fixed',
+    content: 'title and content',
+  });
+  // const res = await client.post(url, articleData);
+  return res.data;
+};
+
+// 게시글 삭제
+const deleteArticle = async (articleId) => {
+  const url = `/articles/${articleId}`;
+  const res = await client.delete(url);
+  return res.data;
+};
 
 // 게시글 목록 조회
 const getArticles = async ({
@@ -32,6 +49,11 @@ const getArticle = async (articleId) => {
   return res.data;
 };
 
+/**********************************************************************************
+ * 댓글(comments) 관련 API
+ */
+
+// 댓글 목록 조회 - 게시글
 const getCommentsOfArticle = async (articleId, { limit = 3, cursor = '' }) => {
   const query = `limit=${limit}&cursor=${cursor}`;
   const url = `/articles/${articleId}/comments?${query}`;
@@ -39,14 +61,10 @@ const getCommentsOfArticle = async (articleId, { limit = 3, cursor = '' }) => {
   return res.data;
 };
 
-/**********************************************************************************
- * 댓글(comments) 관련 API
- */
-
 // 댓글 등록 - 게시글
-const postArticleComment = async (articleId, comment) => {
+const postArticleComment = async (articleId, commentData) => {
   const url = `/articles/${articleId}/comments`;
-  const res = await client.post(url, comment);
+  const res = await client.post(url, commentData);
   return res.data;
 };
 
@@ -58,16 +76,18 @@ const deleteComment = async (commentId) => {
 };
 
 // 댓글 수정
-const editComment = async (commentId, comment) => {
+const editComment = async (commentId, commentData) => {
   console.log('do editcomment!!');
   const url = `/comments/${commentId}`;
-  const res = await client.patch(url, comment);
+  const res = await client.patch(url, commentData);
   return res.data;
 };
 
 const api = {
   getArticles,
   getArticle,
+  postArticle,
+  deleteArticle,
   getCommentsOfArticle,
   postArticleComment,
   deleteComment,

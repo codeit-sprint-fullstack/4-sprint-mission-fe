@@ -4,6 +4,7 @@ import PopMenuButton from './PopMenuButton';
 import Image from 'next/image';
 import icHeart from '@/assets/images/ic_heart.png';
 import icProfile from '@/assets/images/ic_profile.png';
+import lineBreakText from '@/utils/lineBreakText';
 
 async function ArticleDetail({ articleId }) {
   const article = await api.getArticle(articleId);
@@ -11,8 +12,8 @@ async function ArticleDetail({ articleId }) {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <p className="text-xl font-semibold">{article.title}</p>
-        <PopMenuButton />
+        <p className="text-xl font-semibold"> {article.title}</p>
+        <PopMenuButton article={article} />
       </div>
       <div
         className={`flex items-center text-[#4B5563] text-sm h-[72px] border-b mb-6`}
@@ -26,7 +27,7 @@ async function ArticleDetail({ articleId }) {
           <p>9999+</p>
         </div>
       </div>
-      <p className="text-lg">{article.content}</p>
+      <p className="text-lg">{lineBreakText(article.content)}</p>
     </div>
   );
 }

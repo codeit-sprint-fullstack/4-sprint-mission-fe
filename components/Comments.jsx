@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 import Comment from './Comment';
 import api from '@/api';
 import Button from './Button';
+import replyEmpty from '@/assets/images/img_reply_empty.png';
+import icBack from '@/assets/images/ic_back.png';
+import Image from 'next/image';
+import Link from 'next/link';
 
 function Comments({ articleId }) {
   const [comments, setComments] = useState([]);
@@ -63,15 +67,37 @@ function Comments({ articleId }) {
         </div>
       </div>
 
-      {comments.map((comment) => (
-        <Comment
-          key={comment.id}
-          comment={comment}
-          onDelete={handleDeleteClick}
-          // onEdit={handleEditClick}
-          onRegistEdit={handleRegistEditClick}
-        />
-      ))}
+      {comments.length !== 0 ? (
+        comments.map((comment) => (
+          <Comment
+            key={comment.id}
+            comment={comment}
+            onDelete={handleDeleteClick}
+            // onEdit={handleEditClick}
+            onRegistEdit={handleRegistEditClick}
+          />
+        ))
+      ) : (
+        <div className="flex flex-col items-center">
+          <div className="w-[155px] h-[208px] flex flex-col justify-center items-center">
+            <Image src={replyEmpty} alt="댓글없음" className="w-[140px] mb-4" />
+            <p className="text-center text-[#9CA3AF]">
+              아직 댓글이 없어요,
+              <br />
+              지금 댓글을 달아보세요!
+            </p>
+          </div>
+        </div>
+      )}
+      <div className="flex justify-center">
+        <Link href={'/articles'}>
+          <button className="h-12 shrink-0 px-6 py-2 bg-[#3692FF] text-white rounded-full hover:bg-[#1469CF] flex items-center mt-12">
+            <p className="mr-2">목록으로 돌아가기</p>
+
+            <Image src={icBack} alt="목록으로가기" className="w-6" />
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
