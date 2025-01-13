@@ -5,12 +5,16 @@ import icKebab from '@/assets/images/ic_kebab.png';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
-export const DropdownMenu = ({ isCommentBtn, onDelete, commentId }) => {
-  const editArticle = () => {};
-  const deleteArticle = () => {
-    console.log('delet article');
+export const DropdownMenu = ({ isCommentBtn, onDelete, commentId, onEdit }) => {
+  const editArticle = () => {
+    console.log('edit article');
   };
-  const editComment = () => {};
+  const deleteArticle = () => {
+    console.log('delete article');
+  };
+  const editComment = () => {
+    onEdit(true);
+  };
   const deleteComment = () => {
     onDelete(commentId);
   };
@@ -37,7 +41,7 @@ export const DropdownMenu = ({ isCommentBtn, onDelete, commentId }) => {
   );
 };
 
-function PopMenuButton({ isCommentBtn = false, onDelete, commentId }) {
+function PopMenuButton({ isCommentBtn = false, onDelete, commentId, onEdit }) {
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const buttonRef = useRef();
 
@@ -77,6 +81,7 @@ function PopMenuButton({ isCommentBtn = false, onDelete, commentId }) {
           // onSelect={setIsShowDropdown}
           isCommentBtn={isCommentBtn}
           onDelete={onDelete}
+          onEdit={onEdit}
           commentId={commentId}
         />
       )}

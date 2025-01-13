@@ -23,10 +23,19 @@ function Comments({ articleId }) {
     setContent('');
   };
 
+  const handleRegistEditClick = async (commentId, commentText) => {
+    if (commentText === '') return;
+    await api.editComment(commentId, { content: commentText });
+    setRefreshValue((prevValue) => prevValue + 1);
+    setContent('');
+  };
+
   const handleDeleteClick = async (commentId) => {
     await api.deleteComment(commentId);
     setRefreshValue((prevValue) => prevValue + 1);
   };
+
+  // const handleEditClick = async (commentId) => {};
 
   useEffect(() => {
     handleCommentsLoad({ limit: 10 });
@@ -48,7 +57,7 @@ function Comments({ articleId }) {
           </form>
         </div>
         <div className="flex justify-end mt-4">
-          <Button onClick={handleRegistClick} isDisabled={content === ''}>
+          <Button onClick={handleRegistClick} disabled={content === ''}>
             등록
           </Button>
         </div>
@@ -59,6 +68,8 @@ function Comments({ articleId }) {
           key={comment.id}
           comment={comment}
           onDelete={handleDeleteClick}
+          // onEdit={handleEditClick}
+          onRegistEdit={handleRegistEditClick}
         />
       ))}
     </div>

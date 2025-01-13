@@ -57,12 +57,21 @@ const deleteComment = async (commentId) => {
   return res.data;
 };
 
+// 댓글 수정
+const editComment = async (commentId, comment) => {
+  console.log('do editcomment!!');
+  const url = `/comments/${commentId}`;
+  const res = await client.patch(url, comment);
+  return res.data;
+};
+
 const api = {
   getArticles,
   getArticle,
   getCommentsOfArticle,
   postArticleComment,
   deleteComment,
+  editComment,
 };
 
 export default api;
