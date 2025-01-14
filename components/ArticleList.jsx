@@ -13,7 +13,6 @@ function ArticleList() {
   const [keyword, setKeyword] = useState('');
 
   const handleArticlesLoad = async (options) => {
-    console.log('게시글 불러오기');
     const result = await api.getArticles(options);
     setArticles(result);
   };
@@ -31,7 +30,6 @@ function ArticleList() {
     }
   };
 
-  console.log('일반 게시글 로딩');
   useEffect(() => {
     handleArticlesLoad({ keyword, sort: sortOption });
   }, [keyword, sortOption]);

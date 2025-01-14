@@ -9,32 +9,17 @@ const client = axios.create({
 /**********************************************************************************
  * 게시글(article) 관련 API
  */
-
-const article = {
-  title: 'aa',
-  content: 'aaaa',
-};
-
 // 게시글 등록
 const postArticle = async (articleData) => {
-  // console.log(`articleData: ${articleData}`);
   const url = '/articles';
-  const res = await client.post(url, {
-    title: '이렇게 고정된 데이터만 됩니다.',
-    content: '미치고 환장할 노릇..',
-  });
-  // const res = await client.post(url, article);
+  const res = await client.post(url, articleData);
   return res.data;
 };
 
 // 게시글 수정
 const editArticle = async (articleId, articleData) => {
   const url = `/articles/${articleId}`;
-  const res = await client.patch(url, {
-    title: '수정도 이렇게 고정된',
-    content: '값으로만 할 수 있는거?',
-  });
-  // const res = await client.patch(url, articleData);
+  const res = await client.patch(url, articleData);
   return res.data;
 };
 

@@ -11,16 +11,17 @@ function ArticleEditPage() {
   const router = useRouter();
   const isCheckedValid = title !== '' && content !== '';
   const params = useParams();
+  const articleId = params.articleId;
 
   const handleArticleLoad = async () => {
-    const article = await api.getArticle(params.articleId);
+    const article = await api.getArticle(articleId);
     setContent(article.content);
     setTitle(article.title);
   };
 
   const handleRegistClick = async () => {
     if (!isCheckedValid) return;
-    const articleId = await api.editArticle({ title, content });
+    await api.editArticle(articleId, { title, content });
     router.push(`/articles/${articleId}`);
   };
 
