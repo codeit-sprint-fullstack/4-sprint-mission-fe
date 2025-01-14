@@ -2,6 +2,7 @@
 
 import api from '@/api';
 import Button from '@/components/Button';
+import Loader from '@/components/Loader';
 import PageContainer from '@/components/Page';
 import useCheckInputValid from '@/hooks/useCheckInputValid';
 import { useParams, useRouter } from 'next/navigation';
@@ -12,6 +13,7 @@ function ArticleEditPage() {
   const params = useParams();
   const articleId = params.articleId;
   const [isBtnActive, setIsBtnActive] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     inputValue: inputTitle,
@@ -38,11 +40,16 @@ function ArticleEditPage() {
 
   const handleRegistClick = async () => {
     if (!isBtnActive) return;
-    await api.editArticle(articleId, {
-      title: inputTitle,
-      content: inputContent,
-    });
-    router.push(`/articles/${articleId}`);
+    setIsSubmitting(true);
+    setIsBtnActive(false);
+    //TODO: Loader확인을 위한 의도적 딜레이 부여(향후 setTimeout삭제)
+    setTimeout(async () => {
+      const articleId = await api.postArticle({
+        title: inputTitle,
+        content: inputContent,
+      });
+      router.push(`/articles/${articleId}`);
+    }, 200);
   };
 
   useEffect(() => {
@@ -67,7 +74,7 @@ function ArticleEditPage() {
           <div className="flex justify-between items-center mb-6">
             <p className="text-xl font-semibold">게시글 쓰기</p>
             <Button onClick={handleRegistClick} disabled={!isBtnActive}>
-              등록
+              {isSubmitting ? <Loader /> : '등록'}
             </Button>
           </div>
           <p className="text-lg font-bold mb-3">*제목</p>
