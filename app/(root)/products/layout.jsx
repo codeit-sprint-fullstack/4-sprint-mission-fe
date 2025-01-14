@@ -1,12 +1,14 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 
-export default function HomePage({ children }) {
+function Productslayout({ children }) {
   return (
     <div>
-      <Header isLandingPage={true} />
+      <Header />
       {children}
       <Footer />
     </div>
   );
 }
+
+export default Productslayout;
