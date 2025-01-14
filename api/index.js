@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:5200';
+const baseURL = 'http://localhost:5500';
 
 const client = axios.create({
   baseURL,
@@ -79,7 +79,6 @@ const deleteComment = async (commentId) => {
 
 // 댓글 수정
 const editComment = async (commentId, commentData) => {
-  console.log('do editcomment!!');
   const url = `/comments/${commentId}`;
   const res = await client.patch(url, commentData);
   return res.data;
