@@ -12,7 +12,7 @@ function Header() {
         <Image alt="logo" src={Logo} className="w-[140px] h-auto" />
       </Link>
       <ol className="flex flex-1 px-10 justify-start gap-x-10 font-medium">
-        <Link href="/board">
+        <Link href="/articles">
           <li>자유게시판</li>
         </Link>
         <Link href="/market">

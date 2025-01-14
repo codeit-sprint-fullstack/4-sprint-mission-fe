@@ -16,10 +16,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(root)/page.js"
     ],
-    "/(root)/board/page": [
+    "/(root)/articles/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(root)/board/page.js"
+      "static/chunks/app/(root)/articles/page.js"
+    ],
+    "/(root)/articles/[articleId]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(root)/articles/[articleId]/page.js"
     ]
   }
 }
