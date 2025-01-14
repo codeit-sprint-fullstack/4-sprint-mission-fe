@@ -46,36 +46,32 @@ function Comment({ comment, onDelete, onRegistEdit }) {
         </div>
       </div>
     );
-  } else {
-    return (
-      <div>
-        <div className="mt-8 mb-10">
-          <div>
-            <form>
-              <textarea
-                name="comment"
-                className="bg-[#f3f4f6] placeholder-gray-400 w-full h-[104px] rounded-lg px-6 py-4"
-                placeholder="댓글을 입력해주세요"
-                value={editContent}
-                onChange={(e) => setEditContent(e.target.value)}
-              />
-            </form>
-          </div>
-          <div className="flex justify-end mt-4">
-            <Button onClick={handleCancelClick} cancel={true}>
-              취소
-            </Button>
-            <Button
-              onClick={handleRegistEditClick}
-              disabled={editContent === ''}
-            >
-              수정
-            </Button>
-          </div>
+  }
+  return (
+    <div>
+      <div className="mt-8 mb-10">
+        <div>
+          <form>
+            <textarea
+              name="comment"
+              className="bg-[#f3f4f6] placeholder-gray-400 w-full h-[104px] rounded-lg px-6 py-4"
+              placeholder="댓글을 입력해주세요"
+              value={editContent}
+              onChange={(e) => setEditContent(e.target.value)}
+            />
+          </form>
+        </div>
+        <div className="flex justify-end mt-4">
+          <Button onClick={handleCancelClick} cancel={true}>
+            취소
+          </Button>
+          <Button onClick={handleRegistEditClick} disabled={editContent === ''}>
+            수정
+          </Button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Comment;
