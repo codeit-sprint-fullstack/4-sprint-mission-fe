@@ -7,7 +7,7 @@ footer {
   display: flex;
   justify-content: center;
   color: #e5e7eb;
-  margin-top: 12rem;
+  /* margin-top: 12rem; */
 }
 
 .footer-content {

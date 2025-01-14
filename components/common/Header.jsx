@@ -8,7 +8,7 @@ import Button from './Button';
 function Header({ isLandingPage = false }) {
   return (
     <header className="bg-white sticky z-10 top-0 flex justify-center border-b border-slate-200">
-      <div className="w-full h-[70px] max-w-[1520px] flex justify-between items-center ">
+      <div className="w-full h-[70px] max-w-[1520px] flex justify-between items-center mx-[200px] md:mx-6 sm:mx-4">
         <div className="flex items-center shrink-0">
           <Link href="/">
             {/* <Image src={logoM} id="logoM" alt="판다마켓 로고" /> */}
