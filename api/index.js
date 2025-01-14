@@ -37,10 +37,9 @@ const getArticles = async ({
   skip = 0,
   keyword = '',
 }) => {
-  const query = `limit=${limit}&sort=${sort}&skip=${skip}&keyword=${keyword}`;
-  const url = `/articles?${query}`;
-  // const url = `/articles?limit=3`;
-  const res = await client.get(url);
+  const params = { limit, sort, skip, keyword };
+  const url = `/articles?`;
+  const res = await client.get(url, { params });
   return res.data;
 };
 
