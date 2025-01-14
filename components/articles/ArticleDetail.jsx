@@ -1,6 +1,6 @@
 import api from '@/api';
 import React from 'react';
-import PopMenuButton from './PopMenuButton';
+import PopMenuButton from '../common/PopMenuButton';
 import Image from 'next/image';
 import icHeart from '@/assets/images/ic_heart.png';
 import icProfile from '@/assets/images/ic_profile.png';

@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Dropdown from './Dropdown';
 import api from '@/api';
 import ArticleCard from './ArticleCard';
-import Button from './Button';
+import Button from '../common/Button';
 import Link from 'next/link';
+import Dropdown from '../common/Dropdown';
 
 function ArticleList() {
   const [articles, setArticles] = useState([]);

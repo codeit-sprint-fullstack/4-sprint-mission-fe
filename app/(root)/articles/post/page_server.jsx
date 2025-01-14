@@ -1,5 +1,5 @@
-import Button from '@/components/Button';
-import PageContainer from '@/components/Page';
+import Button from '@/components/common/Button';
+import PageContainer from '@/components/common/Page';
 import { postArticleAction } from '@/utils/actions';
 
 function ArticlePostPage() {

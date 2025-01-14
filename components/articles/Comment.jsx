@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import icProfile from '@/assets/images/ic_profile.png';
-import PopMenuButton from './PopMenuButton';
+import PopMenuButton from '../common/PopMenuButton';
 import lineBreakText from '@/utils/lineBreakText';
 import { useState } from 'react';
-import Button from './Button';
+import Button from '../common/Button';
 
 function Comment({ comment, onDelete, onRegistEdit }) {
   const [isEditing, setIsEditing] = useState(false);

@@ -1,6 +1,6 @@
-import ArticleDetail from '@/components/ArticleDetail';
-import Comments from '@/components/Comments';
-import PageContainer from '@/components/Page';
+import ArticleDetail from '@/components/articles/ArticleDetail';
+import Comments from '@/components/articles/Comments';
+import PageContainer from '@/components/common/Page';
 
 async function ArticleDetailPage(props) {
   const params = await props.params;

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Comment from './Comment';
 import api from '@/api';
-import Button from './Button';
+import Button from '../common/Button';
 import replyEmpty from '@/assets/images/img_reply_empty.png';
 import icBack from '@/assets/images/ic_back.png';
 import Image from 'next/image';

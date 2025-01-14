@@ -1,8 +1,8 @@
 import api from '@/api';
-import BestArticleCard from '@/components/BestArticleCard';
-import ArticleList from '@/components/ArticleList';
+import BestArticleCard from '@/components/articles/BestArticleCard';
+import ArticleList from '@/components/articles/ArticleList';
 import Link from 'next/link';
-import PageContainer from '@/components/Page';
+import PageContainer from '@/components/common/Page';
 
 async function ArticleListPage() {
   // 베스트 게시글 불러오기

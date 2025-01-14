@@ -1,9 +1,9 @@
 'use client';
 
 import api from '@/api';
-import Button from '@/components/Button';
-import Loader from '@/components/Loader';
-import PageContainer from '@/components/Page';
+import Button from '@/components/common/Button';
+import Loader from '@/components/common/Loader';
+import PageContainer from '@/components/common/Page';
 import useCheckInputValid from '@/hooks/useCheckInputValid';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
