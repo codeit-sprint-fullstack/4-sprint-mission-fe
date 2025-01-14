@@ -12,7 +12,7 @@ function ArticleList() {
   const [sortOption, setSortOption] = useState('latest');
   const [keyword, setKeyword] = useState('');
 
-  const handleArticlesLoad = async (options) => {
+  const loadArticles = async (options) => {
     const result = await api.getArticles(options);
     setArticles(result);
   };
@@ -30,7 +30,7 @@ function ArticleList() {
   };
 
   useEffect(() => {
-    handleArticlesLoad({ keyword, sort: sortOption });
+    loadArticles({ keyword, sort: sortOption });
   }, [keyword, sortOption]);
 
   return (

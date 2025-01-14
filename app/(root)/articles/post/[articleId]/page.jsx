@@ -30,7 +30,7 @@ function ArticleEditPage() {
     handleChange: handleContentChange,
   } = useCheckInputValid((value) => value.length >= 10 && value.length <= 500);
 
-  const handleArticleLoad = async () => {
+  const loadArticle = async () => {
     const article = await api.getArticle(articleId);
     setInputContent(article.content);
     setInputTitle(article.title);
@@ -46,7 +46,7 @@ function ArticleEditPage() {
   };
 
   useEffect(() => {
-    handleArticleLoad();
+    loadArticle();
   }, []);
 
   useEffect(() => {

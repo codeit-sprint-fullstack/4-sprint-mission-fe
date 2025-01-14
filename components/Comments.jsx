@@ -14,7 +14,7 @@ function Comments({ articleId }) {
   const [content, setContent] = useState('');
   const [refreshValue, setRefreshValue] = useState(0);
 
-  const handleCommentsLoad = async (options) => {
+  const loadCommnets = async (options) => {
     const result = await api.getCommentsOfArticle(articleId, options);
     setComments(result.comments);
   };
@@ -42,7 +42,7 @@ function Comments({ articleId }) {
   // const handleEditClick = async (commentId) => {};
 
   useEffect(() => {
-    handleCommentsLoad({ limit: 10 });
+    loadCommnets({ limit: 10 });
   }, [refreshValue]);
 
   return (
