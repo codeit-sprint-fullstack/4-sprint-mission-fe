@@ -4,9 +4,6 @@ import Image from 'next/image';
 import icKebab from '@/assets/images/ic_kebab.png';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-// import { useRouter } from 'next/router';
-// import { useRouter } from 'next/router';
-
 import { useRouter } from 'next/navigation';
 import api from '@/api';
 
@@ -100,7 +97,6 @@ function PopMenuButton({
       />
       {isShowDropdown && (
         <DropdownMenu
-          // onSelect={setIsShowDropdown}
           isCommentBtn={isCommentBtn}
           onDelete={onDelete}
           onEdit={onEdit}

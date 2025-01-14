@@ -2,6 +2,7 @@
 
 import api from '@/api';
 import Button from '@/components/Button';
+import PageContainer from '@/components/Page';
 import useCheckInputValid from '@/hooks/useCheckInputValid';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -60,7 +61,7 @@ function ArticleEditPage() {
   }, [isValidTitle, isValidContent]);
 
   return (
-    <main className="max-w-[1200px] mx-auto my-6">
+    <PageContainer>
       <div>
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="flex justify-between items-center mb-6">
@@ -106,7 +107,7 @@ function ArticleEditPage() {
           </div>
         </form>
       </div>
-    </main>
+    </PageContainer>
   );
 }
 

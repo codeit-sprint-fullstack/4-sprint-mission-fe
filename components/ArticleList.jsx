@@ -19,7 +19,6 @@ function ArticleList() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`keyword:${e.target.search.value}`);
     setKeyword(e.target.search.value);
   };
 
@@ -41,11 +40,6 @@ function ArticleList() {
         <Link href="/articles/post">
           <Button>글쓰기</Button>
         </Link>
-        {/* <button
-          className={`shrink-0 w-[88px] h-[42px] bg-[#3692FF] text-white rounded-lg`}
-        >
-          글쓰기
-        </button> */}
       </div>
       <div className="flex justify-between mb-6">
         <form className="w-full" onSubmit={handleSubmit}>

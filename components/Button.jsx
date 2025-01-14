@@ -11,7 +11,6 @@ function Button({ children, disabled = false, onClick, cancel = false }) {
 
   const cancelClassName = clsx({
     'text-blue-400 mr-2 font-semibold bg-transparent hover:bg-transparent':
-      // 'text-[#3692ff] mr-2 font-semibold bg-transparent hover:bg-transparent':
       cancel,
   });
 

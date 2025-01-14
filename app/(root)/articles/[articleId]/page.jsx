@@ -1,15 +1,16 @@
 import ArticleDetail from '@/components/ArticleDetail';
 import Comments from '@/components/Comments';
+import PageContainer from '@/components/Page';
 
 async function ArticleDetailPage(props) {
   const params = await props.params;
   const articleId = params.articleId;
 
   return (
-    <main className="max-w-[1200px] mx-auto my-6">
+    <PageContainer>
       <ArticleDetail articleId={articleId} />
       <Comments articleId={articleId} />
-    </main>
+    </PageContainer>
   );
 }
 

@@ -50,7 +50,6 @@ function Comment({ comment, onDelete, onRegistEdit }) {
     return (
       <div>
         <div className="mt-8 mb-10">
-          {/* <p className="font-semibold mb-2">댓글수정</p> */}
           <div>
             <form>
               <textarea
