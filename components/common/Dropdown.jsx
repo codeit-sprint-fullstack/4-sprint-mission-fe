@@ -10,6 +10,7 @@ export const DropdownMenu = ({ onSelect }) => {
 
   const handleClick = (value) => () => {
     onSelect(value);
+    console.log("do dropdown's onSelect");
   };
 
   return (
@@ -42,17 +43,19 @@ const Dropdown = ({ onSelect, value }) => {
   /**
    * 포커스 아웃시 onBlur가 호출되었을 때 blur이벤트로 드롭다운 메뉴가 클릭되지 않는 문제 발생
    * - setTimeout으로 메뉴가 닫히는 것을 딜레이함으로써 해결
+   * - 100ms로 하면 너무 짧음. 200ms가 적당
    */
   const handleBlur = () => {
     setTimeout(() => {
       setDropdownView(false);
-    }, 100);
+    }, 200);
   };
 
   const handleMenuSelect = (sortOption) => {
     onSelect(sortOption);
     setLabel(sortOption);
     setDropdownView(!isDropdownView);
+    console.log('do handleMenuSelect');
   };
 
   return (

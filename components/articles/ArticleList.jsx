@@ -12,6 +12,8 @@ function ArticleList() {
   const [sortOption, setSortOption] = useState('latest');
   const [keyword, setKeyword] = useState('');
 
+  console.log(`articleListPage sortOption:${sortOption}`);
+
   const loadArticles = async (options) => {
     const result = await api.getArticles(options);
     setArticles(result);

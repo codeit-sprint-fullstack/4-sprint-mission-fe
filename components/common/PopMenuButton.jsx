@@ -69,7 +69,7 @@ function PopMenuButton({
   const commentClassName = clsx({ 'absolute top-0 right-0': isCommentBtn });
 
   const handleMenuClick = () => {
-    setTimeout(() => setIsShowDropdown(!isShowDropdown), 100);
+    setTimeout(() => setIsShowDropdown(!isShowDropdown), 200);
   };
 
   useEffect(() => {
@@ -79,7 +79,7 @@ function PopMenuButton({
      */
     const handleClick = (e) => {
       if (buttonRef.current && !buttonRef.current.contains(e.target)) {
-        setTimeout(() => setIsShowDropdown(false), 100);
+        setTimeout(() => setIsShowDropdown(false), 200);
       }
     };
     window.addEventListener('mousedown', handleClick);
