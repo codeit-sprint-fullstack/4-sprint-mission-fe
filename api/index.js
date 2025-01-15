@@ -83,6 +83,49 @@ const editComment = async (commentId, commentData) => {
   return res.data;
 };
 
+/**********************************************************************************
+ * 상품(product) 관련 API
+ */
+// 상품 목록 조회
+const getProducts = async ({
+  sort = 'latest',
+  skip = 0,
+  keyword = '',
+  limit = 0,
+}) => {
+  const url = '/products';
+  const res = await client.get(url, {
+    params: {
+      sort,
+      skip,
+      keyword,
+      limit,
+    },
+  });
+  return res.data;
+};
+
+// 상품 등록
+const postProduct = async (productData) => {
+  const url = '/products';
+  const res = await client.post(url, productData);
+  return res.data;
+};
+
+// 상품 삭제
+const deleteProduct = async (productId) => {
+  const url = `/products/${productId}`;
+  const res = await client.delete(url);
+  return res.data;
+};
+
+// 상품 수정
+const editProduct = async (productId, productData) => {
+  const url = `/products/${productId}`;
+  const res = await client.patch(url, productData);
+  return res.data;
+};
+
 const api = {
   getArticles,
   getArticle,
@@ -93,6 +136,10 @@ const api = {
   postArticleComment,
   deleteComment,
   editComment,
+  getProducts,
+  postProduct,
+  deleteProduct,
+  editProduct,
 };
 
 export default api;
