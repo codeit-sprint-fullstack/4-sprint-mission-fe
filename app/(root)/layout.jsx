@@ -1,7 +1,7 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 
-function Articleslayout({ children }) {
+function RootLayout({ children }) {
   return (
     <div>
       <Header />
@@ -11,4 +11,4 @@ function Articleslayout({ children }) {
   );
 }
 
-export default Articleslayout;
+export default RootLayout;

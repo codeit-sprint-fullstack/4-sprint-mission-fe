@@ -32,7 +32,6 @@ const SECTION_DATA = [
 
 function Section({ section, index }) {
   const { img, badge, title1, title2, desc1, desc2 } = section;
-  console.log(img);
   const classNameContent =
     index % 2 === 0 ? 'pl-[50px] w-[420px]' : 'pr-[50px] w-[420px] text-right';
   const classNameImg = index % 2 === 0 ? 'w-1/2' : 'w-1/2 order-1';
@@ -40,7 +39,7 @@ function Section({ section, index }) {
   return (
     <section className="bg-white mx-auto my-0 py-[138px] px-0 w-full flex justify-center items-center">
       <div className="bg-[#fcfcfc] w-[988px] h-[444px] flex items-center">
-        <Image className={classNameImg} src={img} alt="hot" />
+        <Image className={classNameImg} src={img} alt="hot" priority />
         <div className={classNameContent}>
           <div className="text-lg text-[#3692FF] font-bold mb-3">{badge} </div>
           <div className="text-[40px] font-bold leading-tight">

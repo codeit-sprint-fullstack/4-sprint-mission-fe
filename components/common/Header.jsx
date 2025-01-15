@@ -4,6 +4,7 @@ import logoM from '@/assets/images/logo-m.png';
 import HeaderNav from './HeaderNav';
 import Image from 'next/image';
 import Button from './Button';
+import React from 'react';
 
 function Header({ isLandingPage = false }) {
   return (
@@ -32,4 +33,4 @@ function Header({ isLandingPage = false }) {
   );
 }
 
-export default Header;
+export default React.memo(Header);

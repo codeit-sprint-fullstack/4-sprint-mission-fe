@@ -10,7 +10,6 @@ export const DropdownMenu = ({ onSelect }) => {
 
   const handleClick = (value) => () => {
     onSelect(value);
-    console.log("do dropdown's onSelect");
   };
 
   return (
@@ -55,7 +54,6 @@ const Dropdown = ({ onSelect, value }) => {
     onSelect(sortOption);
     setLabel(sortOption);
     setDropdownView(!isDropdownView);
-    console.log('do handleMenuSelect');
   };
 
   return (

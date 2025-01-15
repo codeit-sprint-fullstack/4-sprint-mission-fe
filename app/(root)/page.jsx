@@ -6,11 +6,11 @@ import HomeMain from '@/components/home/HomeMain';
 export default function HomePage() {
   return (
     <div>
-      <Header isLandingPage={true} />
+      {/* <Header /> */}
       <BannerImage isTop={true} />
       <HomeMain />
       <BannerImage />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
