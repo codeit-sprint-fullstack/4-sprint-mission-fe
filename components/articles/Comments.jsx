@@ -8,6 +8,7 @@ import replyEmpty from '@/assets/images/img_reply_empty.png';
 import icBack from '@/assets/images/ic_back.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import Loader from '../common/Loader';
 
 function Comments({ articleId }) {
   const [comments, setComments] = useState([]);
@@ -47,7 +48,16 @@ function Comments({ articleId }) {
     setRefreshValue((prevValue) => prevValue + 1);
   };
 
-  // const handleEditClick = async (commentId) => {};
+  useEffect(() => {
+    /**
+     * '등록' 버튼 활성화 조건 체크
+     */
+    if (content !== '') {
+      setIsBtnActive(true);
+    } else {
+      setIsBtnActive(false);
+    }
+  }, [content]);
 
   useEffect(() => {
     loadCommnets({ limit: 10 });
@@ -62,14 +72,14 @@ function Comments({ articleId }) {
             <textarea
               name="comment"
               className="bg-[#f3f4f6] placeholder-gray-400 w-full h-[104px] rounded-lg px-6 py-4"
-              placeholder="댓글을 입력해주세요"
+              placeholder="댓글을 입력해주세요(200자 이내)"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
           </form>
         </div>
         <div className="flex justify-end mt-4">
-          <Button onClick={handleRegistClick} disabled={isBtnActive}>
+          <Button onClick={handleRegistClick} disabled={!isBtnActive}>
             {isSubmitting ? <Loader /> : '등록'}
           </Button>
         </div>
