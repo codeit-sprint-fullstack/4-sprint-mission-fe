@@ -13,6 +13,8 @@ function Comments({ articleId }) {
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');
   const [refreshValue, setRefreshValue] = useState(0);
+  const [isBtnActive, setIsBtnActive] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const loadCommnets = async (options) => {
     const result = await api.getCommentsOfArticle(articleId, options);
@@ -20,18 +22,24 @@ function Comments({ articleId }) {
   };
 
   const handleRegistClick = async () => {
-    if (content === '') return;
+    if (!isBtnActive) return;
+    setIsSubmitting(true);
+    setIsBtnActive(false);
     await api.postArticleComment(articleId, { content });
     // 댓글 목록 자동 갱신을 위한 코드
     setRefreshValue((prevValue) => prevValue + 1);
     setContent('');
+    setIsSubmitting(false);
   };
 
   const handleRegistEditClick = async (commentId, commentText) => {
-    if (commentText === '') return;
+    if (!isBtnActive) return;
+    setIsSubmitting(true);
+    setIsBtnActive(false);
     await api.editComment(commentId, { content: commentText });
     setRefreshValue((prevValue) => prevValue + 1);
     setContent('');
+    setIsSubmitting(false);
   };
 
   const handleDeleteClick = async (commentId) => {
@@ -61,8 +69,8 @@ function Comments({ articleId }) {
           </form>
         </div>
         <div className="flex justify-end mt-4">
-          <Button onClick={handleRegistClick} disabled={content === ''}>
-            등록
+          <Button onClick={handleRegistClick} disabled={isBtnActive}>
+            {isSubmitting ? <Loader /> : '등록'}
           </Button>
         </div>
       </div>
