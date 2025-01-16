@@ -33,13 +33,18 @@ function ArticlePostPage() {
     setIsSubmitting(true);
     setIsBtnActive(false);
     //TODO: Loader확인을 위한 의도적 딜레이 부여(향후 setTimeout삭제)
-    setTimeout(async () => {
-      const articleId = await api.postArticle({
-        title: inputTitle,
-        content: inputContent,
-      });
-      router.push(`/articles/${articleId}`);
-    }, 200);
+    // setTimeout(async () => {
+    //   const articleId = await api.postArticle({
+    //     title: inputTitle,
+    //     content: inputContent,
+    //   });
+    //   router.push(`/articles/${articleId}`);
+    // }, 200);
+    const articleId = await api.postArticle({
+      title: inputTitle,
+      content: inputContent,
+    });
+    router.push(`/articles/${articleId}`);
   };
 
   useEffect(() => {

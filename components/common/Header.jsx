@@ -7,6 +7,7 @@ import Button from './Button';
 import React from 'react';
 
 function Header({ isLandingPage = false }) {
+  console.log('header is rendered');
   return (
     <header className="bg-white sticky z-10 top-0 flex justify-center border-b border-slate-200">
       <div className="w-full h-[70px] max-w-[1520px] flex justify-between items-center mx-[200px] md:mx-6 sm:mx-4">
@@ -33,4 +34,4 @@ function Header({ isLandingPage = false }) {
   );
 }
 
-export default React.memo(Header);
+export default Header;

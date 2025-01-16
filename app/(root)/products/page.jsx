@@ -26,7 +26,6 @@ function ProductListPage() {
       } catch (error) {
         setloadingError(error);
       }
-      console.log(result);
       const { products, searchCount } = result;
       setProducts(products);
       setMaxPage(Math.ceil(searchCount / options.limit));

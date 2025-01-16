@@ -7,7 +7,6 @@ import PageContainer from '@/components/common/Page';
 async function ArticleListPage() {
   // 베스트 게시글 불러오기
   const bestArticles = await api.getArticles({ limit: 3, sort: 'latest' });
-  console.log('articles page render');
 
   return (
     <PageContainer>
