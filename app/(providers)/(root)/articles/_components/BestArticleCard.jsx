@@ -3,8 +3,11 @@ import React from "react";
 import dayjs from "dayjs";
 import medal from "@/assets/img/ic_medal.png";
 import Link from "next/link";
+import macbookImg from "@/assets/img/macbook.png";
+import IconHeart from "@/components/IconHeart";
 
 function BestArticleCard({ item }) {
+  console.log("item", item);
   const isoDate = item.createdAt;
   const formattedDate = dayjs(isoDate).format("YYYY.MM.DD");
 
@@ -23,11 +26,18 @@ function BestArticleCard({ item }) {
         </div>
         <div className="flex-1 flex justify-between">
           <h3 className="text-lg font-medium">{item.title}</h3>
-          {item.image && <img src={item.image} className="w-20 rounded-md" />}
+          <Image
+            src={macbookImg}
+            width={72}
+            height={72}
+            alt="macbook"
+            className="rounded-md"
+          />
         </div>
-        <div className="flex gap-4 justify-between">
-          <p className="text-gray-700">{item.writer.nickname}</p>
-          <p className="text-gray-700">{item.likeCount}</p>
+        <div className="flex gap-2 justify-between items-center">
+          <p className="text-gray-700">총명한 판다</p>
+          <IconHeart />
+          <p className="text-gray-700">9999+</p>
           <p className="flex-1 text-gray-500 text-right">{formattedDate}</p>
         </div>
       </article>
