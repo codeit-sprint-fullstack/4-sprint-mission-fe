@@ -1,3 +1,5 @@
+'use client';
+
 import api from '@/api';
 import React from 'react';
 import PopMenuButton from '../common/PopMenuButton';
@@ -6,9 +8,14 @@ import icHeart from '@/assets/images/ic_heart.png';
 import icProfile from '@/assets/images/ic_profile.png';
 import lineBreakText from '@/utils/lineBreakText';
 import { formattedDate } from '@/utils/formattedDate';
+import { useQuery } from '@tanstack/react-query';
 
-async function ArticleDetail({ articleId }) {
-  const article = await api.getArticle(articleId);
+function ArticleDetail({ articleId, initialData }) {
+  const { data: article } = useQuery({
+    queryKey: ['article', { articleId }],
+    queryFn: () => api.getArticle(articleId),
+    initialData,
+  });
 
   return (
     <div>

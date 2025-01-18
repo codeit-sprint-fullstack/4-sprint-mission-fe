@@ -7,11 +7,9 @@ import { useQuery } from '@tanstack/react-query';
 import api from '@/api';
 
 function BestArticleList({ initialData }) {
-  console.log('initialData', initialData);
-
   const { data: bestArticles } = useQuery({
     queryFn: () => api.getArticles({ limit: 3, sort: 'latest' }),
-    queryKey: ['articles'],
+    queryKey: ['articles', { isBest: true }],
     initialData,
   });
   return (
