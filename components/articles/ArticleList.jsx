@@ -1,21 +1,23 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import api from '@/api';
 import ArticleCard from './ArticleCard';
 import Button from '../common/Button';
 import Link from 'next/link';
 import Dropdown from '../common/Dropdown';
+import { useQuery } from '@tanstack/react-query';
 
-function ArticleList() {
-  const [articles, setArticles] = useState([]);
+function ArticleList({ initialData }) {
+  console.log('ArticlesList rendered');
   const [sortOption, setSortOption] = useState('latest');
   const [keyword, setKeyword] = useState('');
 
-  const loadArticles = async (options) => {
-    const result = await api.getArticles(options);
-    setArticles(result);
-  };
+  const { data: articles } = useQuery({
+    queryKey: ['articles', { keyword, sortOption }],
+    queryFn: () => api.getArticles({ keyword, sort: sortOption }),
+    initialData,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,10 +30,6 @@ function ArticleList() {
       setKeyword('');
     }
   };
-
-  useEffect(() => {
-    loadArticles({ keyword, sort: sortOption });
-  }, [keyword, sortOption]);
 
   return (
     <section>

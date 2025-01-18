@@ -1,15 +1,16 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import BestArticleCard from './BestArticleCard';
-import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
 import api from '@/api';
+import Link from 'next/link';
 
 function BestArticleList({ initialData }) {
+  console.log('BestArticleList rendered!');
   const { data: bestArticles } = useQuery({
     queryFn: () => api.getArticles({ limit: 3, sort: 'latest' }),
-    queryKey: ['articles', { isBest: true }],
+    queryKey: ['bestArticles', { isBest: true }],
     initialData,
   });
   return (
