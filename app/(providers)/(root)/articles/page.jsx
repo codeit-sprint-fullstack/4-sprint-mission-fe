@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import api from "@/api";
 import BestArticleCard from "./_components/BestArticleCard";
 import IconSearch from "@/components/IconSearch";
@@ -10,11 +10,24 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 
 function BoardPage() {
-  const { data: articles } = useQuery({
+  const [searchKeyword, setSearchKeyword] = useState("");
+
+  const { data: articles, isLoading } = useQuery({
     queryFn: () => api.getArticles(),
     queryKey: ["articles"],
     initialData: [],
   });
+
+  const filteredArticles = useMemo(() => {
+    if (!searchKeyword) return articles;
+    return articles.filter((item) =>
+      item.title.toLowerCase().includes(searchKeyword.toLocaleLowerCase())
+    );
+  }, [articles, searchKeyword]);
+
+  const handleSearchKeyword = (e) => {
+    setSearchKeyword(e.target.value);
+  };
 
   return (
     <main className="max-w-screen-xl mx-auto mt-10 mb-40">
@@ -39,7 +52,9 @@ function BoardPage() {
             <input
               className="flex-1 bg-gray-200 px-4 py-2 focus:outline-none"
               type="text"
+              value={searchKeyword}
               placeholder="검색할 상품을 입력해주세요"
+              onChange={handleSearchKeyword}
             />
           </div>
           <select className="w-28 border border-gray-300 rounded-md px-3">
@@ -48,7 +63,7 @@ function BoardPage() {
           </select>
         </div>
         <div className="flex flex-col  gap-4">
-          {articles.map((item) => {
+          {filteredArticles.map((item) => {
             return <ArticleCard key={item.id} item={item} />;
           })}
         </div>

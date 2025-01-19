@@ -7,7 +7,6 @@ import macbookImg from "@/assets/img/macbook.png";
 import IconHeart from "@/components/IconHeart";
 
 function BestArticleCard({ item }) {
-  console.log("item", item);
   const isoDate = item.createdAt;
   const formattedDate = dayjs(isoDate).format("YYYY.MM.DD");
 
