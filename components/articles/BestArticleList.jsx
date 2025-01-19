@@ -13,7 +13,7 @@ function BestArticleList({ initialData }) {
     initialData,
   });
 
-  const articles = data?.articles || [];
+  const articles = data?.articles.slice(0, 3) || [];
   return (
     <section className="mb-10">
       <div className="h-[42px] flex items-center mb-6">

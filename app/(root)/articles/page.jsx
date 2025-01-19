@@ -6,10 +6,9 @@ import PageContainer from '@/components/common/Page';
 async function ArticleListPage() {
   // 게시글 불러오기
   const data = await api.getArticles({ sort: 'latest', limit: 10 });
-  console.log(data);
   return (
     <PageContainer>
-      <BestArticleList initialData={data.articles.slice(0, 3)} />
+      <BestArticleList initialData={data} />
       <ArticleList initialData={data} />
     </PageContainer>
   );

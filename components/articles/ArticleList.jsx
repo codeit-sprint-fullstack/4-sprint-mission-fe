@@ -9,7 +9,6 @@ import Dropdown from '../common/Dropdown';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 function ArticleList({ initialData }) {
-  console.log(initialData);
   const targetRef = useRef(null);
   const [sortOption, setSortOption] = useState('latest');
   const [keyword, setKeyword] = useState('');
