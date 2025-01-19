@@ -5,7 +5,7 @@ import PageContainer from '@/components/common/Page';
 
 async function ArticleListPage() {
   // 게시글 불러오기
-  const articles = await api.getArticles({ sort: 'latest' });
+  const { articles } = await api.getArticles({ sort: 'latest' });
 
   return (
     <PageContainer>

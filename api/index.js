@@ -35,7 +35,7 @@ const deleteArticle = async (articleId) => {
 
 // 게시글 목록 조회
 const getArticles = async ({
-  limit = 10,
+  limit,
   sort = 'latest',
   skip = 0,
   keyword = '',
