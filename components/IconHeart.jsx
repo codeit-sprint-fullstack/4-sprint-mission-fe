@@ -9,6 +9,7 @@ function IconHeart() {
       strokeWidth={1.5}
       stroke="currentColor"
       className="size-5 text-gray-500"
+      alt="heart-icon"
     >
       <path
         strokeLinecap="round"

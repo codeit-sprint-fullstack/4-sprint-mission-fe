@@ -29,6 +29,8 @@ function BoardPage() {
     setSearchKeyword(e.target.value);
   };
 
+  if (isLoading) return <div>로딩중...</div>;
+
   return (
     <main className="max-w-screen-xl mx-auto mt-10 mb-40">
       <section className="mb-8">

@@ -29,8 +29,6 @@ function NewArticlePage() {
 
     const response = await api.postArticle(postData);
 
-    console.log("response : ", response);
-
     if (response) {
       router.push(`/articles/${response}`);
     }
