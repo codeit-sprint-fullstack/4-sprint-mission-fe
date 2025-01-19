@@ -8,7 +8,8 @@ import Link from 'next/link';
 import Dropdown from '../common/Dropdown';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-function ArticleList() {
+function ArticleList({ initialData }) {
+  console.log(initialData);
   const targetRef = useRef(null);
   const [sortOption, setSortOption] = useState('latest');
   const [keyword, setKeyword] = useState('');
@@ -23,9 +24,10 @@ function ArticleList() {
         limit: 10,
       }),
     initialPageParam: 1,
+    initialData: { pages: [initialData], pageParams: [] },
     getNextPageParam: (lastPageParam) => {
       if (lastPageParam.page === lastPageParam.pageCount) {
-        return undefined;
+        return undefined; // null 또는 undefined를 반환하면 hasNextPage가 false, 이외에는 true
       }
       return lastPageParam.page + 1;
     },
