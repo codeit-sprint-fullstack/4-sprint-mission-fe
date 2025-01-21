@@ -4,11 +4,10 @@ import React, { useId } from 'react';
 import eye from '@/assets/images/eye.png';
 import eyeDisable from '@/assets/images/eye-disable.png';
 import Image from 'next/image';
+import { useController } from 'react-hook-form';
 
 function Input({
   label,
-  name,
-  value,
   onChange,
   type,
   placeholder,
@@ -17,9 +16,14 @@ function Input({
   isPassword = false,
   isShowPassword = false,
   onClick,
+  name,
+  control,
 }) {
   const inputId = useId();
-
+  const { field, fieldState, formState } = useController({ name, control });
+  // console.log('🚀 ~ formState:', formState);
+  // console.log('🚀 ~ fieldState:', fieldState);
+  console.log('🚀 ~ field:', field);
   return (
     <div className="inline-flex flex-col w-full mb-6">
       <label htmlFor={inputId} className="text-lg font-bold mb-4">
@@ -29,10 +33,12 @@ function Input({
       <div className="relative">
         <input
           id={inputId}
-          name={name}
+          // name={field.name}
           type={!isPassword || !isShowPassword ? type : 'text'}
-          value={value}
+          // value={field.value}
+          defaultValue={fieldState.defaultValue}
           onChange={onChange}
+          // onBlur={field.onBlur}
           placeholder={placeholder}
           className={`outline-[#3692ff] w-full px-6 py-2 h-14  bg-[#f3f4f6] placeholder-gray-400  text-black rounded-lg focus:ring-2 ring-white ring-offset-2 fing-offset-gray-500 transition-all ${
             errorText ? 'outline-[#F74747]' : ''
