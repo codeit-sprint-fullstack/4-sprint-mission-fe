@@ -8,7 +8,7 @@ async function ArticleDetailPage(props) {
   const params = await props.params;
   const articleId = params.articleId;
   const article = await api.getArticle(articleId);
-
+  console.log('1');
   return (
     <PageContainer>
       <ArticleDetail articleId={articleId} initialData={article} />

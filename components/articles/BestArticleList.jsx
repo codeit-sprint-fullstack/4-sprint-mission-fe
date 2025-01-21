@@ -11,6 +11,9 @@ function BestArticleList({ initialData }) {
     queryFn: () => api.getArticles({ limit: 3, sort: 'latest' }),
     queryKey: ['bestArticles', { isBest: true }],
     initialData,
+    staleTime: 0,
+    gcTime: 0,
+    refetchOnMount: true,
   });
 
   const articles = data?.articles.slice(0, 3) || [];

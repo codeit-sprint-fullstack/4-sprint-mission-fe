@@ -5,6 +5,7 @@ import Button from '@/components/common/Button';
 import Loader from '@/components/common/Loader';
 import PageContainer from '@/components/common/Page';
 import useCheckInputValid from '@/hooks/useCheckInputValid';
+import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -28,23 +29,22 @@ function ArticlePostPage() {
     handleChange: handleContentChange,
   } = useCheckInputValid((value) => value.length >= 10 && value.length <= 500);
 
+  const { mutate: createArticle } = useMutation({
+    mutationFn: () =>
+      api.postArticle({
+        title: inputTitle,
+        content: inputContent,
+      }),
+    onSuccess: (data) => {
+      router.push(`/articles/${data}`);
+    },
+  });
+
   const handleRegistClick = async () => {
     if (!isBtnActive) return;
     setIsSubmitting(true);
     setIsBtnActive(false);
-    //TODO: Loader확인을 위한 의도적 딜레이 부여(향후 setTimeout삭제)
-    // setTimeout(async () => {
-    //   const articleId = await api.postArticle({
-    //     title: inputTitle,
-    //     content: inputContent,
-    //   });
-    //   router.push(`/articles/${articleId}`);
-    // }, 200);
-    const articleId = await api.postArticle({
-      title: inputTitle,
-      content: inputContent,
-    });
-    router.push(`/articles/${articleId}`);
+    createArticle();
   };
 
   useEffect(() => {
