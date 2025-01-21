@@ -28,7 +28,9 @@ function Header({ isLandingPage = false }) {
           {/* 랜딩 페이지인 경우에만 nav메뉴 렌더링 */}
           {isLandingPage || <HeaderNav />}
         </div>
-        <Button>로그인</Button>
+        <Link className="shrink-0" href="/auth/log-in">
+          <Button>로그인</Button>
+        </Link>
       </div>
     </header>
   );
