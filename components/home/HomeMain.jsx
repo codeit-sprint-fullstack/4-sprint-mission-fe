@@ -60,7 +60,7 @@ function HomeMain() {
   return (
     <main>
       {SECTION_DATA.map((section, i) => {
-        return <Section key={i} section={section} index={i} />;
+        return <Section key={i + section.title1} section={section} index={i} />;
       })}
     </main>
   );
