@@ -1,0 +1,12 @@
+GET https://panda-market-api.vercel.app/articles
+
+###
+POST https://panda-market-api.vercel.app/auth/signUp
+Content-Type: application/json
+
+{
+  "email" : "spfs0415@codeit.com",
+  "nickname":"aaa",
+  "password":"11111111",
+  "passwordConfirmation":"11111111"
+}

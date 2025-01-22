@@ -1,12 +1,15 @@
 'use client';
 
+import api from '@/api';
 import eyeDisable from '@/assets/images/eye-disable.png';
 import eye from '@/assets/images/eye.png';
 import logo from '@/assets/images/logo.png';
 import AuthFooter from '@/components/auth/AuthFooter';
 import PageContainer from '@/components/common/Page';
+import { useMutation } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -18,7 +21,10 @@ const DevT = dynamic(
 );
 function SignUpPage() {
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const [isShowPasswordConfirm, setIsShowPasswordConfirm] = useState(false);
+  const [isShowPasswordConfirmation, setIsShowPasswordConfirmation] =
+    useState(false);
+  const router = useRouter();
+
   const {
     register,
     control,
@@ -31,21 +37,28 @@ function SignUpPage() {
       email: '',
       nickname: '',
       password: '',
-      passwordConfirm: '',
+      passwordConfirmation: '',
     },
   }); // mode: onBlur, onChange, onSubmit(default)
 
+  const { mutate: signUp } = useMutation({
+    mutationFn: (userData) => api.signUp(userData),
+    onSuccess: (data) => {
+      router.push('/products');
+    },
+  });
+
   // const {errors}=formState; // 풀어서 쓰려면 이렇게 formState에서 꺼내서 사용
 
-  const onSubmit = (data) => {
-    console.log('Form submitted.', data);
+  const onSubmit = (inputData) => {
+    signUp(inputData);
   };
 
   const handleClickToggleShowPassword = () => {
     setIsShowPassword(!isShowPassword);
   };
   const handleClickToggleShowPasswordConfirm = () => {
-    setIsShowPasswordConfirm(!isShowPasswordConfirm);
+    setIsShowPasswordConfirmation(!isShowPasswordConfirmation);
   };
   return (
     <PageContainer>
@@ -134,7 +147,7 @@ function SignUpPage() {
             </div>
             <div className="inline-flex flex-col w-full mb-6">
               <label
-                htmlFor="passwordConfirm"
+                htmlFor="passwordConfirmation"
                 className="text-lg font-bold mb-4"
               >
                 비밀번호 확인
@@ -143,18 +156,18 @@ function SignUpPage() {
                 <input
                   className={`outline-[#3692ff] w-full px-6 py-2 h-14  bg-[#f3f4f6] placeholder-gray-400  text-black rounded-lg focus:ring-2 ring-white ring-offset-2 fing-offset-gray-500 transition-all 
                 }`}
-                  type={!isShowPasswordConfirm ? 'password' : 'text'}
-                  id="passwordConfirm"
-                  {...register('passwordConfirm', {
+                  type={!isShowPasswordConfirmation ? 'password' : 'text'}
+                  id="passwordConfirmation"
+                  {...register('passwordConfirmation', {
                     required: '비밀번호를 다시 한 번 입력해주세요',
                     validate: {
-                      isNotMatch: () => {
+                      isPasswordNotMatch: () => {
                         const {
                           password: passwordValue,
-                          passwordConfirm: passwordConfirmValue,
+                          passwordConfirmation: passwordConfirmationValue,
                         } = getValues();
                         return (
-                          passwordValue === passwordConfirmValue ||
+                          passwordValue === passwordConfirmationValue ||
                           '비밀번호가 일치하지 않습니다'
                         );
                       },
@@ -162,7 +175,7 @@ function SignUpPage() {
                   })}
                 />
                 <Image
-                  src={isShowPasswordConfirm ? eye : eyeDisable}
+                  src={isShowPasswordConfirmation ? eye : eyeDisable}
                   alt="toggle-show-password"
                   className="w-6 absolute bottom-4 right-6 cursor-pointer"
                   onClick={handleClickToggleShowPasswordConfirm}
@@ -170,7 +183,7 @@ function SignUpPage() {
               </div>
               {!isValid && (
                 <span className="ml-4 mt-2 text-[15px] font-semibold text-[#F74747]">
-                  {errors.passwordConfirm?.message}
+                  {errors.passwordConfirmation?.message}
                 </span>
               )}
             </div>

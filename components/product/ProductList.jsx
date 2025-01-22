@@ -1,14 +1,14 @@
 'use client';
 
-import Dropdown from '../common/Dropdown';
-import Link from 'next/link';
-import Button from '../common/Button';
-import ProductItem from './ProductItem';
-import { useState } from 'react';
-import useDeviceSize from '@/hooks/useDeviceSize';
-import Pagination from '../common/Pagination';
 import api from '@/api';
+import useDeviceSize from '@/hooks/useDeviceSize';
 import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
+import { useState } from 'react';
+import Button from '../common/Button';
+import Dropdown from '../common/Dropdown';
+import Pagination from '../common/Pagination';
+import ProductItem from './ProductItem';
 
 function ProductList({ initialData }) {
   const [sort, setSort] = useState('latest'); // 정렬 옵션
@@ -49,7 +49,8 @@ function ProductList({ initialData }) {
     // },
     initialData,
   });
-  const { products, searchCount } = result;
+  const { list: products, searchCount } = result; // https://panda-market-api.vercel.app/products 사용 시
+  // const { products, searchCount } = result;
   const maxPage = Math.ceil(searchCount / options.limit);
 
   const handleSubmit = (e) => {

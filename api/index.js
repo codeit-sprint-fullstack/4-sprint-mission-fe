@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const baseURL = 'https://four-sprint-mission-be.onrender.com/';
-// const baseURL = 'https://panda-market-api.vercel.app';
+// const baseURL = 'https://four-sprint-mission-be.onrender.com/';
+const baseURL = 'https://panda-market-api.vercel.app';
 
 // const baseURL = 'http://localhost:5500';
 
@@ -24,8 +24,8 @@ function errorHandler(error) {
 const postArticle = async (articleData) => {
   try {
     const url = '/articles';
-    const res = await client.post(url, articleData);
-    return res.data;
+    const response = await client.post(url, articleData);
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -35,8 +35,8 @@ const postArticle = async (articleData) => {
 const editArticle = async (articleId, articleData) => {
   try {
     const url = `/articles/${articleId}`;
-    const res = await client.patch(url, articleData);
-    return res.data;
+    const response = await client.patch(url, articleData);
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -46,8 +46,8 @@ const editArticle = async (articleId, articleData) => {
 const deleteArticle = async (articleId) => {
   try {
     const url = `/articles/${articleId}`;
-    const res = await client.delete(url);
-    return res.data;
+    const response = await client.delete(url);
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -63,8 +63,8 @@ const getArticles = async ({
   try {
     const params = { limit, sort, skip, keyword };
     const url = `/articles?`;
-    const res = await client.get(url, { params });
-    return res.data;
+    const response = await client.get(url, { params });
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -74,8 +74,8 @@ const getArticles = async ({
 const getArticle = async (articleId) => {
   try {
     const url = `/articles/${articleId}`;
-    const res = await client.get(url);
-    return res.data;
+    const response = await client.get(url);
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -90,8 +90,8 @@ const getCommentsOfArticle = async (articleId, { limit = 3, cursor = '' }) => {
   try {
     const query = `limit=${limit}&cursor=${cursor}`;
     const url = `/articles/${articleId}/comments?${query}`;
-    const res = await client.get(url);
-    return res.data;
+    const response = await client.get(url);
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -101,8 +101,8 @@ const getCommentsOfArticle = async (articleId, { limit = 3, cursor = '' }) => {
 const postArticleComment = async (articleId, commentData) => {
   try {
     const url = `/articles/${articleId}/comments`;
-    const res = await client.post(url, commentData);
-    return res.data;
+    const response = await client.post(url, commentData);
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -112,8 +112,8 @@ const postArticleComment = async (articleId, commentData) => {
 const deleteComment = async (commentId) => {
   try {
     const url = `/comments/${commentId}`;
-    const res = await client.delete(url);
-    return res.data;
+    const response = await client.delete(url);
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -123,8 +123,8 @@ const deleteComment = async (commentId) => {
 const editComment = async (commentId, commentData) => {
   try {
     const url = `/comments/${commentId}`;
-    const res = await client.patch(url, commentData);
-    return res.data;
+    const response = await client.patch(url, commentData);
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -140,37 +140,67 @@ const getProducts = async ({
   keyword = '',
   limit = 0,
 }) => {
-  const url = '/products';
-  const res = await client.get(url, {
-    params: {
-      sort,
-      skip,
-      keyword,
-      limit,
-    },
-  });
-  return res.data;
+  try {
+    const url = '/products';
+    const response = await client.get(url, {
+      params: {
+        sort,
+        skip,
+        keyword,
+        limit,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
 };
 
 // 상품 등록
 const postProduct = async (productData) => {
-  const url = '/products';
-  const res = await client.post(url, productData);
-  return res.data;
+  try {
+    const url = '/products';
+    const response = await client.post(url, productData);
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
 };
 
 // 상품 삭제
 const deleteProduct = async (productId) => {
-  const url = `/products/${productId}`;
-  const res = await client.delete(url);
-  return res.data;
+  try {
+    const url = `/products/${productId}`;
+    const response = await client.delete(url);
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
 };
 
 // 상품 수정
 const editProduct = async (productId, productData) => {
-  const url = `/products/${productId}`;
-  const res = await client.patch(url, productData);
-  return res.data;
+  try {
+    const url = `/products/${productId}`;
+    const response = await client.patch(url, productData);
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+/**********************************************************************************
+ * 회원(user) 관련 API
+ */
+// 회원 가입
+const signUp = async (userData) => {
+  try {
+    const url = '/auth/signUp';
+    const response = await client.post(url, userData);
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
 };
 
 const api = {
@@ -187,6 +217,7 @@ const api = {
   postProduct,
   deleteProduct,
   editProduct,
+  signUp,
 };
 
 export default api;
