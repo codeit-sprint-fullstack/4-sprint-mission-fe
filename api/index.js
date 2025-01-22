@@ -193,11 +193,34 @@ const editProduct = async (productId, productData) => {
  * 회원(user) 관련 API
  */
 // 회원 가입
-const signUp = async (userData) => {
+const signUp = async (dto) => {
   try {
     const url = '/auth/signUp';
-    const response = await client.post(url, userData);
-    return response.data;
+    const response = await client.post(url, dto);
+    const data = response.data;
+
+    const { accessToken, refreshToken } = data;
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+
+    return data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+// 로그인
+const logIn = async (dto) => {
+  try {
+    const url = '/auth/signIn';
+    const response = await client.post(url, dto);
+    const data = response.data;
+
+    const { accessToken, refreshToken } = data;
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+
+    return data;
   } catch (error) {
     errorHandler(error);
   }
@@ -218,6 +241,7 @@ const api = {
   deleteProduct,
   editProduct,
   signUp,
+  logIn,
 };
 
 export default api;

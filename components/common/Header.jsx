@@ -1,7 +1,7 @@
 import logo from '@/assets/images/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from './Button';
+import AuthButton from './AuthButton';
 import HeaderNav from './HeaderNav';
 
 function Header({ isLandingPage = false }) {
@@ -26,9 +26,7 @@ function Header({ isLandingPage = false }) {
           {/* 랜딩 페이지인 경우에만 nav메뉴 렌더링 */}
           {isLandingPage || <HeaderNav />}
         </div>
-        <Link className="shrink-0" href="/auth/log-in">
-          <Button>로그인</Button>
-        </Link>
+        <AuthButton />
       </div>
     </header>
   );

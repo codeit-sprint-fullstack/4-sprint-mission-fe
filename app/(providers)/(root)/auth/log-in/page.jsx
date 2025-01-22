@@ -5,7 +5,9 @@ import eyeDisable from '@/assets/images/eye-disable.png';
 import eye from '@/assets/images/eye.png';
 import logo from '@/assets/images/logo.png';
 import AuthFooter from '@/components/auth/AuthFooter';
+import Loader from '@/components/common/Loader';
 import PageContainer from '@/components/common/Page';
+import { useAuth } from '@/contexts/AuthContext';
 import { useMutation } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -19,46 +21,40 @@ const DevT = dynamic(
   () => import('@hookform/devtools').then((module) => module.DevTool),
   { ssr: false }
 );
-function SignUpPage() {
+function LogInPage() {
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const [isShowPasswordConfirmation, setIsShowPasswordConfirmation] =
-    useState(false);
+  const { logIn: authLogin } = useAuth();
   const router = useRouter();
 
   const {
     register,
     control,
     handleSubmit,
-    getValues,
     formState: { errors, isValid, isDirty },
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
       email: '',
-      nickname: '',
       password: '',
-      passwordConfirmation: '',
     },
   }); // mode: onBlur, onChange, onSubmit(default)
 
-  const { mutate: signUp } = useMutation({
-    mutationFn: (userData) => api.signUp(userData),
-    onSuccess: (data) => {
+  // const {errors}=formState; // 풀어서 쓰려면 이렇게 formState에서 꺼내서 사용
+
+  const { mutate: logIn, isPending } = useMutation({
+    mutationFn: (userData) => api.logIn(userData),
+    onSuccess: () => {
       router.push('/products');
+      authLogin();
     },
   });
 
-  // const {errors}=formState; // 풀어서 쓰려면 이렇게 formState에서 꺼내서 사용
-
-  const onSubmit = (inputData) => {
-    signUp(inputData);
+  const onSubmit = (data) => {
+    logIn(data);
   };
 
   const handleClickToggleShowPassword = () => {
     setIsShowPassword(!isShowPassword);
-  };
-  const handleClickToggleShowPasswordConfirm = () => {
-    setIsShowPasswordConfirmation(!isShowPasswordConfirmation);
   };
   return (
     <PageContainer>
@@ -83,34 +79,25 @@ function SignUpPage() {
                       /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     message: '잘못된 이메일 형식입니다',
                   },
+                  // validate: {
+                  //   isEmailExisting: () => {
+                  //     return (
+                  //       email === 'spfs0415@codeit.com' ||
+                  //       '이미 존재하는 이메일입니다'
+                  //     );
+                  //   },
+                  // },
                 })}
               />
+              {/* 렌더링 조건을 errors? isValid?
+              - 거의 동일하나, isValid를 사용할 경우 에러 메시지가 표시된 상태에서 잘못된 부분을 수정하면
+              - 에러 메시지가 자동으로 사라진다. 단, isValid는 폼별로 적용되는 값이 아니므로
+              - 다른 폼들(여기서는 비밀번호)의 valid가 모두 통과된 경우에만 적용됨
+              - isValid를 각 폼별로 체크하는 방법은 아직 찾지 못했음. (2025.01.22)
+               */}
               {!isValid && (
                 <span className="ml-4 mt-2 text-[15px] font-semibold text-[#F74747]">
                   {errors.email?.message}
-                </span>
-              )}
-            </div>
-            <div className="inline-flex flex-col w-full mb-6">
-              <label htmlFor="nickname" className="text-lg font-bold mb-4">
-                닉네임
-              </label>
-              <input
-                className={`outline-[#3692ff] w-full px-6 py-2 h-14  bg-[#f3f4f6] placeholder-gray-400  text-black rounded-lg focus:ring-2 ring-white ring-offset-2 fing-offset-gray-500 transition-all 
-                }`}
-                type="text"
-                id="nickname"
-                {...register('nickname', {
-                  required: '닉네임을 입력해주세요',
-                  minLength: {
-                    value: 2,
-                    message: '닉네임을 2글자 이상 입력해주세요',
-                  },
-                })}
-              />
-              {!isValid && (
-                <span className="ml-4 mt-2 text-[15px] font-semibold text-[#F74747]">
-                  {errors.nickname?.message}
                 </span>
               )}
             </div>
@@ -145,62 +132,24 @@ function SignUpPage() {
                 </span>
               )}
             </div>
-            <div className="inline-flex flex-col w-full mb-6">
-              <label
-                htmlFor="passwordConfirmation"
-                className="text-lg font-bold mb-4"
-              >
-                비밀번호 확인
-              </label>
-              <div className="relative">
-                <input
-                  className={`outline-[#3692ff] w-full px-6 py-2 h-14  bg-[#f3f4f6] placeholder-gray-400  text-black rounded-lg focus:ring-2 ring-white ring-offset-2 fing-offset-gray-500 transition-all 
-                }`}
-                  type={!isShowPasswordConfirmation ? 'password' : 'text'}
-                  id="passwordConfirmation"
-                  {...register('passwordConfirmation', {
-                    required: '비밀번호를 다시 한 번 입력해주세요',
-                    validate: {
-                      isPasswordNotMatch: () => {
-                        const {
-                          password: passwordValue,
-                          passwordConfirmation: passwordConfirmationValue,
-                        } = getValues();
-                        return (
-                          passwordValue === passwordConfirmationValue ||
-                          '비밀번호가 일치하지 않습니다'
-                        );
-                      },
-                    },
-                  })}
-                />
-                <Image
-                  src={isShowPasswordConfirmation ? eye : eyeDisable}
-                  alt="toggle-show-password"
-                  className="w-6 absolute bottom-4 right-6 cursor-pointer"
-                  onClick={handleClickToggleShowPasswordConfirm}
-                />
-              </div>
-              {!isValid && (
-                <span className="ml-4 mt-2 text-[15px] font-semibold text-[#F74747]">
-                  {errors.passwordConfirmation?.message}
-                </span>
-              )}
-            </div>
             <div className="flex justify-center">
               <button
                 className={`min-w-full h-14 px-6 py-2 ${
-                  !isValid ? 'bg-[#9CA3AF]' : 'bg-[#3692FF]'
+                  !isValid || isPending ? 'bg-[#9CA3AF]' : 'bg-[#3692FF]'
                 } text-white rounded-full ${
-                  !isValid ? '' : 'hover:bg-[#1469CF] active:brightness-75'
+                  !isValid || isPending
+                    ? ''
+                    : 'hover:bg-[#1469CF] active:brightness-75'
                 }  flex items-center justify-center`}
                 disabled={!isDirty || !isValid}
               >
-                <p className="mr-2 text-center">회원가입</p>
+                <p className="mr-2 text-center">
+                  {isPending ? <Loader /> : '로그인'}
+                </p>
               </button>
             </div>
           </form>
-          <AuthFooter />
+          <AuthFooter isLogin={true} />
         </div>
         <DevT control={control} />
       </div>
@@ -208,4 +157,4 @@ function SignUpPage() {
   );
 }
 
-export default SignUpPage;
+export default LogInPage;

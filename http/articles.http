@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
   "email" : "spfs0415@codeit.com",
-  "nickname":"aaa",
+  "nickname":"팽팽",
   "password":"11111111",
   "passwordConfirmation":"11111111"
 }
