@@ -1,10 +1,8 @@
-import Link from 'next/link';
 import logo from '@/assets/images/logo.png';
-import logoM from '@/assets/images/logo-m.png';
-import HeaderNav from './HeaderNav';
 import Image from 'next/image';
+import Link from 'next/link';
 import Button from './Button';
-import React from 'react';
+import HeaderNav from './HeaderNav';
 
 function Header({ isLandingPage = false }) {
   console.log('header is rendered');

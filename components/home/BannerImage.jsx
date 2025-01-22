@@ -1,7 +1,7 @@
-import imgBannerTop from '@/assets/images/img-home-top.png';
 import imgBannerBottom from '@/assets/images/img-home-bottom.png';
-import Link from 'next/link';
+import imgBannerTop from '@/assets/images/img-home-top.png';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function BannerImage({ isTop }) {
   const img = isTop ? imgBannerTop : imgBannerBottom;
@@ -20,7 +20,7 @@ function BannerImage({ isTop }) {
           </span>
           {isTop && (
             <Link href="/products">
-              <button className="h-14 shrink-0 w-[357px] bg-[#3692FF] text-white rounded-full hover:bg-[#1469CF] flex justify-center items-center mb-15">
+              <button className="h-14 shrink-0 w-[357px] bg-[#3692FF] text-white rounded-full hover:bg-[#1469CF] brightness-75 flex justify-center items-center mb-15">
                 <p className="mr-2 text-[20px] font-medium">구경하러 가기</p>
               </button>
             </Link>

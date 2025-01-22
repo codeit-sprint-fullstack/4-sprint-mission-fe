@@ -2,7 +2,9 @@ import clsx from 'clsx';
 
 function Button({ children, disabled = false, onClick, cancel = false }) {
   const defaultClassNames = clsx(
-    'shrink-0 px-6 py-2 bg-[#3692FF] text-white rounded-lg hover:bg-[#1469CF]'
+    `shrink-0 px-6 py-2 bg-[#3692FF] text-white rounded-lg hover:bg-[#1469CF] ${
+      disabled ? '' : 'active:brightness-75'
+    }`
   );
 
   const disableClassNames = clsx({

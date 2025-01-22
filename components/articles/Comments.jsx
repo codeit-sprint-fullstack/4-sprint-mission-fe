@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Comment from './Comment';
 import api from '@/api';
-import Button from '../common/Button';
-import replyEmpty from '@/assets/images/img_reply_empty.png';
 import icBack from '@/assets/images/ic_back.png';
+import replyEmpty from '@/assets/images/img_reply_empty.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Button from '../common/Button';
 import Loader from '../common/Loader';
+import Comment from './Comment';
 
 function Comments({ articleId }) {
   const [comments, setComments] = useState([]);
@@ -109,7 +109,7 @@ function Comments({ articleId }) {
       )}
       <div className="flex justify-center">
         <Link href={'/articles'}>
-          <button className="h-12 shrink-0 px-6 py-2 bg-[#3692FF] text-white rounded-full hover:bg-[#1469CF] flex items-center mt-12">
+          <button className="h-12 shrink-0 px-6 py-2 bg-[#3692FF] text-white rounded-full hover:bg-[#1469CF] active:brightness-75 flex items-center mt-12">
             <p className="mr-2">목록으로 돌아가기</p>
 
             <Image src={icBack} alt="목록으로가기" className="w-6" />

@@ -9,8 +9,12 @@ function AuthFooter({ isLogin = false }) {
       <div className="flex w-full items-center justify-between h-[74px] bg-[#E6F2FF] rounded-md mt-6 px-6">
         <p>간편 로그인하기</p>
         <div className="flex gap-x-4">
-          <Image src={icGoogle} alt="google" className="w-[42px]" />
-          <Image src={icKakao} alt="kakao" className="w-[42px]" />
+          <Link href="https://www.google.com">
+            <Image src={icGoogle} alt="google" className="w-[42px]" />
+          </Link>
+          <Link href="https://www.kakaocorp.com/page">
+            <Image src={icKakao} alt="kakao" className="w-[42px]" />
+          </Link>
         </div>
       </div>
       <div className="flex gap-x-1 mt-6 justify-center">
