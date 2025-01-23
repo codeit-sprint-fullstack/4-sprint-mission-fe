@@ -22,6 +22,7 @@ const DevT = dynamic(
   { ssr: false }
 );
 function LogInPage() {
+  console.log('login render');
   const [isShowPassword, setIsShowPassword] = useState(false);
   const { logIn: authLogin } = useAuth();
   const router = useRouter();

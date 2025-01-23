@@ -22,6 +22,7 @@ const DevT = dynamic(
   { ssr: false }
 );
 function SignUpPage() {
+  console.log('signup render');
   const { logIn } = useAuth();
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowPasswordConfirmation, setIsShowPasswordConfirmation] =

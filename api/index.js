@@ -5,7 +5,7 @@ const baseURL = 'https://panda-market-api.vercel.app';
 
 // const baseURL = 'http://localhost:5500';
 
-const client = axios.create({
+export const client = axios.create({
   baseURL,
 });
 
@@ -13,9 +13,59 @@ function errorHandler(error) {
   if (error.response) {
     throw new Error(`${error.response.status}: ${error.response.data}`);
   } else {
-    throw new Error('요청에 실패하였습니다.');
+    throw new Error(error, '요청에 실패하였습니다.');
   }
 }
+
+// ---------------- axios interceptors 설정하기
+// request interceptor
+// - headers에 accessToken 실어 보내기
+client.interceptors.request.use(
+  (config) => {
+    let accessToken;
+    if (typeof window !== 'undefined') {
+      accessToken = localStorage.getItem('accessToken');
+    }
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    console.log('interceptor Error', error);
+    return Promise.reject(error);
+  }
+);
+
+// response interceptor
+// - 401 에러 시 refreshToken 요청(accessToken 재발급) 후 -에러가 발생한- 기존 요청을 재요청
+client.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    const statusCode = error.response?.status;
+    if (statusCode === 401 && !originalRequest._retry) {
+      console.log('토큰 만료');
+      originalRequest._retry = true;
+      let prevRefreshToken;
+      if (typeof window !== 'undefined') {
+        prevRefreshToken = localStorage.getItem('refreshToken');
+      }
+      if (!prevRefreshToken) {
+        window.location.href = '/auth/log-in';
+      }
+      const { accessToken } = await refreshToken(prevRefreshToken);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('accessToken', accessToken);
+      }
+      originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+      return client.request(originalRequest);
+    }
+    return Promise.reject(error);
+  }
+);
 
 /**********************************************************************************
  * 게시글(article) 관련 API
@@ -50,7 +100,7 @@ const deleteArticle = async (articleId) => {
     return response.data;
   } catch (error) {
     errorHandler(error);
-  }
+  } //
 };
 
 // 게시글 목록 조회
@@ -200,6 +250,7 @@ const signUp = async (dto) => {
     const data = response.data;
 
     const { accessToken, refreshToken } = data;
+    // 로컬 스토리지에 토큰 저장
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
 
@@ -217,10 +268,35 @@ const logIn = async (dto) => {
     const data = response.data;
 
     const { accessToken, refreshToken } = data;
+    // 로컬 스토리지에 토큰 저장
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
 
     return data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+// refreshToken
+const refreshToken = async (prevRefreshToken) => {
+  try {
+    const url = '/auth/refresh-token';
+    const response = await client.post(url, { refreshToken: prevRefreshToken });
+    const data = response.data;
+
+    return data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+// 유저 정보 요청
+const getMe = async () => {
+  try {
+    const url = '/users/me';
+    const response = await client.get(url);
+    return response.data;
   } catch (error) {
     errorHandler(error);
   }
@@ -242,6 +318,8 @@ const api = {
   editProduct,
   signUp,
   logIn,
+  refreshToken,
+  getMe,
 };
 
 export default api;
