@@ -5,9 +5,11 @@ import eyeDisable from '@/assets/images/eye-disable.png';
 import eye from '@/assets/images/eye.png';
 import logo from '@/assets/images/logo.png';
 import AuthFooter from '@/components/auth/AuthFooter';
+import AlertModal from '@/components/common/AlertModal';
 import Loader from '@/components/common/Loader';
 import PageContainer from '@/components/common/Page';
 import { useAuth } from '@/contexts/AuthContext';
+import { useModal } from '@/contexts/ModalContext';
 import { useMutation } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -22,15 +24,16 @@ const DevT = dynamic(
   { ssr: false }
 );
 function LogInPage() {
-  console.log('login render');
   const [isShowPassword, setIsShowPassword] = useState(false);
   const { logIn: authLogin } = useAuth();
   const router = useRouter();
+  const modal = useModal();
 
   const {
     register,
     control,
     handleSubmit,
+    setError,
     formState: { errors, isValid, isDirty },
   } = useForm({
     mode: 'onBlur',
@@ -40,13 +43,22 @@ function LogInPage() {
     },
   }); // mode: onBlur, onChange, onSubmit(default)
 
-  // const {errors}=formState; // 풀어서 쓰려면 이렇게 formState에서 꺼내서 사용
-
   const { mutate: logIn, isPending } = useMutation({
     mutationFn: (userData) => api.logIn(userData),
     onSuccess: () => {
       router.push('/products');
       authLogin();
+    },
+    onError: (error) => {
+      if (error.response.data.message === '존재하지 않는 이메일입니다.') {
+        modal.open(<AlertModal errorMessage={error.response.data.message} />);
+        setError('email', { message: '이메일을 확인해 주세요' });
+      } else if (
+        error.response.data.message === '비밀번호가 일치하지 않습니다.'
+      ) {
+        modal.open(<AlertModal errorMessage={error.response.data.message} />);
+        setError('password', { message: '비밀번호를 확인해 주세요' });
+      }
     },
   });
 
@@ -77,17 +89,9 @@ function LogInPage() {
                   required: '이메일을 입력해주세요',
                   pattern: {
                     value:
-                      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
                     message: '잘못된 이메일 형식입니다',
                   },
-                  // validate: {
-                  //   isEmailExisting: () => {
-                  //     return (
-                  //       email === 'spfs0415@codeit.com' ||
-                  //       '이미 존재하는 이메일입니다'
-                  //     );
-                  //   },
-                  // },
                 })}
               />
               {/* 렌더링 조건을 errors? isValid?

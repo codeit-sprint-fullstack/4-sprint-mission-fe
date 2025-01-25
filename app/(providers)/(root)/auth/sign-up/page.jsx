@@ -5,9 +5,11 @@ import eyeDisable from '@/assets/images/eye-disable.png';
 import eye from '@/assets/images/eye.png';
 import logo from '@/assets/images/logo.png';
 import AuthFooter from '@/components/auth/AuthFooter';
+import AlertModal from '@/components/common/AlertModal';
 import Loader from '@/components/common/Loader';
 import PageContainer from '@/components/common/Page';
 import { useAuth } from '@/contexts/AuthContext';
+import { useModal } from '@/contexts/ModalContext';
 import { useMutation } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -22,18 +24,19 @@ const DevT = dynamic(
   { ssr: false }
 );
 function SignUpPage() {
-  console.log('signup render');
   const { logIn } = useAuth();
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowPasswordConfirmation, setIsShowPasswordConfirmation] =
     useState(false);
   const router = useRouter();
+  const modal = useModal();
 
   const {
     register,
     control,
     handleSubmit,
     getValues,
+    setError,
     formState: { errors, isValid, isDirty },
   } = useForm({
     mode: 'onBlur',
@@ -45,15 +48,34 @@ function SignUpPage() {
     },
   }); // mode: onBlur, onChange, onSubmit(default)
 
+  const handleClickConfirm = () => {
+    router.push('/products');
+    logIn();
+    modal.close();
+  };
+
   const { mutate: signUp, isPending } = useMutation({
     mutationFn: (userData) => api.signUp(userData),
     onSuccess: () => {
-      router.push('/products');
-      logIn();
+      modal.open(
+        <AlertModal
+          errorMessage={'가입 완료되었습니다.'}
+          onClick={handleClickConfirm}
+        />
+      );
+    },
+    onError: (error) => {
+      if (error.response.data.message === '이미 사용중인 이메일입니다.') {
+        modal.open(<AlertModal errorMessage={'이미 사용중인 이메일입니다.'} />);
+        setError('email', { message: '이메일을 확인해 주세요' });
+      } else if (
+        error.response.data.message === '이미 사용중인 닉네임입니다.'
+      ) {
+        modal.open(<AlertModal errorMessage={'이미 사용중인 닉네임입니다.'} />);
+        setError('nickname', { message: '닉네임을 확인해 주세요' });
+      }
     },
   });
-
-  // const {errors}=formState; // 풀어서 쓰려면 이렇게 formState에서 꺼내서 사용
 
   const onSubmit = (inputData) => {
     signUp(inputData);

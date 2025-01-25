@@ -49,7 +49,6 @@ function Comments({ articleId }) {
     if (!isBtnActive) return;
     setIsSubmitting(true);
     setIsBtnActive(false);
-    console.log('content', content);
     postComment(content);
     setContent('');
     setIsSubmitting(false);
@@ -65,7 +64,6 @@ function Comments({ articleId }) {
   };
 
   const handleDeleteClick = async (commentId) => {
-    console.log('do Delete');
     deleteComment(commentId);
   };
 

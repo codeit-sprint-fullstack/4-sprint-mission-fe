@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useId } from 'react';
-import eye from '@/assets/images/eye.png';
 import eyeDisable from '@/assets/images/eye-disable.png';
+import eye from '@/assets/images/eye.png';
 import Image from 'next/image';
+import { useId } from 'react';
 import { useController } from 'react-hook-form';
 
 function Input({
@@ -21,9 +21,6 @@ function Input({
 }) {
   const inputId = useId();
   const { field, fieldState, formState } = useController({ name, control });
-  // console.log('🚀 ~ formState:', formState);
-  // console.log('🚀 ~ fieldState:', fieldState);
-  console.log('🚀 ~ field:', field);
   return (
     <div className="inline-flex flex-col w-full mb-6">
       <label htmlFor={inputId} className="text-lg font-bold mb-4">

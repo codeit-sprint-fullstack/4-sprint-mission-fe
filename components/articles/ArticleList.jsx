@@ -1,15 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import api from '@/api';
-import ArticleCard from './ArticleCard';
-import Button from '../common/Button';
-import Link from 'next/link';
-import Dropdown from '../common/Dropdown';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import Button from '../common/Button';
+import Dropdown from '../common/Dropdown';
+import ArticleCard from './ArticleCard';
 
 function ArticleList({ initialData }) {
-  console.log('render article list');
   const targetRef = useRef(null);
   const [sortOption, setSortOption] = useState('latest');
   const [keyword, setKeyword] = useState('');
@@ -58,7 +57,6 @@ function ArticleList({ initialData }) {
       const entry = entries[0];
 
       if (entry.isIntersecting) {
-        console.log('intersecting');
         fetchNextPage();
       }
     });

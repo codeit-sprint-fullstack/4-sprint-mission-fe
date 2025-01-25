@@ -7,7 +7,7 @@ import PageContainer from '@/components/common/Page';
 import useCheckInputValid from '@/hooks/useCheckInputValid';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function ArticlePostPage() {
   const [isBtnActive, setIsBtnActive] = useState(false);
@@ -47,7 +47,7 @@ function ArticlePostPage() {
     createArticle();
   };
 
-  useEffect(() => {
+  6(() => {
     /**
      * '등록' 버튼 활성화 조건 체크
      * - 입력폼 최초 클릭 전인 경우 valid값과 상관없이 무조건 false(최초 페이지 로딩 시를 위한 처리)

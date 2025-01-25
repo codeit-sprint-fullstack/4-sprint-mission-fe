@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // const baseURL = 'https://four-sprint-mission-be.onrender.com/';
-// const baseURL = 'https://panda-market-api.vercel.app';
+const baseURL = 'https://panda-market-api.vercel.app';
 
-const baseURL = 'http://localhost:5500';
+// const baseURL = 'http://localhost:5500';
 
 export const client = axios.create({
   baseURL,
@@ -32,7 +32,6 @@ client.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.log('interceptor Error', error);
     return Promise.reject(error);
   }
 );
@@ -244,38 +243,62 @@ const editProduct = async (productId, productData) => {
  */
 // 회원 가입
 const signUp = async (dto) => {
-  try {
-    const url = '/auth/signUp';
-    const response = await client.post(url, dto);
-    const data = response.data;
+  const url = '/auth/signUp';
+  const response = await client.post(url, dto);
+  const data = response.data;
 
-    const { accessToken, refreshToken } = data;
-    // 로컬 스토리지에 토큰 저장
-    localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('refreshToken', refreshToken);
+  const { accessToken, refreshToken } = data;
+  // 로컬 스토리지에 토큰 저장
+  localStorage.setItem('accessToken', accessToken);
+  localStorage.setItem('refreshToken', refreshToken);
 
-    return data;
-  } catch (error) {
-    errorHandler(error);
-  }
+  return data;
+  // try {
+  //   const url = '/auth/signUp';
+  //   const response = await client.post(url, dto);
+  //   const data = response.data;
+
+  //   const { accessToken, refreshToken } = data;
+  //   // 로컬 스토리지에 토큰 저장
+  //   localStorage.setItem('accessToken', accessToken);
+  //   localStorage.setItem('refreshToken', refreshToken);
+
+  //   return data;
+  // } catch (error) {
+  //   errorHandler(error);
+  // }
 };
 
 // 로그인
 const logIn = async (dto) => {
-  try {
-    const url = '/auth/signIn';
-    const response = await client.post(url, dto);
-    const data = response.data;
+  const url = '/auth/signIn';
+  const response = await client.post(url, dto);
+  const data = response.data;
 
-    const { accessToken, refreshToken } = data;
-    // 로컬 스토리지에 토큰 저장
-    localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('refreshToken', refreshToken);
+  const { accessToken, refreshToken } = data;
+  // 로컬 스토리지에 토큰 저장
+  localStorage.setItem('accessToken', accessToken);
+  localStorage.setItem('refreshToken', refreshToken);
 
-    return data;
-  } catch (error) {
-    errorHandler(error);
-  }
+  return data;
+
+  // !!! -- 중요 -- useMutation의 onError 콜백으로 error가 들어가려면 try catch를 제거해야 한다.
+  // - try catch가 있을 경우 error가 onSuccess로 들어간다? (아직 확인 못 해봄) - 2025.01.27
+
+  // try {
+  //   const url = '/auth/signIn';
+  //   const response = await client.post(url, dto);
+  //   const data = response.data;
+
+  //   const { accessToken, refreshToken } = data;
+  //   // 로컬 스토리지에 토큰 저장
+  //   localStorage.setItem('accessToken', accessToken);
+  //   localStorage.setItem('refreshToken', refreshToken);
+
+  //   return data;
+  // } catch (error) {
+  //   errorHandler(error);
+  // }
 };
 
 // refreshToken
