@@ -3,6 +3,7 @@
 import api from '@/api';
 import icBack from '@/assets/images/ic_back.png';
 import replyEmpty from '@/assets/images/img_reply_empty.png';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -11,41 +12,61 @@ import Loader from '../common/Loader';
 import Comment from './Comment';
 
 function Comments({ articleId }) {
-  const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');
-  const [refreshValue, setRefreshValue] = useState(0);
   const [isBtnActive, setIsBtnActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const queryClient = useQueryClient();
 
-  const loadCommnets = async (options) => {
-    const result = await api.getCommentsOfArticle(articleId, options);
-    setComments(result.comments);
-  };
+  const { data, isLoading } = useQuery({
+    queryKey: ['comments', { articleId }],
+    queryFn: () => api.getCommentsOfArticle(articleId, { limit: 10 }),
+  });
+
+  const { mutate: postComment } = useMutation({
+    mutationFn: (content) => api.postArticleComment(articleId, { content }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', { articleId }] });
+    },
+  });
+
+  const { mutate: patchComment } = useMutation({
+    mutationFn: ({ commentId, content }) => {
+      return api.editComment(commentId, { content });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', { articleId }] });
+    },
+  });
+
+  const { mutate: deleteComment } = useMutation({
+    mutationFn: (commentId) => api.deleteComment(commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', { articleId }] });
+    },
+  });
 
   const handleRegistClick = async () => {
     if (!isBtnActive) return;
     setIsSubmitting(true);
     setIsBtnActive(false);
-    await api.postArticleComment(articleId, { content });
-    // 댓글 목록 자동 갱신을 위한 코드
-    setRefreshValue((prevValue) => prevValue + 1);
+    console.log('content', content);
+    postComment(content);
     setContent('');
     setIsSubmitting(false);
   };
 
-  const handleRegistEditClick = async (commentId, commentText) => {
-    if (!isBtnActive) return;
+  const handleRegistEditClick = async (commentId, editedContent) => {
+    if (editedContent === '') return;
     setIsSubmitting(true);
     setIsBtnActive(false);
-    await api.editComment(commentId, { content: commentText });
-    setRefreshValue((prevValue) => prevValue + 1);
+    patchComment({ commentId, content: editedContent });
     setContent('');
     setIsSubmitting(false);
   };
 
   const handleDeleteClick = async (commentId) => {
-    await api.deleteComment(commentId);
-    setRefreshValue((prevValue) => prevValue + 1);
+    console.log('do Delete');
+    deleteComment(commentId);
   };
 
   useEffect(() => {
@@ -58,10 +79,9 @@ function Comments({ articleId }) {
       setIsBtnActive(false);
     }
   }, [content]);
+  const comments = data?.comments;
 
-  useEffect(() => {
-    loadCommnets({ limit: 10 });
-  }, [refreshValue]);
+  if (isLoading) return '로딩 중';
 
   return (
     <div>

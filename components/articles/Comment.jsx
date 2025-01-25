@@ -1,13 +1,13 @@
-import Image from 'next/image';
 import icProfile from '@/assets/images/ic_profile.png';
-import PopMenuButton from '../common/PopMenuButton';
 import lineBreakText from '@/utils/lineBreakText';
+import Image from 'next/image';
 import { useState } from 'react';
 import Button from '../common/Button';
+import PopMenuButton from '../common/PopMenuButton';
 
 function Comment({ comment, onDelete, onRegistEdit }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editContent, setEditContent] = useState(comment.content);
+  const [editedContent, setEditContent] = useState(comment.content);
 
   const handleCancelClick = () => {
     setIsEditing(false);
@@ -15,7 +15,7 @@ function Comment({ comment, onDelete, onRegistEdit }) {
   };
 
   const handleRegistEditClick = () => {
-    onRegistEdit(comment.id, editContent);
+    onRegistEdit(comment.id, editedContent);
     setIsEditing(false);
   };
 
@@ -56,7 +56,7 @@ function Comment({ comment, onDelete, onRegistEdit }) {
               name="comment"
               className="bg-[#f3f4f6] placeholder-gray-400 w-full h-[104px] rounded-lg px-6 py-4"
               placeholder="댓글을 입력해주세요"
-              value={editContent}
+              value={editedContent}
               onChange={(e) => setEditContent(e.target.value)}
             />
           </form>
@@ -65,7 +65,10 @@ function Comment({ comment, onDelete, onRegistEdit }) {
           <Button onClick={handleCancelClick} cancel={true}>
             취소
           </Button>
-          <Button onClick={handleRegistEditClick} disabled={editContent === ''}>
+          <Button
+            onClick={handleRegistEditClick}
+            disabled={editedContent === ''}
+          >
             수정
           </Button>
         </div>

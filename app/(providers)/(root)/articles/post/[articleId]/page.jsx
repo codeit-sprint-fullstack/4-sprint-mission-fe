@@ -5,6 +5,7 @@ import Button from '@/components/common/Button';
 import Loader from '@/components/common/Loader';
 import PageContainer from '@/components/common/Page';
 import useCheckInputValid from '@/hooks/useCheckInputValid';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -32,31 +33,30 @@ function ArticleEditPage() {
     handleChange: handleContentChange,
   } = useCheckInputValid((value) => value.length >= 10 && value.length <= 500);
 
-  const loadArticle = async () => {
-    const article = await api.getArticle(articleId);
-    setInputContent(article.content);
-    setInputTitle(article.title);
-  };
+  const { data: article } = useQuery({
+    queryKey: ['article', { articleId }],
+    queryFn: () => api.getArticle(articleId),
+  });
+
+  const { mutate: editArticle } = useMutation({
+    mutationFn: () =>
+      api.editArticle(articleId, { title: inputTitle, content: inputContent }),
+    onSuccess: () => {
+      router.push(`/articles/${articleId}`);
+    },
+  });
 
   const handleRegistClick = async () => {
     if (!isBtnActive) return;
     setIsSubmitting(true);
     setIsBtnActive(false);
-    //TODO: Loader확인을 위한 의도적 딜레이 부여(향후 setTimeout삭제)
-    // setTimeout(async () => {
-    //   const articleId = await api.postArticle({
-    //     title: inputTitle,
-    //     content: inputContent,
-    //   });
-    const articleId = await api.postArticle({
-      title: inputTitle,
-      content: inputContent,
-    });
-    router.push(`/articles/${articleId}`);
+    editArticle();
   };
 
   useEffect(() => {
-    loadArticle();
+    if (!article) return;
+    setInputContent(article.content);
+    setInputTitle(article.title);
   }, []);
 
   useEffect(() => {

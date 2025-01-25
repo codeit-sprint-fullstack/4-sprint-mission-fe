@@ -15,6 +15,11 @@ export function AuthProvider({ children }) {
   const pathName = usePathname();
   const router = useRouter();
 
+  // const { data: user } = useQuery({
+  //   queryKey: ['userInfo'],
+  //   queryFn: api.getMe,
+  // });
+
   const logIn = () => setIsLoggedIn(true);
   const logOut = () => {
     // #1. api의 헤더에서 accessToken제거
@@ -37,21 +42,21 @@ export function AuthProvider({ children }) {
 
   //
   useEffect(() => {
-    async function initializeAuthStatus() {
+    async function initAuthStatus() {
       try {
         const accessToken = localStorage.getItem('accessToken');
-        // if (!accessToken) return;
+        if (!accessToken) return;
 
         const user = await api.getMe();
         setUserInfo(user);
         setIsLoggedIn(true);
       } catch (error) {
-        console.log(error);
+        console.log('refreshToken이 없거나 만료', error);
       } finally {
         setIsAuthInitialized(true);
       }
     }
-    initializeAuthStatus();
+    initAuthStatus();
   }, [isLoggedIn]);
 
   const value = {

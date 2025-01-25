@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // const baseURL = 'https://four-sprint-mission-be.onrender.com/';
-const baseURL = 'https://panda-market-api.vercel.app';
+// const baseURL = 'https://panda-market-api.vercel.app';
 
-// const baseURL = 'http://localhost:5500';
+const baseURL = 'http://localhost:5500';
 
 export const client = axios.create({
   baseURL,
@@ -54,7 +54,7 @@ client.interceptors.response.use(
         prevRefreshToken = localStorage.getItem('refreshToken');
       }
       if (!prevRefreshToken) {
-        window.location.href = '/auth/log-in';
+        return;
       }
       const { accessToken } = await refreshToken(prevRefreshToken);
       if (typeof window !== 'undefined') {
@@ -170,10 +170,10 @@ const deleteComment = async (commentId) => {
 };
 
 // 댓글 수정
-const editComment = async (commentId, commentData) => {
+const editComment = async (commentId, content) => {
   try {
     const url = `/comments/${commentId}`;
-    const response = await client.patch(url, commentData);
+    const response = await client.patch(url, content);
     return response.data;
   } catch (error) {
     errorHandler(error);
