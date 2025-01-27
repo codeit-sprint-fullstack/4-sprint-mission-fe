@@ -1,0 +1,10 @@
+###
+POST https://panda-market-api.vercel.app/products
+Content-Type: application/json
+
+{
+  "name" : "테스트 상품",
+  "nickname":"",
+  "password":"11111111",
+  "passwordConfirmation":"11111111"
+}

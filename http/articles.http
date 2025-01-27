@@ -10,3 +10,10 @@ Content-Type: application/json
   "password":"11111111",
   "passwordConfirmation":"11111111"
 }
+
+###
+GET https://panda-market-api.vercel.app/products
+
+###
+GET https://panda-market-api.vercel.app/products/561/comments?limit=10
+

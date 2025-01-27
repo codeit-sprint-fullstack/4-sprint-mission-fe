@@ -51,12 +51,12 @@ function LogInPage() {
     },
     onError: (error) => {
       if (error.response.data.message === '존재하지 않는 이메일입니다.') {
-        modal.open(<AlertModal errorMessage={error.response.data.message} />);
+        modal.open(<AlertModal alertMessage={error.response.data.message} />);
         setError('email', { message: '이메일을 확인해 주세요' });
       } else if (
         error.response.data.message === '비밀번호가 일치하지 않습니다.'
       ) {
-        modal.open(<AlertModal errorMessage={error.response.data.message} />);
+        modal.open(<AlertModal alertMessage={error.response.data.message} />);
         setError('password', { message: '비밀번호를 확인해 주세요' });
       }
     },
@@ -99,6 +99,9 @@ function LogInPage() {
               - 에러 메시지가 자동으로 사라진다. 단, isValid는 폼별로 적용되는 값이 아니므로
               - 다른 폼들(여기서는 비밀번호)의 valid가 모두 통과된 경우에만 적용됨
               - isValid를 각 폼별로 체크하는 방법은 아직 찾지 못했음. (2025.01.22)
+              - !!!! 2025.01.28
+              - getFieldState로 각 폼별로 invalid값을 받을 수 있다
+              - 다만, 그것 역시 위의 문제는 동일하여 현재로서는 isValid가 최선!!
                */}
               {!isValid && (
                 <span className="ml-4 mt-2 text-[15px] font-semibold text-[#F74747]">

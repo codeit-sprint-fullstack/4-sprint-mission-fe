@@ -59,19 +59,19 @@ function SignUpPage() {
     onSuccess: () => {
       modal.open(
         <AlertModal
-          errorMessage={'가입 완료되었습니다.'}
+          alertMessage={'가입 완료되었습니다.'}
           onClick={handleClickConfirm}
         />
       );
     },
     onError: (error) => {
       if (error.response.data.message === '이미 사용중인 이메일입니다.') {
-        modal.open(<AlertModal errorMessage={'이미 사용중인 이메일입니다.'} />);
+        modal.open(<AlertModal alertMessage={'이미 사용중인 이메일입니다.'} />);
         setError('email', { message: '이메일을 확인해 주세요' });
       } else if (
         error.response.data.message === '이미 사용중인 닉네임입니다.'
       ) {
-        modal.open(<AlertModal errorMessage={'이미 사용중인 닉네임입니다.'} />);
+        modal.open(<AlertModal alertMessage={'이미 사용중인 닉네임입니다.'} />);
         setError('nickname', { message: '닉네임을 확인해 주세요' });
       }
     },

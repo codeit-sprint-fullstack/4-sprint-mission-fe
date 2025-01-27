@@ -1,4 +1,6 @@
 import icProfile from '@/assets/images/ic_profile.png';
+import { useAuth } from '@/contexts/AuthContext';
+import { useModal } from '@/contexts/ModalContext';
 import lineBreakText from '@/utils/lineBreakText';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -8,6 +10,8 @@ import PopMenuButton from '../common/PopMenuButton';
 function Comment({ comment, onDelete, onRegistEdit }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditContent] = useState(comment.content);
+  const modal = useModal();
+  const { isLoggedIn } = useAuth();
 
   const handleCancelClick = () => {
     setIsEditing(false);
@@ -15,6 +19,10 @@ function Comment({ comment, onDelete, onRegistEdit }) {
   };
 
   const handleRegistEditClick = () => {
+    if (!isLoggedIn)
+      return modal.open(
+        <AlertModal alertMessage="로그인이 필요한 서비스입니다." />
+      );
     onRegistEdit(comment.id, editedContent);
     setIsEditing(false);
   };
@@ -61,8 +69,8 @@ function Comment({ comment, onDelete, onRegistEdit }) {
             />
           </form>
         </div>
-        <div className="flex justify-end mt-4">
-          <Button onClick={handleCancelClick} cancel={true}>
+        <div className="flex justify-end mt-4 gap-2">
+          <Button onClick={handleCancelClick} outline={true}>
             취소
           </Button>
           <Button

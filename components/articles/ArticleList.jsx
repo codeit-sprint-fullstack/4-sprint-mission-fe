@@ -10,7 +10,8 @@ import ArticleCard from './ArticleCard';
 
 function ArticleList({ initialData }) {
   const targetRef = useRef(null);
-  const [sortOption, setSortOption] = useState('latest');
+  const [sortOption, setSortOption] = useState('recent'); // panda
+  // const [sortOption, setSortOption] = useState('latest');
   const [keyword, setKeyword] = useState('');
 
   const { data, isLoading, fetchNextPage } = useInfiniteQuery({
@@ -18,9 +19,13 @@ function ArticleList({ initialData }) {
     queryFn: ({ pageParam }) =>
       api.getArticles({
         keyword,
-        sort: sortOption,
-        skip: (pageParam - 1) * 10,
-        limit: 10,
+        orderBy: sortOption,
+        page,
+        pageSize: 10,
+        // keyword,
+        // sort: sortOption,
+        // skip: (pageParam - 1) * 10,
+        // limit: 10,
       }),
     initialPageParam: 1,
     initialData: { pages: [initialData], pageParams: [] },
@@ -34,7 +39,8 @@ function ArticleList({ initialData }) {
       return lastPageParam.page + 1;
     },
   });
-  const articles = data?.pages.flatMap((page) => page.articles) || [];
+  const articles = data?.pages.flatMap((page) => page.list) || [];
+  // const articles = data?.pages.flatMap((page) => page.articles) || [];
 
   const handleSubmit = (e) => {
     e.preventDefault();

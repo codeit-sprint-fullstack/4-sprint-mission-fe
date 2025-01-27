@@ -1,35 +1,50 @@
 'use client';
 
 import api from '@/api';
+import { useAuth } from '@/contexts/AuthContext';
+import { useModal } from '@/contexts/ModalContext';
 import useDeviceSize from '@/hooks/useDeviceSize';
 import { useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import AlertModal from '../common/AlertModal';
 import Button from '../common/Button';
 import Dropdown from '../common/Dropdown';
 import Pagination from '../common/Pagination';
 import ProductItem from './ProductItem';
 
 function ProductList({ initialData }) {
-  const [sort, setSort] = useState('latest'); // 정렬 옵션
+  const [sort, setSort] = useState('recent'); // 정렬 옵션 - panda
+  // const [sort, setSort] = useState('latest'); // 정렬 옵션
   const [keyword, setKeyword] = useState(''); // 검색
   const [page, setPage] = useState(1); // pagination에 필요
   const [loadingError, setloadingError] = useState(null);
   const { isTablet, isMobile } = useDeviceSize(); // 미디어 쿼리
+  const { isLoggedIn } = useAuth();
+  const modal = useModal();
+  const router = useRouter();
+
+  // ----- panda 마켓 -----------
+  const options = {
+    orderBy: sort,
+    keyword,
+    pageSize: 10,
+    page,
+  };
 
   // const currentDevice = isTablet ? 'tablet' : isMobile ? 'mobile' : 'desktop';
-  const options = {
-    sort: sort,
-    keyword: keyword,
-    skip: (page - 1) * 10,
-    limit: 10,
-    // skip: isTablet // 반응형 UI 구현 시 적용
-    //   ? (page - 1) * 6
-    //   : isMobile
-    //   ? (page - 1) * 4
-    //   : (page - 1) * 10,
-    // limit: isTablet ? 6 : isMobile ? 4 : 10, // 반응형 UI 구현 시 적용
-  };
+  // const options = {
+  //   sort: sort,
+  //   keyword: keyword,
+  //   skip: (page - 1) * 10,
+  //   limit: 20,
+  //   // skip: isTablet // 반응형 UI 구현 시 적용
+  //   //   ? (page - 1) * 6
+  //   //   : isMobile
+  //   //   ? (page - 1) * 4
+  //   //   : (page - 1) * 10,
+  //   // limit: isTablet ? 6 : isMobile ? 4 : 10, // 반응형 UI 구현 시 적용
+  // };
 
   // 반응형 UI 구현 시 적용
   // const { products: initialProducts, searchCount: initialSearchCount } =
@@ -49,9 +64,12 @@ function ProductList({ initialData }) {
     // },
     initialData,
   });
-  const { list: products, searchCount } = result; // https://panda-market-api.vercel.app/products 사용 시
+  const { list: products, totalCount } = result; // https://panda-market-api.vercel.app/products 사용 시
+  const maxPage = Math.ceil(totalCount / options.pageSize); // https://panda-market-api.vercel.app/products 사용 시
   // const { products, searchCount } = result;
-  const maxPage = Math.ceil(searchCount / options.limit);
+  // const maxPage = Math.ceil(searchCount / options.limit);
+  console.log(totalCount, maxPage, page);
+  console.log(options);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,6 +81,15 @@ function ProductList({ initialData }) {
     if (keyword) {
       setPage(1);
     }
+  };
+
+  const handleClickRegitstBtn = () => {
+    if (!isLoggedIn)
+      return modal.open(
+        <AlertModal alertMessage="로그인이 필요한 서비스입니다." />
+      );
+
+    router.push('/products/post');
   };
 
   return (
@@ -81,9 +108,9 @@ function ProductList({ initialData }) {
               placeholder="검색할 상품을 입력해주세요"
             />
           </form>
-          <Link href="/registration">
-            <Button>상품 등록하기</Button>
-          </Link>
+          {/* <Link href="/registration"> */}
+          <Button onClick={handleClickRegitstBtn}>상품 등록하기</Button>
+          {/* </Link> */}
           <Dropdown value={sort} onSelect={setSort} />
         </div>
       </div>

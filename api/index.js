@@ -10,6 +10,7 @@ export const client = axios.create({
 });
 
 function errorHandler(error) {
+  console.log('AxiosError', error);
   if (error.response) {
     throw new Error(`${error.response.status}: ${error.response.data}`);
   } else {
@@ -134,8 +135,9 @@ const getArticle = async (articleId) => {
  * 댓글(comments) 관련 API
  */
 
+// panda 마켓 - cursor가 숫자, 그 외에는 ''
 // 댓글 목록 조회 - 게시글
-const getCommentsOfArticle = async (articleId, { limit = 3, cursor = '' }) => {
+const getCommentsOfArticle = async (articleId, { limit = 3, cursor = 0 }) => {
   try {
     const query = `limit=${limit}&cursor=${cursor}`;
     const url = `/articles/${articleId}/comments?${query}`;
@@ -179,26 +181,70 @@ const editComment = async (commentId, content) => {
   }
 };
 
+// panda 마켓 - cursor가 숫자, 그 외에는 ''
+// 댓글 목록 조회 - 상품
+const getCommentsOfProduct = async (productId, { limit = 3, cursor = 0 }) => {
+  try {
+    const query = `limit=${limit}&cursor=${cursor}`;
+    const url = `/products/${productId}/comments?${query}`;
+    console.log('url', url);
+    const response = await client.get(url);
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+// 댓글 등록 - 상품
+const postProductComment = async (productId, commentData) => {
+  try {
+    const url = `/products/${productId}/comments`;
+    const response = await client.post(url, commentData);
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
 /**********************************************************************************
  * 상품(product) 관련 API
  */
 // 상품 목록 조회
 const getProducts = async ({
-  sort = 'latest',
-  skip = 0,
+  orderBy = 'recent',
+  page = 1,
   keyword = '',
-  limit = 0,
+  pageSize = 0,
+  // sort = 'latest',
+  // skip = 0,
+  // keyword = '',
+  // limit = 0,
 }) => {
   try {
     const url = '/products';
     const response = await client.get(url, {
       params: {
-        sort,
-        skip,
+        orderBy,
+        page,
         keyword,
-        limit,
+        pageSize,
+        // sort,
+        // skip,
+        // keyword,
+        // limit,
       },
     });
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+// 상품 조회
+const getProduct = async (productId) => {
+  try {
+    const url = `/products/${productId}`;
+    const response = await client.get(url);
     return response.data;
   } catch (error) {
     errorHandler(error);
@@ -335,7 +381,10 @@ const api = {
   postArticleComment,
   deleteComment,
   editComment,
+  getCommentsOfProduct,
+  postProductComment,
   getProducts,
+  getProduct,
   postProduct,
   deleteProduct,
   editProduct,
