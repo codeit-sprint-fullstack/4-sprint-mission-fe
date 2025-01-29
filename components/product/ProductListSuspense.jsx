@@ -1,8 +1,8 @@
 import api from '@/api';
-import PageContainer from '@/components/common/Page';
-import ProductList from '@/components/product/ProductList';
+import PageContainer from '../common/Page';
+import ProductList from './ProductList';
 
-async function ProductListPage() {
+async function ProductListSuspense(props) {
   const result = await api.getProducts({ pageSize: 10 }); // panda
   // const result = await api.getProducts({ limit: 10 });
   return (
@@ -12,4 +12,4 @@ async function ProductListPage() {
   );
 }
 
-export default ProductListPage;
+export default ProductListSuspense;

@@ -6,12 +6,12 @@ import Link from 'next/link';
 import BestArticleCard from './BestArticleCard';
 
 function BestArticleList({ initialData }) {
-  const { data } = useQuery({
+  const { data, isFetching, isPending, isLoading } = useQuery({
     queryFn: () => api.getArticles({ pageSize: 3, orderBy: 'recent' }), // panda 마켓
     // queryFn: () => api.getArticles({ limit: 3, sort: 'latest' }),
     queryKey: ['bestArticles', { isBest: true }],
     initialData,
-    staleTime: 12000,
+    staleTime: 120000,
     gcTime: 0,
     refetchOnMount: true,
     retry: 0,
@@ -19,6 +19,8 @@ function BestArticleList({ initialData }) {
 
   const articles = data?.list.slice(0, 3) || []; // panda 마켓
   // const articles = data?.articles.slice(0, 3) || [];
+
+  if (isFetching || isLoading || isPending) return <div>로딩 중</div>;
   return (
     <section className="mb-10">
       <div className="h-[42px] flex items-center mb-6">

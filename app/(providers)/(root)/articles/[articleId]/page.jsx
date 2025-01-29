@@ -3,9 +3,8 @@ import ArticleDetail from '@/components/articles/ArticleDetail';
 import Comments from '@/components/articles/Comments';
 import PageContainer from '@/components/common/Page';
 
-async function ArticleDetailPage(props) {
-  const params = await props.params;
-  const articleId = params.articleId;
+async function ArticleDetailPage({ params }) {
+  const { articleId } = await params;
   const article = await api.getArticle(articleId);
   return (
     <PageContainer>

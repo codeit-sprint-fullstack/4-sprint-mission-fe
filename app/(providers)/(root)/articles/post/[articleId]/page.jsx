@@ -1,11 +1,13 @@
 'use client';
 
 import api from '@/api';
+import AlertModal from '@/components/common/AlertModal';
 import Button from '@/components/common/Button';
 import Loader from '@/components/common/Loader';
 import PageContainer from '@/components/common/Page';
+import { useModal } from '@/contexts/ModalContext';
 import useCheckInputValid from '@/hooks/useCheckInputValid';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -14,7 +16,9 @@ function ArticleEditPage() {
   const params = useParams();
   const articleId = params.articleId;
   const [isBtnActive, setIsBtnActive] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const modal = useModal();
+  const queryClient = useQueryClient();
 
   const {
     inputValue: inputTitle,
@@ -39,17 +43,28 @@ function ArticleEditPage() {
     retry: 0,
   });
 
-  const { mutate: editArticle } = useMutation({
+  const { mutate: editArticle, isPending } = useMutation({
     mutationFn: () =>
       api.editArticle(articleId, { title: inputTitle, content: inputContent }),
     onSuccess: () => {
-      router.replace(`/articles/${articleId}`);
+      function handleClickSuccess() {
+        router.replace(`/articles/${articleId}`);
+        modal.close();
+      }
+      // 게시글 수정 후 게시글 상세와 목록을 갱신
+      queryClient.invalidateQueries({ queryKey: ['article', { articleId }] });
+      queryClient.invalidateQueries({ queryKey: ['articles'] });
+      modal.open(
+        <AlertModal
+          alertMessage="게시글이 정상적으로 수정되었습니다."
+          onClick={handleClickSuccess}
+        />
+      );
     },
   });
 
   const handleRegistClick = async () => {
     if (!isBtnActive) return;
-    setIsSubmitting(true);
     setIsBtnActive(false);
     editArticle();
   };
@@ -77,8 +92,11 @@ function ArticleEditPage() {
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="flex justify-between items-center mb-6">
             <p className="text-xl font-semibold">게시글 쓰기</p>
-            <Button onClick={handleRegistClick} disabled={!isBtnActive}>
-              {isSubmitting ? <Loader /> : '등록'}
+            <Button
+              onClick={handleRegistClick}
+              disabled={!isBtnActive || isPending}
+            >
+              {isPending ? <Loader /> : '등록'}
             </Button>
           </div>
           <p className="text-lg font-bold mb-3">*제목</p>

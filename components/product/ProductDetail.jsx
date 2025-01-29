@@ -11,21 +11,24 @@ import { formattedDate } from '@/utils/formattedDate';
 import lineBreakText from '@/utils/lineBreakText';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import AlertModal from '../common/AlertModal';
 import PopMenuButton from '../common/PopMenuButton';
 import TagChip from '../common/TagChip';
 
 function ProductDetail({ initialData, productId }) {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isAuthInitialized } = useAuth();
   const modal = useModal();
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const { data: product } = useQuery({
     queryKey: ['product', { productId }],
     queryFn: () => api.getProduct(productId),
     initialData,
-    staleTime: 12000,
-    retry: 0,
+    staleTime: 120000,
+    // retry: 0,
   });
 
   const { mutate: likeProduct } = useMutation({
@@ -54,6 +57,29 @@ function ProductDetail({ initialData, productId }) {
       likeProduct();
     }
   };
+
+  const handleClickModalConfirm = () => {
+    router.replace('/auth/log-in');
+    modal.close();
+  };
+
+  const checkIsLoggedIn = () => {
+    if (!isLoggedIn)
+      return modal.open(
+        <AlertModal
+          alertMessage="로그인이 필요한 서비스입니다."
+          onClick={handleClickModalConfirm}
+        />
+      );
+  };
+
+  console.log(isLoggedIn);
+
+  useEffect(() => {
+    // /products/post로 접근 시 로그인 여부 체크
+    checkIsLoggedIn();
+  }, [isLoggedIn]);
+
   return (
     <div>
       <div className="flex items-start">

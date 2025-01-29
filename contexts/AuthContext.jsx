@@ -19,6 +19,7 @@ export function AuthProvider({ children }) {
   //   queryKey: ['userInfo'],
   //   queryFn: api.getMe,
   // });
+  // enable 옵션을 넣어보자
 
   const logIn = () => setIsLoggedIn(true);
   const logOut = () => {

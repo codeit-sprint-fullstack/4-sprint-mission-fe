@@ -149,7 +149,7 @@ function LogInPage() {
                     ? ''
                     : 'hover:bg-[#1469CF] active:brightness-75'
                 }  flex items-center justify-center`}
-                disabled={!isDirty || !isValid}
+                disabled={!isDirty || !isValid || isPending}
               >
                 <p className="mr-2 text-center">
                   {isPending ? <Loader /> : '로그인'}

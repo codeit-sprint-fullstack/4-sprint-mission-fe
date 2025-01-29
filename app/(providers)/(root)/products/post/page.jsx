@@ -30,7 +30,7 @@ function ProductPostPage() {
     },
   });
   const modal = useModal();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isAuthInitialized } = useAuth();
   const [tags, setTags] = useState([]);
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -131,7 +131,7 @@ function ProductPostPage() {
             <Button
               type="button"
               onClick={handleClickRegister}
-              disabled={!isPossibleRegist}
+              disabled={!isPossibleRegist || isPending}
             >
               {isPending ? <Loader /> : '등록'}
             </Button>

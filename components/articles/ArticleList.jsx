@@ -29,7 +29,7 @@ function ArticleList({ initialData }) {
       }),
     initialPageParam: 1,
     initialData: { pages: [initialData], pageParams: [] },
-    staleTime: 12000,
+    staleTime: 120000,
     // gcTime: 0,
     // refetchOnMount: true,
     getNextPageParam: (lastPageParam) => {

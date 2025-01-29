@@ -47,7 +47,7 @@ function ProductEditPage() {
   const isTagsNotEmpty = tags.length !== 0;
   const isPossibleRegist = isValid && isTagsNotEmpty;
 
-  const { mutate: patchProduct, isPending } = useMutation({
+  const { mutate: editProduct, isPending } = useMutation({
     mutationFn: (dto) => api.editProduct(productId, dto),
     onSuccess: () => {
       function handleClickSuccess() {
@@ -97,7 +97,7 @@ function ProductEditPage() {
       price: Number(price),
       images: 'https://example.com/...',
     };
-    patchProduct(reqData);
+    editProduct(reqData);
   };
 
   const handleClickDeleteTag = (index) => {
@@ -142,7 +142,7 @@ function ProductEditPage() {
             <Button
               type="button"
               onClick={handleClickRegister}
-              disabled={!isPossibleRegist}
+              disabled={!isPossibleRegist || isPending}
             >
               {isPending ? <Loader /> : '등록'}
             </Button>

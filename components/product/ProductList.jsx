@@ -20,7 +20,7 @@ function ProductList({ initialData }) {
   const [page, setPage] = useState(1); // pagination에 필요
   const [loadingError, setloadingError] = useState(null);
   const { isTablet, isMobile } = useDeviceSize(); // 미디어 쿼리
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isAuthInitialized } = useAuth();
   const modal = useModal();
   const router = useRouter();
 
@@ -54,25 +54,31 @@ function ProductList({ initialData }) {
   //   isTablet ? 6 : isMobile ? 4 : 10
   // );
 
-  const { data: result } = useQuery({
+  const {
+    data: result,
+    isPending,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: ['products', { options }],
     queryFn: () => api.getProducts(options),
+    initialData,
+    staleTime: 120000,
+    retry: 0,
     // 반응형 UI 구현 시 적용
     // initialData: {
     //   products: newInitialProducts,
     //   searchCount: initialSearchCount,
     // },
-    initialData,
-    staleTime: 12000,
-    retry: 0,
+    // initialData: initialData ? initialData : { list: [], totalCount: 0 },
   });
   const { list: products, totalCount } = result; // https://panda-market-api.vercel.app/products 사용 시
   const maxPage = Math.ceil(totalCount / options.pageSize); // https://panda-market-api.vercel.app/products 사용 시
   // const { products, searchCount } = result;
   // const maxPage = Math.ceil(searchCount / options.limit);
-  console.log(totalCount, maxPage, page);
-  console.log(options);
-  console.log(products);
+  // console.log(totalCount, maxPage, page);
+  // console.log(options);
+  // console.log(products);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -94,6 +100,11 @@ function ProductList({ initialData }) {
 
     router.push('/products/post');
   };
+
+  // console.log(isPending, isLoading, isFetching);
+
+  // if (isFetching || isLoading || isPending) return <div>로딩 중</div>;
+  // if (isFetching || isLoading || isPending) return <Skeleton />;
 
   return (
     <div>

@@ -274,13 +274,17 @@ const deleteProduct = async (productId) => {
 
 // 상품 수정
 const editProduct = async (productId, productData) => {
-  try {
-    const url = `/products/${productId}`;
-    const response = await client.patch(url, productData);
-    return response.data;
-  } catch (error) {
-    errorHandler(error);
-  }
+  // try {
+  //   const url = `/products/${productId}`;
+  //   const response = await client.patch(url, productData);
+  //   throw new Error('일부러 낸 에러입니다.');
+  //   // return response.data;
+  // } catch (error) {
+  //   errorHandler(error);
+  // }
+  const url = `/products/${productId}`;
+  const response = await client.patch(url, productData);
+  throw new Error('일부러 낸 에러입니다.');
 };
 
 // 상품에 좋아요 하기

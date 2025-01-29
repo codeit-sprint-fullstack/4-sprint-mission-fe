@@ -28,11 +28,11 @@ function Comments({ articleId, productId }) {
       articleId
         ? api.getCommentsOfArticle(articleId, { limit: 10 })
         : api.getCommentsOfProduct(productId, { limit: 10 }),
-    staleTime: 60000,
+    staleTime: 120000,
     retry: 0,
   });
 
-  const { mutate: postComment } = useMutation({
+  const { mutate: postComment, isPending: isPendingPost } = useMutation({
     mutationFn: (content) =>
       articleId
         ? api.postArticleComment(articleId, { content })
@@ -44,7 +44,7 @@ function Comments({ articleId, productId }) {
     },
   });
 
-  const { mutate: patchComment } = useMutation({
+  const { mutate: patchComment, isPending: isPendingPatch } = useMutation({
     mutationFn: ({ commentId, content }) => {
       return api.editComment(commentId, { content });
     },
@@ -55,7 +55,7 @@ function Comments({ articleId, productId }) {
     },
   });
 
-  const { mutate: deleteComment } = useMutation({
+  const { mutate: deleteComment, isPending: isPendingDelete } = useMutation({
     mutationFn: (commentId) => api.deleteComment(commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -127,7 +127,10 @@ function Comments({ articleId, productId }) {
           </form>
         </div>
         <div className="flex justify-end mt-4">
-          <Button onClick={handleRegistClick} disabled={!isBtnActive}>
+          <Button
+            onClick={handleRegistClick}
+            disabled={!isBtnActive || isPendingPatch || isPendingPost}
+          >
             {isSubmitting ? <Loader /> : '등록'}
           </Button>
         </div>
