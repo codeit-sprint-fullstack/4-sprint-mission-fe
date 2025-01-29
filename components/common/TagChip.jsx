@@ -10,7 +10,7 @@ function TagChip({ tag, onClick, index }) {
       className={`${
         onClick ? 'cursor-pointer' : ''
       } inline-flex items-center bg-[#f3f4f6] py-[5px] px-4 rounded-full mr-2 mb-2 `}
-      onClick={handleClick}
+      onClick={onClick ? handleClick : undefined}
     >
       <span className="text-[#1F2937]">{`#${tag}`}</span>
       {onClick && (

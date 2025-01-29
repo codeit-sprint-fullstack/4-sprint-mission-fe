@@ -187,7 +187,6 @@ const getCommentsOfProduct = async (productId, { limit = 3, cursor = 0 }) => {
   try {
     const query = `limit=${limit}&cursor=${cursor}`;
     const url = `/products/${productId}/comments?${query}`;
-    console.log('url', url);
     const response = await client.get(url);
     return response.data;
   } catch (error) {
@@ -278,6 +277,28 @@ const editProduct = async (productId, productData) => {
   try {
     const url = `/products/${productId}`;
     const response = await client.patch(url, productData);
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+// 상품에 좋아요 하기
+const likeProduct = async (productId) => {
+  try {
+    const url = `/products/${productId}/favorite`;
+    const response = await client.post(url);
+    return response.data;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+
+// 상품에 좋아요 취소하기
+const unLikeProduct = async (productId) => {
+  try {
+    const url = `/products/${productId}/favorite`;
+    const response = await client.delete(url);
     return response.data;
   } catch (error) {
     errorHandler(error);
@@ -388,6 +409,8 @@ const api = {
   postProduct,
   deleteProduct,
   editProduct,
+  likeProduct,
+  unLikeProduct,
   signUp,
   logIn,
   refreshToken,

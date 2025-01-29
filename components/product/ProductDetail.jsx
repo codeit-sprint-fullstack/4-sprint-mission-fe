@@ -2,22 +2,57 @@
 
 import api from '@/api';
 import icHeart from '@/assets/images/ic_heart.png';
+import icHeartFill from '@/assets/images/ic_heart_fill.png';
 import icProfile from '@/assets/images/ic_profile.png';
 import defaultImg from '@/assets/images/img_default.png';
+import { useAuth } from '@/contexts/AuthContext';
+import { useModal } from '@/contexts/ModalContext';
 import { formattedDate } from '@/utils/formattedDate';
 import lineBreakText from '@/utils/lineBreakText';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
+import AlertModal from '../common/AlertModal';
 import PopMenuButton from '../common/PopMenuButton';
 import TagChip from '../common/TagChip';
 
 function ProductDetail({ initialData, productId }) {
+  const { isLoggedIn } = useAuth();
+  const modal = useModal();
+  const queryClient = useQueryClient();
+
   const { data: product } = useQuery({
     queryKey: ['product', { productId }],
     queryFn: () => api.getProduct(productId),
     initialData,
     staleTime: 12000,
   });
+
+  const { mutate: likeProduct } = useMutation({
+    mutationFn: () => api.likeProduct(productId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['product', { productId }] });
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+    },
+  });
+  const { mutate: unLikeProduct } = useMutation({
+    mutationFn: () => api.unLikeProduct(productId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['product', { productId }] });
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+    },
+  });
+
+  const handleClickHeartImage = () => {
+    if (!isLoggedIn)
+      return modal.open(
+        <AlertModal alertMessage="로그인이 필요한 서비스입니다." />
+      );
+    if (product.isFavorite) {
+      unLikeProduct();
+    } else {
+      likeProduct();
+    }
+  };
   return (
     <div>
       <div className="flex items-start">
@@ -59,8 +94,13 @@ function ProductDetail({ initialData, productId }) {
             <div className="flex shrink-0">
               <div className="flex h-10 w-[1px] bg-[#d1d4da] mx-6"></div>
               <div className="flex items-center border rounded-full px-3 py-1">
-                <Image className="w-8 h-8 mr-1" src={icHeart} alt="heart" />
-                <p>9999+</p>
+                <Image
+                  className="w-8 h-8 mr-1 cursor-pointer"
+                  src={product.isFavorite ? icHeartFill : icHeart}
+                  alt="heart"
+                  onClick={handleClickHeartImage}
+                />
+                <p>{product.favoriteCount}</p>
               </div>
             </div>
           </div>
