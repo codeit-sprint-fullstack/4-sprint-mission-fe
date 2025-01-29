@@ -25,6 +25,7 @@ function ProductDetail({ initialData, productId }) {
     queryFn: () => api.getProduct(productId),
     initialData,
     staleTime: 12000,
+    retry: 0,
   });
 
   const { mutate: likeProduct } = useMutation({

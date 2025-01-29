@@ -15,6 +15,7 @@ function ArticleDetail({ articleId, initialData }) {
     queryFn: () => api.getArticle(articleId),
     initialData,
     staleTime: 12000,
+    retry: 0,
   });
 
   return (

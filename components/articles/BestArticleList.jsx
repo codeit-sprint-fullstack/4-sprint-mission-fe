@@ -14,6 +14,7 @@ function BestArticleList({ initialData }) {
     staleTime: 12000,
     gcTime: 0,
     refetchOnMount: true,
+    retry: 0,
   });
 
   const articles = data?.list.slice(0, 3) || []; // panda 마켓

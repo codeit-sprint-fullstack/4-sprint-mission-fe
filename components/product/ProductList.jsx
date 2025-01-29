@@ -64,6 +64,7 @@ function ProductList({ initialData }) {
     // },
     initialData,
     staleTime: 12000,
+    retry: 0,
   });
   const { list: products, totalCount } = result; // https://panda-market-api.vercel.app/products 사용 시
   const maxPage = Math.ceil(totalCount / options.pageSize); // https://panda-market-api.vercel.app/products 사용 시

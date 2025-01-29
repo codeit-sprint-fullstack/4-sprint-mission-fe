@@ -21,6 +21,7 @@ function ProductEditPage() {
   const { data: product } = useQuery({
     queryKey: ['product', { productId }],
     queryFn: () => api.getProduct(productId),
+    retry: 0,
   });
 
   const {

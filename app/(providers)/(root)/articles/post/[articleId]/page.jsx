@@ -36,6 +36,7 @@ function ArticleEditPage() {
   const { data: article } = useQuery({
     queryKey: ['article', { articleId }],
     queryFn: () => api.getArticle(articleId),
+    retry: 0,
   });
 
   const { mutate: editArticle } = useMutation({
