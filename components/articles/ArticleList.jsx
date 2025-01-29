@@ -29,15 +29,17 @@ function ArticleList({ initialData }) {
       }),
     initialPageParam: 1,
     initialData: { pages: [initialData], pageParams: [] },
-    staleTime: 0,
-    gcTime: 0,
-    refetchOnMount: true,
+    staleTime: 12000,
+    // gcTime: 0,
+    // refetchOnMount: true,
     getNextPageParam: (lastPageParam) => {
       if (lastPageParam.page === lastPageParam.pageCount) {
         return undefined; // null 또는 undefined를 반환하면 hasNextPage가 false, 이외에는 true
       }
       return lastPageParam.page + 1;
     },
+    retryOnMount: true,
+    gcTime: 0,
   });
   const articles = data?.pages.flatMap((page) => page.list) || [];
   // const articles = data?.pages.flatMap((page) => page.articles) || [];

@@ -28,6 +28,7 @@ function Comments({ articleId, productId }) {
       articleId
         ? api.getCommentsOfArticle(articleId, { limit: 10 })
         : api.getCommentsOfProduct(productId, { limit: 10 }),
+    staleTime: 60000,
   });
 
   const { mutate: postComment } = useMutation({

@@ -36,7 +36,8 @@ function ArticlePostPage() {
         content: inputContent,
       }),
     onSuccess: (data) => {
-      router.push(`/articles/${data}`);
+      console.log('data', data);
+      router.replace(`/articles/${data.id}`);
     },
   });
 

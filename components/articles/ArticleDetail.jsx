@@ -14,6 +14,7 @@ function ArticleDetail({ articleId, initialData }) {
     queryKey: ['article', { articleId }],
     queryFn: () => api.getArticle(articleId),
     initialData,
+    staleTime: 12000,
   });
 
   return (
@@ -26,7 +27,7 @@ function ArticleDetail({ articleId, initialData }) {
         className={`flex items-center text-[#4B5563] text-sm h-[72px] border-b mb-6`}
       >
         <Image className="shrink-0 w-10 h-10" src={icProfile} alt="profile" />
-        <p className="ml-4 mr-2">총명한판다</p>
+        <p className="ml-4 mr-2">{article.writer.nickname}</p>
         <p className="text-[#9CA3AF]">{formattedDate(article.createdAt)}</p>
         <div className="flex h-10 w-[1px] bg-[#d1d4da] mx-8"></div>
         <div className="flex items-center border rounded-full px-3 py-1">

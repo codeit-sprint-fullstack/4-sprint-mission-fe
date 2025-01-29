@@ -4,7 +4,7 @@ import api from '@/api';
 import icKebab from '@/assets/images/ic_kebab.png';
 import { useAuth } from '@/contexts/AuthContext';
 import { useModal } from '@/contexts/ModalContext';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -22,11 +22,13 @@ export const DropdownMenu = ({
 }) => {
   const router = useRouter();
   const modal = useModal();
+  const queryClient = useQueryClient();
 
   // 상품 삭제
   const { mutate: removeProduct } = useMutation({
     mutationFn: () => api.deleteProduct(post.id),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['products'] });
       router.push('/products');
     },
   });
@@ -42,6 +44,7 @@ export const DropdownMenu = ({
   const { mutate: removeArticle } = useMutation({
     mutationFn: () => api.deleteArticle(post.id),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['articles'] });
       router.push('/articles');
     },
   });

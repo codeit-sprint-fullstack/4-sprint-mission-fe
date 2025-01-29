@@ -42,7 +42,7 @@ function ArticleEditPage() {
     mutationFn: () =>
       api.editArticle(articleId, { title: inputTitle, content: inputContent }),
     onSuccess: () => {
-      router.push(`/articles/${articleId}`);
+      router.replace(`/articles/${articleId}`);
     },
   });
 

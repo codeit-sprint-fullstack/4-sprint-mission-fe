@@ -1,6 +1,7 @@
 import icProfile from '@/assets/images/ic_profile.png';
 import { useAuth } from '@/contexts/AuthContext';
 import { useModal } from '@/contexts/ModalContext';
+import { formattedDate } from '@/utils/formattedDate';
 import lineBreakText from '@/utils/lineBreakText';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -48,8 +49,13 @@ function Comment({ comment, onDelete, onRegistEdit }) {
             alt="profile"
           />
           <div>
-            <p className="text-xs text-[#4B5563] mb-1">똑똑한판다</p>
-            <p className="text-[#9CA3AF] text-xs">1시간 전</p>
+            <p className="text-xs text-[#4B5563] mb-1">
+              {comment.writer.nickname}
+            </p>
+            <p className="text-[#9CA3AF] text-xs">
+              {formattedDate(comment.createdAt) +
+                `${comment.createdAt === comment.updatedAt ? '' : '(수정됨)'}`}
+            </p>
           </div>
         </div>
       </div>

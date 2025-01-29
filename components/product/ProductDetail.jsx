@@ -16,6 +16,7 @@ function ProductDetail({ initialData, productId }) {
     queryKey: ['product', { productId }],
     queryFn: () => api.getProduct(productId),
     initialData,
+    staleTime: 12000,
   });
   return (
     <div>
@@ -49,7 +50,7 @@ function ProductDetail({ initialData, productId }) {
               alt="profile"
             />
             <div className="flex flex-col items-start">
-              <p className="mb-1">총명한판다</p>
+              <p className="mb-1">{product.ownerNickname}</p>
               <p className="text-[#9CA3AF]">
                 {formattedDate(product.createdAt)}
               </p>

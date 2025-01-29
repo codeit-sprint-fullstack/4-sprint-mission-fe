@@ -11,14 +11,13 @@ function BestArticleList({ initialData }) {
     // queryFn: () => api.getArticles({ limit: 3, sort: 'latest' }),
     queryKey: ['bestArticles', { isBest: true }],
     initialData,
-    staleTime: 0,
+    staleTime: 12000,
     gcTime: 0,
     refetchOnMount: true,
   });
 
   const articles = data?.list.slice(0, 3) || []; // panda 마켓
   // const articles = data?.articles.slice(0, 3) || [];
-  console.log(articles);
   return (
     <section className="mb-10">
       <div className="h-[42px] flex items-center mb-6">

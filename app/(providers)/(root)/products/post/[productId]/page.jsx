@@ -8,7 +8,7 @@ import PageContainer from '@/components/common/Page';
 import TagChip from '@/components/common/TagChip';
 import { useAuth } from '@/contexts/AuthContext';
 import { useModal } from '@/contexts/ModalContext';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -16,6 +16,8 @@ import { useForm } from 'react-hook-form';
 function ProductEditPage() {
   const params = useParams();
   const productId = params.productId;
+  const queryClient = useQueryClient();
+
   const { data: product } = useQuery({
     queryKey: ['product', { productId }],
     queryFn: () => api.getProduct(productId),
@@ -48,9 +50,12 @@ function ProductEditPage() {
     mutationFn: (dto) => api.editProduct(productId, dto),
     onSuccess: () => {
       function handleClickSuccess() {
-        router.push(`/products/${productId}`);
+        router.replace(`/products/${productId}`);
         modal.close();
       }
+      // 상품 수정 후 상품 상세와 목록을 갱신
+      queryClient.invalidateQueries({ queryKey: ['product', { productId }] });
+      queryClient.invalidateQueries({ queryKey: ['products'] });
       modal.open(
         <AlertModal
           alertMessage="상품이 정상적으로 수정되었습니다."
@@ -65,7 +70,7 @@ function ProductEditPage() {
     modal.close();
   };
 
-  const checkIsLogin = () => {
+  const checkIsLoggedIn = () => {
     if (!isLoggedIn)
       return modal.open(
         <AlertModal
@@ -77,7 +82,7 @@ function ProductEditPage() {
 
   const handleClickRegister = () => {
     if (!isPossibleRegist) return;
-    checkIsLogin();
+    checkIsLoggedIn();
     onSubmit();
   };
 
@@ -124,7 +129,7 @@ function ProductEditPage() {
 
   useEffect(() => {
     // /products/post로 접근 시 로그인 여부 체크
-    checkIsLogin();
+    checkIsLoggedIn();
   }, [isLoggedIn]);
 
   return (

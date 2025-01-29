@@ -8,7 +8,7 @@ import PageContainer from '@/components/common/Page';
 import TagChip from '@/components/common/TagChip';
 import { useAuth } from '@/contexts/AuthContext';
 import { useModal } from '@/contexts/ModalContext';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -33,6 +33,7 @@ function ProductPostPage() {
   const { isLoggedIn } = useAuth();
   const [tags, setTags] = useState([]);
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const isTagsNotEmpty = tags.length !== 0;
   const isPossibleRegist = isValid && isTagsNotEmpty;
@@ -41,9 +42,10 @@ function ProductPostPage() {
     mutationFn: (dto) => api.postProduct(dto),
     onSuccess: (product) => {
       function handleClickSuccess() {
-        router.push(`/products/${product.id}`);
+        router.replace(`/products/${product.id}`);
         modal.close();
       }
+      queryClient.invalidateQueries({ queryKey: ['products'] });
       modal.open(
         <AlertModal
           alertMessage="상품이 정상적으로 등록되었습니다."
@@ -58,7 +60,7 @@ function ProductPostPage() {
     modal.close();
   };
 
-  const checkIsLogin = () => {
+  const checkIsLoggedIn = () => {
     if (!isLoggedIn)
       return modal.open(
         <AlertModal
@@ -70,7 +72,7 @@ function ProductPostPage() {
 
   const handleClickRegister = () => {
     if (!isPossibleRegist) return;
-    checkIsLogin();
+    checkIsLoggedIn();
     onSubmit();
   };
 
@@ -117,7 +119,7 @@ function ProductPostPage() {
 
   useEffect(() => {
     // /products/post로 접근 시 로그인 여부 체크
-    checkIsLogin();
+    checkIsLoggedIn();
   }, [isLoggedIn]);
 
   return (
