@@ -9,17 +9,18 @@ import ProductComments from "./_component/ProductComments";
 import CreateCommentInProduct from "./_component/CreateCommentInProduct";
 
 function ItemDetailPage() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isAuthInitialized } = useAuth();
   const params = useParams();
   const productId = params.productId;
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     router.replace("/products");
-  //     alert("로그인을 해주세요");
-  //   }
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    if (!isAuthInitialized) return;
+    if (!isLoggedIn) {
+      router.replace("/products");
+      alert("로그인을 해주세요");
+    }
+  }, [isLoggedIn, isAuthInitialized]);
 
   const { data: product, isError } = useQuery({
     queryFn: () => api.getProduct(productId),
