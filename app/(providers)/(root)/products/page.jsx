@@ -1,14 +1,27 @@
 import api from '@/api';
 import PageContainer from '@/components/common/Page';
 import ProductList from '@/components/product/ProductList';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 
 async function ProductListPage() {
-  const result = await api.getProducts({ pageSize: 10 }); // panda
-  // const result = await api.getProducts({ limit: 10 });
+  const queryClient = new QueryClient();
+  const options = { orderBy: 'recent', keyword: '', page: 1, pageSize: 10 };
+
+  await queryClient.prefetchQuery({
+    queryKey: ['products', options],
+    queryFn: () => api.getProducts(options),
+  });
+
   return (
-    <PageContainer>
-      <ProductList initialData={result} />
-    </PageContainer>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <PageContainer>
+        <ProductList />
+      </PageContainer>
+    </HydrationBoundary>
   );
 }
 

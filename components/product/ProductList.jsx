@@ -13,7 +13,7 @@ import Dropdown from '../common/Dropdown';
 import Pagination from '../common/Pagination';
 import ProductItem from './ProductItem';
 
-function ProductList({ initialData }) {
+function ProductList() {
   const [sort, setSort] = useState('recent'); // 정렬 옵션 - panda
   // const [sort, setSort] = useState('latest'); // 정렬 옵션
   const [keyword, setKeyword] = useState(''); // 검색
@@ -60,9 +60,8 @@ function ProductList({ initialData }) {
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: ['products', { options }],
+    queryKey: ['products', { ...options }],
     queryFn: () => api.getProducts(options),
-    initialData,
     staleTime: 120000,
     retry: 0,
     // 반응형 UI 구현 시 적용
