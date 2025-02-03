@@ -17,7 +17,7 @@ import AlertModal from '../common/AlertModal';
 import PopMenuButton from '../common/PopMenuButton';
 import TagChip from '../common/TagChip';
 
-function ProductDetail({ initialData, productId }) {
+function ProductDetail({ productId }) {
   const { isLoggedIn, isAuthInitialized } = useAuth();
   const modal = useModal();
   const router = useRouter();
@@ -26,7 +26,6 @@ function ProductDetail({ initialData, productId }) {
   const { data: product } = useQuery({
     queryKey: ['product', { productId }],
     queryFn: () => api.getProduct(productId),
-    initialData,
     staleTime: 120000,
     // retry: 0,
   });

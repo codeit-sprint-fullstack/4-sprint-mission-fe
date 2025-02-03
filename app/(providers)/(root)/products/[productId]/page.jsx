@@ -2,15 +2,27 @@ import api from '@/api';
 import Comments from '@/components/articles/Comments';
 import PageContainer from '@/components/common/Page';
 import ProductDetail from '@/components/product/ProductDetail';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 
 async function ProductDetailPage({ params }) {
+  const queryClient = new QueryClient();
   const { productId } = await params;
-  const product = await api.getProduct(productId);
+
+  await queryClient.prefetchQuery({
+    queryKey: ['product', { productId }],
+    queryFn: () => api.getProduct(productId),
+  });
   return (
-    <PageContainer>
-      <ProductDetail productId={productId} initialData={product} />
-      <Comments productId={productId} />
-    </PageContainer>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <PageContainer>
+        <ProductDetail productId={productId} />
+        <Comments productId={productId} />
+      </PageContainer>
+    </HydrationBoundary>
   );
 }
 
