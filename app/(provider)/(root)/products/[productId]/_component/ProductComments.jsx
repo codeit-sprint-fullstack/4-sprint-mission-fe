@@ -19,6 +19,7 @@ function ProductComments() {
       api.getCommentsInProduct(productId).then((comment) => comment.list),
     queryKey: ["comments", { productId }],
     initialData: [],
+    staleTime: 30 * 1000,
   });
 
   return (

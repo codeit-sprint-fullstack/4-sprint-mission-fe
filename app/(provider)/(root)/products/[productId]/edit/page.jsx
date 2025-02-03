@@ -25,6 +25,7 @@ function ProductEditPage() {
   const { data: product } = useQuery({
     queryFn: () => api.getProduct(productId),
     queryKey: ["product", { productId }],
+    staleTime: 30 * 1000,
   });
 
   const { mutate: patchProduct } = useMutation({

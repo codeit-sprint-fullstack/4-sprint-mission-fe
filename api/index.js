@@ -1,4 +1,6 @@
+import config from "@/postcss.config.mjs";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 // const baseURL = "http://localhost:3100";
 const baseURL = "https://four-sprint-mission-be-1.onrender.com";
@@ -90,6 +92,25 @@ const codeitURL = "https://panda-market-api.vercel.app";
 
 export const codeitClient = axios.create({
   baseURL: codeitURL,
+});
+
+codeitClient.interceptors.request.use(async (config) => {
+  if (config.url === "/auth/refresh-token") return config;
+  const Authorization = config.headers.Authorization || "";
+  const accessToken = Authorization.split("Bearer ")[1];
+
+  if (!accessToken) return config;
+
+  const { exp } = jwtDecode(accessToken);
+  if (exp * 1000 >= Date.now()) return config;
+
+  const prevRefreshToken = localStorage.getItem("refreshToken");
+  const { accessToken: newAccessToken } = await api.refreshToken(
+    prevRefreshToken
+  );
+  config.headers.Authorization = `Bearer ${newAccessToken}`;
+
+  return config;
 });
 
 const signUp = async (dto) => {

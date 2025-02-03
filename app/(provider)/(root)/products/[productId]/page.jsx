@@ -14,12 +14,12 @@ function ItemDetailPage() {
   const productId = params.productId;
   const router = useRouter();
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.replace("/products");
-      alert("로그인을 해주세요");
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     router.replace("/products");
+  //     alert("로그인을 해주세요");
+  //   }
+  // }, [isLoggedIn]);
 
   const { data: product, isError } = useQuery({
     queryFn: () => api.getProduct(productId),
@@ -33,6 +33,7 @@ function ItemDetailPage() {
     queryKey: ["userData"],
     enabled: isLoggedIn,
     initialData: {},
+    staleTime: 30 * 1000,
   });
 
   return (

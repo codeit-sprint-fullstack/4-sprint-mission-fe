@@ -16,6 +16,7 @@ function ArticleComments({ initailComments }) {
       api.getCommentsinArticle(articleId).then((data) => data.comments),
     queryKey: ["comments", { articleId }],
     initialData: initailComments,
+    staleTime: 30 * 1000,
   });
   return (
     <>
