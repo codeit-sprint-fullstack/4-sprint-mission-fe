@@ -16,7 +16,6 @@ function LogInButton() {
     queryKey: ["userData"],
     initialData: {},
     enabled: isLoggedIn,
-    staleTime: 30 * 1000,
   }); //key에 뭘 넣는게 좋지?
 
   if (!isAuthInitialized) return;
