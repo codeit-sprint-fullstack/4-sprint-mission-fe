@@ -25,7 +25,9 @@ function HeaderNav() {
             } `}
             key={i}
           >
-            <Link href={navMenu.link}>{navMenu.title}</Link>
+            <Link prefetch={true} href={navMenu.link}>
+              {navMenu.title}
+            </Link>
           </span>
         );
       })}

@@ -1,0 +1,19 @@
+GET https://panda-market-api.vercel.app/articles
+
+###
+POST https://panda-market-api.vercel.app/auth/signUp
+Content-Type: application/json
+
+{
+  "email" : "spfs0415@codeit.com",
+  "nickname":"팽팽",
+  "password":"11111111",
+  "passwordConfirmation":"11111111"
+}
+
+###
+GET https://panda-market-api.vercel.app/products
+
+###
+GET https://panda-market-api.vercel.app/products/561/comments?limit=10
+

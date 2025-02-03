@@ -3,12 +3,9 @@ import ArticleDetail from '@/components/articles/ArticleDetail';
 import Comments from '@/components/articles/Comments';
 import PageContainer from '@/components/common/Page';
 
-async function ArticleDetailPage(props) {
-  console.log('render article detail');
-  const params = await props.params;
-  const articleId = params.articleId;
+async function ArticleDetailPage({ params }) {
+  const { articleId } = await params;
   const article = await api.getArticle(articleId);
-  console.log('1');
   return (
     <PageContainer>
       <ArticleDetail articleId={articleId} initialData={article} />

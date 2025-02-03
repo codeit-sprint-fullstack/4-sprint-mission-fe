@@ -1,17 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import api from '@/api';
-import ArticleCard from './ArticleCard';
-import Button from '../common/Button';
-import Link from 'next/link';
-import Dropdown from '../common/Dropdown';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import Button from '../common/Button';
+import Dropdown from '../common/Dropdown';
+import ArticleCard from './ArticleCard';
 
 function ArticleList({ initialData }) {
-  console.log('render article list');
   const targetRef = useRef(null);
-  const [sortOption, setSortOption] = useState('latest');
+  const [sortOption, setSortOption] = useState('recent'); // panda
+  // const [sortOption, setSortOption] = useState('latest');
   const [keyword, setKeyword] = useState('');
 
   const { data, isLoading, fetchNextPage } = useInfiniteQuery({
@@ -19,23 +19,30 @@ function ArticleList({ initialData }) {
     queryFn: ({ pageParam }) =>
       api.getArticles({
         keyword,
-        sort: sortOption,
-        skip: (pageParam - 1) * 10,
-        limit: 10,
+        orderBy: sortOption,
+        page,
+        pageSize: 10,
+        // keyword,
+        // sort: sortOption,
+        // skip: (pageParam - 1) * 10,
+        // limit: 10,
       }),
     initialPageParam: 1,
     initialData: { pages: [initialData], pageParams: [] },
-    staleTime: 0,
-    gcTime: 0,
-    refetchOnMount: true,
+    staleTime: 120000,
+    // gcTime: 0,
+    // refetchOnMount: true,
     getNextPageParam: (lastPageParam) => {
       if (lastPageParam.page === lastPageParam.pageCount) {
         return undefined; // null 또는 undefined를 반환하면 hasNextPage가 false, 이외에는 true
       }
       return lastPageParam.page + 1;
     },
+    retryOnMount: true,
+    gcTime: 0,
   });
-  const articles = data?.pages.flatMap((page) => page.articles) || [];
+  const articles = data?.pages.flatMap((page) => page.list) || [];
+  // const articles = data?.pages.flatMap((page) => page.articles) || [];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +65,6 @@ function ArticleList({ initialData }) {
       const entry = entries[0];
 
       if (entry.isIntersecting) {
-        console.log('intersecting');
         fetchNextPage();
       }
     });

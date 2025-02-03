@@ -1,6 +1,6 @@
-import medal from '@/assets/images/ic_medal.png';
 import defaultProduct from '@/assets/images/default_product.png';
 import icHeart from '@/assets/images/ic_heart.png';
+import medal from '@/assets/images/ic_medal.png';
 import Image from 'next/image';
 
 import { formattedDate } from '@/utils/formattedDate';
@@ -28,7 +28,7 @@ function BestArticleCard({ article }) {
         className={`flex items-center justify-between text-[#4B5563] text-sm`}
       >
         <div className="flex items-center">
-          <p>총명한판다</p>
+          <p>{article.writer.nickname}</p>
           <Image className="w-4 h-4 ml-2 mr-1" src={icHeart} alt="heart" />
           <p>9999+</p>
         </div>

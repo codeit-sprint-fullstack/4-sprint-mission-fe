@@ -1,41 +1,98 @@
 'use client';
 
-import Image from 'next/image';
-import icKebab from '@/assets/images/ic_kebab.png';
-import { useEffect, useRef, useState } from 'react';
-import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
 import api from '@/api';
+import icKebab from '@/assets/images/ic_kebab.png';
+import { useAuth } from '@/contexts/AuthContext';
+import { useModal } from '@/contexts/ModalContext';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import clsx from 'clsx';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import AlertModal from './AlertModal';
+import ConfirmModal from './ConfirmModal';
 
 export const DropdownMenu = ({
   isCommentBtn,
   onDelete,
   onEdit,
   commentId,
-  article,
+  post,
+  postType,
 }) => {
   const router = useRouter();
+  const modal = useModal();
+  const queryClient = useQueryClient();
 
-  const editArticle = () => {
-    router.push(`/articles/post/${article.id}`, {
-      query: { article: 'aksdfl' },
-    });
+  // 상품 삭제
+  const { mutate: removeProduct } = useMutation({
+    mutationFn: () => api.deleteProduct(post.id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+      router.push('/products');
+    },
+  });
+  const deleteProduct = async () => {
+    modal.open(
+      <ConfirmModal
+        confirmMessage={'삭제하시겠습니까?'}
+        onClickConfirm={removeProduct}
+      />
+    );
   };
+  // 게시글 삭제
+  const { mutate: removeArticle } = useMutation({
+    mutationFn: () => api.deleteArticle(post.id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['articles'] });
+      router.push('/articles');
+    },
+  });
   const deleteArticle = async () => {
-    await api.deleteArticle(article.id);
-    router.push('/articles');
+    modal.open(
+      <ConfirmModal
+        confirmMessage={'삭제하시겠습니까?'}
+        onClickConfirm={removeArticle}
+      />
+    );
   };
+  // 상품 수정
+  const editProduct = () => {
+    router.push(`/products/post/${post.id}`);
+  };
+  // 게시글 수정
+  const editArticle = () => {
+    router.push(`/articles/post/${post.id}`);
+  };
+  // 댓글 삭제
+  const deleteComment = () => {
+    modal.open(
+      <ConfirmModal
+        confirmMessage={'삭제하시겠습니까?'}
+        onClickConfirm={() => onDelete(commentId)}
+      />
+    );
+  };
+  // 댓글 수정
   const editComment = () => {
     onEdit(true);
   };
-  const deleteComment = () => {
-    onDelete(commentId);
-  };
   const MENU_ITEMS = [
-    { text: '수정하기', clickMethod: isCommentBtn ? editComment : editArticle },
+    {
+      text: '수정하기',
+      clickMethod: isCommentBtn
+        ? editComment
+        : postType === 'articles'
+        ? editArticle
+        : editProduct,
+    },
     {
       text: '삭제하기',
-      clickMethod: isCommentBtn ? deleteComment : deleteArticle,
+      clickMethod: isCommentBtn
+        ? deleteComment
+        : postType === 'articles'
+        ? deleteArticle
+        : deleteProduct,
     },
   ];
 
@@ -59,16 +116,23 @@ function PopMenuButton({
   onDelete,
   onEdit,
   commentId,
-  article,
+  post,
+  postType,
 }) {
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const buttonRef = useRef();
+  const modal = useModal();
+  const { isLoggedIn } = useAuth();
 
   // 게시글에 있는 메뉴 버튼과 댓글에 있는 메뉴 버튼의 스타일 구분
   const defaultClassName = clsx('w-6 h-6 cursor-pointer');
   const commentClassName = clsx({ 'absolute top-0 right-0': isCommentBtn });
 
   const handleMenuClick = () => {
+    if (!isLoggedIn)
+      return modal.open(
+        <AlertModal alertMessage="로그인이 필요한 서비스입니다." />
+      );
     setTimeout(() => setIsShowDropdown(!isShowDropdown), 200);
   };
 
@@ -101,7 +165,8 @@ function PopMenuButton({
           onDelete={onDelete}
           onEdit={onEdit}
           commentId={commentId}
-          article={article}
+          post={post}
+          postType={postType}
         />
       )}
     </div>

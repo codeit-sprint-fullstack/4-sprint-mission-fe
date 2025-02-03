@@ -1,13 +1,18 @@
-import Image from 'next/image';
 import icProfile from '@/assets/images/ic_profile.png';
-import PopMenuButton from '../common/PopMenuButton';
+import { useAuth } from '@/contexts/AuthContext';
+import { useModal } from '@/contexts/ModalContext';
+import { formattedDate } from '@/utils/formattedDate';
 import lineBreakText from '@/utils/lineBreakText';
+import Image from 'next/image';
 import { useState } from 'react';
 import Button from '../common/Button';
+import PopMenuButton from '../common/PopMenuButton';
 
 function Comment({ comment, onDelete, onRegistEdit }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editContent, setEditContent] = useState(comment.content);
+  const [editedContent, setEditContent] = useState(comment.content);
+  const modal = useModal();
+  const { isLoggedIn } = useAuth();
 
   const handleCancelClick = () => {
     setIsEditing(false);
@@ -15,7 +20,11 @@ function Comment({ comment, onDelete, onRegistEdit }) {
   };
 
   const handleRegistEditClick = () => {
-    onRegistEdit(comment.id, editContent);
+    if (!isLoggedIn)
+      return modal.open(
+        <AlertModal alertMessage="로그인이 필요한 서비스입니다." />
+      );
+    onRegistEdit(comment.id, editedContent);
     setIsEditing(false);
   };
 
@@ -40,8 +49,13 @@ function Comment({ comment, onDelete, onRegistEdit }) {
             alt="profile"
           />
           <div>
-            <p className="text-xs text-[#4B5563] mb-1">똑똑한판다</p>
-            <p className="text-[#9CA3AF] text-xs">1시간 전</p>
+            <p className="text-xs text-[#4B5563] mb-1">
+              {comment.writer.nickname}
+            </p>
+            <p className="text-[#9CA3AF] text-xs">
+              {formattedDate(comment.createdAt) +
+                `${comment.createdAt === comment.updatedAt ? '' : '(수정됨)'}`}
+            </p>
           </div>
         </div>
       </div>
@@ -56,16 +70,19 @@ function Comment({ comment, onDelete, onRegistEdit }) {
               name="comment"
               className="bg-[#f3f4f6] placeholder-gray-400 w-full h-[104px] rounded-lg px-6 py-4"
               placeholder="댓글을 입력해주세요"
-              value={editContent}
+              value={editedContent}
               onChange={(e) => setEditContent(e.target.value)}
             />
           </form>
         </div>
-        <div className="flex justify-end mt-4">
-          <Button onClick={handleCancelClick} cancel={true}>
+        <div className="flex justify-end mt-4 gap-2">
+          <Button onClick={handleCancelClick} outline={true}>
             취소
           </Button>
-          <Button onClick={handleRegistEditClick} disabled={editContent === ''}>
+          <Button
+            onClick={handleRegistEditClick}
+            disabled={editedContent === ''}
+          >
             수정
           </Button>
         </div>

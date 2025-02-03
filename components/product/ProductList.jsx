@@ -1,35 +1,50 @@
 'use client';
 
-import Dropdown from '../common/Dropdown';
-import Link from 'next/link';
-import Button from '../common/Button';
-import ProductItem from './ProductItem';
-import { useState } from 'react';
-import useDeviceSize from '@/hooks/useDeviceSize';
-import Pagination from '../common/Pagination';
 import api from '@/api';
+import { useAuth } from '@/contexts/AuthContext';
+import { useModal } from '@/contexts/ModalContext';
+import useDeviceSize from '@/hooks/useDeviceSize';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import AlertModal from '../common/AlertModal';
+import Button from '../common/Button';
+import Dropdown from '../common/Dropdown';
+import Pagination from '../common/Pagination';
+import ProductItem from './ProductItem';
 
-function ProductList({ initialData }) {
-  const [sort, setSort] = useState('latest'); // 정렬 옵션
+function ProductList() {
+  const [sort, setSort] = useState('recent'); // 정렬 옵션 - panda
+  // const [sort, setSort] = useState('latest'); // 정렬 옵션
   const [keyword, setKeyword] = useState(''); // 검색
   const [page, setPage] = useState(1); // pagination에 필요
   const [loadingError, setloadingError] = useState(null);
   const { isTablet, isMobile } = useDeviceSize(); // 미디어 쿼리
+  const { isLoggedIn, isAuthInitialized } = useAuth();
+  const modal = useModal();
+  const router = useRouter();
+
+  // ----- panda 마켓 -----------
+  const options = {
+    orderBy: sort,
+    keyword,
+    pageSize: 10,
+    page,
+  };
 
   // const currentDevice = isTablet ? 'tablet' : isMobile ? 'mobile' : 'desktop';
-  const options = {
-    sort: sort,
-    keyword: keyword,
-    skip: (page - 1) * 10,
-    limit: 10,
-    // skip: isTablet // 반응형 UI 구현 시 적용
-    //   ? (page - 1) * 6
-    //   : isMobile
-    //   ? (page - 1) * 4
-    //   : (page - 1) * 10,
-    // limit: isTablet ? 6 : isMobile ? 4 : 10, // 반응형 UI 구현 시 적용
-  };
+  // const options = {
+  //   sort: sort,
+  //   keyword: keyword,
+  //   skip: (page - 1) * 10,
+  //   limit: 20,
+  //   // skip: isTablet // 반응형 UI 구현 시 적용
+  //   //   ? (page - 1) * 6
+  //   //   : isMobile
+  //   //   ? (page - 1) * 4
+  //   //   : (page - 1) * 10,
+  //   // limit: isTablet ? 6 : isMobile ? 4 : 10, // 반응형 UI 구현 시 적용
+  // };
 
   // 반응형 UI 구현 시 적용
   // const { products: initialProducts, searchCount: initialSearchCount } =
@@ -39,18 +54,30 @@ function ProductList({ initialData }) {
   //   isTablet ? 6 : isMobile ? 4 : 10
   // );
 
-  const { data: result } = useQuery({
-    queryKey: ['products', { options }],
+  const {
+    data: result,
+    isPending,
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ['products', { ...options }],
     queryFn: () => api.getProducts(options),
+    staleTime: 120000,
+    retry: 0,
     // 반응형 UI 구현 시 적용
     // initialData: {
     //   products: newInitialProducts,
     //   searchCount: initialSearchCount,
     // },
-    initialData,
+    // initialData: initialData ? initialData : { list: [], totalCount: 0 },
   });
-  const { products, searchCount } = result;
-  const maxPage = Math.ceil(searchCount / options.limit);
+  const { list: products, totalCount } = result; // https://panda-market-api.vercel.app/products 사용 시
+  const maxPage = Math.ceil(totalCount / options.pageSize); // https://panda-market-api.vercel.app/products 사용 시
+  // const { products, searchCount } = result;
+  // const maxPage = Math.ceil(searchCount / options.limit);
+  // console.log(totalCount, maxPage, page);
+  // console.log(options);
+  // console.log(products);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,6 +90,20 @@ function ProductList({ initialData }) {
       setPage(1);
     }
   };
+
+  const handleClickRegitstBtn = () => {
+    if (!isLoggedIn)
+      return modal.open(
+        <AlertModal alertMessage="로그인이 필요한 서비스입니다." />
+      );
+
+    router.push('/products/post');
+  };
+
+  // console.log(isPending, isLoading, isFetching);
+
+  // if (isFetching || isLoading || isPending) return <div>로딩 중</div>;
+  // if (isFetching || isLoading || isPending) return <Skeleton />;
 
   return (
     <div>
@@ -80,9 +121,9 @@ function ProductList({ initialData }) {
               placeholder="검색할 상품을 입력해주세요"
             />
           </form>
-          <Link href="/registration">
-            <Button>상품 등록하기</Button>
-          </Link>
+          {/* <Link href="/registration"> */}
+          <Button onClick={handleClickRegitstBtn}>상품 등록하기</Button>
+          {/* </Link> */}
           <Dropdown value={sort} onSelect={setSort} />
         </div>
       </div>

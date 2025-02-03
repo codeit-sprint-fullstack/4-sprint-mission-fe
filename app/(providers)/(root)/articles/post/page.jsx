@@ -1,19 +1,23 @@
 'use client';
 
 import api from '@/api';
+import AlertModal from '@/components/common/AlertModal';
 import Button from '@/components/common/Button';
 import Loader from '@/components/common/Loader';
 import PageContainer from '@/components/common/Page';
+import { useModal } from '@/contexts/ModalContext';
 import useCheckInputValid from '@/hooks/useCheckInputValid';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 function ArticlePostPage() {
   const [isBtnActive, setIsBtnActive] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const router = useRouter();
+  const queryClient = useQueryClient();
+  const modal = useModal();
+
   const {
     inputValue: inputTitle,
     isValid: isValidTitle,
@@ -29,20 +33,29 @@ function ArticlePostPage() {
     handleChange: handleContentChange,
   } = useCheckInputValid((value) => value.length >= 10 && value.length <= 500);
 
-  const { mutate: createArticle } = useMutation({
+  const { mutate: createArticle, isPending } = useMutation({
     mutationFn: () =>
       api.postArticle({
         title: inputTitle,
         content: inputContent,
       }),
     onSuccess: (data) => {
-      router.push(`/articles/${data}`);
+      function handleClickSuccess() {
+        router.replace(`/articles/${data.id}`);
+        modal.close();
+      }
+      queryClient.invalidateQueries({ queryKey: ['articles'] });
+      modal.open(
+        <AlertModal
+          alertMessage="게시글이 정상적으로 등록되었습니다."
+          onClick={handleClickSuccess}
+        />
+      );
     },
   });
 
   const handleRegistClick = async () => {
     if (!isBtnActive) return;
-    setIsSubmitting(true);
     setIsBtnActive(false);
     createArticle();
   };
@@ -70,8 +83,11 @@ function ArticlePostPage() {
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="flex justify-between items-center mb-6">
             <p className="text-xl font-semibold">게시글 쓰기</p>
-            <Button onClick={handleRegistClick} disabled={!isBtnActive}>
-              {isSubmitting ? <Loader /> : '등록'}
+            <Button
+              onClick={handleRegistClick}
+              disabled={!isBtnActive || isPending}
+            >
+              {isPending ? <Loader /> : '등록'}
             </Button>
           </div>
           <p className="text-lg font-bold mb-3">*제목</p>

@@ -1,22 +1,26 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import BestArticleCard from './BestArticleCard';
 import api from '@/api';
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
+import BestArticleCard from './BestArticleCard';
 
 function BestArticleList({ initialData }) {
-  const { data } = useQuery({
-    queryFn: () => api.getArticles({ limit: 3, sort: 'latest' }),
+  const { data, isFetching, isPending, isLoading } = useQuery({
+    queryFn: () => api.getArticles({ pageSize: 3, orderBy: 'recent' }), // panda 마켓
+    // queryFn: () => api.getArticles({ limit: 3, sort: 'latest' }),
     queryKey: ['bestArticles', { isBest: true }],
     initialData,
-    staleTime: 0,
+    staleTime: 120000,
     gcTime: 0,
     refetchOnMount: true,
+    retry: 0,
   });
 
-  const articles = data?.articles.slice(0, 3) || [];
+  const articles = data?.list.slice(0, 3) || []; // panda 마켓
+  // const articles = data?.articles.slice(0, 3) || [];
+
+  if (isFetching || isLoading || isPending) return <div>로딩 중</div>;
   return (
     <section className="mb-10">
       <div className="h-[42px] flex items-center mb-6">
@@ -24,7 +28,11 @@ function BestArticleList({ initialData }) {
       </div>
       <div className="grid grid-cols-3 gap-x-6">
         {articles.map((article) => (
-          <Link key={article.id} href={`/articles/${article.id}`}>
+          <Link
+            key={article.id + article.writer}
+            href={`/articles/${article.id}`}
+          >
+            {/* <Link key={article.id} href={`/articles/${article.id}`}> */}
             <BestArticleCard article={article} />
           </Link>
         ))}
