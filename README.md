@@ -43,7 +43,11 @@ _위 이미지는 판다마켓의 대표 이미지입니다._ 📸
    - **스프린트 미션 8부터** 시작하는 프론트엔드 내용을 포함하고 있어요.
    - 만약 스프린트 미션 9부터 프론트엔드 코드를 React가 아닌 Next로 구현하고 싶다면 next 브랜치를 사용해요.
 
+<<<<<<< HEAD
 > _스프린트 미션 내 백엔드 요구사항은 [백엔드 레포지토리](https://github.com/codeit-sprint-fullstack/4-sprint-mission-be)의 브랜치에서 관리해주세요_
+=======
+> _스프린트 미션 내 백엔드 요구사항은 [백엔드 레포지토리](https://github.com/codeit-sprint-fullstack/2-Sprint-mission-Be)의 브랜치에서 관리해주세요_
+>>>>>>> upstream/next-엄성민
 
 ---
 
