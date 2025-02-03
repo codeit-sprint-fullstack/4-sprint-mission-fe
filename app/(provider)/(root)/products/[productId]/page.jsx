@@ -34,6 +34,7 @@ function ItemDetailPage() {
     enabled: isLoggedIn,
     initialData: {},
     staleTime: 30 * 1000,
+    refetchInterval: 5 * 1000,
   });
 
   return (

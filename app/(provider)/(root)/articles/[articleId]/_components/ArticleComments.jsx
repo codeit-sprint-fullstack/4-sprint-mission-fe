@@ -17,6 +17,7 @@ function ArticleComments({ initailComments }) {
     queryKey: ["comments", { articleId }],
     initialData: initailComments,
     staleTime: 30 * 1000,
+    refetchInterval: 10 * 1000,
   });
   return (
     <>

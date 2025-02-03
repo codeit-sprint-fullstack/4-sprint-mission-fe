@@ -26,6 +26,7 @@ function ProductEditPage() {
     queryFn: () => api.getProduct(productId),
     queryKey: ["product", { productId }],
     staleTime: 30 * 1000,
+    refetchInterval: 5 * 1000,
   });
 
   const { mutate: patchProduct } = useMutation({

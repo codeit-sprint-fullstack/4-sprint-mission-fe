@@ -20,6 +20,7 @@ function ProductComments() {
     queryKey: ["comments", { productId }],
     initialData: [],
     staleTime: 30 * 1000,
+    refetchInterval: 5 * 1000,
   });
 
   return (
