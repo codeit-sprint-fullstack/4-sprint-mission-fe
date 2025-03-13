@@ -25,26 +25,20 @@ function ProductList() {
   const router = useRouter();
 
   // ----- panda 마켓 -----------
-  const options = {
-    orderBy: sort,
-    keyword,
-    pageSize: 10,
-    page,
-  };
 
   // const currentDevice = isTablet ? 'tablet' : isMobile ? 'mobile' : 'desktop';
-  // const options = {
-  //   sort: sort,
-  //   keyword: keyword,
-  //   skip: (page - 1) * 10,
-  //   limit: 20,
-  //   // skip: isTablet // 반응형 UI 구현 시 적용
-  //   //   ? (page - 1) * 6
-  //   //   : isMobile
-  //   //   ? (page - 1) * 4
-  //   //   : (page - 1) * 10,
-  //   // limit: isTablet ? 6 : isMobile ? 4 : 10, // 반응형 UI 구현 시 적용
-  // };
+  const options = {
+    sort: sort,
+    keyword: keyword,
+    skip: (page - 1) * 10,
+    limit: 10,
+    // skip: isTablet // 반응형 UI 구현 시 적용
+    //   ? (page - 1) * 6
+    //   : isMobile
+    //   ? (page - 1) * 4
+    //   : (page - 1) * 10,
+    // limit: isTablet ? 6 : isMobile ? 4 : 10, // 반응형 UI 구현 시 적용
+  };
 
   // 반응형 UI 구현 시 적용
   // const { products: initialProducts, searchCount: initialSearchCount } =
@@ -61,7 +55,9 @@ function ProductList() {
     isFetching,
   } = useQuery({
     queryKey: ['products', { ...options }],
-    queryFn: () => api.getProducts(options),
+    queryFn: () => {
+      return api.getProducts(options);
+    },
     staleTime: 120000,
     retry: 0,
     // 반응형 UI 구현 시 적용
@@ -71,13 +67,11 @@ function ProductList() {
     // },
     // initialData: initialData ? initialData : { list: [], totalCount: 0 },
   });
-  const { list: products, totalCount } = result; // https://panda-market-api.vercel.app/products 사용 시
-  const maxPage = Math.ceil(totalCount / options.pageSize); // https://panda-market-api.vercel.app/products 사용 시
-  // const { products, searchCount } = result;
-  // const maxPage = Math.ceil(searchCount / options.limit);
-  // console.log(totalCount, maxPage, page);
-  // console.log(options);
-  // console.log(products);
+  // const { list: products, totalCount } = result; // https://panda-market-api.vercel.app/products 사용 시
+  // const maxPage = Math.ceil(totalCount / options.pageSize); // https://panda-market-api.vercel.app/products 사용 시
+  const products = result?.products || [];
+  const searchCount = result?.searchCount || 0;
+  const maxPage = Math.ceil(searchCount / options.limit);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,8 +93,6 @@ function ProductList() {
 
     router.push('/products/post');
   };
-
-  // console.log(isPending, isLoading, isFetching);
 
   // if (isFetching || isLoading || isPending) return <div>로딩 중</div>;
   // if (isFetching || isLoading || isPending) return <Skeleton />;

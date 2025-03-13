@@ -61,26 +61,11 @@ function ArticleListSkeleton() {
           <div className="flex justify-between items-center h-[42px] mb-6">
             <p className="text-xl font-semibold ">게시글</p>
           </div>
-          <div className="flex justify-between w-full h-10 mb-6 bg-gray-100">
-            {/* <form className="w-full">
-            <p>
-              <input
-                type="text"
-                id="search"
-                name="search"
-                required
-                className="bg-[#f3f4f6] placeholder-gray-400 w-full h-[42px] rounded-lg pl-4"
-                placeholder="검색어를 입력해주세요"
-                onKeyDown={handleEnterKeyDown}
-              />
-            </p>
-          </form> */}
-            {/* <Dropdown value={sortOption} onSelect={setSortOption} /> */}
-          </div>
+          <div className="flex justify-between w-full h-10 mb-6 bg-gray-100"></div>
           {Array(10)
             .fill('')
-            .map((index) => (
-              <ArticleWidget key={index + Math.random()} />
+            .map((_, index) => (
+              <ArticleWidget key={`${index}`} />
             ))}
         </section>
       </div>

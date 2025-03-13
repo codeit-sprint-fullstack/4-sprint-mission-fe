@@ -22,12 +22,12 @@ function ArticleCard({ article }) {
       >
         <div className="flex items-center">
           <Image className="shrink-0 w-6 h-6" src={icProfile} alt="profile" />
-          <p className="mx-2">{article.writer.nickname}</p>
+          <p className="mx-2">{article.writer}</p>
           <p className="text-[#9CA3AF]">{formattedDate(article.createdAt)}</p>
         </div>
         <div className="flex items-center">
           <Image className="w-6 h-6 mr-2" src={icHeart} alt="heart" />
-          <p className="">9999+</p>
+          <p className="">{article._count.articleLikes}</p>
         </div>
       </div>
     </div>

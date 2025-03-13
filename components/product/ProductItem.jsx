@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import AlertModal from '../common/AlertModal';
 
 function ProductItem({ product }) {
-  const { name, price, favoriteCount = 0 } = product;
+  const { name, price } = product;
   const router = useRouter();
   const { isLoggedIn } = useAuth();
   const modal = useModal();
@@ -22,12 +22,19 @@ function ProductItem({ product }) {
 
   return (
     <div className="cursor-pointer" onClick={handleClickProduct}>
-      <Image src={defaultImg} alt="기본 이미지" />
+      <div className="w-full pb-[100%] relative shrink-0 mr-6">
+        <Image
+          src={product.imgUrls.length !== 0 ? product.imgUrls[0] : defaultImg}
+          fill
+          className="object-cover rounded-2xl"
+          alt={product.name}
+        />
+      </div>
       <p className="text-[#1f2937] text-sm mt-4">{name}</p>
       <p className="text-[#1f2937] mt-4 mb-[14px] font-semibold">{`${price.toLocaleString()}원`}</p>
       <div className="text-[#4b5563] flex items-center text-xs">
         <Image src={icHeart} alt="heart" className="w-4 mr-[6px]" />
-        {favoriteCount}
+        {product._count.productLikes}
       </div>
     </div>
   );

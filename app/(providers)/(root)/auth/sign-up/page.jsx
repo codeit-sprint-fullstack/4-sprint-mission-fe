@@ -50,7 +50,7 @@ function SignUpPage() {
 
   const handleClickConfirm = () => {
     router.push('/products');
-    logIn();
+    // logIn();
     modal.close();
   };
 
@@ -65,14 +65,17 @@ function SignUpPage() {
       );
     },
     onError: (error) => {
-      if (error.response.data.message === '이미 사용중인 이메일입니다.') {
+      const errorMessage = error.response.data;
+      if (errorMessage === 'Already used email') {
         modal.open(<AlertModal alertMessage={'이미 사용중인 이메일입니다.'} />);
         setError('email', { message: '이메일을 확인해 주세요' });
-      } else if (
-        error.response.data.message === '이미 사용중인 닉네임입니다.'
-      ) {
+      } else if (errorMessage === '이미 사용중인 닉네임입니다.') {
         modal.open(<AlertModal alertMessage={'이미 사용중인 닉네임입니다.'} />);
         setError('nickname', { message: '닉네임을 확인해 주세요' });
+      } else {
+        modal.open(
+          <AlertModal alertMessage={'에러가 발생했습니다. 다시 시도해주세요'} />
+        );
       }
     },
   });

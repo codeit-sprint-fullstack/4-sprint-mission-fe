@@ -20,7 +20,7 @@ function Comments({ articleId, productId }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const queryClient = useQueryClient();
   const modal = useModal();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, userInfo } = useAuth();
 
   const { data, isLoading } = useQuery({
     queryKey: ['comments', articleId ? { articleId } : { productId }],
@@ -35,8 +35,14 @@ function Comments({ articleId, productId }) {
   const { mutate: postComment, isPending: isPendingPost } = useMutation({
     mutationFn: (content) =>
       articleId
-        ? api.postArticleComment(articleId, { content })
-        : api.postProductComment(productId, { content }),
+        ? api.postArticleComment(articleId, {
+            writer: userInfo.nickname,
+            content,
+          })
+        : api.postProductComment(productId, {
+            writer: userInfo.nickname,
+            content,
+          }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['comments', articleId ? { articleId } : { productId }],
@@ -100,8 +106,8 @@ function Comments({ articleId, productId }) {
       setIsBtnActive(false);
     }
   }, [content]);
-  const comments = data?.list; // panda 마켓 api는 list
-  // const comments = data?.comments;
+  // const comments = data?.list; // panda 마켓 api는 list
+  const comments = data?.comments || [];
 
   if (isLoading) return '로딩 중';
 

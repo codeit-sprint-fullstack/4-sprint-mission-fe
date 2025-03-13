@@ -26,6 +26,4 @@ async function ProductDetailPage({ params }) {
   );
 }
 
-// 댓글도 이 화면에서 미리 불러와서 initialData로 전달해보자
-
 export default ProductDetailPage;

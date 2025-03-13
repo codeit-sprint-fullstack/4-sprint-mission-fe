@@ -5,6 +5,7 @@ import AlertModal from '@/components/common/AlertModal';
 import Button from '@/components/common/Button';
 import Loader from '@/components/common/Loader';
 import PageContainer from '@/components/common/Page';
+import { useAuth } from '@/contexts/AuthContext';
 import { useModal } from '@/contexts/ModalContext';
 import useCheckInputValid from '@/hooks/useCheckInputValid';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -13,6 +14,7 @@ import { useEffect, useState } from 'react';
 
 function ArticlePostPage() {
   const [isBtnActive, setIsBtnActive] = useState(false);
+  const { isLoggedIn, isAuthInitialized, logOut, userInfo } = useAuth();
 
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -36,6 +38,7 @@ function ArticlePostPage() {
   const { mutate: createArticle, isPending } = useMutation({
     mutationFn: () =>
       api.postArticle({
+        writer: userInfo.nickname,
         title: inputTitle,
         content: inputContent,
       }),

@@ -9,6 +9,7 @@ import Button from './Button';
 function AuthButton() {
   const { isLoggedIn, isAuthInitialized, logOut, userInfo } = useAuth();
 
+  console.log('In authButton', isLoggedIn, isAuthInitialized, userInfo);
   const handleClickProfile = () => {
     logOut();
   };

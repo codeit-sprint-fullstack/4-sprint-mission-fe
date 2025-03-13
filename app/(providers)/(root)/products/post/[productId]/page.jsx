@@ -1,6 +1,8 @@
 'use client';
 
 import api from '@/api';
+import icX from '@/assets/images/ic-x.png';
+import icPlus from '@/assets/images/ic_plus.png';
 import AlertModal from '@/components/common/AlertModal';
 import Button from '@/components/common/Button';
 import Loader from '@/components/common/Loader';
@@ -9,8 +11,9 @@ import TagChip from '@/components/common/TagChip';
 import { useAuth } from '@/contexts/AuthContext';
 import { useModal } from '@/contexts/ModalContext';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 function ProductEditPage() {
@@ -21,7 +24,7 @@ function ProductEditPage() {
   const { data: product } = useQuery({
     queryKey: ['product', { productId }],
     queryFn: () => api.getProduct(productId),
-    retry: 0,
+    // retry: 0,
   });
 
   const {
@@ -40,22 +43,27 @@ function ProductEditPage() {
     },
   });
   const modal = useModal();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, userInfo } = useAuth();
   const [tags, setTags] = useState(product.tags);
   const router = useRouter();
+  const fileInputRef = useRef();
+  const [pickedImages, setPickedImages] = useState([]);
+  const [imgUrls, setImgUrls] = useState(product.imgUrls);
 
   const isTagsNotEmpty = tags.length !== 0;
-  const isPossibleRegist = isValid && isTagsNotEmpty;
+  const pickedImagesNotEmpty = pickedImages.length !== 0;
+  const isPossibleRegist = isValid && isTagsNotEmpty && pickedImagesNotEmpty;
 
   const { mutate: editProduct, isPending } = useMutation({
     mutationFn: (dto) => api.editProduct(productId, dto),
     onSuccess: () => {
       function handleClickSuccess() {
-        router.replace(`/products/${productId}`);
+        router.replace(`/products`);
+        // router.replace(`/products/${productId}`);
         modal.close();
       }
       // 상품 수정 후 상품 상세와 목록을 갱신
-      queryClient.invalidateQueries({ queryKey: ['product', { productId }] });
+      // queryClient.invalidateQueries({ queryKey: ['product', { productId }] });
       queryClient.invalidateQueries({ queryKey: ['products'] });
       modal.open(
         <AlertModal
@@ -84,18 +92,18 @@ function ProductEditPage() {
   const handleClickRegister = () => {
     if (!isPossibleRegist) return;
     checkIsLoggedIn();
-    onSubmit();
   };
 
   const onSubmit = (dto) => {
-    if (!dto) return;
+    if (!isLoggedIn || !isPossibleRegist) return;
     const { name, description, price } = dto;
     const reqData = {
       name,
       description,
       tags,
+      writer: userInfo.nickname,
       price: Number(price),
-      images: 'https://example.com/...',
+      images: pickedImages,
     };
     editProduct(reqData);
   };
@@ -105,6 +113,33 @@ function ProductEditPage() {
       ...prevTags.slice(0, index),
       ...prevTags.slice(index + 1),
     ]);
+  };
+
+  const handleChangeImages = (e) => {
+    if (!e.target.files) rerturn;
+    const fileList = e.target.files;
+    const fileArray = Array.from(fileList); // iterable을 array로 변경(map method를 쓰기 위해)
+
+    if (fileArray.length > 3)
+      return modal.open(
+        <AlertModal alertMessage="이미지는 최대 3개까지 등록 가능합니다." />
+      );
+    setPickedImages(fileArray);
+    const pickedImgUrls = fileArray.map((file) => URL.createObjectURL(file));
+    setImgUrls(pickedImgUrls);
+    e.target.value = '';
+  };
+
+  const handleClickAddImageButton = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleClickDeleteImageButton = (idx) => {
+    if (imgUrls.length > 1) {
+      setImgUrls(imgUrls.filter((_, index) => index !== idx));
+    } else {
+      setImgUrls([]);
+    }
   };
 
   const handleTagEnter = (e) => {
@@ -128,17 +163,18 @@ function ProductEditPage() {
     }
   };
 
-  useEffect(() => {
-    // /products/post로 접근 시 로그인 여부 체크
-    checkIsLoggedIn();
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   // /products/post로 접근 시 로그인 여부 체크
+  //   checkIsLoggedIn();
+  // }, [isLoggedIn]);
+  console.log(imgUrls > 0);
 
   return (
     <PageContainer>
       <div>
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className="flex justify-between items-center mb-6">
-            <p className="text-xl font-semibold">상품 등록하기</p>
+            <p className="text-xl font-semibold">상품 수정하기</p>
             <Button
               type="button"
               onClick={handleClickRegister}
@@ -148,6 +184,54 @@ function ProductEditPage() {
             </Button>
           </div>
           <div className="inline-flex flex-col w-full mb-6">
+            <label htmlFor="images" className="text-lg font-bold mb-4">
+              상품 이미지
+            </label>
+            <div className="grid gap-6 grid-cols-4 mb-8">
+              <button
+                onClick={handleClickAddImageButton}
+                type="button"
+                className="flex items-center justify-center w-[100%] pb-[calc(50%-43px)] pt-[calc(50%-43px)] bg-[#F3F4F6] rounded-xl"
+              >
+                <div className="flex flex-col justify-center items-center">
+                  <Image src={icPlus} alt="이미지등록" className="w-12 mb-3" />
+                  <p className="text-[#9CA3AF]">이미지 등록(최대 3)</p>
+                </div>
+              </button>
+              <input
+                id="images"
+                type="file"
+                {...register('images', {})}
+                accept="image/*"
+                multiple
+                className="hidden"
+                ref={fileInputRef}
+                onChange={handleChangeImages}
+              />
+
+              {imgUrls !== null && imgUrls.length !== 0 ? (
+                imgUrls.map((imgUrl, index) => (
+                  <div className="relative" key={imgUrl + index}>
+                    <Image
+                      src={imgUrl}
+                      alt="첨부이미지"
+                      fill
+                      className="rounded-xl aspect-square object-cover"
+                    />
+                    <div className="flex justify-center items-center absolute right-3 top-3 w-5 h-5 rounded-full bg-[#9CA3AF] cursor-pointer">
+                      <Image
+                        src={icX}
+                        alt="첨부이미지 삭제"
+                        className="w-[10px]"
+                        onClick={() => handleClickDeleteImageButton(index)}
+                      />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div></div>
+              )}
+            </div>
             <label htmlFor="name" className="text-lg font-bold mb-4">
               상품명
             </label>

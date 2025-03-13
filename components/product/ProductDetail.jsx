@@ -12,12 +12,11 @@ import lineBreakText from '@/utils/lineBreakText';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import AlertModal from '../common/AlertModal';
 import PopMenuButton from '../common/PopMenuButton';
 import TagChip from '../common/TagChip';
 
-function ProductDetail({ productId }) {
+function ProductDetail({ productId, initialData }) {
   const { isLoggedIn, isAuthInitialized } = useAuth();
   const modal = useModal();
   const router = useRouter();
@@ -26,8 +25,10 @@ function ProductDetail({ productId }) {
   const { data: product } = useQuery({
     queryKey: ['product', { productId }],
     queryFn: () => api.getProduct(productId),
-    staleTime: 120000,
+    staleTime: 0,
+    enabled: isAuthInitialized,
     // retry: 0,
+    // initialData,
   });
 
   const { mutate: likeProduct } = useMutation({
@@ -72,21 +73,24 @@ function ProductDetail({ productId }) {
       );
   };
 
-  console.log(isLoggedIn);
+  console.log(product);
 
-  useEffect(() => {
-    // /products/post로 접근 시 로그인 여부 체크
-    checkIsLoggedIn();
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   // /products/post로 접근 시 로그인 여부 체크
+  //   checkIsLoggedIn();
+  // }, [isLoggedIn]);
 
   return (
     <div>
       <div className="flex items-start">
-        <Image
-          src={defaultImg}
-          className="w-[486px] shrink-0 mr-6 rounded-2xl"
-          alt={product.name}
-        />
+        <div className="w-[486px] h-[486px] relative shrink-0 mr-6">
+          <Image
+            src={product.imgUrls.length !== 0 ? product.imgUrls[0] : defaultImg}
+            fill
+            className="object-cover rounded-2xl"
+            alt={product.name}
+          />
+        </div>
         <div className="grow-1 w-full">
           <div className="flex items-center justify-between mb-4">
             <p className="text-2xl font-semibold">{product.name}</p>
@@ -101,8 +105,8 @@ function ProductDetail({ productId }) {
             {lineBreakText(product.description)}
           </p>
           <p className="font-semibold text-[#4B5563] mb-4">상품 태그</p>
-          {product.tags.map((tag) => (
-            <TagChip key={productId + tag} tag={tag} />
+          {product.tags.map((tag, index) => (
+            <TagChip key={tag + index} tag={tag} />
           ))}
           <div className={`flex items-center text-[#4B5563] text-sm mt-[62px]`}>
             <Image
@@ -111,7 +115,7 @@ function ProductDetail({ productId }) {
               alt="profile"
             />
             <div className="flex flex-col items-start">
-              <p className="mb-1">{product.ownerNickname}</p>
+              <p className="mb-1">{product.writer}</p>
               <p className="text-[#9CA3AF]">
                 {formattedDate(product.createdAt)}
               </p>
@@ -126,7 +130,7 @@ function ProductDetail({ productId }) {
                   alt="heart"
                   onClick={handleClickHeartImage}
                 />
-                <p>{product.favoriteCount}</p>
+                <p>{product._count.productLikes}</p>
               </div>
             </div>
           </div>

@@ -7,8 +7,8 @@ import BestArticleCard from './BestArticleCard';
 
 function BestArticleList({ initialData }) {
   const { data, isFetching, isPending, isLoading } = useQuery({
-    queryFn: () => api.getArticles({ pageSize: 3, orderBy: 'recent' }), // panda 마켓
-    // queryFn: () => api.getArticles({ limit: 3, sort: 'latest' }),
+    // queryFn: () => api.getArticles({ pageSize: 3, orderBy: 'recent' }), // panda 마켓
+    queryFn: () => api.getArticles({ limit: 3, sort: 'recent' }),
     queryKey: ['bestArticles', { isBest: true }],
     initialData,
     staleTime: 120000,
@@ -17,8 +17,8 @@ function BestArticleList({ initialData }) {
     retry: 0,
   });
 
-  const articles = data?.list.slice(0, 3) || []; // panda 마켓
-  // const articles = data?.articles.slice(0, 3) || [];
+  // const articles = data?.list.slice(0, 3) || []; // panda 마켓
+  const articles = data?.slice(0, 3) || [];
 
   if (isFetching || isLoading || isPending) return <div>로딩 중</div>;
   return (
@@ -27,11 +27,8 @@ function BestArticleList({ initialData }) {
         <p className="text-xl font-semibold">베스트 게시글</p>
       </div>
       <div className="grid grid-cols-3 gap-x-6">
-        {articles.map((article) => (
-          <Link
-            key={article.id + article.writer}
-            href={`/articles/${article.id}`}
-          >
+        {articles.map((article, index) => (
+          <Link key={article.id} href={`/articles/${article.id}`}>
             {/* <Link key={article.id} href={`/articles/${article.id}`}> */}
             <BestArticleCard article={article} />
           </Link>

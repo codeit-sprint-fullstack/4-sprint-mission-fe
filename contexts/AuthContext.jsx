@@ -15,12 +15,6 @@ export function AuthProvider({ children }) {
   const pathName = usePathname();
   const router = useRouter();
 
-  // const { data: user } = useQuery({
-  //   queryKey: ['userInfo'],
-  //   queryFn: api.getMe,
-  // });
-  // enable 옵션을 넣어보자
-
   const logIn = () => setIsLoggedIn(true);
   const logOut = () => {
     // #1. api의 헤더에서 accessToken제거
@@ -46,13 +40,27 @@ export function AuthProvider({ children }) {
     async function initAuthStatus() {
       try {
         const accessToken = localStorage.getItem('accessToken');
+        console.log('🚀 ~ initAuthStatus ~ accessToken:', accessToken);
+
         if (!accessToken) return;
+        // // 1. 로컬스토리지를 뒤져서, 로그인 상태라는 단서를 찾음
+        // const prevRefreshToken = localStorage.getItem('refreshToken');
+        // console.log(
+        //   '🚀 ~ initAuthStatus ~ prevRefreshToken:',
+        //   prevRefreshToken
+        // );
+        // if (!prevRefreshToken) return;
+
+        // // 2. 로그인 상태라는 단서가 있으면, 서버에 토큰을 요청
+        // await api.refreshToken(prevRefreshToken);
 
         const user = await api.getMe();
+        // if (!user) return;
         setUserInfo(user);
         setIsLoggedIn(true);
       } catch (error) {
         console.log('refreshToken이 없거나 만료', error);
+        // localStorage.removeItem('refreshToken');
       } finally {
         setIsAuthInitialized(true);
       }

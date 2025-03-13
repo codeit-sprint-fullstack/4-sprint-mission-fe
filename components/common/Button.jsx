@@ -26,7 +26,7 @@ function Button({
   });
 
   const disableClassNames = clsx({
-    'bg-[#9da3ae] cursor-default hover:brightness-100 active:brightness-100':
+    'bg-[#9da3ae] cursor-default hover:!brightness-100 active:brightness-100':
       disabled,
   });
 

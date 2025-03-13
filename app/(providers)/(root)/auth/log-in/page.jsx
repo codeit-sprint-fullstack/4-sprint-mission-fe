@@ -50,14 +50,19 @@ function LogInPage() {
       authLogin();
     },
     onError: (error) => {
-      if (error.response.data.message === '존재하지 않는 이메일입니다.') {
-        modal.open(<AlertModal alertMessage={error.response.data.message} />);
+      const errorMessage = error.response.data;
+      if (errorMessage === 'No user founded') {
+        modal.open(<AlertModal alertMessage={'존재하지 않는 이메일입니다.'} />);
         setError('email', { message: '이메일을 확인해 주세요' });
-      } else if (
-        error.response.data.message === '비밀번호가 일치하지 않습니다.'
-      ) {
-        modal.open(<AlertModal alertMessage={error.response.data.message} />);
+      } else if (errorMessage === 'Wrong password') {
+        modal.open(
+          <AlertModal alertMessage={'비밀번호가 일치하지 않습니다'} />
+        );
         setError('password', { message: '비밀번호를 확인해 주세요' });
+      } else {
+        modal.open(
+          <AlertModal alertMessage={'에러가 발생했습니다. 다시 시도해주세요'} />
+        );
       }
     },
   });

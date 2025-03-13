@@ -49,9 +49,7 @@ function Comment({ comment, onDelete, onRegistEdit }) {
             alt="profile"
           />
           <div>
-            <p className="text-xs text-[#4B5563] mb-1">
-              {comment.writer.nickname}
-            </p>
+            <p className="text-xs text-[#4B5563] mb-1">{comment.writer}</p>
             <p className="text-[#9CA3AF] text-xs">
               {formattedDate(comment.createdAt) +
                 `${comment.createdAt === comment.updatedAt ? '' : '(수정됨)'}`}

@@ -28,9 +28,9 @@ function BestArticleCard({ article }) {
         className={`flex items-center justify-between text-[#4B5563] text-sm`}
       >
         <div className="flex items-center">
-          <p>{article.writer.nickname}</p>
+          <p>{article.writer}</p>
           <Image className="w-4 h-4 ml-2 mr-1" src={icHeart} alt="heart" />
-          <p>9999+</p>
+          <p>{article._count.articleLikes}</p>
         </div>
         <p className="text-[#9CA3AF]">{formattedDate(article.createdAt)}</p>
       </div>

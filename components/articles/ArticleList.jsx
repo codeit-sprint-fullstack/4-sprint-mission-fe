@@ -18,14 +18,14 @@ function ArticleList({ initialData }) {
     queryKey: ['articles', { keyword, sortOption }],
     queryFn: ({ pageParam }) =>
       api.getArticles({
-        keyword,
-        orderBy: sortOption,
-        page,
-        pageSize: 10,
         // keyword,
         // sort: sortOption,
-        // skip: (pageParam - 1) * 10,
-        // limit: 10,
+        // page,
+        // pageSize: 10,
+        keyword,
+        sort: sortOption,
+        skip: (pageParam - 1) * 10,
+        limit: 10,
       }),
     initialPageParam: 1,
     initialData: { pages: [initialData], pageParams: [] },
@@ -41,8 +41,11 @@ function ArticleList({ initialData }) {
     retryOnMount: true,
     gcTime: 0,
   });
-  const articles = data?.pages.flatMap((page) => page.list) || [];
-  // const articles = data?.pages.flatMap((page) => page.articles) || [];
+
+  const articles =
+    data?.pages.flatMap((page) => {
+      return page;
+    }) || [];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -106,10 +109,9 @@ function ArticleList({ initialData }) {
         {articles.map((article, index) => (
           <Link
             ref={index === articles.length - 2 ? targetRef : undefined}
-            key={article.id}
+            key={article.createdAt}
             href={{
               pathname: `/articles/${article.id}`,
-              query: { name: '조형민' },
             }}
           >
             <ArticleCard article={article} />
