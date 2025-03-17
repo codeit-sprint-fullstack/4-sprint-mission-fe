@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "incremental": true,
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    // paths가 있어야 import에서 절대경로 @/가 작동함
+    "paths": {
+      "@/*": ["./*"]
+      // "@/*": ["./src/*"] // src 폴더 만든 경우
+    },
+    "forceConsistentCasingInFileNames": true
+  },
+  "baseUrl": ".",
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
